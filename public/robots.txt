@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://maldivas-outdoor.com/sitemap.xml

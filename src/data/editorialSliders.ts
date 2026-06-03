@@ -1,0 +1,119 @@
+/**
+ * Editorial slider images — drag JPGs into /public/images/sliders/{category}/
+ * Filenames listed here; order defines slide sequence (curated interleaving).
+ * Missing files are skipped automatically at render time.
+ */
+
+export interface EditorialSlide {
+  /** Filename only, e.g. "01-reposera-fendi-terraza.jpg" */
+  file: string;
+  /** Model name only — displayed on slide overlay */
+  label: string;
+  href?: string;
+}
+
+export type SliderCategory = "reposeras" | "living" | "comedor";
+
+export function editorialSlideSrc(
+  category: SliderCategory,
+  file: string
+): string {
+  return `/images/sliders/${category}/${file}`;
+}
+
+/** Category portadas — editorial ambientaciones (NOT configurator images) */
+export const categoryEditorialSlides: Record<SliderCategory, EditorialSlide[]> =
+  {
+    reposeras: [
+      {
+        file: "01-reposera-fendi-similmaderamarron-negro.jpg",
+        label: "Fendi",
+        href: "/productos/reposeras/fendi",
+      },
+      {
+        file: "02-reposera-skorphio-greige-beige.jpg",
+        label: "Skorphio",
+        href: "/productos/reposeras/skorphio",
+      },
+      {
+        file: "03-reposera-malaga-terraza-boutique.jpg",
+        label: "Málaga",
+        href: "/productos/reposeras/malaga",
+      },
+      {
+        file: "05-reposera-mdq-conjunto-sombrilla.jpg",
+        label: "MDQ",
+        href: "/productos/reposeras/mdq",
+      },
+      {
+        file: "06-reposera-baros-anodidonatural-gris.jpg",
+        label: "Baros",
+        href: "/productos/reposeras/baros",
+      },
+    ],
+    living: [
+      {
+        file: "01-living-fendi-2cuerpos-similmaderamarron-negro.jpg",
+        label: "Fendi",
+        href: "/productos/living/fendi",
+      },
+      {
+        file: "02-living-maldivas-greige-beige.jpg",
+        label: "Maldivas",
+        href: "/productos/living/maldivas",
+      },
+      {
+        file: "03-living-malaga-hotel-boutique.jpg",
+        label: "Málaga",
+        href: "/productos/living/malaga",
+      },
+      {
+        file: "04-living-skorphio-4cuerpos-blanco.jpg",
+        label: "Skorphio",
+        href: "/productos/living/skorphio",
+      },
+      {
+        file: "05-living-milos-terraza-minimal.jpg",
+        label: "Milos",
+        href: "/productos/living/milos",
+      },
+    ],
+    comedor: [
+      {
+        file: "01-comedor-marbella-terraza.jpg",
+        label: "Marbella",
+        href: "/productos/comedor/marbella",
+      },
+      {
+        file: "02-comedor-marbella-piedra-detalle.jpg",
+        label: "Marbella",
+        href: "/productos/comedor/marbella",
+      },
+      {
+        file: "03-comedor-ambientacion-boutique.jpg",
+        label: "Marbella",
+        href: "/productos/comedor/marbella",
+      },
+    ],
+  };
+
+/** Product page editorial slider — filter by slug in filename */
+export function getProductEditorialSlides(
+  category: SliderCategory,
+  productSlug: string
+): EditorialSlide[] {
+  return categoryEditorialSlides[category].filter((s) =>
+    s.file.toLowerCase().includes(productSlug.toLowerCase())
+  );
+}
+
+export function mapEditorialToHero(
+  category: SliderCategory,
+  slides: EditorialSlide[]
+) {
+  return slides.map((s) => ({
+    src: editorialSlideSrc(category, s.file),
+    label: s.label,
+    href: s.href,
+  }));
+}

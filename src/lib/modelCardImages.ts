@@ -1,0 +1,248 @@
+import type { Product } from "@/types";
+import imageManifest from "../../public/images/manifest.json";
+
+type Manifest = {
+  urls: string[];
+  files: Record<string, { url: string; mtimeMs: number; size: number }>;
+};
+
+const manifest = imageManifest as Manifest;
+
+/** Generated black placeholders are ~8–9 KB; real uploads are much larger */
+const PLACEHOLDER_MAX_BYTES = 12_000;
+
+const FABRIC_IDS = new Set(["negro", "gris", "beige", "blanco"]);
+
+export interface ModelCardVariant {
+  url: string;
+  structure: string;
+  fabric: string;
+  size: string;
+}
+
+function withVersion(url: string, filename: string): string {
+  const entry = manifest.files[filename];
+  if (!entry?.mtimeMs) return url;
+  const v = Math.round(entry.mtimeMs);
+  return url.includes("?") ? `${url}&v=${v}` : `${url}?v=${v}`;
+}
+
+function typePrefix(product: Product): string | null {
+  if (product.category === "reposeras") return "reposera";
+  if (product.category === "living") return "living";
+  if (product.category === "comedor") return "comedor";
+  if (product.category === "mesas") return "mesa";
+  return null;
+}
+
+/** Canonical folder for model-card images (strict isolation per model) */
+export function getModelCardDirPrefix(product: Product): string | null {
+  if (product.category === "mesas") {
+    return `/images/mesas/${product.slug}/`;
+  }
+  if (
+    product.category === "reposeras" ||
+    product.category === "living" ||
+    product.category === "comedor"
+  ) {
+    return `/images/${product.category}/${product.slug}/`;
+  }
+  return null;
+}
+
+function parseVariantFilename(
+  filename: string,
+  product: Product,
+  prefix: string
+): Pick<ModelCardVariant, "structure" | "fabric" | "size"> | null {
+  const base = filename.replace(/\.(jpe?g|png|webp)$/i, "");
+  const head = `${prefix}-${product.slug}-`;
+  if (!base.startsWith(head)) return null;
+
+  const rest = base.slice(head.length);
+  const parts = rest.split("-");
+  if (parts.length < 3) return null;
+
+  const fabric = parts[parts.length - 1];
+  if (!FABRIC_IDS.has(fabric)) return null;
+
+  const size = parts[0];
+  const structure = parts.slice(1, -1).join("-");
+  if (!structure) return null;
+
+  return { size, structure, fabric };
+}
+
+function parseMesaGalleryFile(
+  filename: string,
+  url: string
+): ModelCardVariant | null {
+  if (!/^[123]\.(jpe?g|png|webp)$/i.test(filename)) return null;
+  return {
+    url,
+    size: filename,
+    structure: filename,
+    fabric: "",
+  };
+}
+
+function manifestSaysReal(filename: string, url: string): boolean {
+  const entry = manifest.files[filename];
+  if (!entry || entry.url !== url) return false;
+  return entry.size > PLACEHOLDER_MAX_BYTES;
+}
+
+function probeImageDimensions(
+  url: string
+): Promise<{ ok: boolean; width: number; height: number }> {
+  return new Promise((resolve) => {
+    const img = new window.Image();
+    img.onload = () =>
+      resolve({
+        ok: true,
+        width: img.naturalWidth,
+        height: img.naturalHeight,
+      });
+    img.onerror = () => resolve({ ok: false, width: 0, height: 0 });
+    img.src = url;
+  });
+}
+
+/** Real photo if manifest size is large enough OR loaded image has product-photo dimensions */
+async function isRealUploadedImage(url: string, filename: string): Promise<boolean> {
+  if (manifestSaysReal(filename, url)) return true;
+
+  const { ok, width, height } = await probeImageDimensions(url);
+  if (!ok) return false;
+  return width >= 400 && height >= 280;
+}
+
+/**
+ * All candidate URLs for one model folder (uses manifest.urls — avoids files-map collisions e.g. mesas/1.jpg).
+ */
+export function listModelCardCandidateUrls(product: Product): string[] {
+  const dirPrefix = getModelCardDirPrefix(product);
+  if (!dirPrefix) return [];
+  return manifest.urls.filter((url) => url.startsWith(dirPrefix));
+}
+
+/**
+ * Discover real images for model cards — sync pass from manifest metadata.
+ */
+export function getModelCardVariants(product: Product): ModelCardVariant[] {
+  const prefix = typePrefix(product);
+  const dirPrefix = getModelCardDirPrefix(product);
+  if (!prefix || !dirPrefix) return [];
+
+  const variants: ModelCardVariant[] = [];
+  const seen = new Set<string>();
+
+  for (const url of manifest.urls) {
+    if (!url.startsWith(dirPrefix)) continue;
+    const filename = url.split("/").pop() ?? "";
+    if (!filename || seen.has(url)) continue;
+
+    if (!manifestSaysReal(filename, url)) continue;
+
+    let variant: ModelCardVariant | null = null;
+
+    if (product.category === "mesas") {
+      variant = parseMesaGalleryFile(filename, withVersion(url, filename));
+    } else {
+      const parsed = parseVariantFilename(filename, product, prefix);
+      if (parsed) {
+        variant = {
+          url: withVersion(url, filename),
+          ...parsed,
+        };
+      }
+    }
+
+    if (variant) {
+      seen.add(url);
+      variants.push(variant);
+    }
+  }
+
+  return variants;
+}
+
+/**
+ * Async discovery: probes folder URLs so overwritten placeholders work without manifest refresh.
+ */
+export async function discoverModelCardVariants(
+  product: Product
+): Promise<ModelCardVariant[]> {
+  const prefix = typePrefix(product);
+  const dirPrefix = getModelCardDirPrefix(product);
+  if (!prefix || !dirPrefix) return [];
+
+  const variants: ModelCardVariant[] = [];
+  const seen = new Set<string>();
+
+  const candidates = listModelCardCandidateUrls(product);
+
+  await Promise.all(
+    candidates.map(async (url) => {
+      const filename = url.split("/").pop() ?? "";
+      if (!filename) return;
+
+      const real = await isRealUploadedImage(url, filename);
+      if (!real) return;
+
+      let variant: ModelCardVariant | null = null;
+
+      if (product.category === "mesas") {
+        variant = parseMesaGalleryFile(filename, withVersion(url, filename));
+      } else {
+        const parsed = parseVariantFilename(filename, product, prefix);
+        if (parsed) {
+          variant = {
+            url: withVersion(url, filename),
+            ...parsed,
+          };
+        }
+      }
+
+      if (variant && !seen.has(variant.url)) {
+        seen.add(variant.url);
+        variants.push(variant);
+      }
+    })
+  );
+
+  return variants;
+}
+
+/** Prefer a different structure and/or fabric than the current slide */
+export function pickNextVariantIndex(
+  pool: ModelCardVariant[],
+  currentIndex: number
+): number {
+  if (pool.length === 0) return 0;
+  if (pool.length === 1) return 0;
+
+  const current = pool[currentIndex];
+  const diverse = pool
+    .map((v, i) => ({ v, i }))
+    .filter(
+      ({ v, i }) =>
+        i !== currentIndex &&
+        (v.structure !== current.structure || v.fabric !== current.fabric)
+    );
+
+  if (diverse.length > 0) {
+    return diverse[Math.floor(Math.random() * diverse.length)].i;
+  }
+
+  let next = currentIndex;
+  while (next === currentIndex) {
+    next = Math.floor(Math.random() * pool.length);
+  }
+  return next;
+}
+
+export function pickInitialVariantIndex(pool: ModelCardVariant[]): number {
+  if (pool.length === 0) return 0;
+  return Math.floor(Math.random() * pool.length);
+}
