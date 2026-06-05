@@ -173,11 +173,8 @@ export function ProductDetail({
         </Link>
       </div>
 
-      <div
-        className="grid grid-cols-[55%_45%] gap-10 items-start min-h-screen px-6 md:px-12 w-full"
-        style={{ display: "grid", gridTemplateColumns: "55% 45%" }}
-      >
-        <div className="sticky top-24 self-start h-fit min-w-0">
+      <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-10 items-start px-6 md:px-12 w-full lg:min-h-screen">
+        <div className="lg:sticky lg:top-24 self-start h-fit min-w-0">
           {imagePanel}
         </div>
 

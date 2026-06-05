@@ -53,7 +53,7 @@ export const categoryEditorialSlides: Record<SliderCategory, EditorialSlide[]> =
     ],
     living: [
       {
-        file: "01-living-fendi-2cuerpos-similmaderamarron-negro.jpg",
+        file: "01-living-fendi-similmaderamarron-negro.jpg",
         label: "Fendi",
         href: "/productos/living/fendi",
       },

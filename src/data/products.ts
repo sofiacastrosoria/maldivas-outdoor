@@ -73,25 +73,21 @@ const REPOSERA_SIZES_BAROS: ProductSize[] = [
 
 const SOFA_SIZES_FENDI: ProductSize[] = [
   { id: "1-cuerpo", label: "1 cuerpo", dimensions: "92 × 85 × 72 cm" },
-  { id: "2-cuerpos", label: "2 cuerpos", dimensions: "140 × 85 × 72 cm", priceModifier: 180 },
   { id: "4-cuerpos", label: "4 cuerpos", dimensions: "221 × 85 × 72 cm", priceModifier: 420 },
 ];
 
 const SOFA_SIZES_SKORPHIO: ProductSize[] = [
   { id: "1-cuerpo", label: "1 cuerpo", dimensions: "100 × 85 × 72 cm" },
-  { id: "2-cuerpos", label: "2 cuerpos", dimensions: "148 × 85 × 72 cm", priceModifier: 180 },
   { id: "4-cuerpos", label: "4 cuerpos", dimensions: "228 × 85 × 72 cm", priceModifier: 420 },
 ];
 
 const SOFA_SIZES_MALAGA: ProductSize[] = [
   { id: "1-cuerpo", label: "1 cuerpo", dimensions: "90 × 90 × 72 cm" },
-  { id: "2-cuerpos", label: "2 cuerpos", dimensions: "138 × 90 × 72 cm", priceModifier: 180 },
   { id: "4-cuerpos", label: "4 cuerpos", dimensions: "218 × 90 × 72 cm", priceModifier: 420 },
 ];
 
 const SOFA_SIZES_MILOS: ProductSize[] = [
   { id: "1-cuerpo", label: "1 cuerpo", dimensions: "85 × 85 × 72 cm" },
-  { id: "2-cuerpos", label: "2 cuerpos", dimensions: "133 × 85 × 72 cm", priceModifier: 180 },
   { id: "4-cuerpos", label: "4 cuerpos", dimensions: "213 × 85 × 72 cm", priceModifier: 420 },
 ];
 

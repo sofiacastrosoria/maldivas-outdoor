@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { IMAGE_CONTAIN_FILL } from "@/lib/responsiveImage";
 
 interface CategoryCardProps {
   title: string;
@@ -32,7 +33,7 @@ export function CategoryCard({
             src={image}
             alt={title}
             fill
-            className="object-cover transition-transform duration-[1.4s] ease-luxury group-hover:scale-[1.04]"
+            className={`${IMAGE_CONTAIN_FILL} transition-transform duration-[1.4s] ease-luxury group-hover:scale-[1.02]`}
             sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-matte-black/60 via-matte-black/10 to-transparent" />

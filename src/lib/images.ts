@@ -5,7 +5,6 @@ const SIZE_COMPACT: Record<string, string> = {
   small: "simple",
   large: "doble",
   "1-cuerpo": "1cuerpo",
-  "2-cuerpos": "2cuerpos",
   "4-cuerpos": "4cuerpos",
   custom: "custom",
 };

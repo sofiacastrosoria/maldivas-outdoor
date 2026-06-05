@@ -7,7 +7,7 @@ interface ProductImageContainerProps {
 }
 
 const shellClass =
-  "relative w-full max-h-[78vh] aspect-[506/391] overflow-hidden rounded-none bg-sand/10";
+  "relative w-full overflow-hidden rounded-none bg-sand/10 min-h-[45vh] sm:min-h-[50vh] lg:max-h-[78vh] lg:aspect-[506/391] lg:min-h-0";
 
 export function ProductImageContainer({
   children,

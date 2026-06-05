@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Product } from "@/types";
+import { IMAGE_CONTAIN_FILL } from "@/lib/responsiveImage";
 import {
   discoverModelCardVariants,
   pickInitialVariantIndex,
@@ -94,7 +95,7 @@ export function ModelVariantSlider({
             alt={product.name}
             fill
             sizes="(max-width:768px) 100vw, 33vw"
-            className="object-cover object-center"
+            className={IMAGE_CONTAIN_FILL}
             unoptimized
           />
         </motion.div>

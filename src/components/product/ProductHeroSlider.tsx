@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { IMAGE_CONTAIN_FILL } from "@/lib/responsiveImage";
 import { filterExistingHeroSlides } from "./sliderSlides";
 
 export interface HeroSlide {
@@ -36,7 +37,7 @@ function SlideImage({ src, alt }: { src: string; alt: string }) {
         src={src}
         alt={alt}
         fill
-        className={`object-cover object-center transition-opacity duration-700 ${loaded ? "opacity-100" : "opacity-0"}`}
+        className={`${IMAGE_CONTAIN_FILL} transition-opacity duration-700 ${loaded ? "opacity-100" : "opacity-0"}`}
         sizes="100vw"
         priority
         onLoad={() => setLoaded(true)}
@@ -90,7 +91,9 @@ export function ProductHeroSlider({
   const inner = (
     <div
       className={`relative overflow-hidden bg-matte-black ${
-        fullscreen ? "h-[55vh] min-h-[360px] md:h-[70vh]" : aspectClass
+        fullscreen
+          ? "min-h-[50vh] max-h-[75vh] h-[55vh] sm:min-h-[320px] md:min-h-[360px] md:h-[65vh]"
+          : aspectClass
       }`}
     >
       <AnimatePresence mode="wait">

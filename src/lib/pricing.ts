@@ -22,7 +22,6 @@ const SIZE_MODIFIERS: Record<string, number> = {
   small: 0,
   large: 120,
   "1-cuerpo": 0,
-  "2-cuerpos": 180,
   "4-cuerpos": 420,
 };
 

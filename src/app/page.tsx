@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { StaticPlaceholderImage } from "@/components/ui/StaticPlaceholderImage";
+import { IMAGE_CONTAIN } from "@/lib/responsiveImage";
 
 const taglines = [
   "Lujo silencioso. Diseño atemporal.",
@@ -44,7 +45,7 @@ export default function AboutPage() {
             alt="Showroom Maldivas Outdoor"
             fill
             priority
-            className="object-cover object-center"
+            className={IMAGE_CONTAIN}
             sizes="100vw"
             unoptimized
           />

@@ -35,7 +35,6 @@ public/images/comedor/
 | Estándar     | `simple`  |
 | Doble        | `doble`   |
 | 1 cuerpo     | `1cuerpo` |
-| 2 cuerpos    | `2cuerpos`|
 | 4 cuerpos    | `4cuerpos`|
 
 ### Estructuras (sin guiones)

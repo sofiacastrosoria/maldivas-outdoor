@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import type { Product, ProductConfig } from "@/types";
 import { isTableProduct, type TableImageIndex } from "@/lib/images";
+import { IMAGE_CONTAIN } from "@/lib/responsiveImage";
 import { fallbackPlaceholder, getConfiguratorCandidates } from "@/lib/resolveImage";
 import { ImagePlaceholder } from "./ImagePlaceholder";
 
@@ -26,7 +27,7 @@ export function DynamicProductImage({
   sizes = "50vw",
   priority = false,
   className = "",
-  imageClassName = "object-contain",
+  imageClassName = IMAGE_CONTAIN,
 }: DynamicProductImageProps) {
   const candidates = useMemo(
     () => getConfiguratorCandidates(product, config, tableIndex),
@@ -73,24 +74,41 @@ export function DynamicProductImage({
       ? `${product.name} — ${tableIndex}`
       : `${product.name} — ${config?.sizeId ?? ""} ${config?.structureId ?? ""} ${config?.fabricId ?? ""}`.trim());
 
+  const imageClass = `${imageClassName} z-10`;
+
   return (
     <div
-      className={`absolute inset-0 z-0 overflow-hidden ${className}`}
+      className={`relative w-full lg:absolute lg:inset-0 z-0 overflow-hidden flex items-center justify-center ${className}`}
       aria-hidden={false}
     >
       {!failed && src ? (
-        <Image
-          key={src}
-          src={src}
-          alt={imageAlt}
-          fill
-          sizes={sizes}
-          priority={priority}
-          className={`${imageClassName} object-center opacity-100 visible z-10`}
-          style={{ opacity: 1, visibility: "visible" }}
-          onError={handleError}
-          unoptimized
-        />
+        <>
+          <Image
+            key={`${src}-mobile`}
+            src={src}
+            alt={imageAlt}
+            width={1200}
+            height={900}
+            sizes={sizes}
+            priority={priority}
+            className={`w-full h-auto max-h-[80vh] ${imageClass} lg:hidden`}
+            style={{ width: "100%", height: "auto" }}
+            onError={handleError}
+            unoptimized
+          />
+          <Image
+            key={`${src}-desktop`}
+            src={src}
+            alt={imageAlt}
+            fill
+            sizes={sizes}
+            priority={priority}
+            className={`hidden lg:block ${imageClass} opacity-100 visible`}
+            style={{ opacity: 1, visibility: "visible" }}
+            onError={handleError}
+            unoptimized
+          />
+        </>
       ) : (
         <div className="absolute inset-0 z-0">
           <ImagePlaceholder />

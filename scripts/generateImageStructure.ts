@@ -19,7 +19,6 @@ const SIZE_SEGMENT: Record<string, string> = {
   small: "simple",
   large: "doble",
   "1-cuerpo": "1cuerpo",
-  "2-cuerpos": "2cuerpos",
   "4-cuerpos": "4cuerpos",
   custom: "custom",
 };
@@ -95,7 +94,7 @@ const variantModels: VariantModel[] = [
     typePrefix: "living",
     category: "living",
     slug: "fendi",
-    sizes: ["1-cuerpo", "2-cuerpos", "4-cuerpos"],
+    sizes: ["1-cuerpo", "4-cuerpos"],
     structures: [
       "simil-madera-blanco",
       "simil-madera-marron",
@@ -110,7 +109,7 @@ const variantModels: VariantModel[] = [
     typePrefix: "living",
     category: "living",
     slug: "skorphio",
-    sizes: ["1-cuerpo", "2-cuerpos", "4-cuerpos"],
+    sizes: ["1-cuerpo", "4-cuerpos"],
     structures: [
       "simil-madera-blanco",
       "simil-madera-marron",
@@ -123,7 +122,7 @@ const variantModels: VariantModel[] = [
     typePrefix: "living",
     category: "living",
     slug: "malaga",
-    sizes: ["1-cuerpo", "2-cuerpos", "4-cuerpos"],
+    sizes: ["1-cuerpo", "4-cuerpos"],
     structures: ["negro-pintado", "anodizado-peltre", "anodizado-negro"],
     fabrics: FABRICS,
   },
@@ -131,7 +130,7 @@ const variantModels: VariantModel[] = [
     typePrefix: "living",
     category: "living",
     slug: "maldivas",
-    sizes: ["1-cuerpo", "2-cuerpos", "4-cuerpos"],
+    sizes: ["1-cuerpo", "4-cuerpos"],
     structures: ["negro-pintado", "anodizado-peltre", "anodizado-negro"],
     fabrics: FABRICS,
   },
@@ -139,7 +138,7 @@ const variantModels: VariantModel[] = [
     typePrefix: "living",
     category: "living",
     slug: "milos",
-    sizes: ["1-cuerpo", "2-cuerpos", "4-cuerpos"],
+    sizes: ["1-cuerpo", "4-cuerpos"],
     structures: [
       "negro-pintado",
       "greige-pintado",
