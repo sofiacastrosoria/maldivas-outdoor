@@ -28,7 +28,10 @@ export function Header() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 h-[76px] sm:h-[80px] md:h-[84px]">
+      <header
+        className="sticky top-0 z-50 w-full bg-white border-b border-[#EAEAEA] shadow-[0_1px_10px_rgba(0,0,0,0.03)]"
+        style={{ height: "var(--header-vh)", minHeight: "52px", maxHeight: "68px" }}
+      >
         <div className="relative mx-auto flex h-full max-w-[1600px] items-center justify-between px-5 sm:px-8 md:px-12">
           <button
             type="button"

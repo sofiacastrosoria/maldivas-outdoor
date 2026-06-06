@@ -1,34 +1,35 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
+import Image from "next/image";
 import type { Product, ProductConfig } from "@/types";
 import { isTableProduct, type TableImageIndex } from "@/lib/images";
-import { fallbackPlaceholder, getConfiguratorCandidates } from "@/lib/resolveImage";
-import { IntrinsicImage } from "@/components/ui/IntrinsicImage";
+import {
+  fallbackPlaceholder,
+  getConfiguratorCandidates,
+} from "@/lib/resolveImage";
 import { ImagePlaceholder } from "./ImagePlaceholder";
 
-interface DynamicProductImageProps {
+interface ConfiguratorImageProps {
   product: Product;
   config?: ProductConfig;
   tableIndex?: TableImageIndex;
   alt?: string;
-  sizes?: string;
+  onClick?: () => void;
   priority?: boolean;
-  className?: string;
-  /** Cap height in fixed hero (e.g. "42vh") — keeps photo in viewport */
-  imageMaxHeight?: string;
+  /** Fills parent height (33vh zone) instead of standalone aspect box */
+  compact?: boolean;
 }
 
-export function DynamicProductImage({
+export function ConfiguratorImage({
   product,
   config,
   tableIndex = 1,
   alt,
-  sizes = "50vw",
+  onClick,
   priority = false,
-  className = "",
-  imageMaxHeight,
-}: DynamicProductImageProps) {
+  compact = false,
+}: ConfiguratorImageProps) {
   const candidates = useMemo(
     () => getConfiguratorCandidates(product, config, tableIndex),
     [product, config, tableIndex]
@@ -66,27 +67,46 @@ export function DynamicProductImage({
     alt ??
     (isTableProduct(product)
       ? `${product.name} — ${tableIndex}`
-      : `${product.name} — ${config?.sizeId ?? ""} ${config?.structureId ?? ""} ${config?.fabricId ?? ""}`.trim());
+      : `${product.name} — configuración`);
 
-  if (failed || !src) {
-    return (
-      <div className={`relative w-full min-h-[200px] ${className}`}>
+  const shell = (
+    <div
+      className={`relative w-full overflow-hidden bg-white border border-premium-border rounded-lg ${
+        compact
+          ? "h-full min-h-0 max-h-full mx-auto max-w-3xl"
+          : "aspect-[7/5] rounded-xl shadow-[0_2px_24px_-8px_rgba(26,26,26,0.06)]"
+      }`}
+    >
+      {!failed && src ? (
+        <Image
+          key={src}
+          src={src}
+          alt={imageAlt}
+          fill
+          sizes="100vw"
+          priority={priority}
+          className="object-contain object-center"
+          onError={handleError}
+          unoptimized
+        />
+      ) : (
         <ImagePlaceholder />
-      </div>
+      )}
+    </div>
+  );
+
+  if (onClick) {
+    return (
+      <button
+        type="button"
+        onClick={onClick}
+        className={`block w-full cursor-zoom-in text-left ${compact ? "h-full" : ""}`}
+        aria-label="Ampliar imagen"
+      >
+        {shell}
+      </button>
     );
   }
 
-  return (
-    <div className={`relative w-full ${className}`} aria-hidden={false}>
-      <IntrinsicImage
-        key={src}
-        src={src}
-        alt={imageAlt}
-        sizes={sizes}
-        priority={priority}
-        onError={handleError}
-        style={imageMaxHeight ? { maxHeight: imageMaxHeight } : undefined}
-      />
-    </div>
-  );
+  return shell;
 }

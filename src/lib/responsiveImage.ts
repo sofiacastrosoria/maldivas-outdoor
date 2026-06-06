@@ -1,9 +1,8 @@
-/**
- * Mobile-first image classes — full photo visible, no aggressive cropping.
- * Below lg (1024px): intrinsic width + auto height where supported.
- * lg+: contained within layout shells.
- */
+/** @deprecated Use IntrinsicImage — block w-full h-auto avoids letterboxing */
 export const IMAGE_CONTAIN = "object-contain object-center";
 
-/** Fill-mode image: contain on all breakpoints */
+/** @deprecated Use IntrinsicImage for fill-mode shells */
 export const IMAGE_CONTAIN_FILL = `${IMAGE_CONTAIN} w-full h-full`;
+
+/** Sticky offset below fixed header (84px) + breathing room */
+export const PRODUCT_STICKY_TOP = 100;

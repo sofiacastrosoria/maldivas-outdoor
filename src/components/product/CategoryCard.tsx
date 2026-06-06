@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { motion } from "framer-motion";
-import { IMAGE_CONTAIN_FILL } from "@/lib/responsiveImage";
+import { IntrinsicImage } from "@/components/ui/IntrinsicImage";
 
 interface CategoryCardProps {
   title: string;
@@ -28,13 +27,12 @@ export function CategoryCard({
       transition={{ duration: 0.8, delay: index * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
     >
       <Link href={href} className="group block relative overflow-hidden">
-        <div className="relative aspect-[3/4] md:aspect-[16/10] overflow-hidden">
-          <Image
+        <div className="relative w-full overflow-hidden">
+          <IntrinsicImage
             src={image}
             alt={title}
-            fill
-            className={`${IMAGE_CONTAIN_FILL} transition-transform duration-[1.4s] ease-luxury group-hover:scale-[1.02]`}
             sizes="100vw"
+            className="transition-transform duration-[1.4s] ease-luxury group-hover:scale-[1.02]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-matte-black/60 via-matte-black/10 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 text-white">

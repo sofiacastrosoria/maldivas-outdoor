@@ -14,7 +14,7 @@ export default function ComedorPage() {
 
   return (
     <>
-      <div className="pt-[76px]">
+      <div>
         <ComedorCategoryHero />
       </div>
       <div className="pb-32 px-6 md:px-12">

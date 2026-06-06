@@ -19,11 +19,9 @@ export function ProductCard({ product, href }: ProductCardProps) {
         transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
         className="relative"
       >
-        <div className="relative aspect-[7/5] overflow-hidden bg-matte-black">
-          <div className="absolute inset-0">
-            <ModelVariantSlider product={product} />
-          </div>
-          <div className="absolute inset-0 bg-matte-black/0 group-hover:bg-matte-black/8 transition-colors duration-700 pointer-events-none" />
+        <div className="relative w-full overflow-hidden">
+          <ModelVariantSlider product={product} />
+          <div className="absolute inset-0 bg-matte-black/0 group-hover:bg-matte-black/5 transition-colors duration-700 pointer-events-none" />
         </div>
         <div className="mt-5 flex items-baseline justify-between gap-4">
           <div>

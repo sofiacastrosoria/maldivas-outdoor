@@ -1,10 +1,9 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { IMAGE_CONTAIN_FILL } from "@/lib/responsiveImage";
+import { IntrinsicImage } from "@/components/ui/IntrinsicImage";
 import { filterExistingHeroSlides } from "./sliderSlides";
 
 export interface HeroSlide {
@@ -16,45 +15,35 @@ export interface HeroSlide {
 interface ProductHeroSliderProps {
   slides: HeroSlide[];
   autoplayMs?: number;
+  /** @deprecated intrinsic sizing — prop kept for callers */
   aspectClass?: string;
+  /** @deprecated intrinsic sizing — prop kept for callers */
   fullscreen?: boolean;
 }
 
 function SlideImage({ src, alt }: { src: string; alt: string }) {
   const [failed, setFailed] = useState(false);
-  const [loaded, setLoaded] = useState(true);
 
   useEffect(() => {
     setFailed(false);
-    setLoaded(true);
   }, [src]);
 
   if (failed) return null;
 
   return (
-    <>
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        className={`${IMAGE_CONTAIN_FILL} transition-opacity duration-700 ${loaded ? "opacity-100" : "opacity-0"}`}
-        sizes="100vw"
-        priority
-        onLoad={() => setLoaded(true)}
-        onError={() => setFailed(true)}
-        unoptimized
-      />
-      {!loaded && (
-        <div className="absolute inset-0 bg-matte-black/10 animate-pulse" />
-      )}
-    </>
+    <IntrinsicImage
+      src={src}
+      alt={alt}
+      sizes="100vw"
+      priority
+      onError={() => setFailed(true)}
+    />
   );
 }
 
 export function ProductHeroSlider({
   slides,
   autoplayMs = 5500,
-  aspectClass = "aspect-[16/9] md:aspect-[21/9]",
   fullscreen = false,
 }: ProductHeroSliderProps) {
   const [validSlides, setValidSlides] = useState<HeroSlide[]>([]);
@@ -89,21 +78,15 @@ export function ProductHeroSlider({
   const slide = validSlides[index];
 
   const inner = (
-    <div
-      className={`relative overflow-hidden bg-matte-black ${
-        fullscreen
-          ? "min-h-[50vh] max-h-[75vh] h-[55vh] sm:min-h-[320px] md:min-h-[360px] md:h-[65vh]"
-          : aspectClass
-      }`}
-    >
+    <div className="relative w-full overflow-hidden">
       <AnimatePresence mode="wait">
         <motion.div
           key={slide.src}
-          initial={{ opacity: 0, scale: 1.04 }}
+          initial={{ opacity: 0, scale: 1.02 }}
           animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 1.01 }}
+          exit={{ opacity: 0, scale: 1.005 }}
           transition={{ duration: 1.1, ease: [0.25, 0.1, 0.25, 1] }}
-          className="absolute inset-0"
+          className="relative w-full"
         >
           <SlideImage src={slide.src} alt={slide.label} />
           <div className="absolute inset-0 bg-gradient-to-t from-matte-black/50 via-transparent to-transparent pointer-events-none" />
@@ -111,7 +94,7 @@ export function ProductHeroSlider({
       </AnimatePresence>
 
       <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10 text-white z-10 pointer-events-none">
-        <p className="text-lg md:text-2xl font-extralight tracking-tight">
+        <p className="text-lg md:text-2xl font-extralight tracking-tight drop-shadow-sm">
           {slide.label}
         </p>
       </div>

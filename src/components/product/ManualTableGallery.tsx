@@ -31,8 +31,8 @@ export function ManualTableGallery({
           tableIndex={active}
           alt={product.name}
           priority
-          sizes="(max-width:1024px) 100vw, 55vw"
-          imageClassName="object-contain object-center"
+          sizes="100vw"
+          imageMaxHeight="42vh"
         />
       </ProductImageContainer>
 

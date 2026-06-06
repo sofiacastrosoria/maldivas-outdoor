@@ -1,9 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { IntrinsicImage } from "@/components/ui/IntrinsicImage";
 import { useState } from "react";
-import { IMAGE_CONTAIN } from "@/lib/responsiveImage";
 import {
   CONTACT_MESSAGE_DEFAULT,
   contactToWhatsApp,
@@ -49,15 +48,12 @@ export default function ContactoPage() {
       </FadeIn>
 
       <div className="px-6 md:px-12 mb-20 max-w-6xl mx-auto">
-        <div className="relative w-full min-h-[280px] max-h-[75vh] h-[50vh] md:h-[60vh] overflow-hidden bg-sand/10 flex items-center justify-center">
-          <Image
+        <div className="relative w-full overflow-hidden">
+          <IntrinsicImage
             src={SHOWROOM_IMAGE}
             alt="Showroom Maldivas Outdoor"
-            fill
             priority
-            className={IMAGE_CONTAIN}
             sizes="(max-width: 768px) 100vw, 1152px"
-            unoptimized
           />
         </div>
       </div>

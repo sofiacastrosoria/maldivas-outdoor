@@ -1,11 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { IntrinsicImage } from "@/components/ui/IntrinsicImage";
 import { StaticPlaceholderImage } from "@/components/ui/StaticPlaceholderImage";
-import { IMAGE_CONTAIN } from "@/lib/responsiveImage";
 
 const taglines = [
   "Lujo silencioso. Diseño atemporal.",
@@ -37,17 +36,18 @@ export default function AboutPage() {
     <>
       <section
         ref={heroRef}
-        className="relative h-screen min-h-[600px] flex items-end overflow-hidden"
+        className="relative min-h-[70vh] flex items-end overflow-hidden bg-sand/10"
       >
-        <motion.div style={{ y }} className="absolute inset-0">
-          <Image
+        <motion.div
+          style={{ y }}
+          className="absolute inset-x-0 top-0 flex justify-center"
+        >
+          <IntrinsicImage
             src={SHOWROOM_IMAGE}
             alt="Showroom Maldivas Outdoor"
-            fill
             priority
-            className={IMAGE_CONTAIN}
             sizes="100vw"
-            unoptimized
+            className="max-h-[85vh]"
           />
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-t from-matte-black/70 via-matte-black/20 to-matte-black/30" />

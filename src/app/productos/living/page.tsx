@@ -15,7 +15,7 @@ export default function LivingPage() {
 
   return (
     <>
-      <div className="pt-[76px]">
+      <div>
         <LivingCategoryHero />
       </div>
       <div className="pb-32 px-6 md:px-12">

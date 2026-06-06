@@ -14,7 +14,7 @@ export default function ReposerasPage() {
 
   return (
     <>
-      <div className="pt-[76px]">
+      <div>
         <ReposerasCategoryHero />
       </div>
       <div className="pb-32 px-6 md:px-12">

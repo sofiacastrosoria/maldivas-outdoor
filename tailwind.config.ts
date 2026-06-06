@@ -14,8 +14,18 @@ const config: Config = {
         stone: "#9A9488",
         "matte-black": "#1A1A1A",
         wood: "#8B7355",
+        ivory: "#F8F6F2",
+        "premium-gray": "#6B6B6B",
+        "premium-border": "#D9D4CC",
+        "premium-gold": "#B89B72",
       },
       fontFamily: {
+        serif: [
+          "var(--font-playfair)",
+          "Georgia",
+          "Times New Roman",
+          "serif",
+        ],
         sans: [
           "var(--font-inter)",
           "-apple-system",
