@@ -205,14 +205,16 @@ export function ProductDetail({ product }: ProductDetailProps) {
         </div>
       </section>
 
-      {!isTable && (
-        <FullscreenImageModal
-          isOpen={zoomOpen}
-          src={resolveVariantImage(product, config)}
-          alt={product.name}
-          onClose={() => setZoomOpen(false)}
-        />
-      )}
+      <FullscreenImageModal
+        isOpen={zoomOpen}
+        src={resolveVariantImage(
+          product,
+          config,
+          isTable ? tableIndex : undefined
+        )}
+        alt={product.name}
+        onClose={() => setZoomOpen(false)}
+      />
     </div>
   );
 }

@@ -4,7 +4,6 @@ import imageManifest from "../../public/images/manifest.json";
 import {
   buildImageFilename,
   buildImagePath,
-  buildTableFilename,
   buildTableImagePath,
   defaultProductConfig,
   getImageFolder,
@@ -31,11 +30,25 @@ function unique(paths: (string | undefined)[]): string[] {
   return [...new Set(paths.filter(Boolean) as string[])];
 }
 
+function getManifestEntryByUrl(url: string) {
+  for (const entry of Object.values(manifest.files)) {
+    if (entry.url === url) return entry;
+  }
+  const filename = url.split("/").pop() ?? "";
+  const entry = manifest.files[filename];
+  return entry?.url === url ? entry : undefined;
+}
+
 function withVersion(url: string | undefined, filename?: string): string | undefined {
   if (!url) return undefined;
-  const name = filename ?? url.split("/").pop() ?? "";
-  const entry = manifest.files[name];
-  if (!entry?.mtimeMs) return url;
+  const entry = getManifestEntryByUrl(url);
+  if (!entry?.mtimeMs) {
+    const name = filename ?? url.split("/").pop() ?? "";
+    const byName = manifest.files[name];
+    if (!byName?.mtimeMs || byName.url !== url) return url;
+    const v = Math.round(byName.mtimeMs);
+    return url.includes("?") ? `${url}&v=${v}` : `${url}?v=${v}`;
+  }
   const v = Math.round(entry.mtimeMs);
   return url.includes("?") ? `${url}&v=${v}` : `${url}?v=${v}`;
 }
@@ -113,15 +126,9 @@ export function getConfiguratorCandidates(
   tableIndex: TableImageIndex = 1
 ): string[] {
   if (isTableProduct(product)) {
-    const filename = buildTableFilename(product, tableIndex);
     const canonical = buildTableImagePath(product, tableIndex);
-    return unique([
-      getUrlByFilename(filename),
-      withVersion(canonical, filename),
-      `/images/mesas/${product.slug}/${filename}`,
-      `/images/living/mesas/${product.slug}/${filename}`,
-      `/images/comedor/${product.slug}/${filename}`,
-    ]);
+    // Resolve only by full slug path — never by global filename (1.jpg, 2.jpg, 3.jpg).
+    return unique([withVersion(canonical) ?? canonical]);
   }
 
   const cfg = config ?? defaultProductConfig(product);
@@ -156,8 +163,8 @@ export function fallbackPlaceholder(
   tableIndex: TableImageIndex = 1
 ): string {
   if (isTableProduct(product)) {
-    const filename = buildTableFilename(product, tableIndex);
-    return withVersion(`/images/mesas/${product.slug}/${filename}`, filename) ?? `/images/mesas/${product.slug}/${filename}`;
+    const url = buildTableImagePath(product, tableIndex);
+    return withVersion(url) ?? url;
   }
   const cfg = config ?? defaultProductConfig(product);
   const filename = buildImageFilename(product, cfg);

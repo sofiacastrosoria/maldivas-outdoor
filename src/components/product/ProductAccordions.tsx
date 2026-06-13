@@ -92,12 +92,6 @@ export function ProductAccordions({ product }: { product: Product }) {
       content:
         "Envíos a todo el país. Los tiempos de fabricación varían según configuración y volumen del pedido. Consultanos para una estimación precisa.",
     },
-    {
-      id: "warranty",
-      title: "Garantía",
-      content:
-        "Garantía de 3 años en estructura y terminaciones bajo uso residencial normal en exteriores.",
-    },
   ];
 
   return (

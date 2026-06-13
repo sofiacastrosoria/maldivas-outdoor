@@ -1,7 +1,6 @@
 const BENEFITS = [
   "Envíos a todo el país",
   "Fabricación propia",
-  "Garantía 3 años",
   "Materiales premium",
 ] as const;
 
