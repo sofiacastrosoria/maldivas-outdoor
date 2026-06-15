@@ -23,10 +23,24 @@ export default function ProductosPage() {
         </p>
       </FadeIn>
 
-      <div className="space-y-4 md:space-y-8 px-0 md:px-0">
-        <CategoryEditorialSlider category="reposeras" href="/productos/reposeras" />
-        <CategoryEditorialSlider category="living" href="/productos/living" />
-        <CategoryEditorialSlider category="comedor" href="/productos/comedor" />
+      <div className="space-y-0">
+        <CategoryEditorialSlider
+          category="reposeras"
+          title="Reposeras"
+          href="/productos/reposeras"
+        />
+        <CategoryEditorialSlider
+          category="living"
+          title="Juegos de Living"
+          href="/productos/living"
+          showDivider
+        />
+        <CategoryEditorialSlider
+          category="comedor"
+          title="Comedor"
+          href="/productos/comedor"
+          showDivider
+        />
       </div>
     </div>
   );
