@@ -29,7 +29,10 @@ export function BrandMark() {
         />
       </motion.div>
 
-      <span className="mt-2 sm:mt-2.5 text-[10px] sm:text-[11px] md:text-xs font-semibold tracking-[0.2em] sm:tracking-[0.22em] md:tracking-[0.24em] text-matte-black/90 leading-none transition-colors duration-500 group-hover:text-matte-black whitespace-nowrap">
+      <span
+        className="mt-2 sm:mt-2.5 text-[10px] sm:text-[11px] md:text-xs font-semibold tracking-[0.2em] sm:tracking-[0.22em] md:tracking-[0.24em] leading-none transition-colors duration-500 group-hover:opacity-80 whitespace-nowrap"
+        style={{ color: "var(--brand-logo)" }}
+      >
         MALDIVAS OUTDOOR
       </span>
     </Link>

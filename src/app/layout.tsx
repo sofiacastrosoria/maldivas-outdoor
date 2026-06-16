@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/Header";
 import { CartDrawer } from "@/components/layout/CartDrawer";
 import { GlobalFooter } from "@/components/layout/GlobalFooter";
 import { MaldivasAssistant } from "@/components/layout/MaldivasAssistant";
+import { SplashScreen } from "@/components/layout/SplashScreen";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -44,6 +45,7 @@ export default function RootLayout({
     <html lang="es" className={inter.variable}>
       <body>
         <CartProvider>
+          <SplashScreen />
           <Header />
           <CartDrawer />
           <main>{children}</main>

@@ -1,13 +1,14 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ASSISTANT_WELCOME,
   ASSISTANT_WHATSAPP_MESSAGE,
   DEFAULT_SUGGESTIONS,
 } from "@/data/knowledge-base";
-import { getAssistantReply } from "@/lib/assistant";
+import { getAssistantReply, type ConversationContext } from "@/lib/assistant";
 import { openWhatsApp } from "@/lib/whatsapp";
 
 interface ChatMessage {
@@ -21,27 +22,56 @@ function createId() {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 }
 
+function useScrollLock(active: boolean, dataAttr: string) {
+  useEffect(() => {
+    if (!active) return;
+
+    const scrollY = window.scrollY;
+    const { style } = document.body;
+    const prev = {
+      position: style.position,
+      top: style.top,
+      width: style.width,
+      overflow: style.overflow,
+    };
+
+    style.position = "fixed";
+    style.top = `-${scrollY}px`;
+    style.width = "100%";
+    style.overflow = "hidden";
+    document.body.dataset[dataAttr] = "true";
+
+    return () => {
+      style.position = prev.position;
+      style.top = prev.top;
+      style.width = prev.width;
+      style.overflow = prev.overflow;
+      delete document.body.dataset[dataAttr];
+      window.scrollTo(0, scrollY);
+    };
+  }, [active, dataAttr]);
+}
+
 export function MaldivasAssistant() {
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [suggestions, setSuggestions] = useState<string[]>(DEFAULT_SUGGESTIONS);
+  const [context, setContext] = useState<ConversationContext>({});
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useScrollLock(open, "assistantOpen");
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const scrollToBottom = useCallback(() => {
     const el = scrollRef.current;
     if (el) el.scrollTop = el.scrollHeight;
   }, []);
-
-  useEffect(() => {
-    if (!open) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev || "auto";
-    };
-  }, [open]);
 
   useEffect(() => {
     scrollToBottom();
@@ -50,11 +80,7 @@ export function MaldivasAssistant() {
   useEffect(() => {
     if (open && messages.length === 0) {
       setMessages([
-        {
-          id: createId(),
-          role: "assistant",
-          text: ASSISTANT_WELCOME,
-        },
+        { id: createId(), role: "assistant", text: ASSISTANT_WELCOME },
       ]);
       setSuggestions(DEFAULT_SUGGESTIONS);
     }
@@ -62,132 +88,117 @@ export function MaldivasAssistant() {
 
   useEffect(() => {
     if (open) {
-      const timer = setTimeout(() => inputRef.current?.focus(), 200);
+      const timer = setTimeout(() => inputRef.current?.focus(), 280);
       return () => clearTimeout(timer);
     }
   }, [open]);
 
-  const sendMessage = useCallback((text: string) => {
-    const trimmed = text.trim();
-    if (!trimmed) return;
+  const close = useCallback(() => setOpen(false), []);
 
-    setMessages((prev) => [
-      ...prev,
-      { id: createId(), role: "user", text: trimmed },
-    ]);
-    setInput("");
+  const sendMessage = useCallback(
+    (text: string) => {
+      const trimmed = text.trim();
+      if (!trimmed) return;
 
-    const reply = getAssistantReply(trimmed);
-    setMessages((prev) => [
-      ...prev,
-      {
-        id: createId(),
-        role: "assistant",
-        text: reply.answer,
-        escalated: reply.escalated,
-      },
-    ]);
-    setSuggestions(reply.escalated ? [] : reply.suggestions);
-  }, []);
+      setMessages((prev) => [
+        ...prev,
+        { id: createId(), role: "user", text: trimmed },
+      ]);
+      setInput("");
+
+      const reply = getAssistantReply(trimmed, context);
+      setContext(reply.context);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: createId(),
+          role: "assistant",
+          text: reply.answer,
+          escalated: reply.escalated,
+        },
+      ]);
+      setSuggestions(reply.escalated ? [] : reply.suggestions);
+    },
+    [context]
+  );
 
   const handleEscalation = () => {
     openWhatsApp(ASSISTANT_WHATSAPP_MESSAGE);
   };
 
-  return (
-    <>
-      <AnimatePresence>
-        {open && (
-          <motion.button
-            type="button"
-            aria-label="Cerrar asistente"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[44] bg-matte-black/20 backdrop-blur-[2px] md:bg-transparent md:backdrop-blur-0"
-            onClick={() => setOpen(false)}
-          />
-        )}
-      </AnimatePresence>
-
-      <div className="fixed bottom-6 right-4 sm:right-6 z-[45] flex flex-col items-end gap-3">
+  const fullscreen = mounted
+    ? createPortal(
         <AnimatePresence>
           {open && (
             <motion.div
+              key="assistant-fullscreen"
               role="dialog"
               aria-modal="true"
               aria-label="Asistente Maldivas"
-              initial={{ opacity: 0, y: 16, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 12, scale: 0.98 }}
-              transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
-              className="w-[min(100vw-2rem,380px)] rounded-xl border border-premium-border bg-ivory shadow-[0_8px_40px_-12px_rgba(26,26,26,0.22)] overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+              className="fixed inset-0 z-[300] flex flex-col bg-ivory"
             >
-              <header className="px-5 py-4 border-b border-premium-border bg-white">
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <p className="text-[10px] tracking-luxury uppercase text-premium-gray">
-                      Maldivas Outdoor
-                    </p>
-                    <h2 className="text-base font-light text-matte-black mt-1">
-                      Asistente Maldivas
-                    </h2>
-                    <p className="text-xs text-premium-gray mt-1 leading-relaxed">
-                      Estoy para ayudarte a encontrar la mejor solución para tu
-                      espacio.
-                    </p>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => setOpen(false)}
-                    aria-label="Cerrar"
-                    className="flex h-8 w-8 items-center justify-center rounded-full text-premium-gray hover:text-matte-black hover:bg-matte-black/5 transition-colors"
-                  >
-                    ×
-                  </button>
-                </div>
+              <header className="relative flex-shrink-0 flex items-center justify-center border-b border-premium-border bg-white px-5 py-4 min-h-[56px]">
+                <button
+                  type="button"
+                  onClick={close}
+                  className="absolute left-4 sm:left-6 text-sm text-matte-black/70 hover:text-matte-black transition-colors tracking-wide"
+                >
+                  ← Cerrar
+                </button>
+                <h1 className="text-sm font-light tracking-wide text-matte-black">
+                  Asistente Maldivas
+                </h1>
               </header>
+
+              <p className="flex-shrink-0 text-center text-xs text-premium-gray px-6 py-3 border-b border-premium-border/60 bg-white/80">
+                Estoy para ayudarte a encontrar la mejor solución para tu espacio.
+              </p>
 
               <div
                 ref={scrollRef}
-                className="max-h-[min(52dvh,420px)] overflow-y-auto overscroll-y-contain px-4 py-4 space-y-3"
+                className="flex-1 min-h-0 overflow-y-auto overscroll-y-contain px-4 sm:px-6 py-6"
               >
-                {messages.map((msg) => (
-                  <div
-                    key={msg.id}
-                    className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
-                  >
+                <div className="mx-auto max-w-2xl space-y-4">
+                  {messages.map((msg) => (
                     <div
-                      className={`max-w-[88%] rounded-lg px-3.5 py-2.5 text-sm leading-relaxed ${
-                        msg.role === "user"
-                          ? "bg-matte-black text-white"
-                          : "bg-white border border-premium-border text-matte-black/90"
-                      }`}
+                      key={msg.id}
+                      className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                     >
-                      {msg.text}
-                      {msg.escalated && (
-                        <button
-                          type="button"
-                          onClick={handleEscalation}
-                          className="mt-3 block w-full text-center text-[10px] tracking-luxury uppercase border border-matte-black/20 px-4 py-2.5 hover:bg-matte-black hover:text-white transition-all duration-500"
-                        >
-                          Hablar con un asesor
-                        </button>
-                      )}
+                      <div
+                        className={`max-w-[90%] rounded-xl px-4 py-3 text-sm leading-relaxed ${
+                          msg.role === "user"
+                            ? "bg-matte-black text-white"
+                            : "bg-white border border-premium-border text-matte-black/90 shadow-sm"
+                        }`}
+                      >
+                        {msg.text}
+                        {msg.escalated && (
+                          <button
+                            type="button"
+                            onClick={handleEscalation}
+                            className="mt-4 block w-full text-center text-[10px] tracking-luxury uppercase border border-matte-black/20 px-4 py-3 hover:bg-matte-black hover:text-white transition-all duration-500"
+                          >
+                            Hablar con un asesor
+                          </button>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
 
               {suggestions.length > 0 && (
-                <div className="px-4 pb-3 flex flex-wrap gap-2">
+                <div className="flex-shrink-0 px-4 sm:px-6 pb-3 flex flex-wrap gap-2 justify-center max-w-2xl mx-auto w-full">
                   {suggestions.map((suggestion) => (
                     <button
                       key={suggestion}
                       type="button"
                       onClick={() => sendMessage(suggestion)}
-                      className="text-[10px] leading-snug text-left text-premium-gray border border-premium-border rounded-full px-3 py-1.5 hover:border-matte-black/30 hover:text-matte-black transition-colors"
+                      className="text-[10px] leading-snug text-left text-premium-gray border border-premium-border rounded-full px-3 py-2 hover:border-matte-black/30 hover:text-matte-black transition-colors bg-white"
                     >
                       {suggestion}
                     </button>
@@ -196,42 +207,52 @@ export function MaldivasAssistant() {
               )}
 
               <form
-                className="border-t border-premium-border p-3 bg-white flex gap-2"
+                className="flex-shrink-0 border-t border-premium-border bg-white p-4 sm:p-5"
                 onSubmit={(e) => {
                   e.preventDefault();
                   sendMessage(input);
                 }}
               >
-                <input
-                  ref={inputRef}
-                  type="text"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  placeholder="Escribí tu consulta..."
-                  className="flex-1 min-w-0 rounded-lg border border-premium-border bg-ivory px-3 py-2.5 text-sm text-matte-black placeholder:text-premium-gray/70 focus:outline-none focus:border-matte-black/30"
-                />
-                <button
-                  type="submit"
-                  disabled={!input.trim()}
-                  className="flex-shrink-0 text-[10px] tracking-luxury uppercase border border-matte-black px-4 py-2.5 text-matte-black hover:bg-matte-black hover:text-white disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-matte-black transition-all duration-500"
-                >
-                  Enviar
-                </button>
+                <div className="mx-auto max-w-2xl flex gap-3">
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    placeholder="Escribí tu consulta..."
+                    className="flex-1 min-w-0 rounded-lg border border-premium-border bg-ivory px-4 py-3 text-sm text-matte-black placeholder:text-premium-gray/70 focus:outline-none focus:border-matte-black/30"
+                  />
+                  <button
+                    type="submit"
+                    disabled={!input.trim()}
+                    className="flex-shrink-0 text-[10px] tracking-luxury uppercase border border-matte-black px-6 py-3 text-matte-black hover:bg-matte-black hover:text-white disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-matte-black transition-all duration-500"
+                  >
+                    Enviar
+                  </button>
+                </div>
               </form>
             </motion.div>
           )}
-        </AnimatePresence>
+        </AnimatePresence>,
+        document.body
+      )
+    : null;
 
+  return (
+    <>
+      {fullscreen}
+
+      {!open && (
         <button
           type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-expanded={open}
+          data-site-chrome
+          onClick={() => setOpen(true)}
           aria-label="Asistente Maldivas"
-          className="text-[10px] tracking-luxury uppercase border border-matte-black/20 bg-white/95 backdrop-blur-sm text-matte-black px-5 py-3 rounded-full shadow-[0_4px_20px_-6px_rgba(26,26,26,0.18)] hover:bg-matte-black hover:text-white hover:border-matte-black transition-all duration-500"
+          className="fixed bottom-6 right-4 sm:right-6 z-[45] text-[10px] tracking-luxury uppercase border border-matte-black/20 bg-white/95 backdrop-blur-sm text-matte-black px-5 py-3 rounded-full shadow-[0_4px_20px_-6px_rgba(26,26,26,0.18)] hover:bg-matte-black hover:text-white hover:border-matte-black transition-all duration-500"
         >
           Asistente Maldivas
         </button>
-      </div>
+      )}
     </>
   );
 }

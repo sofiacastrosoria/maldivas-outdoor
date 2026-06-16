@@ -7,6 +7,8 @@
   --color-black: #1a1a1a;
   --color-sand: #e8e0d4;
   --color-greige: #b8b0a4;
+  /* Tono principal del logo (aluminio cepillado) */
+  --brand-logo: #a8a8a8;
   /* Configurator viewport split: header 7% · image 33% · panel 60% */
   --header-vh: 7dvh;
   --config-image-vh: 33dvh;
@@ -21,6 +23,13 @@ html {
 
 body {
   @apply bg-white text-matte-black font-sans antialiased;
+}
+
+/* Ocultar chrome del sitio durante overlays premium */
+body[data-assistant-open] [data-site-chrome],
+body[data-lightbox-open] [data-site-chrome] {
+  visibility: hidden;
+  pointer-events: none;
 }
 
 ::selection {

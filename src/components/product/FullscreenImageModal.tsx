@@ -1,10 +1,41 @@
 "use client";
 
 import { useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 
-const FADE_MS = 0.2;
+const FADE_MS = 0.25;
+
+function useScrollLock(active: boolean) {
+  useEffect(() => {
+    if (!active) return;
+
+    const scrollY = window.scrollY;
+    const { style } = document.body;
+    const prev = {
+      position: style.position,
+      top: style.top,
+      width: style.width,
+      overflow: style.overflow,
+    };
+
+    style.position = "fixed";
+    style.top = `-${scrollY}px`;
+    style.width = "100%";
+    style.overflow = "hidden";
+    document.body.dataset.lightboxOpen = "true";
+
+    return () => {
+      style.position = prev.position;
+      style.top = prev.top;
+      style.width = prev.width;
+      style.overflow = prev.overflow;
+      delete document.body.dataset.lightboxOpen;
+      window.scrollTo(0, scrollY);
+    };
+  }, [active]);
+}
 
 export function FullscreenImageModal({
   isOpen,
@@ -24,20 +55,17 @@ export function FullscreenImageModal({
     [onClose]
   );
 
+  useScrollLock(isOpen);
+
   useEffect(() => {
     if (!isOpen) return;
-
-    const prevBodyOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
     document.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.body.style.overflow = prevBodyOverflow || "auto";
-      document.removeEventListener("keydown", handleKeyDown);
-    };
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, handleKeyDown]);
 
-  return (
+  if (typeof document === "undefined") return null;
+
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <motion.div
@@ -49,14 +77,9 @@ export function FullscreenImageModal({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: FADE_MS }}
-          className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-8"
+          className="fixed inset-0 z-[310] flex items-center justify-center bg-matte-black/92 backdrop-blur-md"
           onClick={onClose}
         >
-          <div
-            className="absolute inset-0 bg-matte-black/70 backdrop-blur-md"
-            aria-hidden
-          />
-
           <button
             type="button"
             aria-label="Cerrar imagen ampliada"
@@ -64,19 +87,19 @@ export function FullscreenImageModal({
               e.stopPropagation();
               onClose();
             }}
-            className="absolute right-4 top-4 sm:right-6 sm:top-6 z-[230] flex h-11 w-11 min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-white text-matte-black shadow-[0_2px_12px_rgba(0,0,0,0.18)] hover:bg-white/95 active:scale-95 transition-all duration-200"
+            className="fixed left-4 top-4 sm:left-6 sm:top-6 z-[320] flex h-12 w-12 min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-white text-matte-black shadow-[0_4px_20px_rgba(0,0,0,0.25)] hover:bg-white/95 active:scale-95 transition-all duration-200"
           >
-            <span className="text-xl leading-none font-light" aria-hidden>
+            <span className="text-2xl leading-none font-light" aria-hidden>
               ×
             </span>
           </button>
 
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.98 }}
             transition={{ duration: FADE_MS }}
-            className="relative z-[220] h-[min(70dvh,85vw*5/7)] w-full max-w-5xl max-h-[85dvh]"
+            className="relative z-[315] w-[90vw] h-[90vh] max-w-[90vw] max-h-[90dvh]"
             onClick={(e) => e.stopPropagation()}
           >
             <Image
@@ -84,13 +107,14 @@ export function FullscreenImageModal({
               alt={alt}
               fill
               className="object-contain object-center"
-              sizes="100vw"
+              sizes="90vw"
               priority
               unoptimized
             />
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }

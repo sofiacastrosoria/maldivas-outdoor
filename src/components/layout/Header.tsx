@@ -29,6 +29,7 @@ export function Header() {
   return (
     <>
       <header
+        data-site-chrome
         className="sticky top-0 z-50 w-full bg-white border-b border-[#EAEAEA] shadow-[0_1px_10px_rgba(0,0,0,0.03)]"
         style={{ height: "var(--header-vh)", minHeight: "52px", maxHeight: "68px" }}
       >
