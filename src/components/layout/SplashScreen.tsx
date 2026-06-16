@@ -60,6 +60,12 @@ export function SplashScreen() {
                 priority
               />
             </div>
+            <span
+              className="mt-6 sm:mt-7 text-[10px] sm:text-xs md:text-sm font-semibold tracking-[0.28em] sm:tracking-[0.32em] md:tracking-[0.36em] leading-none whitespace-nowrap"
+              style={{ color: "var(--brand-logo)" }}
+            >
+              MALDIVAS OUTDOOR
+            </span>
           </motion.div>
         </motion.div>
       )}

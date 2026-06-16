@@ -7,24 +7,39 @@ import { IntrinsicImage } from "@/components/ui/IntrinsicImage";
 import { IMAGE_SIZES } from "@/lib/imageSizes";
 import { StaticPlaceholderImage } from "@/components/ui/StaticPlaceholderImage";
 
-const taglines = [
-  "Lujo silencioso. Diseño atemporal.",
-  "Outdoor diseñado para permanecer.",
-  "Cada pieza transforma el exterior en experiencia.",
-  "Arquitectura exterior para quienes entienden el detalle.",
-];
+const tagline = "Lujo silencioso. Diseño atemporal.";
 
 /** Real showroom — shared with Contacto */
 const SHOWROOM_IMAGE = "/images/contacto/local-showroom.jpg";
 
-const aboutImages = [
-  { src: "/images/about/about-1.jpg", alt: "Maldivas Outdoor — About 1" },
-  { src: "/images/about/about-2.jpg", alt: "Maldivas Outdoor — About 2" },
-  { src: "/images/about/about-3.jpg", alt: "Maldivas Outdoor — About 3" },
-  { src: "/images/about/about-4.jpg", alt: "Maldivas Outdoor — About 4" },
+const philosophyPillars = [
+  {
+    src: "/images/about/about-1.jpg",
+    alt: "Maldivas Outdoor — Diseño atemporal",
+    title: "Diseño Atemporal",
+    text: "Creemos en formas que trascienden tendencias y acompañan los espacios durante años.",
+  },
+  {
+    src: "/images/about/about-2.jpg",
+    alt: "Maldivas Outdoor — Fabricación propia",
+    title: "Fabricación Propia",
+    text: "Cada pieza es desarrollada y fabricada por nuestro equipo, cuidando cada detalle constructivo y cada terminación.",
+  },
+  {
+    src: "/images/about/about-3.jpg",
+    alt: "Maldivas Outdoor — Materiales seleccionados",
+    title: "Materiales Seleccionados",
+    text: "Trabajamos con aluminio y textiles outdoor elegidos por su desempeño, durabilidad y estética.",
+  },
+  {
+    src: "/images/about/about-4.jpg",
+    alt: "Maldivas Outdoor — Vivir el exterior",
+    title: "Vivir el Exterior",
+    text: "Nuestros muebles están pensados para transformar galerías, terrazas y jardines en espacios para compartir y disfrutar.",
+  },
 ];
 
-export default function AboutPage() {
+export default function HomePage() {
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -36,6 +51,7 @@ export default function AboutPage() {
   return (
     <>
       <section
+        id="inicio"
         ref={heroRef}
         className="relative min-h-[70vh] flex items-end overflow-hidden bg-sand/10"
       >
@@ -62,7 +78,7 @@ export default function AboutPage() {
             transition={{ duration: 1, delay: 0.3 }}
             className="text-[10px] md:text-xs tracking-luxury uppercase text-white/60 mb-4"
           >
-            Maldivas Outdoor · Córdoba, Argentina
+            Inicio · Maldivas Outdoor · Córdoba, Argentina
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -70,59 +86,9 @@ export default function AboutPage() {
             transition={{ duration: 1.2, delay: 0.5 }}
             className="text-4xl md:text-7xl font-extralight text-white tracking-tight max-w-4xl leading-[1.1]"
           >
-            {taglines[0]}
+            {tagline}
           </motion.h1>
         </motion.div>
-      </section>
-
-      <section className="py-24 md:py-40 px-6 md:px-12 max-w-4xl mx-auto text-center">
-        <FadeIn>
-          <p className="text-[10px] tracking-luxury uppercase text-matte-black/40 mb-6">
-            About Us
-          </p>
-          <h2 className="text-3xl md:text-5xl font-extralight tracking-tight leading-snug">
-            Maldivas Outdoor nace en Córdoba, Argentina.
-          </h2>
-        </FadeIn>
-        <FadeIn delay={0.15} className="mt-10">
-          <p className="text-sm md:text-base text-matte-black/55 leading-relaxed">
-            La marca crea muebles de exterior premium inspirados en hoteles
-            boutique, arquitectura contemporánea y diseño atemporal. Cada pieza
-            combina aluminio de alta tecnología, textiles europeos y procesos
-            constructivos de excelencia.
-          </p>
-        </FadeIn>
-      </section>
-
-      <section className="border-t border-stone/15">
-        {taglines.slice(1).map((line, i) => (
-          <FadeIn
-            key={line}
-            className="py-20 md:py-32 px-6 md:px-12 text-center border-b border-stone/10"
-          >
-            <p className="text-2xl md:text-4xl font-extralight tracking-tight text-matte-black/80 max-w-3xl mx-auto">
-              {line}
-            </p>
-          </FadeIn>
-        ))}
-      </section>
-
-      <section className="py-24 md:py-32 px-6 md:px-12 border-t border-stone/15">
-        <FadeIn className="max-w-6xl mx-auto mb-12 md:mb-16 text-center">
-          <p className="text-[10px] tracking-luxury uppercase text-matte-black/40 mb-4">
-            Editorial
-          </p>
-          <h2 className="text-3xl md:text-4xl font-extralight tracking-tight">
-            Arquitectura, materia y permanencia
-          </h2>
-        </FadeIn>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
-          {aboutImages.map((img, i) => (
-            <FadeIn key={img.src} delay={i * 0.05}>
-              <StaticPlaceholderImage src={img.src} alt={img.alt} />
-            </FadeIn>
-          ))}
-        </div>
       </section>
 
       <section className="py-32 md:py-48 px-6 text-center bg-sand/20">
@@ -137,6 +103,50 @@ export default function AboutPage() {
             Explorar colección →
           </a>
         </FadeIn>
+      </section>
+
+      <section
+        id="filosofia"
+        className="py-24 md:py-40 px-6 md:px-12 border-t border-stone/15"
+      >
+        <FadeIn className="max-w-3xl mx-auto text-center mb-20 md:mb-28">
+          <p className="text-[10px] tracking-luxury uppercase text-matte-black/40 mb-6">
+            Nuestra Filosofía
+          </p>
+          <div className="space-y-6 text-sm md:text-base text-matte-black/60 leading-relaxed font-light">
+            <p className="text-xl md:text-2xl font-extralight text-matte-black/85 tracking-tight leading-snug">
+              No diseñamos únicamente muebles.
+            </p>
+            <p>
+              Diseñamos espacios exteriores pensados para permanecer en el
+              tiempo.
+            </p>
+            <p>
+              Cada colección nace de la búsqueda del equilibrio entre estética,
+              funcionalidad y durabilidad.
+            </p>
+          </div>
+        </FadeIn>
+
+        <div className="max-w-5xl mx-auto space-y-24 md:space-y-32">
+          {philosophyPillars.map((pillar, i) => (
+            <FadeIn key={pillar.title} delay={i * 0.05}>
+              <article className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                <div className={i % 2 === 1 ? "md:order-2" : ""}>
+                  <StaticPlaceholderImage src={pillar.src} alt={pillar.alt} />
+                </div>
+                <div className={i % 2 === 1 ? "md:order-1 md:text-right" : ""}>
+                  <h3 className="text-lg md:text-xl font-extralight tracking-tight text-matte-black mb-4">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-sm md:text-base text-matte-black/55 leading-relaxed font-light">
+                    {pillar.text}
+                  </p>
+                </div>
+              </article>
+            </FadeIn>
+          ))}
+        </div>
       </section>
     </>
   );

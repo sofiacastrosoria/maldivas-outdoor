@@ -63,16 +63,6 @@ export const categoryEditorialSlides: Record<SliderCategory, EditorialSlide[]> =
         href: "/productos/living/maldivas",
       },
       {
-        file: "03-living-malaga-hotel-boutique.jpg",
-        label: "Málaga",
-        href: "/productos/living/malaga",
-      },
-      {
-        file: "04-living-skorphio-4cuerpos-blanco.jpg",
-        label: "Skorphio",
-        href: "/productos/living/skorphio",
-      },
-      {
         file: "05-living-milos-terraza-minimal.jpg",
         label: "Milos",
         href: "/productos/living/milos",

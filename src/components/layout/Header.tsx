@@ -7,7 +7,7 @@ import { useCart } from "@/context/CartContext";
 import { BrandMark } from "./BrandMark";
 
 const menuItems = [
-  { label: "About Us", href: "/" },
+  { label: "Inicio", href: "/" },
   {
     label: "Productos",
     href: "/productos",

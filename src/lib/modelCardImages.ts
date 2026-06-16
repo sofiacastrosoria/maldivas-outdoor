@@ -7,6 +7,17 @@ import {
 
 const FABRIC_IDS = new Set(["negro", "gris", "beige", "blanco"]);
 
+/** Tamaños permitidos en sliders de tarjeta de reposeras (solo estándar/simple). */
+const REPOSERA_CARD_SIZE_SEGMENTS = new Set(["simple", "estandar"]);
+
+function filterReposeraCardVariants(
+  product: Product,
+  variants: ModelCardVariant[]
+): ModelCardVariant[] {
+  if (product.category !== "reposeras") return variants;
+  return variants.filter((v) => REPOSERA_CARD_SIZE_SEGMENTS.has(v.size));
+}
+
 export interface ModelCardVariant {
   url: string;
   structure: string;
@@ -152,7 +163,7 @@ export function getModelCardVariants(product: Product): ModelCardVariant[] {
     }
   }
 
-  return variants;
+  return filterReposeraCardVariants(product, variants);
 }
 
 /**
@@ -199,7 +210,7 @@ export async function discoverModelCardVariants(
     }
   }
 
-  return variants;
+  return filterReposeraCardVariants(product, variants);
 }
 
 /** Prefer a different structure and/or fabric than the current slide */
