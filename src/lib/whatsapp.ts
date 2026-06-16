@@ -1,5 +1,5 @@
 import type { CartItem } from "@/types";
-import { formatPrice } from "@/lib/pricing";
+import { calculateCartItemPricing, calculateCartTotals, formatPrice } from "@/lib/pricing";
 
 /** WhatsApp: +54 9 3516 81-2006 */
 export const WHATSAPP_NUMBER = "5493516812006";
@@ -45,6 +45,8 @@ function formatCartItemBlock(item: CartItem): string {
   const stone =
     [stoneBrand, stoneModel].filter(Boolean).join(" — ") || "—";
 
+  const pricing = calculateCartItemPricing(item.unitPrice, item.quantity);
+
   const lines = [
     `• ${item.productName}`,
     `- Tamaño: ${size}`,
@@ -52,7 +54,9 @@ function formatCartItemBlock(item: CartItem): string {
     `- Tapizado: ${fabric}`,
     `- Piedra: ${stone}`,
     `- Cantidad: ${item.quantity}`,
-    `- Precio: ${formatPrice(item.unitPrice * item.quantity)}`,
+    `- Precio de lista: ${formatPrice(pricing.lineList)}`,
+    `- Precio transferencia (15% OFF): ${formatPrice(pricing.lineTransfer)}`,
+    `- Precio efectivo (30% OFF): ${formatPrice(pricing.lineCash)}`,
   ];
 
   const extra = item.configSummary.filter((line) => {
@@ -83,11 +87,9 @@ function formatCartItemBlock(item: CartItem): string {
   return lines.join("\n");
 }
 
-export function generateCartWhatsAppMessage(
-  items: CartItem[],
-  total: number
-): string {
+export function generateCartWhatsAppMessage(items: CartItem[]): string {
   const productBlocks = items.map(formatCartItemBlock).join("\n\n");
+  const totals = calculateCartTotals(items);
 
   return [
     "Hola Maldivas Outdoor.",
@@ -97,8 +99,10 @@ export function generateCartWhatsAppMessage(
     "",
     productBlocks,
     "",
-    `TOTAL ESTIMADO:`,
-    formatPrice(total),
+    "RESUMEN:",
+    `Subtotal lista: ${formatPrice(totals.list)}`,
+    `Subtotal transferencia (15% OFF): ${formatPrice(totals.transfer)}`,
+    `Subtotal efectivo (30% OFF): ${formatPrice(totals.cash)}`,
     "",
     "Muchas gracias.",
   ].join("\n");
@@ -107,13 +111,13 @@ export function generateCartWhatsAppMessage(
 /** @deprecated Use generateCartWhatsAppMessage */
 export function generateWhatsAppMessage(
   items: CartItem[],
-  total: number
+  _total?: number
 ): string {
-  return generateCartWhatsAppMessage(items, total);
+  return generateCartWhatsAppMessage(items);
 }
 
-export function cartToWhatsApp(items: CartItem[], total: number): void {
-  openWhatsApp(generateCartWhatsAppMessage(items, total));
+export function cartToWhatsApp(items: CartItem[]): void {
+  openWhatsApp(generateCartWhatsAppMessage(items));
 }
 
 const CONTACT_DEFAULT_PREFIX =

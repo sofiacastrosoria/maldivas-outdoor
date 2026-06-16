@@ -8,7 +8,7 @@ import {
   type SillonSizeKey,
   type StructurePriceKey,
 } from "@/data/pricing";
-import type { Product, ProductConfig } from "@/types";
+import type { Product, ProductConfig, CartItem } from "@/types";
 
 const STRUCTURE_ID_TO_KEY: Record<string, StructurePriceKey> = {
   "simil-madera-marron": "similMaderaMarron",
@@ -35,6 +35,25 @@ export interface PriceBreakdown {
   list: number;
   cash: number;
   transfer: number;
+}
+
+export interface CartItemPricing extends PriceBreakdown {
+  quantity: number;
+  savingsTransfer: number;
+  savingsCash: number;
+  lineList: number;
+  lineTransfer: number;
+  lineCash: number;
+  lineSavingsTransfer: number;
+  lineSavingsCash: number;
+}
+
+export interface CartTotals {
+  list: number;
+  transfer: number;
+  cash: number;
+  savingsTransfer: number;
+  savingsCash: number;
 }
 
 function toStructureKey(structureId: string): StructurePriceKey | null {
@@ -95,6 +114,48 @@ export function buildPriceBreakdown(list: number): PriceBreakdown {
     list,
     cash: Math.round(list * CASH_MULTIPLIER),
     transfer: Math.round(list * TRANSFER_MULTIPLIER),
+  };
+}
+
+export function calculateCartItemPricing(
+  listUnitPrice: number,
+  quantity: number
+): CartItemPricing {
+  const unit = buildPriceBreakdown(listUnitPrice);
+  const savingsTransfer = unit.list - unit.transfer;
+  const savingsCash = unit.list - unit.cash;
+
+  return {
+    ...unit,
+    quantity,
+    savingsTransfer,
+    savingsCash,
+    lineList: unit.list * quantity,
+    lineTransfer: unit.transfer * quantity,
+    lineCash: unit.cash * quantity,
+    lineSavingsTransfer: savingsTransfer * quantity,
+    lineSavingsCash: savingsCash * quantity,
+  };
+}
+
+export function calculateCartTotals(items: CartItem[]): CartTotals {
+  let list = 0;
+  let transfer = 0;
+  let cash = 0;
+
+  for (const item of items) {
+    const pricing = calculateCartItemPricing(item.unitPrice, item.quantity);
+    list += pricing.lineList;
+    transfer += pricing.lineTransfer;
+    cash += pricing.lineCash;
+  }
+
+  return {
+    list,
+    transfer,
+    cash,
+    savingsTransfer: list - transfer,
+    savingsCash: list - cash,
   };
 }
 
