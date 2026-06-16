@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { IntrinsicImage } from "@/components/ui/IntrinsicImage";
-import { filterExistingHeroSlides } from "./sliderSlides";
+import { IMAGE_SIZES } from "@/lib/imageSizes";
 
 export interface HeroSlide {
   src: string;
@@ -21,77 +21,84 @@ interface ProductHeroSliderProps {
   fullscreen?: boolean;
 }
 
-function SlideImage({ src, alt }: { src: string; alt: string }) {
-  const [failed, setFailed] = useState(false);
-
-  useEffect(() => {
-    setFailed(false);
-  }, [src]);
-
-  if (failed) return null;
-
-  return (
-    <IntrinsicImage
-      src={src}
-      alt={alt}
-      sizes="100vw"
-      priority
-      onError={() => setFailed(true)}
-    />
-  );
+function preloadSrc(src: string): Promise<void> {
+  return new Promise((resolve) => {
+    const img = new window.Image();
+    img.onload = () => resolve();
+    img.onerror = () => resolve();
+    img.src = src;
+  });
 }
 
 export function ProductHeroSlider({
   slides,
   autoplayMs = 5500,
-  fullscreen = false,
 }: ProductHeroSliderProps) {
-  const [validSlides, setValidSlides] = useState<HeroSlide[]>([]);
   const [index, setIndex] = useState(0);
+  const [displayIndex, setDisplayIndex] = useState(0);
+  const transitioning = useRef(false);
 
-  useEffect(() => {
-    let cancelled = false;
-    setValidSlides([]);
-    setIndex(0);
+  const goTo = useCallback(
+    async (next: number) => {
+      if (slides.length === 0 || transitioning.current) return;
+      const target = slides[next];
+      if (!target) return;
 
-    filterExistingHeroSlides(slides).then((filtered) => {
-      if (!cancelled) setValidSlides(filtered);
-    });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [slides]);
+      transitioning.current = true;
+      await preloadSrc(target.src);
+      setDisplayIndex(next);
+      setIndex(next);
+      transitioning.current = false;
+    },
+    [slides]
+  );
 
   const next = useCallback(() => {
-    setIndex((i) => (i + 1) % validSlides.length);
-  }, [validSlides.length]);
+    if (slides.length <= 1) return;
+    const n = (index + 1) % slides.length;
+    void goTo(n);
+  }, [index, slides.length, goTo]);
 
   useEffect(() => {
-    if (validSlides.length <= 1) return;
+    if (slides.length <= 1) return;
+    const nextIdx = (displayIndex + 1) % slides.length;
+    const nextSrc = slides[nextIdx]?.src;
+    if (nextSrc) void preloadSrc(nextSrc);
+  }, [displayIndex, slides]);
+
+  useEffect(() => {
+    if (slides.length <= 1) return;
     const timer = setInterval(next, autoplayMs);
     return () => clearInterval(timer);
-  }, [validSlides.length, autoplayMs, next]);
+  }, [slides.length, autoplayMs, next]);
 
-  if (validSlides.length === 0) return null;
+  useEffect(() => {
+    setIndex(0);
+    setDisplayIndex(0);
+    if (slides[0]?.src) void preloadSrc(slides[0].src);
+  }, [slides]);
 
-  const slide = validSlides[index];
+  if (slides.length === 0) return null;
+
+  const slide = slides[displayIndex];
 
   const inner = (
-    <div className="relative w-full overflow-hidden">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={slide.src}
-          initial={{ opacity: 0, scale: 1.02 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 1.005 }}
-          transition={{ duration: 1.1, ease: [0.25, 0.1, 0.25, 1] }}
-          className="relative w-full"
-        >
-          <SlideImage src={slide.src} alt={slide.label} />
-          <div className="absolute inset-0 bg-gradient-to-t from-matte-black/50 via-transparent to-transparent pointer-events-none" />
-        </motion.div>
-      </AnimatePresence>
+    <div className="relative w-full overflow-hidden bg-sand/10">
+      <motion.div
+        key={slide.src}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.55, ease: [0.25, 0.1, 0.25, 1] }}
+        className="relative w-full"
+      >
+        <IntrinsicImage
+          src={slide.src}
+          alt={slide.label}
+          sizes={IMAGE_SIZES.hero}
+          priority={displayIndex === 0}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-matte-black/50 via-transparent to-transparent pointer-events-none" />
+      </motion.div>
 
       <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10 text-white z-10 pointer-events-none">
         <p className="text-lg md:text-2xl font-extralight tracking-tight drop-shadow-sm">
@@ -99,16 +106,16 @@ export function ProductHeroSlider({
         </p>
       </div>
 
-      {validSlides.length > 1 && (
+      {slides.length > 1 && (
         <div className="absolute bottom-8 right-8 md:bottom-10 md:right-10 flex gap-2 z-10">
-          {validSlides.map((s, i) => (
+          {slides.map((s, i) => (
             <button
               key={s.src}
               type="button"
               aria-label={`Slide ${i + 1}`}
-              onClick={() => setIndex(i)}
+              onClick={() => void goTo(i)}
               className={`h-[2px] transition-all duration-500 ${
-                i === index ? "w-8 bg-white" : "w-4 bg-white/35 hover:bg-white/60"
+                i === displayIndex ? "w-8 bg-white" : "w-4 bg-white/35 hover:bg-white/60"
               }`}
             />
           ))}

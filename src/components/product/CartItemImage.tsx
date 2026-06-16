@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { IMAGE_SIZES } from "@/lib/imageSizes";
 import { ImagePlaceholder } from "./ImagePlaceholder";
 
 interface CartItemImageProps {
@@ -26,9 +27,9 @@ export function CartItemImage({ src, alt }: CartItemImageProps) {
       alt={alt}
       fill
       className="object-cover"
-      sizes="80px"
+      sizes={IMAGE_SIZES.cart}
+      loading="lazy"
       onError={() => setFailed(true)}
-      unoptimized={src.startsWith("/images/")}
     />
   );
 }

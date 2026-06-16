@@ -4,6 +4,7 @@ import { useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
+import { IMAGE_SIZES } from "@/lib/imageSizes";
 
 const FADE_MS = 0.25;
 
@@ -107,9 +108,8 @@ export function FullscreenImageModal({
               alt={alt}
               fill
               className="object-contain object-center"
-              sizes="90vw"
+              sizes={IMAGE_SIZES.lightbox}
               priority
-              unoptimized
             />
           </motion.div>
         </motion.div>

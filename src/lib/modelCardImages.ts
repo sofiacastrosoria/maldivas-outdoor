@@ -1,15 +1,9 @@
 import type { Product } from "@/types";
-import imageManifest from "../../public/images/manifest.json";
-
-type Manifest = {
-  urls: string[];
-  files: Record<string, { url: string; mtimeMs: number; size: number }>;
-};
-
-const manifest = imageManifest as Manifest;
-
-/** Generated black placeholders are ~8–9 KB; real uploads are much larger */
-const PLACEHOLDER_MAX_BYTES = 12_000;
+import {
+  getUrlsWithPrefix,
+  isRealManifestImage,
+  withManifestVersion,
+} from "@/lib/imageManifest";
 
 const FABRIC_IDS = new Set(["negro", "gris", "beige", "blanco"]);
 
@@ -21,10 +15,7 @@ export interface ModelCardVariant {
 }
 
 function withVersion(url: string, filename: string): string {
-  const entry = manifest.files[filename];
-  if (!entry?.mtimeMs) return url;
-  const v = Math.round(entry.mtimeMs);
-  return url.includes("?") ? `${url}&v=${v}` : `${url}?v=${v}`;
+  return withManifestVersion(url);
 }
 
 function typePrefix(product: Product): string | null {
@@ -87,9 +78,7 @@ function parseMesaGalleryFile(
 }
 
 function manifestSaysReal(filename: string, url: string): boolean {
-  const entry = manifest.files[filename];
-  if (!entry || entry.url !== url) return false;
-  return entry.size > PLACEHOLDER_MAX_BYTES;
+  return isRealManifestImage(url.split("?")[0], filename);
 }
 
 function probeImageDimensions(
@@ -123,7 +112,7 @@ async function isRealUploadedImage(url: string, filename: string): Promise<boole
 export function listModelCardCandidateUrls(product: Product): string[] {
   const dirPrefix = getModelCardDirPrefix(product);
   if (!dirPrefix) return [];
-  return manifest.urls.filter((url) => url.startsWith(dirPrefix));
+  return getUrlsWithPrefix(dirPrefix);
 }
 
 /**
@@ -137,8 +126,7 @@ export function getModelCardVariants(product: Product): ModelCardVariant[] {
   const variants: ModelCardVariant[] = [];
   const seen = new Set<string>();
 
-  for (const url of manifest.urls) {
-    if (!url.startsWith(dirPrefix)) continue;
+  for (const url of getUrlsWithPrefix(dirPrefix)) {
     const filename = url.split("/").pop() ?? "";
     if (!filename || seen.has(url)) continue;
 
@@ -168,48 +156,48 @@ export function getModelCardVariants(product: Product): ModelCardVariant[] {
 }
 
 /**
- * Async discovery: probes folder URLs so overwritten placeholders work without manifest refresh.
+ * Discover real images for model cards — manifest first (instant), probe only if empty.
  */
 export async function discoverModelCardVariants(
   product: Product
 ): Promise<ModelCardVariant[]> {
+  const fromManifest = getModelCardVariants(product);
+  if (fromManifest.length > 0) return fromManifest;
+
   const prefix = typePrefix(product);
   const dirPrefix = getModelCardDirPrefix(product);
   if (!prefix || !dirPrefix) return [];
 
   const variants: ModelCardVariant[] = [];
   const seen = new Set<string>();
-
   const candidates = listModelCardCandidateUrls(product);
 
-  await Promise.all(
-    candidates.map(async (url) => {
-      const filename = url.split("/").pop() ?? "";
-      if (!filename) return;
+  for (const url of candidates) {
+    const filename = url.split("/").pop() ?? "";
+    if (!filename) continue;
 
-      const real = await isRealUploadedImage(url, filename);
-      if (!real) return;
+    const real = await isRealUploadedImage(url, filename);
+    if (!real) continue;
 
-      let variant: ModelCardVariant | null = null;
+    let variant: ModelCardVariant | null = null;
 
-      if (product.category === "mesas") {
-        variant = parseMesaGalleryFile(filename, withVersion(url, filename));
-      } else {
-        const parsed = parseVariantFilename(filename, product, prefix);
-        if (parsed) {
-          variant = {
-            url: withVersion(url, filename),
-            ...parsed,
-          };
-        }
+    if (product.category === "mesas") {
+      variant = parseMesaGalleryFile(filename, withVersion(url, filename));
+    } else {
+      const parsed = parseVariantFilename(filename, product, prefix);
+      if (parsed) {
+        variant = {
+          url: withVersion(url, filename),
+          ...parsed,
+        };
       }
+    }
 
-      if (variant && !seen.has(variant.url)) {
-        seen.add(variant.url);
-        variants.push(variant);
-      }
-    })
-  );
+    if (variant && !seen.has(variant.url)) {
+      seen.add(variant.url);
+      variants.push(variant);
+    }
+  }
 
   return variants;
 }

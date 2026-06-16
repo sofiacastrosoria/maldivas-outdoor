@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import Image from "next/image";
 import type { Product, ProductConfig } from "@/types";
 import { isTableProduct, TABLE_IMAGE_INDEXES, type TableImageIndex } from "@/lib/images";
+import { IMAGE_SIZES } from "@/lib/imageSizes";
 import { resolveVariantImage } from "@/lib/resolveImage";
 
 interface ThumbnailItem {
@@ -89,9 +90,9 @@ export function VariantThumbnails({
             src={item.src}
             alt={item.label}
             fill
-            sizes="72px"
+            sizes={IMAGE_SIZES.thumbnail}
             className="object-contain object-center bg-ivory"
-            unoptimized
+            loading="lazy"
           />
         </button>
       ))}

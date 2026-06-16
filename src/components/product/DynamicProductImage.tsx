@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import type { Product, ProductConfig } from "@/types";
 import { isTableProduct, type TableImageIndex } from "@/lib/images";
+import { IMAGE_SIZES } from "@/lib/imageSizes";
 import { fallbackPlaceholder, getConfiguratorCandidates } from "@/lib/resolveImage";
 import { IntrinsicImage } from "@/components/ui/IntrinsicImage";
 import { ImagePlaceholder } from "./ImagePlaceholder";
@@ -24,7 +25,7 @@ export function DynamicProductImage({
   config,
   tableIndex = 1,
   alt,
-  sizes = "50vw",
+  sizes = IMAGE_SIZES.configurator,
   priority = false,
   className = "",
   imageMaxHeight,

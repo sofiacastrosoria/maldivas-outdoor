@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import type { Product, ProductConfig } from "@/types";
 import { isTableProduct, type TableImageIndex } from "@/lib/images";
+import { IMAGE_SIZES } from "@/lib/imageSizes";
 import {
   fallbackPlaceholder,
   getConfiguratorCandidates,
@@ -83,11 +84,11 @@ export function ConfiguratorImage({
           src={src}
           alt={imageAlt}
           fill
-          sizes="100vw"
+          sizes={IMAGE_SIZES.configurator}
           priority={priority}
+          loading={priority ? undefined : "lazy"}
           className="object-contain object-center"
           onError={handleError}
-          unoptimized
         />
       ) : (
         <ImagePlaceholder />

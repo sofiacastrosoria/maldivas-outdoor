@@ -58,7 +58,6 @@ export function SplashScreen() {
                 fill
                 className="object-contain object-center"
                 priority
-                unoptimized
               />
             </div>
           </motion.div>

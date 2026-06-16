@@ -25,7 +25,6 @@ export function BrandMark() {
           height={40}
           className="h-full w-full object-contain object-center opacity-[0.92] transition-opacity duration-500 group-hover:opacity-100"
           priority
-          unoptimized
         />
       </motion.div>
 

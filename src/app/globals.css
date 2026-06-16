@@ -32,6 +32,12 @@ body[data-lightbox-open] [data-site-chrome] {
   pointer-events: none;
 }
 
+/* iOS Safari: evitar zoom automático al enfocar inputs (< 16px lo dispara) */
+body[data-assistant-open] .assistant-input,
+body[data-assistant-open] .assistant-input::placeholder {
+  font-size: 16px;
+}
+
 ::selection {
   @apply bg-sand text-matte-black;
 }

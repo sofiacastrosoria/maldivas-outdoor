@@ -19,6 +19,7 @@ interface IntrinsicImageProps {
 
 /**
  * Full product photo at natural aspect ratio — w-full, h-auto, no letterboxing.
+ * Uses Next.js image optimization (WebP, responsive widths).
  */
 export function IntrinsicImage({
   src,
@@ -38,11 +39,11 @@ export function IntrinsicImage({
       height={INTRINSIC_HEIGHT}
       sizes={sizes}
       priority={priority}
+      loading={priority ? undefined : "lazy"}
       className={`block w-full h-auto ${className}`}
       style={{ width: "100%", height: "auto", ...style }}
       onError={onError}
       onLoad={onLoad}
-      unoptimized
     />
   );
 }

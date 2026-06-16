@@ -220,7 +220,9 @@ export function MaldivasAssistant() {
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder="Escribí tu consulta..."
-                    className="flex-1 min-w-0 rounded-lg border border-premium-border bg-ivory px-4 py-3 text-sm text-matte-black placeholder:text-premium-gray/70 focus:outline-none focus:border-matte-black/30"
+                    className="assistant-input flex-1 min-w-0 rounded-lg border border-premium-border bg-ivory px-4 py-3 text-base text-matte-black placeholder:text-premium-gray/70 focus:outline-none focus:border-matte-black/30"
+                    autoComplete="off"
+                    enterKeyHint="send"
                   />
                   <button
                     type="submit"

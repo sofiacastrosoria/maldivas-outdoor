@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { IntrinsicImage } from "@/components/ui/IntrinsicImage";
+import { IMAGE_SIZES } from "@/lib/imageSizes";
 import { StaticPlaceholderImage } from "@/components/ui/StaticPlaceholderImage";
 
 const taglines = [
@@ -46,7 +47,7 @@ export default function AboutPage() {
             src={SHOWROOM_IMAGE}
             alt="Showroom Maldivas Outdoor"
             priority
-            sizes="100vw"
+            sizes={IMAGE_SIZES.hero}
             className="max-h-[85vh]"
           />
         </motion.div>

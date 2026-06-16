@@ -1,6 +1,7 @@
 "use client";
 
 import { IntrinsicImage } from "./IntrinsicImage";
+import { IMAGE_SIZES } from "@/lib/imageSizes";
 
 interface StaticPlaceholderImageProps {
   src: string;
@@ -21,7 +22,7 @@ export function StaticPlaceholderImage({
       <IntrinsicImage
         src={src}
         alt={alt}
-        sizes="(max-width: 1024px) 100vw, 50vw"
+        sizes={IMAGE_SIZES.about}
         priority={priority}
       />
     </div>

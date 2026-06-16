@@ -1,6 +1,10 @@
 import type { Product, ProductConfig } from "@/types";
 import type { SliderCategory } from "@/data/editorialSliders";
-import imageManifest from "../../public/images/manifest.json";
+import {
+  getImageManifest,
+  getUrlByFilename,
+  withManifestVersion,
+} from "@/lib/imageManifest";
 import {
   buildImageFilename,
   buildImagePath,
@@ -11,46 +15,15 @@ import {
   type TableImageIndex,
 } from "@/lib/images";
 
-type Manifest = {
-  generatedAt: string;
-  files: Record<
-    string,
-    {
-      url: string;
-      mtimeMs: number;
-      size: number;
-    }
-  >;
-  urls: string[];
-};
-
-const manifest = imageManifest as Manifest;
+const manifest = getImageManifest();
 
 function unique(paths: (string | undefined)[]): string[] {
   return [...new Set(paths.filter(Boolean) as string[])];
 }
 
-function getManifestEntryByUrl(url: string) {
-  for (const entry of Object.values(manifest.files)) {
-    if (entry.url === url) return entry;
-  }
-  const filename = url.split("/").pop() ?? "";
-  const entry = manifest.files[filename];
-  return entry?.url === url ? entry : undefined;
-}
-
 function withVersion(url: string | undefined, filename?: string): string | undefined {
   if (!url) return undefined;
-  const entry = getManifestEntryByUrl(url);
-  if (!entry?.mtimeMs) {
-    const name = filename ?? url.split("/").pop() ?? "";
-    const byName = manifest.files[name];
-    if (!byName?.mtimeMs || byName.url !== url) return url;
-    const v = Math.round(byName.mtimeMs);
-    return url.includes("?") ? `${url}&v=${v}` : `${url}?v=${v}`;
-  }
-  const v = Math.round(entry.mtimeMs);
-  return url.includes("?") ? `${url}&v=${v}` : `${url}?v=${v}`;
+  return withManifestVersion(url);
 }
 
 /** Prefer configurator folders over slider fallbacks when the same filename exists twice */
@@ -65,9 +38,7 @@ function urlPriority(url: string): number {
 }
 
 /** Lookup best real file path by filename (scanned from disk) */
-export function getUrlByFilename(filename: string): string | undefined {
-  return withVersion(manifest.files[filename]?.url, filename);
-}
+export { getUrlByFilename } from "@/lib/imageManifest";
 
 /** All discovered image URLs */
 export function getAllImageUrls(): string[] {
