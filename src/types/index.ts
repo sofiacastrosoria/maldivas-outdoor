@@ -44,7 +44,6 @@ export interface Product {
   category: "reposeras" | "living" | "mesas" | "comedor";
   subcategory?: string;
   description: string;
-  basePrice: number;
   image: string;
   gallery: string[];
   sizes: ProductSize[];
@@ -52,4 +51,8 @@ export interface Product {
   fabrics: ProductOption[];
   stoneBrands?: ProductOption[];
   customizableSize?: boolean;
+  /** Medida fija: muestra dimensiones sin selector de tamaño */
+  fixedMeasure?: boolean;
+  /** Mapeo estructura → índice de imagen en /images/mesas/{slug}/N.jpg */
+  mesaImageByStructure?: Partial<Record<string, 1 | 2 | 3 | 4>>;
 }

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { Product } from "@/types";
-import { formatPrice } from "@/lib/pricing";
+import { formatPrice, getMinimumCashPrice } from "@/lib/pricing";
 import { ModelVariantSlider } from "./ModelVariantSlider";
 
 interface ProductCardProps {
@@ -12,6 +12,8 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, href }: ProductCardProps) {
+  const fromPrice = getMinimumCashPrice(product);
+
   return (
     <Link href={href} className="group block">
       <motion.article
@@ -31,7 +33,9 @@ export function ProductCard({ product, href }: ProductCardProps) {
             </p>
           </div>
           <p className="text-sm text-matte-black/60 flex-shrink-0">
-            desde {formatPrice(product.basePrice)}
+            {fromPrice !== null
+              ? `desde ${formatPrice(fromPrice)}`
+              : "Consultar precio"}
           </p>
         </div>
       </motion.article>

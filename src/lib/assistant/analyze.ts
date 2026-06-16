@@ -23,21 +23,81 @@ export function normalize(text: string): string {
 
 const INTENT_RULES: { intent: AssistantIntent; patterns: RegExp[]; weight: number }[] = [
   {
+    intent: "website",
+    weight: 12,
+    patterns: [
+      /\bcomo\s+uso\s+la\s+web\b/,
+      /\bcomo\s+funciona\s+la\s+web\b/,
+      /\bcomo\s+naveg/,
+      /\bnavegar\s+productos\b/,
+      /\bcomo\s+entro\b/,
+      /\bentrar\s+a\s+una\s+coleccion\b/,
+      /\bver\s+coleccion\b/,
+      /\bcomo\s+personaliz/,
+      /\bcomo\s+cambio\b/,
+      /\bcambiar\s+(la\s+)?tela\b/,
+      /\bcambiar\s+(la\s+)?estructura\b/,
+      /\bampliar\b.*\bimagen\b/,
+      /\bampliar\s+imagen\b/,
+      /\bagregar\s+al\s+carrito\b/,
+      /\bcomo\s+uso\s+el\s+asistente\b/,
+      /\bcomo\s+funciona\s+el\s+asistente\b/,
+      /\bsolicitar\s+asesoramiento\b/,
+      /\bcomo\s+comprar\s+en\s+la\s+web\b/,
+    ],
+  },
+  {
+    intent: "quote",
+    weight: 12,
+    patterns: [
+      /\bquiero\s+una\s+cotizacion\b/,
+      /\bsolicitar\s+cotizacion\b/,
+      /\bnecesito\s+presupuesto\b/,
+      /\bquiero\s+presupuesto\b/,
+      /\bpedir\s+cotizacion\b/,
+      /\bnecesito\s+cotizacion\b/,
+    ],
+  },
+  {
+    intent: "buy",
+    weight: 11,
+    patterns: [
+      /\bquiero\s+comprar\b/,
+      /\bcomprar\s+muebles\b/,
+      /\bquiero\s+un\s+mueble\b/,
+      /\bquiero\s+comprar\s+muebles\b/,
+    ],
+  },
+  {
+    intent: "advisor",
+    weight: 11,
+    patterns: [
+      /\bhablar\s+con\s+(un\s+)?asesor\b/,
+      /\bque\s+me\s+contact/,
+      /\bcontacten(me)?\b/,
+      /\bcontactar(me)?\b/,
+      /\bcomunicarme\b/,
+      /\bnecesito\s+asesoramiento\b/,
+      /\bquiero\s+asesoramiento\b/,
+      /\bnecesito\s+ayuda\b/,
+      /\bquiero\s+ayuda\b/,
+      /\bhablar\s+con\s+alguien\b/,
+      /\bhablar\s+con\s+ustedes\b/,
+      /\bhablar\s+con\s+el\s+equipo\b/,
+    ],
+  },
+  {
     intent: "company",
     weight: 8,
     patterns: [
       /\bmaldivas\s+outdoor\b/,
       /\bfilosofia\b/,
-      /\bfabrican\b/,
-      /\bfabricacion\b/,
-      /\bfabricamos\b/,
       /\bquienes\s+son\b/,
       /\bsobre\s+ustedes\b/,
       /\bsobre\s+la\s+marca\b/,
       /\bempresa\b/,
       /\blujo\s+silencioso\b/,
       /\bdiseño\s+atemporal\b/,
-      /\basesoramiento\b/,
       /\bproyecto\s+integral\b/,
     ],
   },
@@ -56,6 +116,35 @@ const INTENT_RULES: { intent: AssistantIntent; patterns: RegExp[]; weight: numbe
       /\bcomo\s+llegar\b/,
       /\bver\s+en\s+persona\b/,
       /\bver\s+los\s+productos\b/,
+      /\bdonde\s+estan\b/,
+      /\bdonde\s+queda\b/,
+      /\bubicados\b/,
+      /\bpuedo\s+visitarlos\b/,
+    ],
+  },
+  {
+    intent: "outdoor_use",
+    weight: 10,
+    patterns: [
+      /\btodo\s+el\s+ano\b/,
+      /\btodo\s+el\s+anio\b/,
+      /\bafuera\s+todo\b/,
+      /\bdejarlos?\s+afuera\b/,
+      /\bdejarlo\s+afuera\b/,
+      /\bpermanecer\s+al\s+exterior\b/,
+      /\bexterior\s+permanente\b/,
+      /\btodo\s+el\s+tiempo\s+afuera\b/,
+    ],
+  },
+  {
+    intent: "oxidation",
+    weight: 10,
+    patterns: [
+      /\boxid/,
+      /\bherrumb/,
+      /\bcorrosion/,
+      /\bse\s+oxidan\b/,
+      /\boxidan\b/,
     ],
   },
   {
@@ -77,8 +166,6 @@ const INTENT_RULES: { intent: AssistantIntent; patterns: RegExp[]; weight: numbe
       /\bprecio\b/,
       /\bvalor\b/,
       /\bcosto\b/,
-      /\bcotizacion\b/,
-      /\bpresupuesto\b/,
       /\bcuanto\s+sale\b/,
     ],
   },
@@ -95,6 +182,17 @@ const INTENT_RULES: { intent: AssistantIntent; patterns: RegExp[]; weight: numbe
       /\btapizado(s)?\b/,
       /\bestructura(s)?\b/,
       /\bpiedra\b/,
+    ],
+  },
+  {
+    intent: "fabric_recommendation",
+    weight: 10,
+    patterns: [
+      /\b(recomenda|recomendas|recomiend|sugeris|sugiere|aconseja)\b.*\b(tela|tapizado)\b/,
+      /\b(que|cual)\s+tela\b/,
+      /\bque\s+tapizado\b/,
+      /\bcual\s+tapizado\b/,
+      /\bme\s+recomendas\b/,
     ],
   },
   {
@@ -133,7 +231,6 @@ const INTENT_RULES: { intent: AssistantIntent; patterns: RegExp[]; weight: numbe
       /\bimpermeable\b/,
       /\bexterior\b/,
       /\bintemperie\b/,
-      /\boxida\b/,
       /\bpiscina\b/,
       /\blluvia\b/,
       /\buv\b/,
@@ -189,13 +286,11 @@ const INTENT_RULES: { intent: AssistantIntent; patterns: RegExp[]; weight: numbe
     weight: 6,
     patterns: [
       /\bcompr(ar|a)\b/,
-      /\bcarrito\b/,
-      /\bagregar\b/,
       /\bwhatsapp\b/,
-      /\bcotizacion\b/,
-      /\bsolicitar\b/,
       /\bpedido\b/,
-      /\busar\s+la\s+web\b/,
+      /\bcomo\s+compro\b/,
+      /\bcomo\s+comprar\b/,
+      /\bproceso\s+de\s+compra\b/,
     ],
   },
   {
@@ -250,7 +345,12 @@ const INTENT_RULES: { intent: AssistantIntent; patterns: RegExp[]; weight: numbe
   {
     intent: "help",
     weight: 4,
-    patterns: [/\bayuda\b/, /\bque\s+podes\b/, /\bcomo\s+funciona\b/],
+    patterns: [
+      /\bayuda\b/,
+      /\bque\s+podes\b/,
+      /\bcomo\s+funciona\b/,
+      /\bcomo\s+uso\b/,
+    ],
   },
 ];
 
@@ -399,12 +499,24 @@ function pickIntent(
 ): AssistantIntent {
   if (isFollowUp && context.lastProductId) return "price";
 
+  const n = normalize(text);
+
+  if ((scores.get("website") ?? 0) >= 10) return "website";
+  if ((scores.get("quote") ?? 0) >= 11) return "quote";
+  if ((scores.get("buy") ?? 0) >= 11) return "buy";
+  if ((scores.get("advisor") ?? 0) >= 11) return "advisor";
+
   const compareSlugs = extractComparisonSlugs(text);
   if (compareSlugs.length >= 2 && (scores.get("compare") ?? 0) > 0) {
     return "compare";
   }
 
   if ((scores.get("showroom") ?? 0) >= 10) return "showroom";
+  if ((scores.get("oxidation") ?? 0) >= 10) return "oxidation";
+  if ((scores.get("outdoor_use") ?? 0) >= 10) return "outdoor_use";
+  if ((scores.get("fabric_recommendation") ?? 0) >= 10) {
+    return "fabric_recommendation";
+  }
 
   let best: AssistantIntent = "unknown";
   let bestScore = 0;
@@ -415,7 +527,7 @@ function pickIntent(
     }
   }
 
-  if (bestScore < 4) {
+  if (bestScore < 3) {
     if (extractSlugs(text).length > 0) return "product_info";
     return "unknown";
   }
@@ -424,10 +536,14 @@ function pickIntent(
     return "product_info";
   }
 
-  if (best === "fabrics" && /\bestructura/.test(normalize(text))) {
+  if (best === "fabrics" && /\bestructura/.test(n)) {
     if ((scores.get("structures") ?? 0) >= (scores.get("fabrics") ?? 0)) {
       return "structures";
     }
+  }
+
+  if (best === "fabrics" && (scores.get("fabric_recommendation") ?? 0) > 0) {
+    return "fabric_recommendation";
   }
 
   return best;

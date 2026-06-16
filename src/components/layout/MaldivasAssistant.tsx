@@ -5,10 +5,13 @@ import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ASSISTANT_WELCOME,
-  ASSISTANT_WHATSAPP_MESSAGE,
   DEFAULT_SUGGESTIONS,
 } from "@/data/knowledge-base";
-import { getAssistantReply, type ConversationContext } from "@/lib/assistant";
+import {
+  getAssistantReply,
+  type AssistantAction,
+  type ConversationContext,
+} from "@/lib/assistant";
 import { openWhatsApp } from "@/lib/whatsapp";
 
 interface ChatMessage {
@@ -16,6 +19,56 @@ interface ChatMessage {
   role: "assistant" | "user";
   text: string;
   escalated?: boolean;
+  actions?: AssistantAction[];
+}
+
+const actionButtonClass =
+  "block w-full text-center text-[10px] tracking-luxury uppercase border border-matte-black/20 px-4 py-3 hover:bg-matte-black hover:text-white transition-all duration-500";
+
+function AssistantActionButtons({
+  actions,
+  onNavigate,
+}: {
+  actions: AssistantAction[];
+  onNavigate?: () => void;
+}) {
+  if (!actions.length) return null;
+
+  return (
+    <div className="mt-4 flex flex-col gap-2">
+      {actions.map((action) => {
+        if (action.type === "directions" || action.type === "products") {
+          return (
+            <a
+              key={`${action.type}-${action.label}`}
+              href={action.href}
+              target={action.type === "directions" ? "_blank" : undefined}
+              rel={
+                action.type === "directions" ? "noopener noreferrer" : undefined
+              }
+              className={actionButtonClass}
+              onClick={action.type === "products" ? onNavigate : undefined}
+            >
+              {action.label}
+            </a>
+          );
+        }
+
+        const message = action.whatsappMessage;
+
+        return (
+          <button
+            key={`${action.type}-${action.label}`}
+            type="button"
+            onClick={() => openWhatsApp(message)}
+            className={actionButtonClass}
+          >
+            {action.label}
+          </button>
+        );
+      })}
+    </div>
+  );
 }
 
 function createId() {
@@ -115,16 +168,13 @@ export function MaldivasAssistant() {
           role: "assistant",
           text: reply.answer,
           escalated: reply.escalated,
+          actions: reply.actions,
         },
       ]);
       setSuggestions(reply.escalated ? [] : reply.suggestions);
     },
     [context]
   );
-
-  const handleEscalation = () => {
-    openWhatsApp(ASSISTANT_WHATSAPP_MESSAGE);
-  };
 
   const fullscreen = mounted
     ? createPortal(
@@ -176,14 +226,11 @@ export function MaldivasAssistant() {
                         }`}
                       >
                         {msg.text}
-                        {msg.escalated && (
-                          <button
-                            type="button"
-                            onClick={handleEscalation}
-                            className="mt-4 block w-full text-center text-[10px] tracking-luxury uppercase border border-matte-black/20 px-4 py-3 hover:bg-matte-black hover:text-white transition-all duration-500"
-                          >
-                            Hablar con un asesor
-                          </button>
+                        {msg.actions && msg.actions.length > 0 && (
+                          <AssistantActionButtons
+                            actions={msg.actions}
+                            onNavigate={close}
+                          />
                         )}
                       </div>
                     </div>

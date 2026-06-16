@@ -169,6 +169,29 @@ async function generateTablePlaceholders() {
   return created;
 }
 
+async function generateMesasStructurePlaceholders() {
+  let created = 0;
+  for (const product of products) {
+    if (!product.mesaImageByStructure) continue;
+
+    const baseDir = getImageDirForProduct(product);
+    ensureDir(baseDir);
+    const indexes = new Set(
+      Object.values(product.mesaImageByStructure).filter(
+        (v): v is 1 | 2 | 3 | 4 => v === 1 || v === 2 || v === 3 || v === 4
+      )
+    );
+
+    for (const idx of indexes) {
+      const full = path.join(baseDir, `${idx}.jpg`);
+      // eslint-disable-next-line no-await-in-loop
+      const did = await writePlaceholderJpg(full, "IMAGE PLACEHOLDER");
+      if (did) created++;
+    }
+  }
+  return created;
+}
+
 async function generateEditorialSliderPlaceholders() {
   let created = 0;
   const categories: SliderCategory[] = ["reposeras", "living", "comedor"];
@@ -239,13 +262,14 @@ async function main() {
   const removedVariant = pruneObsoleteVariantPlaceholders();
   const createdVariant = await generateVariantPlaceholders();
   const createdTables = await generateTablePlaceholders();
+  const createdMesasStructure = await generateMesasStructurePlaceholders();
   const createdEditorial = await generateEditorialSliderPlaceholders();
   const createdModelSliders = await generateModelSliderPlaceholders();
   const createdMarketing = await generateMarketingPlaceholders();
 
   // eslint-disable-next-line no-console
   console.log(
-    `OK: placeholders (removed=${removedVariant}, variants=${createdVariant}, tables=${createdTables}, editorial=${createdEditorial}, modelSliders=${createdModelSliders}, marketing=${createdMarketing})`
+    `OK: placeholders (removed=${removedVariant}, variants=${createdVariant}, tables=${createdTables}, mesasStructure=${createdMesasStructure}, editorial=${createdEditorial}, modelSliders=${createdModelSliders}, marketing=${createdMarketing})`
   );
 }
 

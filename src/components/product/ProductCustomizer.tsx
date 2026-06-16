@@ -3,7 +3,8 @@
 import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Product, ProductConfig } from "@/types";
-import { calculatePrice, formatPrice, buildConfigSummary } from "@/lib/pricing";
+import { calculatePriceBreakdown, buildConfigSummary } from "@/lib/pricing";
+import { PriceBreakdown } from "./PriceBreakdown";
 import { defaultProductConfig, dynamicImageResolver } from "@/lib/images";
 import { useCart } from "@/context/CartContext";
 import { DynamicProductImage } from "./DynamicProductImage";
@@ -36,7 +37,10 @@ export function ProductCustomizer({
     }
   }, [isOpen, initialConfig]);
 
-  const price = useMemo(() => calculatePrice(product, config), [product, config]);
+  const priceBreakdown = useMemo(
+    () => calculatePriceBreakdown(product, config),
+    [product, config]
+  );
   const summary = useMemo(
     () => buildConfigSummary(product, config),
     [product, config]
@@ -51,6 +55,7 @@ export function ProductCustomizer({
   };
 
   const handleAddToCart = () => {
+    if (!priceBreakdown) return;
     addItem({
       productId: product.id,
       productName: product.name,
@@ -59,7 +64,7 @@ export function ProductCustomizer({
       image: dynamicImageResolver(product, config),
       config,
       configSummary: summary,
-      unitPrice: price,
+      unitPrice: priceBreakdown.list,
     });
     onClose();
   };
@@ -272,14 +277,18 @@ export function ProductCustomizer({
                 </div>
 
                 <div className="border-t border-stone/15 px-6 md:px-8 py-6 bg-white">
-                  <div className="flex items-end justify-between mb-4">
-                    <div>
-                      <p className="text-[10px] tracking-luxury uppercase text-matte-black/40">
-                        Precio configurado
-                      </p>
-                      <p className="text-2xl font-light mt-1">{formatPrice(price)}</p>
+                  {priceBreakdown ? (
+                    <div className="mb-4">
+                      <PriceBreakdown breakdown={priceBreakdown} compact />
                     </div>
-                  </div>
+                  ) : (
+                    <div className="mb-4">
+                      <p className="text-[10px] tracking-luxury uppercase text-matte-black/40">
+                        Precio
+                      </p>
+                      <p className="text-lg font-light mt-1">Consultar precio</p>
+                    </div>
+                  )}
                   {summary.length > 0 && (
                     <ul className="mb-4 space-y-1">
                       {summary.map((line) => (
@@ -295,7 +304,8 @@ export function ProductCustomizer({
                   <button
                     type="button"
                     onClick={handleAddToCart}
-                    className="w-full bg-matte-black text-white py-4 text-xs tracking-luxury uppercase hover:bg-matte-black/90 transition-colors"
+                    disabled={!priceBreakdown}
+                    className="w-full bg-matte-black text-white py-4 text-xs tracking-luxury uppercase hover:bg-matte-black/90 transition-colors disabled:opacity-40 disabled:hover:bg-matte-black"
                   >
                     Agregar al carrito
                   </button>

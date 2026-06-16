@@ -2,7 +2,17 @@ import {
   ASSISTANT_ESCALATION_MESSAGE,
   DEFAULT_SUGGESTIONS,
 } from "@/data/knowledge-base";
-import { parseQuery, extractFabricComparison, isStructureComparison } from "@/lib/assistant/analyze";
+import { resolveActions } from "@/lib/assistant/actions";
+import {
+  parseQuery,
+  extractFabricComparison,
+  isStructureComparison,
+} from "@/lib/assistant/analyze";
+import {
+  matchLooseCommercialHint,
+  matchTopic,
+  matchWebsiteHint,
+} from "@/lib/assistant/topicMatcher";
 import type { CollectionSlug } from "@/lib/assistant/facts";
 import {
   respondCategoryOverview,
@@ -11,24 +21,33 @@ import {
   respondCompareStructures,
   respondConfiguration,
   respondCompany,
+  respondAdvisor,
+  respondBuy,
   respondFabrics,
+  respondFabricRecommendation,
   respondGreeting,
   respondHelp,
   respondMaintenance,
   respondMaterials,
+  respondOxidation,
+  respondOutdoorPermanent,
   respondPayment,
   respondPrice,
   respondProductInfo,
   respondPurchase,
+  respondQuote,
   respondSamples,
   respondShipping,
   respondShowroom,
   respondStructures,
   respondTimeline,
+  respondTopic,
   respondWarranty,
+  respondWebsite,
   suggestionsForIntent,
 } from "@/lib/assistant/respond";
 import type {
+  AssistantIntent,
   AssistantReply,
   ConversationContext,
 } from "@/lib/assistant/types";
@@ -58,6 +77,146 @@ function updateContext(
   };
 }
 
+function resolveIntentAnswer(
+  intent: AssistantIntent,
+  trimmed: string,
+  query: ReturnType<typeof parseQuery>,
+  product: ReturnType<typeof parseQuery>["products"][0]
+): { answer: string; effectiveIntent: AssistantIntent } {
+  switch (intent) {
+    case "greeting":
+      return { answer: respondGreeting(), effectiveIntent: intent };
+    case "help":
+      return { answer: respondHelp(), effectiveIntent: intent };
+    case "website":
+      return { answer: respondWebsite(), effectiveIntent: intent };
+    case "company":
+      return { answer: respondCompany(), effectiveIntent: intent };
+    case "advisor":
+      return { answer: respondAdvisor(), effectiveIntent: intent };
+    case "quote":
+      return { answer: respondQuote(), effectiveIntent: intent };
+    case "buy":
+      return { answer: respondBuy(), effectiveIntent: intent };
+    case "showroom":
+      return {
+        answer: respondShowroom(trimmed),
+        effectiveIntent: intent,
+      };
+    case "oxidation":
+      return { answer: respondOxidation(), effectiveIntent: intent };
+    case "outdoor_use":
+      return { answer: respondOutdoorPermanent(), effectiveIntent: intent };
+    case "fabric_recommendation":
+      return {
+        answer: respondFabricRecommendation(),
+        effectiveIntent: intent,
+      };
+    case "price":
+      if (product) {
+        return { answer: respondPrice(product), effectiveIntent: intent };
+      }
+      return {
+        answer:
+          "Indicame el modelo que te interesa —reposera Fendi, living Maldivas, mesa Marbella— y te comparto el precio estimativo actualizado.",
+        effectiveIntent: intent,
+      };
+    case "product_info":
+      if (product) {
+        return { answer: respondProductInfo(product), effectiveIntent: intent };
+      }
+      {
+        const cat = query.categoryHint ?? detectCategoryFromText(trimmed);
+        if (cat) {
+          return {
+            answer: respondCategoryOverview(cat),
+            effectiveIntent: intent,
+          };
+        }
+      }
+      return {
+        answer:
+          "Tenemos reposeras, juegos de living, mesas de living y comedor. ¿Sobre qué colección querés que te oriente?",
+        effectiveIntent: intent,
+      };
+    case "category_overview": {
+      const cat = query.categoryHint ?? detectCategoryFromText(trimmed);
+      if (cat) {
+        return {
+          answer: respondCategoryOverview(cat),
+          effectiveIntent: intent,
+        };
+      }
+      return {
+        answer:
+          "Nuestra propuesta se organiza en Reposeras, Juegos de Living y Comedor. Cada línea tiene colecciones con personalización propia. ¿Cuál te gustaría explorar?",
+        effectiveIntent: intent,
+      };
+    }
+    case "compare": {
+      const fabricPair = extractFabricComparison(trimmed);
+      if (fabricPair) {
+        return {
+          answer: respondCompareFabrics(fabricPair[0], fabricPair[1]),
+          effectiveIntent: intent,
+        };
+      }
+      if (isStructureComparison(trimmed)) {
+        return {
+          answer: respondCompareStructures(),
+          effectiveIntent: intent,
+        };
+      }
+      const [a, b] = query.compareSlugs;
+      if (a && b) {
+        const comparison = respondCompare(
+          a as CollectionSlug,
+          b as CollectionSlug,
+          query.categoryHint
+        );
+        return {
+          answer:
+            comparison ??
+            "Puedo comparar colecciones como Fendi y Skorphio, o Málaga y Maldivas. Decime en qué categoría te interesa —reposeras, living, mesas o comedor— y te explico las diferencias.",
+          effectiveIntent: intent,
+        };
+      }
+      return {
+        answer:
+          "Para comparar, mencioná dos colecciones —por ejemplo: «¿Cuál es la diferencia entre Fendi y Skorphio?» o «Málaga vs Maldivas».",
+        effectiveIntent: intent,
+      };
+    }
+    case "configuration":
+      return {
+        answer: respondConfiguration(product),
+        effectiveIntent: intent,
+      };
+    case "fabrics":
+      return { answer: respondFabrics(), effectiveIntent: intent };
+    case "structures":
+      return { answer: respondStructures(), effectiveIntent: intent };
+    case "materials":
+      return { answer: respondMaterials(), effectiveIntent: intent };
+    case "shipping":
+      return { answer: respondShipping(), effectiveIntent: intent };
+    case "timeline":
+      return { answer: respondTimeline(), effectiveIntent: intent };
+    case "payment":
+      return { answer: respondPayment(), effectiveIntent: intent };
+    case "warranty":
+      return { answer: respondWarranty(), effectiveIntent: intent };
+    case "purchase":
+      return { answer: respondPurchase(), effectiveIntent: intent };
+    case "maintenance":
+      return { answer: respondMaintenance(), effectiveIntent: intent };
+    case "samples":
+      return { answer: respondSamples(), effectiveIntent: intent };
+    default:
+      return { answer: "", effectiveIntent: "unknown" };
+  }
+}
+
 export function getAssistantReply(
   input: string,
   context: ConversationContext = {}
@@ -70,142 +229,70 @@ export function getAssistantReply(
         "Contame qué necesitás saber: productos, precios, materiales, envíos o cómo personalizar tu mueble.",
       suggestions: DEFAULT_SUGGESTIONS,
       escalated: false,
+      actions: [],
       context,
     };
   }
 
   const query = parseQuery(trimmed, context);
   const product = query.products[0];
-  let answer = "";
-  let escalated = false;
 
-  switch (query.intent) {
-    case "greeting":
-      answer = respondGreeting();
-      break;
-    case "help":
-      answer = respondHelp();
-      break;
-    case "company":
-      answer = respondCompany();
-      break;
-    case "showroom":
-      answer = respondShowroom();
-      break;
-    case "price":
-      if (product) {
-        answer = respondPrice(product);
-      } else if (query.compareSlugs.length === 1) {
-        const resolved = query.products[0];
-        answer = resolved
-          ? respondPrice(resolved)
-          : "Indicame qué producto te interesa —por ejemplo, reposera Fendi o living Maldivas— y te informo el precio estimativo vigente.";
-      } else {
-        answer =
-          "Indicame el modelo que te interesa —reposera, sillón o mesa— y te comparto el precio estimativo actualizado desde nuestro configurador.";
+  let { answer, effectiveIntent } = resolveIntentAnswer(
+    query.intent,
+    trimmed,
+    query,
+    product
+  );
+
+  if (!answer && query.intent === "unknown") {
+    const topic = matchTopic(trimmed);
+    if (topic) {
+      answer = respondTopic(topic);
+      effectiveIntent = "help";
+    } else if (matchWebsiteHint(trimmed)) {
+      answer = respondWebsite();
+      effectiveIntent = "website";
+    } else {
+      const hint = matchLooseCommercialHint(trimmed);
+      if (hint) {
+        answer = hint;
+        effectiveIntent = "help";
       }
-      break;
-    case "product_info":
-      if (product) {
-        answer = respondProductInfo(product);
-      } else {
-        const cat = query.categoryHint ?? detectCategoryFromText(trimmed);
-        if (cat) answer = respondCategoryOverview(cat);
-        else
-          answer =
-            "Tenemos reposeras, juegos de living, mesas de living y comedor. ¿Sobre qué colección querés que te cuente?";
-      }
-      break;
-    case "category_overview": {
-      const cat = query.categoryHint ?? detectCategoryFromText(trimmed);
-      if (cat) answer = respondCategoryOverview(cat);
-      else
-        answer =
-          "Nuestra propuesta se organiza en Reposeras, Juegos de Living y Comedor. Cada línea tiene colecciones con personalización propia. ¿Cuál te gustaría explorar?";
-      break;
     }
-    case "compare": {
-      const fabricPair = extractFabricComparison(trimmed);
-      if (fabricPair) {
-        answer = respondCompareFabrics(fabricPair[0], fabricPair[1]);
-        break;
-      }
-      if (isStructureComparison(trimmed)) {
-        answer = respondCompareStructures();
-        break;
-      }
-      const [a, b] = query.compareSlugs;
-      if (a && b) {
-        const comparison = respondCompare(a, b, query.categoryHint);
-        answer =
-          comparison ??
-          "Puedo comparar colecciones como Fendi y Skorphio, o Málaga y Maldivas. Decime qué dos modelos querés contrastar y, si podés, en qué categoría (reposeras, living, mesas o comedor).";
-      } else {
-        answer =
-          "Para comparar, mencioná dos colecciones —por ejemplo: «¿Cuál es la diferencia entre Fendi y Skorphio?» o «Málaga vs Maldivas».";
-      }
-      break;
-    }
-    case "configuration":
-      answer = respondConfiguration(product);
-      break;
-    case "fabrics":
-      answer = respondFabrics();
-      break;
-    case "structures":
-      answer = respondStructures();
-      break;
-    case "materials":
-      answer = respondMaterials();
-      break;
-    case "shipping":
-      answer = respondShipping();
-      break;
-    case "timeline":
-      answer = respondTimeline();
-      break;
-    case "payment":
-      answer = respondPayment();
-      break;
-    case "warranty":
-      answer = respondWarranty();
-      break;
-    case "purchase":
-      answer = respondPurchase();
-      break;
-    case "maintenance":
-      answer = respondMaintenance();
-      break;
-    case "samples":
-      answer = respondSamples();
-      break;
-    default:
-      escalated = true;
-      answer = ASSISTANT_ESCALATION_MESSAGE;
   }
 
-  if (!answer) {
-    escalated = true;
+  if (!answer && matchWebsiteHint(trimmed)) {
+    answer = respondWebsite();
+    effectiveIntent = "website";
+  }
+
+  const escalated = !answer;
+  if (escalated) {
     answer = ASSISTANT_ESCALATION_MESSAGE;
   }
+
+  const actions = resolveActions(effectiveIntent, trimmed, escalated);
 
   const nextContext = updateContext(
     context,
     product?.id,
     product?.category ?? query.categoryHint,
     query.compareSlugs.length
-      ? (query.compareSlugs as string[])
+      ? query.compareSlugs
       : product
         ? [product.slug]
         : undefined
   );
 
+  const resolvedIntent = escalated ? "unknown" : effectiveIntent;
+
   return {
     answer,
     suggestions: escalated
       ? []
-      : suggestionsForIntent(query.intent, product),
+      : suggestionsForIntent(resolvedIntent, product),
     escalated,
+    actions,
     context: nextContext,
   };
 }

@@ -1,6 +1,6 @@
 import { products } from "@/data/products";
 import { defaultProductConfig } from "@/lib/images";
-import { calculatePrice, formatPrice } from "@/lib/pricing";
+import { calculatePriceBreakdown, formatPrice } from "@/lib/pricing";
 import { getProductTypeLabel } from "@/lib/productDisplay";
 import type { Product } from "@/types";
 import {
@@ -15,6 +15,7 @@ import {
   type FabricSlug,
 } from "@/lib/assistant/facts";
 import type { AssistantIntent } from "@/lib/assistant/types";
+import type { TopicId } from "@/lib/assistant/topicMatcher";
 
 function capitalize(s: string): string {
   return s.charAt(0).toUpperCase() + s.slice(1);
@@ -28,36 +29,90 @@ function productDisplayName(product: Product): string {
   return `${type} ${product.name}`;
 }
 
-export function respondShowroom(): string {
-  return "Podés coordinar una visita a nuestro showroom para conocer materiales, terminaciones y distintas colecciones de manera presencial. Estamos en Cerro de las Rosas, Córdoba. Si querés, también podemos asesorarte previamente por WhatsApp.";
+export function respondShowroom(trimmed?: string): string {
+  const n = trimmed
+    ? trimmed
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+    : "";
+
+  const locationOnly =
+    /\b(donde\s+estan|donde\s+queda|ubicacion|direccion|como\s+llegar)\b/.test(
+      n
+    ) &&
+    !/\b(visitar|visita|ver\s+(los\s+)?muebles|showroom|puedo\s+visitar)\b/.test(
+      n
+    );
+
+  if (locationOnly) {
+    return `Nuestro showroom está en ${SHOWROOM.full}. Podés visitarnos coordinando previamente o usar el mapa para llegar.`;
+  }
+
+  return `Podés conocer materiales, telas y colecciones en nuestro showroom de ${SHOWROOM.full}. Coordinamos visitas con anticipación y también podemos asesorarte por WhatsApp antes de tu visita.`;
+}
+
+export function respondWebsite(): string {
+  return "Podés explorar las distintas categorías desde Productos. Elegí una colección, personalizá estructura, tela y configuración, y visualizá los cambios directamente en pantalla. También podés ampliar imágenes, agregar al carrito o solicitar asesoramiento en cualquier momento.";
+}
+
+export function respondQuote(): string {
+  return "Con gusto te armamos una cotización según la configuración que elijas. Podés hacerlo desde el carrito o escribirnos directamente por WhatsApp con el detalle de tu proyecto.";
+}
+
+export function respondBuy(): string {
+  return "Podés explorar todas las colecciones en Productos, personalizar cada modelo y agregarlo al carrito cuando tengas la configuración lista.";
+}
+
+export function respondAdvisor(): string {
+  return "Con gusto. Nuestro equipo puede asesorarte de forma personalizada según tu espacio, uso y estilo.";
+}
+
+export function respondOxidation(): string {
+  return "No. Las estructuras están fabricadas en aluminio, un material que no se oxida como el hierro. Además utilizamos terminaciones especialmente desarrolladas para uso exterior.";
+}
+
+export function respondOutdoorPermanent(): string {
+  return "Sí. Los muebles Maldivas Outdoor fueron diseñados para uso exterior permanente. Los materiales seleccionados están preparados para soportar sol, humedad y condiciones climáticas normales.";
+}
+
+export function respondFabricRecommendation(): string {
+  return "Las tres opciones —Sunbrella, Agora y Bliss— son aptas para exterior, con resistencia UV, buen comportamiento frente a la humedad y facilidad de limpieza. Si buscás máxima trayectoria y reconocimiento internacional, Sunbrella es una excelente alternativa. Contame si el espacio tiene mucho sol o uso intensivo y te oriento con más detalle.";
 }
 
 export function respondCompany(): string {
-  return `${COMPANY.name} es una marca de muebles de exterior premium de ${COMPANY.location}. ${COMPANY.manufacturing}, con una filosofía de ${COMPANY.philosophy}. ${COMPANY.inspiration}. Ofrecemos ${COMPANY.approach}.`;
+  return `${COMPANY.name} es una marca de muebles de exterior premium de ${COMPANY.location}, con fabricación propia y diseño atemporal. Personalizamos estructura, tapizado y terminaciones en cada colección para espacios que perduran.`;
 }
 
 export function respondPrice(product: Product): string {
   const config = defaultProductConfig(product);
-  const price = calculatePrice(product, config);
-  const formatted = formatPrice(price);
+  const breakdown = calculatePriceBreakdown(product, config);
   const name = productDisplayName(product);
-  const size = product.sizes[0];
+  const size = product.sizes.find((s) => s.id === config.sizeId);
+
+  if (!breakdown) {
+    return `Para ${name}, el precio depende de la configuración. Coordiná con nuestro equipo para una cotización personalizada. ${LOGISTICS.priceDisclaimer}.`;
+  }
 
   const parts = [
-    `El ${name} tiene un precio estimativo desde ${formatted} en configuración base`,
+    `El ${name} tiene un precio de lista de ${formatPrice(breakdown.list)} en configuración base`,
   ];
 
   if (size?.dimensions) {
     parts.push(`(${size.label}: ${size.dimensions})`);
   }
 
+  parts.push(
+    `En efectivo con 30% OFF: ${formatPrice(breakdown.cash)}. En transferencia con 15% OFF: ${formatPrice(breakdown.transfer)}.`
+  );
+
   if (product.fabrics.length > 0) {
-    parts.push(
-      "El valor puede variar según estructura, tapizado y tamaño elegidos"
-    );
+    parts.push("El valor varía según estructura y tamaño; la tela no modifica el precio");
+  } else if (product.category === "mesas") {
+    parts.push("El valor varía según la estructura elegida");
   } else if (product.customizableSize) {
     parts.push(
-      "En mesas, el precio también depende de la medida y la piedra seleccionada"
+      "En mesas, el precio se define según medida y piedra seleccionadas"
     );
   }
 
@@ -193,7 +248,7 @@ export function respondMaterials(): string {
 }
 
 export function respondShipping(): string {
-  return `${capitalize(LOGISTICS.shipping)}. ${capitalize(LOGISTICS.timeline)}.`;
+  return "Sí. Realizamos envíos a distintas ciudades de Argentina mediante transportes especializados. Los muebles viajan protegidos para minimizar riesgos durante el transporte.";
 }
 
 export function respondTimeline(): string {
@@ -201,15 +256,66 @@ export function respondTimeline(): string {
 }
 
 export function respondPayment(): string {
-  return `${capitalize(LOGISTICS.payment)}. ${capitalize(LOGISTICS.cashDiscount)}. ${capitalize(LOGISTICS.priceDisclaimer)}.`;
+  return "Trabajamos con distintos medios de pago. Podemos informarte las opciones vigentes al momento de la compra, incluyendo beneficios por pago contado según promociones activas.";
 }
 
 export function respondWarranty(): string {
-  return `${capitalize(LOGISTICS.warranty)}, bajo uso residencial normal en exteriores. Ante cualquier consulta específica sobre tu producto, nuestro equipo puede orientarte de forma personalizada.`;
+  return "Sí. Todos nuestros productos cuentan con garantía contra defectos de fabricación.";
 }
 
 export function respondPurchase(): string {
-  return "Podés personalizar cada producto en su ficha, agregarlo al carrito y solicitar cotización por WhatsApp con el detalle de tu configuración. También podés escribirnos desde Contacto o coordinar una visita al showroom antes de decidir.";
+  return "Personalizá cada producto en su ficha, agregalo al carrito y solicitá cotización con el detalle de tu configuración. También podés escribirnos por WhatsApp o visitar el showroom antes de decidir.";
+}
+
+export function respondTopic(topic: TopicId): string {
+  switch (topic) {
+    case "oxidation":
+      return respondOxidation();
+    case "outdoor_permanent":
+      return respondOutdoorPermanent();
+    case "fabric_recommend":
+      return respondFabricRecommendation();
+    case "fabric_fade":
+      return "Trabajamos con telas outdoor premium seleccionadas por su alta resistencia UV. Con uso normal y mantenimiento adecuado, conservan color y apariencia durante muchos años.";
+    case "fabric_outdoor_vs_common":
+      return "Las telas outdoor están desarrolladas para resistir radiación UV, humedad y manchas superficiales, con mayor estabilidad dimensional que una tela común. Por eso son la opción correcta para muebles de exterior permanente.";
+    case "fabric_clean":
+      return "Generalmente basta con agua y jabón neutro. Ante manchas puntuales, conviene actuar rápido para que no penetren en las fibras.";
+    case "fabric_waterproof":
+      return "Las telas outdoor tienen tratamientos hidrorrepelentes que retrasan la absorción del agua. Ninguna tela transpirable puede considerarse totalmente impermeable, pero están pensadas para el uso exterior.";
+    case "rain_cushions":
+      return "Los almohadones están preparados para exteriores, aunque recomendamos resguardarlos en lluvias prolongadas para prolongar su vida útil y mantener su aspecto original.";
+    case "painted_vs_anodized":
+      return respondCompareStructures();
+    case "factory":
+      return "Sí, somos fabricantes. Diseñamos y producimos cada pieza en aluminio Aluar con terminaciones premium y control de calidad en cada etapa.";
+    case "made_to_order":
+      return "Sí. Cada pieza se fabrica según la configuración que elijas: tamaño, estructura, tapizado y —en mesas— medida y piedra.";
+    case "customization":
+      return "Podés personalizar estructura, tapizado y terminaciones según el modelo. En mesas, también medida y piedra sinterizada. El configurador de la web muestra el precio estimativo en tiempo real.";
+    case "integral_project":
+      return "Sí, asesoramos proyectos integrales para galerías, quinchos y terrazas. Podemos ayudarte a combinar reposeras, living y comedor con una propuesta coherente para tu espacio.";
+    case "kids_pets":
+      return "Para hogares con niños o mascotas podemos orientarte hacia telas outdoor de fácil limpieza y excelente resistencia al uso intensivo. Sunbrella, Agora y Bliss son opciones muy sólidas.";
+    case "pool":
+      return "Sí, los materiales son aptos para zonas de piscina y ambientes exteriores húmedos. El aluminio y las telas outdoor están pensados para ese tipo de exposición.";
+    case "heat_sun":
+      return "Como cualquier material al sol directo, pueden elevar su temperatura. Los colores claros suelen mantenerse más frescos; la elección de tapizado y ubicación del mueble influye en la sensación térmica.";
+    case "lifespan":
+      return "Con mantenimiento básico —limpieza con agua y jabón neutro— los muebles conservan funcionalidad y estética durante muchos años. La durabilidad es parte central de nuestra propuesta de diseño atemporal.";
+    case "why_premium":
+      return "La diferencia está en materiales, construcción, comodidad y terminaciones. Un mueble premium está pensado para conservar presencia y desempeño en el tiempo, no solo para lucir bien el primer año.";
+    case "why_maldivas":
+      return `${COMPANY.name} combina fabricación propia, ${COMPANY.philosophy} y materiales seleccionados para crear espacios exteriores que perduren. ${COMPANY.inspiration}`;
+    case "removable_covers":
+      return "Sí, los tapizados están diseñados para facilitar limpieza y mantenimiento.";
+    case "combine_collections":
+      return "Sí, muchas de nuestras colecciones fueron pensadas para convivir estéticamente en un mismo proyecto exterior. Podemos ayudarte a armar una propuesta coherente entre reposeras, living y comedor.";
+    case "choose_model":
+      return "La elección depende del espacio, la orientación al sol y el uso previsto. Contame dimensiones y estilo de tu proyecto —galería, terraza o quincho— y te recomiendo colecciones y configuraciones concretas.";
+    default:
+      return respondHelp();
+  }
 }
 
 export function respondMaintenance(): string {
@@ -221,11 +327,11 @@ export function respondSamples(): string {
 }
 
 export function respondGreeting(): string {
-  return "Hola, un gusto saludarte. Soy el Asistente Maldivas y puedo ayudarte con productos, precios actualizados, materiales, envíos o elegir la colección ideal para tu espacio. ¿En qué te gustaría que te oriente?";
+  return "Hola, un gusto saludarte. Puedo ayudarte con productos, precios, materiales, envíos o elegir la colección ideal para tu espacio. ¿En qué te oriento?";
 }
 
 export function respondHelp(): string {
-  return "Puedo informarte precios vigentes, diferencias entre colecciones, opciones de configuración, materiales, envíos, plazos, pagos y cómo usar el configurador de la web. Contame qué estás buscando o elegí una sugerencia abajo.";
+  return "Puedo orientarte sobre colecciones, precios, materiales, envíos y cómo usar la web para personalizar cada mueble. Contame qué estás buscando o elegí una sugerencia abajo.";
 }
 
 export function respondUnknown(): string {
@@ -238,6 +344,10 @@ export function suggestionsForIntent(
 ): string[] {
   switch (intent) {
     case "showroom":
+      return [
+        "¿Querés que te ayude a elegir una colección?",
+        "¿Cómo uso la web?",
+      ];
     case "company":
       return [
         "¿Querés que te ayude a elegir una colección?",
@@ -265,6 +375,30 @@ export function suggestionsForIntent(
       ];
     case "configuration":
       return ["¿Y cuánto cuesta?", "¿Querés conocer las opciones de telas?"];
+    case "help":
+      return [
+        "¿Dónde puedo ver los muebles?",
+        "¿Qué tela me recomendás?",
+      ];
+    case "advisor":
+    case "quote":
+    case "buy":
+    case "website":
+      return [];
+    case "oxidation":
+    case "outdoor_use":
+    case "fabric_recommendation":
+      return [
+        "¿Querés conocer las opciones de telas?",
+        "¿Dónde puedo ver los muebles?",
+      ];
+    case "payment":
+    case "warranty":
+    case "shipping":
+      return [
+        "¿Cuál es el plazo de fabricación?",
+        "¿Cómo personalizo un producto?",
+      ];
     case "fabrics":
     case "structures":
     case "materials":

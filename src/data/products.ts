@@ -3,98 +3,109 @@ import type { Product, ProductOption, ProductSize } from "@/types";
 const FABRICS: ProductOption[] = [
   { id: "negro", label: "Negro" },
   { id: "gris", label: "Gris" },
-  { id: "beige", label: "Beige", priceModifier: 15 },
-  { id: "blanco", label: "Blanco", priceModifier: 25 },
+  { id: "beige", label: "Beige" },
+  { id: "blanco", label: "Blanco" },
 ];
 
 const STRUCTURE_FENDI: ProductOption[] = [
   { id: "simil-madera-blanco", label: "Símil madera blanco" },
   { id: "simil-madera-marron", label: "Símil madera marrón" },
-  { id: "anodizado-negro", label: "Anodizado negro lijado", onRequest: true, priceModifier: 80 },
-  { id: "anodizado-peltre", label: "Anodizado peltre lijado", onRequest: true, priceModifier: 80 },
-  { id: "greige-pintado", label: "Greige pintado", priceModifier: 40 },
-  { id: "negro-pintado", label: "Negro pintado", priceModifier: 30 },
+  { id: "anodizado-negro", label: "Anodizado negro lijado", onRequest: true },
+  { id: "anodizado-peltre", label: "Anodizado peltre lijado", onRequest: true },
+  { id: "greige-pintado", label: "Greige pintado" },
+  { id: "negro-pintado", label: "Negro pintado" },
 ];
 
 const STRUCTURE_SKORPHIO: ProductOption[] = [
   { id: "simil-madera-blanco", label: "Símil madera blanco" },
   { id: "simil-madera-marron", label: "Símil madera marrón" },
-  { id: "negro-pintado", label: "Negro pintado", priceModifier: 30 },
-  { id: "blanco-pintado", label: "Blanco pintado", priceModifier: 35 },
+  { id: "negro-pintado", label: "Negro pintado" },
+  { id: "blanco-pintado", label: "Blanco pintado" },
 ];
 
 const STRUCTURE_MALDIVAS: ProductOption[] = [
-  { id: "negro-pintado", label: "Negro pintado", priceModifier: 30 },
-  { id: "anodizado-peltre", label: "Anodizado peltre lijado", onRequest: true, priceModifier: 80 },
-  { id: "anodizado-negro", label: "Anodizado negro lijado", onRequest: true, priceModifier: 80 },
+  { id: "negro-pintado", label: "Negro pintado" },
+  { id: "anodizado-peltre", label: "Anodizado peltre lijado", onRequest: true },
+  { id: "anodizado-negro", label: "Anodizado negro lijado", onRequest: true },
 ];
 
 const STRUCTURE_MILOS: ProductOption[] = [
-  { id: "negro-pintado", label: "Negro pintado", priceModifier: 30 },
-  { id: "greige-pintado", label: "Greige pintado", priceModifier: 40 },
-  { id: "blanco-pintado", label: "Blanco pintado", priceModifier: 35 },
-  { id: "anodizado-peltre", label: "Anodizado peltre lijado", onRequest: true, priceModifier: 80 },
-  { id: "anodizado-negro", label: "Anodizado negro lijado", onRequest: true, priceModifier: 80 },
+  { id: "negro-pintado", label: "Negro pintado" },
+  { id: "greige-pintado", label: "Greige pintado" },
+  { id: "blanco-pintado", label: "Blanco pintado" },
+  { id: "anodizado-peltre", label: "Anodizado peltre lijado", onRequest: true },
+  { id: "anodizado-negro", label: "Anodizado negro lijado", onRequest: true },
 ];
 
 const STRUCTURE_MALAGA: ProductOption[] = [
-  { id: "negro-pintado", label: "Negro pintado", priceModifier: 30 },
-  { id: "anodizado-peltre", label: "Anodizado peltre lijado", onRequest: true, priceModifier: 80 },
-  { id: "anodizado-negro", label: "Anodizado negro lijado", onRequest: true, priceModifier: 80 },
+  { id: "negro-pintado", label: "Negro pintado" },
+  { id: "anodizado-peltre", label: "Anodizado peltre lijado", onRequest: true },
+  { id: "anodizado-negro", label: "Anodizado negro lijado", onRequest: true },
 ];
 
 const STRUCTURE_MDQ: ProductOption[] = [
-  { id: "negro-pintado", label: "Negro pintado", priceModifier: 30 },
-  { id: "anodizado-natural", label: "Anodizado natural", priceModifier: 50 },
+  { id: "negro-pintado", label: "Negro pintado" },
+  { id: "anodizado-natural", label: "Anodizado natural" },
 ];
 
 const STRUCTURE_BAROS: ProductOption[] = [
-  { id: "anodizado-natural", label: "Anodizado natural", priceModifier: 50 },
+  { id: "anodizado-natural", label: "Anodizado natural" },
+];
+
+const STRUCTURE_MESA_FENDI: ProductOption[] = [
+  { id: "simil-madera-marron", label: "Símil Madera Marrón" },
+  { id: "simil-madera-blanco", label: "Símil Madera Blanco" },
+  { id: "anodizado-negro", label: "Anodizado Negro Lijado", onRequest: true },
+  { id: "negro-pintado", label: "Negro Pintado" },
+];
+
+const MESA_FENDI_MEASURE: ProductSize[] = [
+  { id: "fixed", label: "Medida", dimensions: "160 × 80 × 38 cm" },
 ];
 
 const REPOSERA_SIZES: ProductSize[] = [
-  { id: "small", label: "Estándar", dimensions: "200 × 75 × 37 cm", priceModifier: 0 },
-  { id: "large", label: "Doble", dimensions: "200 × 140 × 37 cm", priceModifier: 120 },
+  { id: "small", label: "Estándar", dimensions: "200 × 75 × 37 cm" },
+  { id: "large", label: "Doble", dimensions: "200 × 140 × 37 cm" },
 ];
 
 const REPOSERA_SIZES_SKORPHIO: ProductSize[] = [
   { id: "small", label: "Estándar", dimensions: "200 × 75 × 27 cm" },
-  { id: "large", label: "Doble", dimensions: "200 × 140 × 27 cm", priceModifier: 120 },
+  { id: "large", label: "Doble", dimensions: "200 × 140 × 27 cm" },
 ];
 
 const REPOSERA_SIZES_MDQ: ProductSize[] = [
   { id: "small", label: "Estándar", dimensions: "195 × 75 × 35 cm" },
-  { id: "large", label: "Doble", dimensions: "195 × 140 × 35 cm", priceModifier: 120 },
+  { id: "large", label: "Doble", dimensions: "195 × 140 × 35 cm" },
 ];
 
 const REPOSERA_SIZES_BAROS: ProductSize[] = [
-  { id: "small", label: "Estándar", dimensions: "200 × 75 × 37 cm", priceModifier: 0 },
+  { id: "small", label: "Estándar", dimensions: "200 × 75 × 37 cm" },
 ];
 
 const SOFA_SIZES_FENDI: ProductSize[] = [
   { id: "1-cuerpo", label: "1 cuerpo", dimensions: "92 × 85 × 72 cm" },
-  { id: "4-cuerpos", label: "4 cuerpos", dimensions: "221 × 85 × 72 cm", priceModifier: 420 },
+  { id: "4-cuerpos", label: "4 cuerpos", dimensions: "221 × 85 × 72 cm" },
 ];
 
 const SOFA_SIZES_SKORPHIO: ProductSize[] = [
   { id: "1-cuerpo", label: "1 cuerpo", dimensions: "100 × 85 × 72 cm" },
-  { id: "4-cuerpos", label: "4 cuerpos", dimensions: "228 × 85 × 72 cm", priceModifier: 420 },
+  { id: "4-cuerpos", label: "4 cuerpos", dimensions: "228 × 85 × 72 cm" },
 ];
 
 const SOFA_SIZES_MALAGA: ProductSize[] = [
   { id: "1-cuerpo", label: "1 cuerpo", dimensions: "90 × 90 × 72 cm" },
-  { id: "4-cuerpos", label: "4 cuerpos", dimensions: "218 × 90 × 72 cm", priceModifier: 420 },
+  { id: "4-cuerpos", label: "4 cuerpos", dimensions: "218 × 90 × 72 cm" },
 ];
 
 const SOFA_SIZES_MILOS: ProductSize[] = [
   { id: "1-cuerpo", label: "1 cuerpo", dimensions: "85 × 85 × 72 cm" },
-  { id: "4-cuerpos", label: "4 cuerpos", dimensions: "213 × 85 × 72 cm", priceModifier: 420 },
+  { id: "4-cuerpos", label: "4 cuerpos", dimensions: "213 × 85 × 72 cm" },
 ];
 
 const STONE_BRANDS: ProductOption[] = [
-  { id: "infinity", label: "Infinity", priceModifier: 200 },
-  { id: "dekton", label: "Dekton", priceModifier: 250 },
-  { id: "pura-prima", label: "Pura Prima", priceModifier: 180 },
+  { id: "infinity", label: "Infinity" },
+  { id: "dekton", label: "Dekton" },
+  { id: "pura-prima", label: "Pura Prima" },
 ];
 
 const IMG = (id: string) =>
@@ -109,7 +120,6 @@ export const products: Product[] = [
     category: "reposeras",
     description:
       "Reposera de líneas puras y presencia escultórica. Aluminio de alta tecnología con terminaciones premium y tapizado europeo.",
-    basePrice: 123,
     image: IMG("1586023491125-6d1c25decf40"),
     gallery: [IMG("1586023491125-6d1c25decf40"), IMG("1600210492493-0946911123ea")],
     sizes: REPOSERA_SIZES,
@@ -123,7 +133,6 @@ export const products: Product[] = [
     category: "reposeras",
     description:
       "Perfil bajo y silueta aerodinámica. Diseño contemporáneo para espacios que exigen elegancia sin compromiso.",
-    basePrice: 123,
     image: IMG("1600585154340-be6161a56a0c"),
     gallery: [IMG("1600585154340-be6161a56a0c"), IMG("1600607687939-7d7cf2f06603")],
     sizes: REPOSERA_SIZES_SKORPHIO,
@@ -137,7 +146,6 @@ export const products: Product[] = [
     category: "reposeras",
     description:
       "Geometría precisa y acabados en negro mate. La reposera que define el carácter de cualquier terraza boutique.",
-    basePrice: 123,
     image: IMG("1600607687644-c7171b424245"),
     gallery: [IMG("1600607687644-c7171b424245"), IMG("1600566752355-4b89be3f8397")],
     sizes: REPOSERA_SIZES,
@@ -151,7 +159,6 @@ export const products: Product[] = [
     category: "reposeras",
     description:
       "Inspirada en la costa atlántica. Proporciones refinadas y paleta neutra para ambientes de arquitectura contemporánea.",
-    basePrice: 123,
     image: IMG("1600566753086-00f18fb6b3ea"),
     gallery: [IMG("1600566753086-00f18fb6b3ea"), IMG("1600210492486-0946911123ea")],
     sizes: REPOSERA_SIZES_MDQ,
@@ -165,7 +172,6 @@ export const products: Product[] = [
     category: "reposeras",
     description:
       "Anodizado natural y líneas orgánicas. La pieza que conecta el interior con el paisaje exterior.",
-    basePrice: 123,
     image: IMG("1600047509807-ba8f99d2fe7f"),
     gallery: [IMG("1600047509807-ba8f99d2fe7f"), IMG("1600585154526-990dced4db0d")],
     sizes: REPOSERA_SIZES_BAROS,
@@ -181,7 +187,6 @@ export const products: Product[] = [
     subcategory: "sillones",
     description:
       "Sillón modular de presencia arquitectónica. Confort boutique con estructura en aluminio y tapizado premium.",
-    basePrice: 123,
     image: IMG("1555041469-a586c81e7bc9"),
     gallery: [IMG("1555041469-a586c81e7bc9"), IMG("1616486338812-3dadae4b4f40")],
     sizes: SOFA_SIZES_FENDI,
@@ -196,7 +201,6 @@ export const products: Product[] = [
     subcategory: "sillones",
     description:
       "Volúmenes generosos y respaldo envolvente. El centro gravitacional de su living exterior.",
-    basePrice: 123,
     image: IMG("1616486338812-3dadae4b4f40"),
     gallery: [IMG("1616486338812-3dadae4b4f40"), IMG("1586023491125-6d1c25decf40")],
     sizes: SOFA_SIZES_SKORPHIO,
@@ -211,7 +215,6 @@ export const products: Product[] = [
     subcategory: "sillones",
     description:
       "Forma cuadrada y presencia sólida. Diseño atemporal para espacios de alto diseño.",
-    basePrice: 123,
     image: IMG("1600210492486-0946911123ea"),
     gallery: [IMG("1600210492486-0946911123ea"), IMG("1600566752355-4b89be3f8397")],
     sizes: SOFA_SIZES_MALAGA,
@@ -226,7 +229,6 @@ export const products: Product[] = [
     subcategory: "sillones",
     description:
       "La esencia de la marca en un sillón. Paleta neutra y proporciones que invitan a permanecer.",
-    basePrice: 123,
     image: IMG("1600607687939-7d7cf2f06603"),
     gallery: [IMG("1600607687939-7d7cf2f06603"), IMG("1600047509807-ba8f99d2fe7f")],
     sizes: SOFA_SIZES_MALAGA,
@@ -241,7 +243,6 @@ export const products: Product[] = [
     subcategory: "sillones",
     description:
       "Compacto y refinado. Ideal para terrazas íntimas donde cada centímetro cuenta.",
-    basePrice: 123,
     image: IMG("1600585154526-990dced4db0d"),
     gallery: [IMG("1600585154526-990dced4db0d"), IMG("1600566753086-00f18fb6b3ea")],
     sizes: SOFA_SIZES_MILOS,
@@ -257,14 +258,18 @@ export const products: Product[] = [
     subcategory: "mesas",
     description:
       "Mesa de living con top en piedra sinterizada. Base en aluminio con terminación premium.",
-    basePrice: 123,
     image: IMG("1615874958453-9e7f6e9bb168"),
     gallery: [IMG("1615874958453-9e7f6e9bb168")],
-    sizes: [{ id: "custom", label: "Personalizable", dimensions: "A medida" }],
-    structures: [{ id: "estandar", label: "Estructura estándar" }],
+    sizes: MESA_FENDI_MEASURE,
+    structures: STRUCTURE_MESA_FENDI,
     fabrics: [],
-    stoneBrands: STONE_BRANDS,
-    customizableSize: true,
+    fixedMeasure: true,
+    mesaImageByStructure: {
+      "simil-madera-marron": 1,
+      "anodizado-negro": 2,
+      "simil-madera-blanco": 3,
+      "negro-pintado": 4,
+    },
   },
   {
     id: "mesa-skorphio",
@@ -273,7 +278,6 @@ export const products: Product[] = [
     category: "mesas",
     subcategory: "mesas",
     description: "Superficie en piedra sinterizada de alta resistencia. Diseño minimalista.",
-    basePrice: 123,
     image: IMG("1600585154340-be6161a56a0c"),
     gallery: [IMG("1600585154340-be6161a56a0c")],
     sizes: [{ id: "custom", label: "Personalizable", dimensions: "A medida" }],
@@ -289,7 +293,6 @@ export const products: Product[] = [
     category: "mesas",
     subcategory: "mesas",
     description: "Mesa de centro con presencia escultórica y top en piedra premium.",
-    basePrice: 123,
     image: IMG("1600566752355-4b89be3f8397"),
     gallery: [IMG("1600566752355-4b89be3f8397")],
     sizes: [{ id: "custom", label: "Personalizable", dimensions: "A medida" }],
@@ -305,7 +308,6 @@ export const products: Product[] = [
     category: "mesas",
     subcategory: "mesas",
     description: "Formato compacto con acabados de lujo silencioso.",
-    basePrice: 123,
     image: IMG("1600047509807-ba8f99d2fe7f"),
     gallery: [IMG("1600047509807-ba8f99d2fe7f")],
     sizes: [{ id: "custom", label: "Personalizable", dimensions: "A medida" }],
@@ -322,7 +324,6 @@ export const products: Product[] = [
     category: "comedor",
     description:
       "Mesa de comedor exterior con top en piedra sinterizada. Medida personalizable y marcas premium.",
-    basePrice: 123,
     image: IMG("1615874958453-9e7f6e9bb168"),
     gallery: [IMG("1615874958453-9e7f6e9bb168"), IMG("1600566752355-4b89be3f8397")],
     sizes: [{ id: "custom", label: "Personalizable", dimensions: "A medida" }],

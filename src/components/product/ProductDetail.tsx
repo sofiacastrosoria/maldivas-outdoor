@@ -3,8 +3,9 @@
 import { useState, useEffect } from "react";
 import { Playfair_Display } from "next/font/google";
 import type { Product } from "@/types";
-import { formatPrice, buildConfigSummary, calculatePrice } from "@/lib/pricing";
-import { isTableProduct, type TableImageIndex } from "@/lib/images";
+import { formatPrice, buildConfigSummary, calculatePriceBreakdown } from "@/lib/pricing";
+import { PriceBreakdown } from "./PriceBreakdown";
+import { isTableProduct, usesMesasStructureImages, type TableImageIndex } from "@/lib/images";
 import { getProductTypeLabel } from "@/lib/productDisplay";
 import type { FabricTypeId } from "@/lib/premiumSwatches";
 import { resolveVariantImage } from "@/lib/resolveImage";
@@ -34,7 +35,7 @@ interface ProductDetailProps {
 function buildQuoteMessage(
   product: Product,
   config: ReturnType<typeof useVariantConfig>["config"],
-  price: number
+  breakdown: NonNullable<ReturnType<typeof calculatePriceBreakdown>>
 ): string {
   const summary = buildConfigSummary(product, config);
   return [
@@ -43,7 +44,9 @@ function buildQuoteMessage(
     "",
     ...summary.map((line) => `- ${line}`),
     "",
-    `Precio estimado: ${formatPrice(price)}`,
+    `Precio de lista: ${formatPrice(breakdown.list)}`,
+    `Precio en efectivo (30% OFF): ${formatPrice(breakdown.cash)}`,
+    `Precio en transferencia (15% OFF): ${formatPrice(breakdown.transfer)}`,
     "",
     "Muchas gracias.",
   ].join("\n");
@@ -55,16 +58,22 @@ export function ProductDetail({ product }: ProductDetailProps) {
   const [tableIndex, setTableIndex] = useState<TableImageIndex>(1);
   const [zoomOpen, setZoomOpen] = useState(false);
   const [fabricType, setFabricType] = useState<FabricTypeId>("sunbrella");
-  const isTable = isTableProduct(product);
+  const isLegacyTableGallery = isTableProduct(product);
+  const usesStructureMesasImages = usesMesasStructureImages(product);
 
-  const price = calculatePrice(product, config);
+  const priceBreakdown = calculatePriceBreakdown(product, config);
   const selectedSize = product.sizes.find((s) => s.id === config.sizeId);
   const displayDimensions =
     config.customDimensions || selectedSize?.dimensions || "";
 
   const handleAddToCart = () => {
+    if (!priceBreakdown) return;
     const summary = buildConfigSummary(product, config);
-    const image = resolveVariantImage(product, config, tableIndex);
+    const image = resolveVariantImage(
+      product,
+      config,
+      isLegacyTableGallery ? tableIndex : undefined
+    );
     addItem({
       productId: product.id,
       productName: product.name,
@@ -73,12 +82,13 @@ export function ProductDetail({ product }: ProductDetailProps) {
       image,
       config,
       configSummary: summary,
-      unitPrice: price,
+      unitPrice: priceBreakdown.list,
     });
   };
 
   const handleQuote = () => {
-    openWhatsApp(buildQuoteMessage(product, config, price));
+    if (!priceBreakdown) return;
+    openWhatsApp(buildQuoteMessage(product, config, priceBreakdown));
   };
 
   useEffect(() => {
@@ -108,7 +118,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
           <ConfiguratorImage
             product={product}
             config={config}
-            tableIndex={tableIndex}
+            tableIndex={isLegacyTableGallery ? tableIndex : undefined}
             alt={product.name}
             priority
             compact
@@ -158,26 +168,30 @@ export function ProductDetail({ product }: ProductDetailProps) {
             onFabricTypeChange={setFabricType}
           />
 
-          <section className="pt-4 border-t border-premium-border space-y-1.5">
-            <p className="text-[10px] tracking-luxury uppercase text-premium-gray">
-              Precio estimativo
-            </p>
-            <p className="text-3xl md:text-4xl font-light text-matte-black tracking-tight">
-              {formatPrice(price)}
-            </p>
-            <p className="text-xs text-premium-gold tracking-wide">
-              30% OFF contado efectivo
-            </p>
-            <p className="text-[10px] text-premium-gray">
-              Los precios son estimativos y pueden variar.
-            </p>
+          <section className="pt-4 border-t border-premium-border">
+            {priceBreakdown ? (
+              <PriceBreakdown breakdown={priceBreakdown} />
+            ) : (
+              <div className="space-y-1.5">
+                <p className="text-[10px] tracking-luxury uppercase text-premium-gray">
+                  Precio
+                </p>
+                <p className="text-xl font-light text-matte-black tracking-tight">
+                  Consultar precio
+                </p>
+                <p className="text-[10px] text-premium-gray">
+                  Coordiná con nuestro equipo para una cotización personalizada.
+                </p>
+              </div>
+            )}
           </section>
 
           <section className="space-y-2.5">
             <button
               type="button"
               onClick={handleAddToCart}
-              className="w-full rounded-lg bg-matte-black text-white py-3.5 text-xs tracking-luxury uppercase hover:bg-matte-black/90 transition-all duration-500"
+              disabled={!priceBreakdown}
+              className="w-full rounded-lg bg-matte-black text-white py-3.5 text-xs tracking-luxury uppercase hover:bg-matte-black/90 transition-all duration-500 disabled:opacity-40 disabled:hover:bg-matte-black"
             >
               Agregar al carrito
             </button>
@@ -210,7 +224,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
         src={resolveVariantImage(
           product,
           config,
-          isTable ? tableIndex : undefined
+          isLegacyTableGallery ? tableIndex : undefined
         )}
         alt={product.name}
         onClose={() => setZoomOpen(false)}

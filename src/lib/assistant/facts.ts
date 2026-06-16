@@ -8,6 +8,10 @@ export const SHOWROOM = {
   full: "Luis Jose de Tejeda 4286, Cerro de las Rosas, Córdoba Capital",
 } as const;
 
+/** Misma URL que Contacto y footer */
+export const SHOWROOM_MAP_URL =
+  "https://maps.app.goo.gl/RiJrTenL5BaVdtEE7?g_st=ic";
+
 export const COMPANY = {
   name: "Maldivas Outdoor",
   location: "Córdoba, Argentina",

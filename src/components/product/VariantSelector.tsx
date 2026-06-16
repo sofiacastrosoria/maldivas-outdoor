@@ -147,7 +147,16 @@ export function VariantSelector({
 
   return (
     <div className="space-y-6">
-      {product.sizes.length > 0 && !product.customizableSize && (
+      {product.fixedMeasure && product.sizes[0] && (
+        <section>
+          <SectionTitle>Medida</SectionTitle>
+          <p className="text-sm text-matte-black tracking-wide">
+            {product.sizes[0].dimensions}
+          </p>
+        </section>
+      )}
+
+      {product.sizes.length > 1 && !product.customizableSize && !product.fixedMeasure && (
         <section>
           <SectionTitle>Tamaño</SectionTitle>
           <div className="grid gap-2.5">

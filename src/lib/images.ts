@@ -22,7 +22,7 @@ const STRUCTURE_COMPACT: Record<string, string> = {
   estandar: "estandar",
 };
 
-export type TableImageIndex = 1 | 2 | 3;
+export type TableImageIndex = 1 | 2 | 3 | 4;
 
 export function isTableProduct(product: Product): boolean {
   return (
@@ -30,6 +30,23 @@ export function isTableProduct(product: Product): boolean {
     product.fabrics.length === 0 &&
     (product.category === "mesas" || product.category === "comedor")
   );
+}
+
+/** Mesas con imágenes en /images/mesas/{slug}/N.jpg según estructura */
+export function usesMesasStructureImages(product: Product): boolean {
+  return (
+    product.category === "mesas" &&
+    product.mesaImageByStructure != null &&
+    Object.keys(product.mesaImageByStructure).length > 0
+  );
+}
+
+export function getMesaStructureImageIndex(
+  product: Product,
+  config: Pick<ProductConfig, "structureId">
+): TableImageIndex {
+  const mapped = product.mesaImageByStructure?.[config.structureId];
+  return mapped ?? 1;
 }
 
 /** Physical folder under /public/images/ */
@@ -105,7 +122,13 @@ export function dynamicImageResolver(
   config?: ProductConfig,
   tableIndex: TableImageIndex = 1
 ): string {
-  // Lazy import avoided; callers should use resolveConfiguratorImage.
+  if (usesMesasStructureImages(product)) {
+    const cfg = config ?? defaultProductConfig(product);
+    return buildTableImagePath(
+      product,
+      getMesaStructureImageIndex(product, cfg)
+    );
+  }
   if (isTableProduct(product)) {
     return buildTableImagePath(product, tableIndex);
   }

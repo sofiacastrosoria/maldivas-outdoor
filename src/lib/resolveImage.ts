@@ -11,7 +11,9 @@ import {
   buildTableImagePath,
   defaultProductConfig,
   getImageFolder,
+  getMesaStructureImageIndex,
   isTableProduct,
+  usesMesasStructureImages,
   type TableImageIndex,
 } from "@/lib/images";
 
@@ -31,7 +33,7 @@ function urlPriority(url: string): number {
   if (/^\/images\/(reposeras|living|comedor)\/[^/]+\/[^/]+\.(jpe?g|png|webp)$/i.test(url)) {
     return 0;
   }
-  if (/^\/images\/mesas\/[^/]+\/[123]\.(jpe?g|png|webp)$/i.test(url)) return 0;
+  if (/^\/images\/mesas\/[^/]+\/[1-4]\.(jpe?g|png|webp)$/i.test(url)) return 0;
   if (url.includes("/model-sliders/")) return 1;
   if (url.includes("/sliders/")) return 2;
   return 3;
@@ -96,6 +98,13 @@ export function getConfiguratorCandidates(
   config?: ProductConfig,
   tableIndex: TableImageIndex = 1
 ): string[] {
+  if (usesMesasStructureImages(product)) {
+    const cfg = config ?? defaultProductConfig(product);
+    const index = getMesaStructureImageIndex(product, cfg);
+    const canonical = buildTableImagePath(product, index);
+    return unique([withVersion(canonical) ?? canonical]);
+  }
+
   if (isTableProduct(product)) {
     const canonical = buildTableImagePath(product, tableIndex);
     // Resolve only by full slug path — never by global filename (1.jpg, 2.jpg, 3.jpg).
@@ -133,6 +142,15 @@ export function fallbackPlaceholder(
   config?: ProductConfig,
   tableIndex: TableImageIndex = 1
 ): string {
+  if (usesMesasStructureImages(product)) {
+    const cfg = config ?? defaultProductConfig(product);
+    const url = buildTableImagePath(
+      product,
+      getMesaStructureImageIndex(product, cfg)
+    );
+    return withVersion(url) ?? url;
+  }
+
   if (isTableProduct(product)) {
     const url = buildTableImagePath(product, tableIndex);
     return withVersion(url) ?? url;

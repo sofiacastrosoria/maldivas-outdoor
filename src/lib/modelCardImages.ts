@@ -68,7 +68,7 @@ function parseMesaGalleryFile(
   filename: string,
   url: string
 ): ModelCardVariant | null {
-  if (!/^[123]\.(jpe?g|png|webp)$/i.test(filename)) return null;
+  if (!/^[1-4]\.(jpe?g|png|webp)$/i.test(filename)) return null;
   return {
     url,
     size: filename,
