@@ -125,9 +125,9 @@ export const CATEGORY_OVERVIEW: Record<
   },
   comedor: {
     label: "Comedor",
-    collections: "Marbella",
+    collections: "Skorphio y Marbella",
     summary:
-      "mesas de comedor exterior con piedra sinterizada premium y medida a pedido",
+      "mesas de comedor exterior con piedra sinterizada, medidas curadas y terminaciones premium",
   },
 };
 

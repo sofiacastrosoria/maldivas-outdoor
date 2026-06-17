@@ -2,6 +2,11 @@
 
 import type { Product, ProductConfig } from "@/types";
 import {
+  getAvailableStoneModels,
+  STONE_BRAND_LABELS,
+  type StoneBrandId,
+} from "@/data/comedorStone";
+import {
   STRUCTURE_SWATCHES,
   FABRIC_SWATCHES,
   FABRIC_DISPLAY_LABELS,
@@ -144,6 +149,23 @@ export function VariantSelector({
 }: VariantSelectorProps) {
   const showStructures =
     product.structures.length > 0 && product.structures[0].id !== "estandar";
+  const isMarbellaComedor =
+    product.slug === "marbella" && product.comedorVariantImages;
+  const marbellaStoneModels = isMarbellaComedor
+    ? getAvailableStoneModels(config.sizeId)
+    : [];
+
+  const stoneGroups: { brand: StoneBrandId; models: typeof marbellaStoneModels }[] =
+    [];
+  if (isMarbellaComedor) {
+    const brands = [...new Set(marbellaStoneModels.map((m) => m.brand))];
+    for (const brand of brands) {
+      stoneGroups.push({
+        brand,
+        models: marbellaStoneModels.filter((m) => m.brand === brand),
+      });
+    }
+  }
 
   return (
     <div className="space-y-6">
@@ -156,9 +178,13 @@ export function VariantSelector({
         </section>
       )}
 
-      {product.sizes.length > 1 && !product.customizableSize && !product.fixedMeasure && (
+      {product.sizes.length > 1 &&
+        !product.customizableSize &&
+        !product.fixedMeasure && (
         <section>
-          <SectionTitle>Tamaño</SectionTitle>
+          <SectionTitle>
+            {product.comedorVariantImages ? "Medida" : "Tamaño"}
+          </SectionTitle>
           <div className="grid gap-2.5">
             {product.sizes.map((size) => (
               <SizeOption
@@ -258,7 +284,42 @@ export function VariantSelector({
         </section>
       )}
 
-      {product.stoneBrands && product.stoneBrands.length > 0 && (
+      {isMarbellaComedor && marbellaStoneModels.length > 0 && (
+        <section>
+          <SectionTitle>Modelo de piedra</SectionTitle>
+          <div className="relative">
+            <select
+              value={config.stoneModel ?? ""}
+              onChange={(e) => onChange({ stoneModel: e.target.value })}
+              className="w-full appearance-none rounded-lg border border-premium-border bg-white px-3.5 py-3 pr-10 text-sm text-matte-black focus:border-matte-black outline-none transition-colors duration-300 cursor-pointer"
+            >
+              <option value="" disabled>
+                Seleccionar modelo
+              </option>
+              {stoneGroups.map((group) => (
+                <optgroup
+                  key={group.brand}
+                  label={STONE_BRAND_LABELS[group.brand].toUpperCase()}
+                >
+                  {group.models.map((model) => (
+                    <option key={model.id} value={model.id}>
+                      {model.label}
+                    </option>
+                  ))}
+                </optgroup>
+              ))}
+            </select>
+            <span
+              className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-premium-gray text-xs"
+              aria-hidden
+            >
+              ▾
+            </span>
+          </div>
+        </section>
+      )}
+
+      {product.stoneBrands && product.stoneBrands.length > 0 && !isMarbellaComedor && (
         <>
           <section>
             <SectionTitle>Marca de piedra</SectionTitle>

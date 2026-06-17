@@ -1,13 +1,20 @@
 import {
   CASH_MULTIPLIER,
+  COMEDOR_LIST_PRICES,
   MESA_LIST_PRICES,
   REPOSERA_LIST_PRICES,
   SILLON_LIST_PRICES,
   TRANSFER_MULTIPLIER,
+  type ComedorStoneBrandKey,
   type ReposeraSizeKey,
   type SillonSizeKey,
   type StructurePriceKey,
 } from "@/data/pricing";
+import {
+  getStoneModelById,
+  resolveMarbellaStoneBrand,
+  STONE_BRAND_LABELS,
+} from "@/data/comedorStone";
 import type { Product, ProductConfig, CartItem } from "@/types";
 
 const STRUCTURE_ID_TO_KEY: Record<string, StructurePriceKey> = {
@@ -90,6 +97,24 @@ function getMesaListPrice(slug: string, structureId: string): number | null {
   return MESA_LIST_PRICES[slug]?.[structureKey] ?? null;
 }
 
+function getComedorListPrice(
+  slug: string,
+  structureId: string,
+  sizeId: string,
+  stoneBrand?: string
+): number | null {
+  const structureKey = toStructureKey(structureId);
+  if (!structureKey) return null;
+
+  const entry = COMEDOR_LIST_PRICES[slug]?.[structureKey]?.[sizeId];
+  if (entry === undefined) return null;
+  if (typeof entry === "number") return entry;
+
+  const brand = resolveMarbellaStoneBrand(sizeId, stoneBrand);
+  if (!brand) return null;
+  return entry[brand as ComedorStoneBrandKey] ?? null;
+}
+
 export function getListPrice(
   product: Product,
   config: ProductConfig
@@ -104,6 +129,15 @@ export function getListPrice(
 
   if (product.category === "mesas") {
     return getMesaListPrice(product.slug, config.structureId);
+  }
+
+  if (product.category === "comedor") {
+    return getComedorListPrice(
+      product.slug,
+      config.structureId,
+      config.sizeId,
+      config.stoneBrand
+    );
   }
 
   return null;
@@ -181,12 +215,20 @@ export function getMinimumListPrice(product: Product): number | null {
 
   for (const structure of product.structures) {
     for (const size of product.sizes) {
-      const list = getListPrice(product, {
-        structureId: structure.id,
-        sizeId: size.id,
-        fabricId: product.fabrics[0]?.id ?? "",
-      });
-      if (list !== null && list < min) min = list;
+      const brands =
+        product.slug === "marbella" && size.id === "200"
+          ? (["infinity", "dekton"] as const)
+          : ([undefined] as const);
+
+      for (const brand of brands) {
+        const list = getListPrice(product, {
+          structureId: structure.id,
+          sizeId: size.id,
+          fabricId: product.fabrics[0]?.id ?? "",
+          stoneBrand: brand,
+        });
+        if (list !== null && list < min) min = list;
+      }
     }
   }
 
@@ -199,14 +241,22 @@ export function getMinimumCashPrice(product: Product): number | null {
 
   for (const structure of product.structures) {
     for (const size of product.sizes) {
-      const list = getListPrice(product, {
-        structureId: structure.id,
-        sizeId: size.id,
-        fabricId: product.fabrics[0]?.id ?? "",
-      });
-      if (list !== null) {
-        const cash = buildPriceBreakdown(list).cash;
-        if (cash < min) min = cash;
+      const brands =
+        product.slug === "marbella" && size.id === "200"
+          ? (["infinity", "dekton"] as const)
+          : ([undefined] as const);
+
+      for (const brand of brands) {
+        const list = getListPrice(product, {
+          structureId: structure.id,
+          sizeId: size.id,
+          fabricId: product.fabrics[0]?.id ?? "",
+          stoneBrand: brand,
+        });
+        if (list !== null) {
+          const cash = buildPriceBreakdown(list).cash;
+          if (cash < min) min = cash;
+        }
       }
     }
   }
@@ -232,7 +282,7 @@ export function buildConfigSummary(
   const fabric = product.fabrics.find((f) => f.id === config.fabricId);
 
   if (size) {
-    if (product.fixedMeasure) {
+    if (product.fixedMeasure || product.comedorVariantImages) {
       lines.push(`Medida: ${size.dimensions}`);
     } else {
       lines.push(`Tamaño: ${size.label} (${size.dimensions})`);
@@ -242,11 +292,20 @@ export function buildConfigSummary(
   if (fabric) lines.push(`Tapizado: ${fabric.label}`);
   if (config.customDimensions)
     lines.push(`Medida personalizada: ${config.customDimensions}`);
-  if (config.stoneBrand) {
+
+  if (product.slug === "marbella" && config.stoneModel) {
+    const model = getStoneModelById(config.stoneModel);
+    if (model) {
+      lines.push(
+        `Piedra: ${STONE_BRAND_LABELS[model.brand]} — ${model.label}`
+      );
+    }
+  } else if (config.stoneBrand) {
     const brand = product.stoneBrands?.find((b) => b.id === config.stoneBrand);
     if (brand) lines.push(`Piedra: ${brand.label}`);
+    if (config.stoneModel) lines.push(`Modelo: ${config.stoneModel}`);
   }
-  if (config.stoneModel) lines.push(`Modelo: ${config.stoneModel}`);
+
   if (config.customNotes) lines.push(`Notas: ${config.customNotes}`);
 
   return lines;

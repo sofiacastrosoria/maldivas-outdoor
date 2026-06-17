@@ -5,7 +5,7 @@ import { Playfair_Display } from "next/font/google";
 import type { Product } from "@/types";
 import { formatPrice, buildConfigSummary, calculatePriceBreakdown } from "@/lib/pricing";
 import { PriceBreakdown } from "./PriceBreakdown";
-import { isTableProduct, usesMesasStructureImages, type TableImageIndex } from "@/lib/images";
+import { isTableProduct, type TableImageIndex } from "@/lib/images";
 import { getProductTypeLabel } from "@/lib/productDisplay";
 import type { FabricTypeId } from "@/lib/premiumSwatches";
 import { resolveVariantImage } from "@/lib/resolveImage";
@@ -59,7 +59,6 @@ export function ProductDetail({ product }: ProductDetailProps) {
   const [zoomOpen, setZoomOpen] = useState(false);
   const [fabricType, setFabricType] = useState<FabricTypeId>("sunbrella");
   const isLegacyTableGallery = isTableProduct(product);
-  const usesStructureMesasImages = usesMesasStructureImages(product);
 
   const priceBreakdown = calculatePriceBreakdown(product, config);
   const selectedSize = product.sizes.find((s) => s.id === config.sizeId);

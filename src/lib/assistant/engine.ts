@@ -59,6 +59,9 @@ function detectCategoryFromText(text: string) {
     .replace(/[\u0300-\u036f]/g, "");
   if (/\b(reposera|reposeras)\b/.test(n)) return "reposeras" as const;
   if (/\b(comedor|comedores|marbella)\b/.test(n)) return "comedor" as const;
+  if (/\b(skorphio)\b/.test(n) && /\b(comedor|comedores)\b/.test(n)) {
+    return "comedor" as const;
+  }
   if (/\b(mesa|mesas)\b/.test(n)) return "mesas" as const;
   if (/\b(living|sillon|sillones)\b/.test(n)) return "living" as const;
   return undefined;

@@ -107,3 +107,81 @@ export const SILLON_LIST_PRICES: Record<string, SillonStructurePrices> = {
     anodizadoPeltreLijado: { "1cuerpo": 1_638_500, "4cuerpos": 3_173_800 },
   },
 };
+
+export type ComedorStoneBrandKey = "infinity" | "dekton";
+
+type ComedorMeasurePrice =
+  | number
+  | Partial<Record<ComedorStoneBrandKey, number>>;
+
+type ComedorStructurePrices = Partial<
+  Record<StructurePriceKey, Partial<Record<string, ComedorMeasurePrice>>>
+>;
+
+/** Precios de lista — Comedor (medida + estructura; Marbella 200×100 también por marca) */
+export const COMEDOR_LIST_PRICES: Record<string, ComedorStructurePrices> = {
+  skorphio: {
+    negroPintado: {
+      "300": 3_175_000,
+      "270": 2_952_400,
+      "200": 2_157_500,
+    },
+    greigePintado: {
+      "300": 3_175_000,
+      "270": 2_952_400,
+      "200": 2_157_500,
+    },
+    anodizadoNegroLijado: {
+      "300": 3_929_000,
+      "270": 3_648_200,
+      "200": 2_642_500,
+    },
+    anodizadoPeltreLijado: {
+      "300": 3_929_000,
+      "270": 3_648_200,
+      "200": 2_642_500,
+    },
+    similMaderaMarron: {
+      "300": 4_652_000,
+      "270": 4_221_000,
+      "200": 2_995_000,
+    },
+    similMaderaBlanco: {
+      "300": 4_652_000,
+      "270": 4_221_000,
+      "200": 2_995_000,
+    },
+  },
+  marbella: {
+    negroPintado: {
+      "278": 3_847_900,
+      "260": 4_030_600,
+      "200": { infinity: 3_199_600, dekton: 3_497_400 },
+    },
+    greigePintado: {
+      "278": 3_847_900,
+      "260": 4_030_600,
+      "200": { infinity: 3_199_600, dekton: 3_497_400 },
+    },
+    anodizadoNegroLijado: {
+      "278": 4_257_000,
+      "260": 4_418_400,
+      "200": { infinity: 3_522_500, dekton: 3_820_200 },
+    },
+    anodizadoPeltreLijado: {
+      "278": 4_257_000,
+      "260": 4_418_400,
+      "200": { infinity: 3_522_500, dekton: 3_820_200 },
+    },
+    similMaderaMarron: {
+      "278": 4_325_000,
+      "260": 4_482_051,
+      "200": { infinity: 3_592_000, dekton: 3_824_000 },
+    },
+    similMaderaBlanco: {
+      "278": 4_325_000,
+      "260": 4_482_051,
+      "200": { infinity: 3_592_000, dekton: 3_824_000 },
+    },
+  },
+};

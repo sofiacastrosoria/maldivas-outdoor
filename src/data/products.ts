@@ -102,6 +102,27 @@ const SOFA_SIZES_MILOS: ProductSize[] = [
   { id: "4-cuerpos", label: "4 cuerpos", dimensions: "213 × 85 × 72 cm" },
 ];
 
+const STRUCTURE_COMEDOR: ProductOption[] = [
+  { id: "anodizado-negro", label: "Anodizado negro lijado", onRequest: true },
+  { id: "anodizado-peltre", label: "Anodizado peltre lijado", onRequest: true },
+  { id: "negro-pintado", label: "Negro pintado" },
+  { id: "greige-pintado", label: "Greige pintado" },
+  { id: "simil-madera-marron", label: "Símil madera marrón" },
+  { id: "simil-madera-blanco", label: "Símil madera blanco" },
+];
+
+const SKORPHIO_COMEDOR_SIZES: ProductSize[] = [
+  { id: "300", label: "300 × 118 × 76 cm", dimensions: "300 × 118 × 76 cm" },
+  { id: "270", label: "270 × 118 × 76 cm", dimensions: "270 × 118 × 76 cm" },
+  { id: "200", label: "200 × 100 × 76 cm", dimensions: "200 × 100 × 76 cm" },
+];
+
+const MARBELLA_COMEDOR_SIZES: ProductSize[] = [
+  { id: "278", label: "278 × 120 × 76 cm", dimensions: "278 × 120 × 76 cm" },
+  { id: "260", label: "260 × 100 × 76 cm", dimensions: "260 × 100 × 76 cm" },
+  { id: "200", label: "200 × 100 × 76 cm", dimensions: "200 × 100 × 76 cm" },
+];
+
 const STONE_BRANDS: ProductOption[] = [
   { id: "infinity", label: "Infinity" },
   { id: "dekton", label: "Dekton" },
@@ -318,19 +339,32 @@ export const products: Product[] = [
   },
   // COMEDOR
   {
+    id: "comedor-skorphio",
+    slug: "skorphio",
+    name: "Skorphio",
+    category: "comedor",
+    description:
+      "Mesa de comedor exterior con silueta contemporánea. Top en piedra sinterizada y estructura en aluminio premium.",
+    image: IMG("1600585154340-be6161a56a0c"),
+    gallery: [IMG("1600585154340-be6161a56a0c"), IMG("1615874958453-9e7f6e9bb168")],
+    sizes: SKORPHIO_COMEDOR_SIZES,
+    structures: STRUCTURE_COMEDOR,
+    fabrics: [],
+    comedorVariantImages: true,
+  },
+  {
     id: "comedor-marbella",
     slug: "marbella",
     name: "Marbella",
     category: "comedor",
     description:
-      "Mesa de comedor exterior con top en piedra sinterizada. Medida personalizable y marcas premium.",
+      "Mesa de comedor exterior con top en piedra sinterizada. Medidas curadas y selección premium de modelos Dekton e Infinity.",
     image: IMG("1615874958453-9e7f6e9bb168"),
     gallery: [IMG("1615874958453-9e7f6e9bb168"), IMG("1600566752355-4b89be3f8397")],
-    sizes: [{ id: "custom", label: "Personalizable", dimensions: "A medida" }],
-    structures: [{ id: "estandar", label: "Estructura estándar" }],
+    sizes: MARBELLA_COMEDOR_SIZES,
+    structures: STRUCTURE_COMEDOR,
     fabrics: [],
-    stoneBrands: STONE_BRANDS,
-    customizableSize: true,
+    comedorVariantImages: true,
   },
 ];
 

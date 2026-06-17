@@ -1,4 +1,5 @@
 import type { Product, ProductConfig } from "@/types";
+import { defaultMarbellaStoneModel } from "@/data/comedorStone";
 
 /* ─── Size segments in filenames ─── */
 const SIZE_COMPACT: Record<string, string> = {
@@ -28,7 +29,7 @@ export function isTableProduct(product: Product): boolean {
   return (
     product.customizableSize === true &&
     product.fabrics.length === 0 &&
-    (product.category === "mesas" || product.category === "comedor")
+    product.category === "mesas"
   );
 }
 
@@ -137,14 +138,28 @@ export function dynamicImageResolver(
 }
 
 export function defaultProductConfig(product: Product): ProductConfig {
-  return {
+  const base: ProductConfig = {
     sizeId: product.sizes[0]?.id ?? "custom",
     structureId: product.structures[0]?.id ?? "estandar",
     fabricId: product.fabrics[0]?.id ?? "negro",
-    stoneBrand: product.stoneBrands?.[0]?.id,
     stoneModel: "",
     customDimensions: "",
     customNotes: "",
+  };
+
+  if (product.slug === "marbella" && product.comedorVariantImages) {
+    const sizeId = base.sizeId;
+    const stone = defaultMarbellaStoneModel(sizeId);
+    return {
+      ...base,
+      stoneBrand: stone.stoneBrand,
+      stoneModel: stone.stoneModel,
+    };
+  }
+
+  return {
+    ...base,
+    stoneBrand: product.stoneBrands?.[0]?.id,
   };
 }
 

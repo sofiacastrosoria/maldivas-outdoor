@@ -16,6 +16,11 @@ import {
   usesMesasStructureImages,
   type TableImageIndex,
 } from "@/lib/images";
+import {
+  buildComedorImageFilename,
+  buildComedorImagePath,
+  usesComedorVariantImages,
+} from "@/lib/comedorImages";
 
 const manifest = getImageManifest();
 
@@ -105,6 +110,18 @@ export function getConfiguratorCandidates(
     return unique([withVersion(canonical) ?? canonical]);
   }
 
+  if (usesComedorVariantImages(product)) {
+    const cfg = config ?? defaultProductConfig(product);
+    const filename = buildComedorImageFilename(product, cfg);
+    const canonical = buildComedorImagePath(product, cfg);
+    return unique([
+      getUrlByFilename(filename),
+      withVersion(canonical, filename),
+      canonical,
+      `/images/comedor/${product.slug}/${filename}`,
+    ]);
+  }
+
   if (isTableProduct(product)) {
     const canonical = buildTableImagePath(product, tableIndex);
     // Resolve only by full slug path — never by global filename (1.jpg, 2.jpg, 3.jpg).
@@ -149,6 +166,13 @@ export function fallbackPlaceholder(
       getMesaStructureImageIndex(product, cfg)
     );
     return withVersion(url) ?? url;
+  }
+
+  if (usesComedorVariantImages(product)) {
+    const cfg = config ?? defaultProductConfig(product);
+    const filename = buildComedorImageFilename(product, cfg);
+    const url = buildComedorImagePath(product, cfg);
+    return withVersion(url, filename) ?? url;
   }
 
   if (isTableProduct(product)) {

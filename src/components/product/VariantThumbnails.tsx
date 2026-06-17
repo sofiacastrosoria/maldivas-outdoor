@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import Image from "next/image";
 import type { Product, ProductConfig } from "@/types";
 import { isTableProduct, TABLE_IMAGE_INDEXES, type TableImageIndex } from "@/lib/images";
+import { usesComedorVariantImages } from "@/lib/comedorImages";
 import { IMAGE_SIZES } from "@/lib/imageSizes";
 import { resolveVariantImage } from "@/lib/resolveImage";
 
@@ -31,6 +32,10 @@ export function VariantThumbnails({
   onTableIndexChange,
 }: VariantThumbnailsProps) {
   const items = useMemo((): ThumbnailItem[] => {
+    if (usesComedorVariantImages(product)) {
+      return [];
+    }
+
     if (isTableProduct(product)) {
       return TABLE_IMAGE_INDEXES.map((idx) => ({
         key: `table-${idx}`,

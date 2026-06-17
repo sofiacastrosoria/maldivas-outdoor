@@ -4,6 +4,7 @@ import sharp from "sharp";
 
 import { products } from "../src/data/products";
 import { buildImageFilename } from "../src/lib/images";
+import { collectComedorImageFilenames } from "../src/lib/comedorImages";
 import type { Product } from "../src/types";
 import { categoryEditorialSlides, type SliderCategory } from "../src/data/editorialSliders";
 
@@ -73,7 +74,11 @@ function getImageDirForProduct(product: Product): string {
 }
 
 function isVariantProduct(product: Product): boolean {
-  return product.category === "reposeras" || product.category === "living" || product.category === "comedor";
+  return product.category === "reposeras" || product.category === "living";
+}
+
+function isComedorVariantProduct(product: Product): boolean {
+  return product.category === "comedor" && product.comedorVariantImages === true;
 }
 
 function isTableProduct(product: Product): boolean {
@@ -100,6 +105,15 @@ function collectExpectedVariantFilenames(): Map<string, Set<string>> {
           byDir.get(baseDir)!.add(filename);
         }
       }
+    }
+  }
+
+  for (const product of products) {
+    if (!isComedorVariantProduct(product)) continue;
+    const baseDir = getImageDirForProduct(product);
+    if (!byDir.has(baseDir)) byDir.set(baseDir, new Set());
+    for (const filename of collectComedorImageFilenames(product)) {
+      byDir.get(baseDir)!.add(filename);
     }
   }
 
@@ -147,6 +161,24 @@ async function generateVariantPlaceholders() {
           if (did) created++;
         }
       }
+    }
+  }
+  return created;
+}
+
+async function generateComedorVariantPlaceholders() {
+  let created = 0;
+  for (const product of products) {
+    if (!isComedorVariantProduct(product)) continue;
+
+    const baseDir = getImageDirForProduct(product);
+    ensureDir(baseDir);
+
+    for (const filename of collectComedorImageFilenames(product)) {
+      const full = path.join(baseDir, filename);
+      // eslint-disable-next-line no-await-in-loop
+      const did = await writePlaceholderJpg(full, "IMAGE PLACEHOLDER");
+      if (did) created++;
     }
   }
   return created;
@@ -261,6 +293,7 @@ async function main() {
 
   const removedVariant = pruneObsoleteVariantPlaceholders();
   const createdVariant = await generateVariantPlaceholders();
+  const createdComedor = await generateComedorVariantPlaceholders();
   const createdTables = await generateTablePlaceholders();
   const createdMesasStructure = await generateMesasStructurePlaceholders();
   const createdEditorial = await generateEditorialSliderPlaceholders();
@@ -269,7 +302,7 @@ async function main() {
 
   // eslint-disable-next-line no-console
   console.log(
-    `OK: placeholders (removed=${removedVariant}, variants=${createdVariant}, tables=${createdTables}, mesasStructure=${createdMesasStructure}, editorial=${createdEditorial}, modelSliders=${createdModelSliders}, marketing=${createdMarketing})`
+    `OK: placeholders (removed=${removedVariant}, variants=${createdVariant}, comedor=${createdComedor}, tables=${createdTables}, mesasStructure=${createdMesasStructure}, editorial=${createdEditorial}, modelSliders=${createdModelSliders}, marketing=${createdMarketing})`
   );
 }
 

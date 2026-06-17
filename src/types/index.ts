@@ -55,4 +55,6 @@ export interface Product {
   fixedMeasure?: boolean;
   /** Mapeo estructura → índice de imagen en /images/mesas/{slug}/N.jpg */
   mesaImageByStructure?: Partial<Record<string, 1 | 2 | 3 | 4>>;
+  /** Comedor con imágenes por estructura + medida en /images/comedor/{slug}/ */
+  comedorVariantImages?: boolean;
 }

@@ -1,25 +1,205 @@
 {
-  "generatedAt": "2026-06-16T16:45:14.334Z",
+  "generatedAt": "2026-06-17T18:54:58.402Z",
   "files": {
     "about-1.jpg": {
       "url": "/images/about/about-1.jpg",
-      "mtimeMs": 1779989234864.187,
-      "size": 8424
+      "mtimeMs": 1781646803415.8228,
+      "size": 315504
     },
     "about-2.jpg": {
       "url": "/images/about/about-2.jpg",
-      "mtimeMs": 1779989234944.806,
-      "size": 8424
+      "mtimeMs": 1781647245767.318,
+      "size": 2091093
     },
     "about-3.jpg": {
       "url": "/images/about/about-3.jpg",
-      "mtimeMs": 1779989234999.9692,
-      "size": 8424
+      "mtimeMs": 1781646614407.3555,
+      "size": 371939
     },
     "about-4.jpg": {
       "url": "/images/about/about-4.jpg",
-      "mtimeMs": 1779989235077.2678,
-      "size": 8424
+      "mtimeMs": 1781646495079.827,
+      "size": 264198
+    },
+    "marbella-anodizado-negro-200.jpg": {
+      "url": "/images/comedor/marbella/marbella-anodizado-negro-200.jpg",
+      "mtimeMs": 1781722495752.1738,
+      "size": 8903
+    },
+    "marbella-anodizado-negro-260.jpg": {
+      "url": "/images/comedor/marbella/marbella-anodizado-negro-260.jpg",
+      "mtimeMs": 1781722495700.206,
+      "size": 8903
+    },
+    "marbella-anodizado-negro-278.jpg": {
+      "url": "/images/comedor/marbella/marbella-anodizado-negro-278.jpg",
+      "mtimeMs": 1781722495632.576,
+      "size": 8903
+    },
+    "marbella-anodizado-peltre-200.jpg": {
+      "url": "/images/comedor/marbella/marbella-anodizado-peltre-200.jpg",
+      "mtimeMs": 1781722495906.4675,
+      "size": 8903
+    },
+    "marbella-anodizado-peltre-260.jpg": {
+      "url": "/images/comedor/marbella/marbella-anodizado-peltre-260.jpg",
+      "mtimeMs": 1781722495854.6633,
+      "size": 8903
+    },
+    "marbella-anodizado-peltre-278.jpg": {
+      "url": "/images/comedor/marbella/marbella-anodizado-peltre-278.jpg",
+      "mtimeMs": 1781722495803.192,
+      "size": 8903
+    },
+    "marbella-greige-pintado-200.jpg": {
+      "url": "/images/comedor/marbella/marbella-greige-pintado-200.jpg",
+      "mtimeMs": 1781722496225.2012,
+      "size": 8903
+    },
+    "marbella-greige-pintado-260.jpg": {
+      "url": "/images/comedor/marbella/marbella-greige-pintado-260.jpg",
+      "mtimeMs": 1781722496172.3206,
+      "size": 8903
+    },
+    "marbella-greige-pintado-278.jpg": {
+      "url": "/images/comedor/marbella/marbella-greige-pintado-278.jpg",
+      "mtimeMs": 1781722496118.6025,
+      "size": 8903
+    },
+    "marbella-negro-pintado-200.jpg": {
+      "url": "/images/comedor/marbella/marbella-negro-pintado-200.jpg",
+      "mtimeMs": 1781722496064.5632,
+      "size": 8903
+    },
+    "marbella-negro-pintado-260.jpg": {
+      "url": "/images/comedor/marbella/marbella-negro-pintado-260.jpg",
+      "mtimeMs": 1781722496011.085,
+      "size": 8903
+    },
+    "marbella-negro-pintado-278.jpg": {
+      "url": "/images/comedor/marbella/marbella-negro-pintado-278.jpg",
+      "mtimeMs": 1781722495959.1904,
+      "size": 8903
+    },
+    "marbella-simil-madera-blanco-200.jpg": {
+      "url": "/images/comedor/marbella/marbella-simil-madera-blanco-200.jpg",
+      "mtimeMs": 1781722496539.3494,
+      "size": 8903
+    },
+    "marbella-simil-madera-blanco-260.jpg": {
+      "url": "/images/comedor/marbella/marbella-simil-madera-blanco-260.jpg",
+      "mtimeMs": 1781722496487.8127,
+      "size": 8903
+    },
+    "marbella-simil-madera-blanco-278.jpg": {
+      "url": "/images/comedor/marbella/marbella-simil-madera-blanco-278.jpg",
+      "mtimeMs": 1781722496434.6577,
+      "size": 8903
+    },
+    "marbella-simil-madera-marron-200.jpg": {
+      "url": "/images/comedor/marbella/marbella-simil-madera-marron-200.jpg",
+      "mtimeMs": 1781722496382.3213,
+      "size": 8903
+    },
+    "marbella-simil-madera-marron-260.jpg": {
+      "url": "/images/comedor/marbella/marbella-simil-madera-marron-260.jpg",
+      "mtimeMs": 1781722496330.2944,
+      "size": 8903
+    },
+    "marbella-simil-madera-marron-278.jpg": {
+      "url": "/images/comedor/marbella/marbella-simil-madera-marron-278.jpg",
+      "mtimeMs": 1781722496277.486,
+      "size": 8903
+    },
+    "skorphio-comedor-anodizado-negro-lijado-200.jpg": {
+      "url": "/images/comedor/skorphio/skorphio-comedor-anodizado-negro-lijado-200.jpg",
+      "mtimeMs": 1781722494659.7263,
+      "size": 8903
+    },
+    "skorphio-comedor-anodizado-negro-lijado-270.jpg": {
+      "url": "/images/comedor/skorphio/skorphio-comedor-anodizado-negro-lijado-270.jpg",
+      "mtimeMs": 1781722494593.9465,
+      "size": 8903
+    },
+    "skorphio-comedor-anodizado-negro-lijado-300.jpg": {
+      "url": "/images/comedor/skorphio/skorphio-comedor-anodizado-negro-lijado-300.jpg",
+      "mtimeMs": 1781722494527.2488,
+      "size": 8903
+    },
+    "skorphio-comedor-anodizado-peltre-lijado-200.jpg": {
+      "url": "/images/comedor/skorphio/skorphio-comedor-anodizado-peltre-lijado-200.jpg",
+      "mtimeMs": 1781722494846.6782,
+      "size": 8903
+    },
+    "skorphio-comedor-anodizado-peltre-lijado-270.jpg": {
+      "url": "/images/comedor/skorphio/skorphio-comedor-anodizado-peltre-lijado-270.jpg",
+      "mtimeMs": 1781722494779.7808,
+      "size": 8903
+    },
+    "skorphio-comedor-anodizado-peltre-lijado-300.jpg": {
+      "url": "/images/comedor/skorphio/skorphio-comedor-anodizado-peltre-lijado-300.jpg",
+      "mtimeMs": 1781722494713.1846,
+      "size": 8903
+    },
+    "skorphio-comedor-greige-pintado-200.jpg": {
+      "url": "/images/comedor/skorphio/skorphio-comedor-greige-pintado-200.jpg",
+      "mtimeMs": 1781722495226.976,
+      "size": 8903
+    },
+    "skorphio-comedor-greige-pintado-270.jpg": {
+      "url": "/images/comedor/skorphio/skorphio-comedor-greige-pintado-270.jpg",
+      "mtimeMs": 1781722495174.467,
+      "size": 8903
+    },
+    "skorphio-comedor-greige-pintado-300.jpg": {
+      "url": "/images/comedor/skorphio/skorphio-comedor-greige-pintado-300.jpg",
+      "mtimeMs": 1781722495108.903,
+      "size": 8903
+    },
+    "skorphio-comedor-negro-pintado-200.jpg": {
+      "url": "/images/comedor/skorphio/skorphio-comedor-negro-pintado-200.jpg",
+      "mtimeMs": 1781722495040.268,
+      "size": 8903
+    },
+    "skorphio-comedor-negro-pintado-270.jpg": {
+      "url": "/images/comedor/skorphio/skorphio-comedor-negro-pintado-270.jpg",
+      "mtimeMs": 1781722494982.0676,
+      "size": 8903
+    },
+    "skorphio-comedor-negro-pintado-300.jpg": {
+      "url": "/images/comedor/skorphio/skorphio-comedor-negro-pintado-300.jpg",
+      "mtimeMs": 1781722494915.47,
+      "size": 8903
+    },
+    "skorphio-comedor-simil-madera-blanco-200.jpg": {
+      "url": "/images/comedor/skorphio/skorphio-comedor-simil-madera-blanco-200.jpg",
+      "mtimeMs": 1781722495565.2512,
+      "size": 8903
+    },
+    "skorphio-comedor-simil-madera-blanco-270.jpg": {
+      "url": "/images/comedor/skorphio/skorphio-comedor-simil-madera-blanco-270.jpg",
+      "mtimeMs": 1781722495497.286,
+      "size": 8903
+    },
+    "skorphio-comedor-simil-madera-blanco-300.jpg": {
+      "url": "/images/comedor/skorphio/skorphio-comedor-simil-madera-blanco-300.jpg",
+      "mtimeMs": 1781722495445.9917,
+      "size": 8903
+    },
+    "skorphio-comedor-simil-madera-marron-200.jpg": {
+      "url": "/images/comedor/skorphio/skorphio-comedor-simil-madera-marron-200.jpg",
+      "mtimeMs": 1781722495394.2979,
+      "size": 8903
+    },
+    "skorphio-comedor-simil-madera-marron-270.jpg": {
+      "url": "/images/comedor/skorphio/skorphio-comedor-simil-madera-marron-270.jpg",
+      "mtimeMs": 1781722495343.3655,
+      "size": 8903
+    },
+    "skorphio-comedor-simil-madera-marron-300.jpg": {
+      "url": "/images/comedor/skorphio/skorphio-comedor-simil-madera-marron-300.jpg",
+      "mtimeMs": 1781722495277.9873,
+      "size": 8903
     },
     "local-showroom.jpg": {
       "url": "/images/contacto/local-showroom.jpg",
@@ -893,8 +1073,8 @@
     },
     "2.jpg": {
       "url": "/images/mesas/fendi/2.jpg",
-      "mtimeMs": 1781377511925.3208,
-      "size": 180081
+      "mtimeMs": 1781628907029.0344,
+      "size": 207650
     },
     "3.jpg": {
       "url": "/images/mesas/fendi/3.jpg",
@@ -903,8 +1083,8 @@
     },
     "4.jpg": {
       "url": "/images/mesas/fendi/4.jpg",
-      "mtimeMs": 1781628298416.6028,
-      "size": 8903
+      "mtimeMs": 1781628703766.0344,
+      "size": 180081
     },
     "reposera-baros-simple-anodizadonatural-beige.jpg": {
       "url": "/images/reposeras/baros/reposera-baros-simple-anodizadonatural-beige.jpg",
@@ -1677,6 +1857,42 @@
     "/images/about/about-2.jpg",
     "/images/about/about-3.jpg",
     "/images/about/about-4.jpg",
+    "/images/comedor/marbella/marbella-anodizado-negro-200.jpg",
+    "/images/comedor/marbella/marbella-anodizado-negro-260.jpg",
+    "/images/comedor/marbella/marbella-anodizado-negro-278.jpg",
+    "/images/comedor/marbella/marbella-anodizado-peltre-200.jpg",
+    "/images/comedor/marbella/marbella-anodizado-peltre-260.jpg",
+    "/images/comedor/marbella/marbella-anodizado-peltre-278.jpg",
+    "/images/comedor/marbella/marbella-greige-pintado-200.jpg",
+    "/images/comedor/marbella/marbella-greige-pintado-260.jpg",
+    "/images/comedor/marbella/marbella-greige-pintado-278.jpg",
+    "/images/comedor/marbella/marbella-negro-pintado-200.jpg",
+    "/images/comedor/marbella/marbella-negro-pintado-260.jpg",
+    "/images/comedor/marbella/marbella-negro-pintado-278.jpg",
+    "/images/comedor/marbella/marbella-simil-madera-blanco-200.jpg",
+    "/images/comedor/marbella/marbella-simil-madera-blanco-260.jpg",
+    "/images/comedor/marbella/marbella-simil-madera-blanco-278.jpg",
+    "/images/comedor/marbella/marbella-simil-madera-marron-200.jpg",
+    "/images/comedor/marbella/marbella-simil-madera-marron-260.jpg",
+    "/images/comedor/marbella/marbella-simil-madera-marron-278.jpg",
+    "/images/comedor/skorphio/skorphio-comedor-anodizado-negro-lijado-200.jpg",
+    "/images/comedor/skorphio/skorphio-comedor-anodizado-negro-lijado-270.jpg",
+    "/images/comedor/skorphio/skorphio-comedor-anodizado-negro-lijado-300.jpg",
+    "/images/comedor/skorphio/skorphio-comedor-anodizado-peltre-lijado-200.jpg",
+    "/images/comedor/skorphio/skorphio-comedor-anodizado-peltre-lijado-270.jpg",
+    "/images/comedor/skorphio/skorphio-comedor-anodizado-peltre-lijado-300.jpg",
+    "/images/comedor/skorphio/skorphio-comedor-greige-pintado-200.jpg",
+    "/images/comedor/skorphio/skorphio-comedor-greige-pintado-270.jpg",
+    "/images/comedor/skorphio/skorphio-comedor-greige-pintado-300.jpg",
+    "/images/comedor/skorphio/skorphio-comedor-negro-pintado-200.jpg",
+    "/images/comedor/skorphio/skorphio-comedor-negro-pintado-270.jpg",
+    "/images/comedor/skorphio/skorphio-comedor-negro-pintado-300.jpg",
+    "/images/comedor/skorphio/skorphio-comedor-simil-madera-blanco-200.jpg",
+    "/images/comedor/skorphio/skorphio-comedor-simil-madera-blanco-270.jpg",
+    "/images/comedor/skorphio/skorphio-comedor-simil-madera-blanco-300.jpg",
+    "/images/comedor/skorphio/skorphio-comedor-simil-madera-marron-200.jpg",
+    "/images/comedor/skorphio/skorphio-comedor-simil-madera-marron-270.jpg",
+    "/images/comedor/skorphio/skorphio-comedor-simil-madera-marron-300.jpg",
     "/images/contacto/local-showroom.jpg",
     "/images/living/fendi/living-fendi-1cuerpo-anodizadonegro-beige.jpg",
     "/images/living/fendi/living-fendi-1cuerpo-anodizadonegro-blanco.jpg",
@@ -1866,6 +2082,9 @@
     "/images/model-sliders/comedor/marbella/1.jpg",
     "/images/model-sliders/comedor/marbella/2.jpg",
     "/images/model-sliders/comedor/marbella/3.jpg",
+    "/images/model-sliders/comedor/skorphio/1.jpg",
+    "/images/model-sliders/comedor/skorphio/2.jpg",
+    "/images/model-sliders/comedor/skorphio/3.jpg",
     "/images/model-sliders/living/fendi/1.jpg",
     "/images/model-sliders/living/fendi/2.jpg",
     "/images/model-sliders/living/fendi/3.jpg",

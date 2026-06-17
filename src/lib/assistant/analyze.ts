@@ -362,6 +362,10 @@ const CATEGORY_HINTS: { pattern: RegExp; category: Product["category"] }[] = [
   { pattern: /\b(mesa|mesas)\s+(de\s+)?(comedor|comedores)\b/, category: "comedor" },
   { pattern: /\b(comedor|comedores)\b/, category: "comedor" },
   { pattern: /\bmarbella\b/, category: "comedor" },
+  {
+    pattern: /\b(skorphio)\b.*\b(comedor|comedores)\b|\b(comedor|comedores)\b.*\b(skorphio)\b/,
+    category: "comedor",
+  },
   { pattern: /\b(mesa|mesas)\s+(de\s+)?living\b/, category: "mesas" },
   { pattern: /\bmesa\s+living\b/, category: "mesas" },
   { pattern: /\b(mesa|mesas)\b/, category: "mesas" },

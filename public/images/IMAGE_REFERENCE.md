@@ -354,12 +354,6 @@ living-milos-4cuerpos-anodizadonegro-blanco.jpg
 2.jpg
 3.jpg
 
-## MARBELLA
-
-1.jpg
-2.jpg
-3.jpg
-
 # CATEGORY SLIDERS
 
 ## REPOSERAS
@@ -514,6 +508,17 @@ slider-08.jpg
 ## COMEDOR
 
 ### MARBELLA
+
+1.jpg
+2.jpg
+3.jpg
+4.jpg
+5.jpg
+6.jpg
+7.jpg
+8.jpg
+
+### SKORPHIO
 
 1.jpg
 2.jpg

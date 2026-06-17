@@ -8,7 +8,7 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  return [{ slug: "marbella" }];
+  return [{ slug: "marbella" }, { slug: "skorphio" }];
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

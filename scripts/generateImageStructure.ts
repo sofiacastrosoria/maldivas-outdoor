@@ -150,12 +150,12 @@ const variantModels: VariantModel[] = [
   },
 ];
 
-const tableModels = ["fendi", "skorphio", "malaga", "milos", "marbella"];
+const tableModels = ["fendi", "skorphio", "malaga", "milos"];
 const categorySliderCategories: Category[] = ["reposeras", "living", "comedor"];
 const modelSliderMap = {
   reposeras: ["fendi", "skorphio", "malaga", "mdq", "baros"],
   living: ["fendi", "skorphio", "malaga", "maldivas", "milos"],
-  comedor: ["marbella"],
+  comedor: ["marbella", "skorphio"],
 } as const;
 
 const toUpper = (value: string) => value.toUpperCase();
