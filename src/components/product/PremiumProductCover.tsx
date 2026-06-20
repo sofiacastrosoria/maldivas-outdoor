@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import { IMAGE_SIZES } from "@/lib/imageSizes";
-import { IMAGE_BORDER_RADIUS } from "@/lib/imageStyles";
+import { COVER_RADIUS } from "@/lib/imageStyles";
 
 /** Formato visual uniforme de portadas — 1400 × 1000 */
+export { COVER_RADIUS };
 export const PRODUCT_COVER_WIDTH = 1400;
 export const PRODUCT_COVER_HEIGHT = 1000;
 export const PRODUCT_COVER_ASPECT_CLASS = "aspect-[7/5]" as const;
@@ -12,8 +13,6 @@ export const PRODUCT_COVER_ASPECT_CLASS = "aspect-[7/5]" as const;
 /** Fuente esperada: 1500 × 900 — más ancha que 7:5 → recorte solo lateral vía cover + center */
 export const PRODUCT_COVER_SOURCE_WIDTH = 1500;
 export const PRODUCT_COVER_SOURCE_HEIGHT = 900;
-
-const COVER_RADIUS = IMAGE_BORDER_RADIUS;
 
 interface PremiumProductCoverProps {
   src: string;

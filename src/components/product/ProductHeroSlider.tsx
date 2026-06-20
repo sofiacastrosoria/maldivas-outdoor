@@ -98,7 +98,7 @@ export function ProductHeroSlider({
           sizes={IMAGE_SIZES.hero}
           priority={displayIndex === 0}
         />
-        <div className={`absolute inset-0 bg-gradient-to-t from-matte-black/50 via-transparent to-transparent pointer-events-none ${IMAGE_BORDER_RADIUS}`} />
+        <div className="absolute inset-0 bg-gradient-to-t from-matte-black/50 via-transparent to-transparent pointer-events-none" />
       </motion.div>
 
       <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10 text-white z-10 pointer-events-none">

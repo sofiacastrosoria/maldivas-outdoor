@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { PRODUCT_COVER_ASPECT_CLASS } from "@/components/product/PremiumProductCover";
-import { IMAGE_BORDER_RADIUS } from "@/lib/imageStyles";
+import { COVER_RADIUS } from "@/lib/imageStyles";
 
 interface MaterialImageSlotProps {
   src?: string;
@@ -12,7 +12,7 @@ export function MaterialImageSlot({ src, alt }: MaterialImageSlotProps) {
   if (src) {
     return (
       <div
-        className={`relative w-full overflow-hidden bg-ivory ${IMAGE_BORDER_RADIUS} ${PRODUCT_COVER_ASPECT_CLASS}`}
+        className={`relative w-full overflow-hidden bg-ivory ${COVER_RADIUS} ${PRODUCT_COVER_ASPECT_CLASS}`}
       >
         <Image
           src={src}
@@ -27,7 +27,7 @@ export function MaterialImageSlot({ src, alt }: MaterialImageSlotProps) {
 
   return (
     <div
-      className={`flex w-full items-center justify-center border border-dashed border-premium-border/60 bg-sand/10 ${IMAGE_BORDER_RADIUS} ${PRODUCT_COVER_ASPECT_CLASS}`}
+      className={`flex w-full items-center justify-center ${COVER_RADIUS} border border-dashed border-premium-border/60 bg-sand/10 ${PRODUCT_COVER_ASPECT_CLASS}`}
       aria-hidden
     >
       <span className="text-[10px] tracking-luxury uppercase text-matte-black/30">

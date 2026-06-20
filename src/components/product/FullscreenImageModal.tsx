@@ -5,7 +5,6 @@ import { createPortal } from "react-dom";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { IMAGE_SIZES } from "@/lib/imageSizes";
-import { IMAGE_BORDER_RADIUS } from "@/lib/imageStyles";
 
 const FADE_MS = 0.25;
 
@@ -108,7 +107,7 @@ export function FullscreenImageModal({
               src={src}
               alt={alt}
               fill
-              className={`configurator-product-image object-contain object-center ${IMAGE_BORDER_RADIUS}`}
+              className="configurator-product-image object-contain object-center"
               sizes={IMAGE_SIZES.lightbox}
               priority
             />

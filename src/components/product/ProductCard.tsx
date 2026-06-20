@@ -4,8 +4,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import type { Product } from "@/types";
 import { formatPrice, getMinimumCashPrice } from "@/lib/pricing";
+import { COVER_RADIUS } from "@/lib/imageStyles";
 import { ModelVariantSlider } from "./ModelVariantSlider";
-import { IMAGE_BORDER_RADIUS } from "@/lib/imageStyles";
 
 interface ProductCardProps {
   product: Product;
@@ -24,7 +24,7 @@ export function ProductCard({ product, href }: ProductCardProps) {
       >
         <div className="relative w-full">
           <ModelVariantSlider product={product} />
-          <div className={`pointer-events-none absolute inset-0 bg-matte-black/0 transition-colors duration-700 group-hover:bg-matte-black/5 ${IMAGE_BORDER_RADIUS}`} />
+          <div className={`pointer-events-none absolute inset-0 ${COVER_RADIUS} bg-matte-black/0 transition-colors duration-700 group-hover:bg-matte-black/5`} />
         </div>
 
         <div className="mt-4 flex items-start justify-between gap-3 sm:gap-4">
