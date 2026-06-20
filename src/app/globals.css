@@ -9,10 +9,20 @@
   --color-greige: #b8b0a4;
   /* Tono principal del logo (aluminio cepillado) */
   --brand-logo: #a8a8a8;
-  /* Configurator viewport split: header 7% · image 33% · panel 60% */
+  /* Superficie principal — sincronizado con tailwind `ivory` */
+  --surface-ivory: #f8f6f2;
+  /* Configurator viewport split: header 7% · image 40% · panel 53% */
   --header-vh: 7dvh;
-  --config-image-vh: 33dvh;
-  --config-panel-vh: 60dvh;
+  --config-image-vh: 40dvh;
+  --config-panel-vh: 53dvh;
+  /* Escala del producto en galería mobile (desktop usa layout propio) */
+  --config-product-scale: 1.0;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --config-product-scale: 0.92;
+  }
 }
 
 html {
@@ -51,4 +61,34 @@ body[data-assistant-open] .assistant-input::placeholder {
 }
 ::-webkit-scrollbar-thumb {
   @apply bg-stone/40 rounded-full;
+}
+
+/* Escala del producto principal — ajustable vía --config-product-scale */
+.configurator-product-scale {
+  transform: scale(var(--config-product-scale));
+  transform-origin: center center;
+}
+
+/* Sombra de contacto bajo el producto — sin contenedor ni caja */
+.configurator-product-float {
+  filter: drop-shadow(0 22px 34px rgba(26, 26, 26, 0.08))
+    drop-shadow(0 6px 16px rgba(26, 26, 26, 0.04));
+}
+
+/* Galería configurador: una sola superficie continua con la página */
+.configurator-gallery-surface {
+  background-color: var(--surface-ivory);
+}
+
+.configurator-gallery-surface .configurator-product-image,
+.configurator-gallery-surface .configurator-product-image img {
+  background-color: transparent !important;
+}
+
+.configurator-gallery-surface span:has(> img.configurator-product-image) {
+  background-color: var(--surface-ivory) !important;
+}
+
+.configurator-gallery-surface img.configurator-product-image {
+  background: transparent !important;
 }

@@ -1,4 +1,10 @@
 import type { SliderCategory } from "@/data/editorialSliders";
+import {
+  productImageFilenameVariants,
+  stripImageExtension,
+  toProductFilename,
+  type ProductImageExtension,
+} from "@/lib/productImageFormat";
 import imageManifest from "../../public/images/manifest.json";
 
 export type ManifestEntry = {
@@ -70,6 +76,92 @@ export function getUrlByFilename(filename: string): string | undefined {
   if (!entry) return undefined;
   return withManifestVersion(entry.url);
 }
+
+/**
+ * Resuelve URL de producto en manifest con preferencia JPG.
+ */
+export function getProductImageUrlByBasename(
+  basename: string
+): string | undefined {
+  for (const filename of productImageFilenameVariants(basename)) {
+    const url = getUrlByFilename(filename);
+    if (url) return url;
+  }
+  return undefined;
+}
+
+const RESOLVE_EXT_ORDER: ProductImageExtension[] = [
+  "jpg",
+  "jpeg",
+  "webp",
+  "png",
+];
+
+function urlInDirectory(dir: string, base: string, ext: string): string {
+  return `${dir}${base}.${ext}`;
+}
+
+/**
+ * Candidatos sin 404: solo rutas presentes en manifest, con preferencia JPG.
+ */
+export function buildProductImageUrlCandidates(canonicalUrl: string): string[] {
+  const pathname = canonicalUrl.split("?")[0];
+  const slash = pathname.lastIndexOf("/");
+  const dir = pathname.slice(0, slash + 1);
+  const basename = pathname.slice(slash + 1);
+  const base = stripImageExtension(basename);
+
+  const results: string[] = [];
+  const seen = new Set<string>();
+
+  const add = (url?: string) => {
+    if (!url) return;
+    const key = url.split("?")[0];
+    if (seen.has(key)) return;
+    seen.add(key);
+    results.push(withManifestVersion(key));
+  };
+
+  // 1. Rutas exactas en manifest (por carpeta — evita colisión mesas/1.jpg)
+  for (const ext of RESOLVE_EXT_ORDER) {
+    const fullPath = urlInDirectory(dir, base, ext);
+    if (manifestUrlExists(fullPath)) add(fullPath);
+  }
+
+  // 2. Lookup global por nombre (variantes con nombre único)
+  for (const ext of RESOLVE_EXT_ORDER) {
+    const fname = `${base}.${ext}`;
+    const fromManifest = getUrlByFilename(fname);
+    if (fromManifest && fromManifest.split("?")[0].startsWith(dir)) {
+      add(fromManifest);
+    }
+  }
+
+  // 3. Sin manifest: solo JPG/JPEG legado (nunca .png fantasma)
+  if (results.length === 0) {
+    add(urlInDirectory(dir, base, "jpg"));
+    add(urlInDirectory(dir, base, "jpeg"));
+  }
+
+  return results;
+}
+
+/** Mejor URL disponible con preferencia JPG */
+export function resolveBestProductImageUrl(canonicalUrl: string): string {
+  const pathname = canonicalUrl.split("?")[0];
+  const slash = pathname.lastIndexOf("/");
+  const dir = pathname.slice(0, slash + 1);
+  const basename = pathname.slice(slash + 1);
+  const jpgUrl = `${dir}${toProductFilename(basename)}`;
+
+  const candidates = buildProductImageUrlCandidates(jpgUrl);
+  if (candidates[0]) return candidates[0];
+
+  return jpgUrl;
+}
+
+/** Alias: nombre canónico */
+export { toProductFilename };
 
 export function editorialSlideFileExists(
   category: SliderCategory,

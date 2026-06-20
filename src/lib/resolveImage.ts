@@ -1,8 +1,10 @@
 import type { Product, ProductConfig } from "@/types";
 import type { SliderCategory } from "@/data/editorialSliders";
 import {
+  buildProductImageUrlCandidates,
   getImageManifest,
   getUrlByFilename,
+  resolveBestProductImageUrl,
   withManifestVersion,
 } from "@/lib/imageManifest";
 import {
@@ -24,13 +26,14 @@ import {
 
 const manifest = getImageManifest();
 
-function unique(paths: (string | undefined)[]): string[] {
-  return [...new Set(paths.filter(Boolean) as string[])];
+function unique(paths: string[]): string[] {
+  return [...new Set(paths)];
 }
 
-function withVersion(url: string | undefined, filename?: string): string | undefined {
-  if (!url) return undefined;
-  return withManifestVersion(url);
+function expandProductCandidates(...canonicalUrls: string[]): string[] {
+  return unique(
+    canonicalUrls.flatMap((url) => buildProductImageUrlCandidates(url))
+  );
 }
 
 /** Prefer configurator folders over slider fallbacks when the same filename exists twice */
@@ -45,7 +48,7 @@ function urlPriority(url: string): number {
 }
 
 /** Lookup best real file path by filename (scanned from disk) */
-export { getUrlByFilename } from "@/lib/imageManifest";
+export { getUrlByFilename, getProductImageUrlByBasename } from "@/lib/imageManifest";
 
 /** All discovered image URLs */
 export function getAllImageUrls(): string[] {
@@ -96,7 +99,7 @@ function findFuzzyImageForEditorial(
 }
 
 /**
- * Ordered candidates: manifest match first, then canonical path, then common fallbacks.
+ * Ordered candidates: manifest JPG actual; PNG solo si existe; sin rutas 404.
  */
 export function getConfiguratorCandidates(
   product: Product,
@@ -106,26 +109,17 @@ export function getConfiguratorCandidates(
   if (usesMesasStructureImages(product)) {
     const cfg = config ?? defaultProductConfig(product);
     const index = getMesaStructureImageIndex(product, cfg);
-    const canonical = buildTableImagePath(product, index);
-    return unique([withVersion(canonical) ?? canonical]);
+    return expandProductCandidates(buildTableImagePath(product, index));
   }
 
   if (usesComedorVariantImages(product)) {
     const cfg = config ?? defaultProductConfig(product);
-    const filename = buildComedorImageFilename(product, cfg);
     const canonical = buildComedorImagePath(product, cfg);
-    return unique([
-      getUrlByFilename(filename),
-      withVersion(canonical, filename),
-      canonical,
-      `/images/comedor/${product.slug}/${filename}`,
-    ]);
+    return expandProductCandidates(canonical);
   }
 
   if (isTableProduct(product)) {
-    const canonical = buildTableImagePath(product, tableIndex);
-    // Resolve only by full slug path — never by global filename (1.jpg, 2.jpg, 3.jpg).
-    return unique([withVersion(canonical) ?? canonical]);
+    return expandProductCandidates(buildTableImagePath(product, tableIndex));
   }
 
   const cfg = config ?? defaultProductConfig(product);
@@ -133,24 +127,21 @@ export function getConfiguratorCandidates(
   const folder = getImageFolder(product);
   const canonical = buildImagePath(product, cfg);
 
-  return unique([
-    getUrlByFilename(filename),
-    withVersion(canonical, filename),
+  return expandProductCandidates(
+    canonical,
     `/images/${folder}/${filename}`,
-    `/images/sliders/${filename}`,
-    `/images/sliders/${folder}/${filename}`,
-    `/images/${folder}/${product.slug}/${filename}`,
-    `/images/model-sliders/${folder}/${product.slug}/${filename}`,
-  ]);
+    `/images/${folder}/${product.slug}/${filename}`
+  );
 }
 
-/** Best resolved URL for configurator (first candidate) */
+/** Best resolved URL for configurator (first existing file) */
 export function resolveConfiguratorImage(
   product: Product,
   config?: ProductConfig,
   tableIndex: TableImageIndex = 1
 ): string {
-  return getConfiguratorCandidates(product, config, tableIndex)[0];
+  const candidates = getConfiguratorCandidates(product, config, tableIndex);
+  return candidates[0] ?? fallbackPlaceholder(product, config, tableIndex);
 }
 
 /** Canonical placeholder path (real file on disk) */
@@ -165,26 +156,24 @@ export function fallbackPlaceholder(
       product,
       getMesaStructureImageIndex(product, cfg)
     );
-    return withVersion(url) ?? url;
+    return resolveBestProductImageUrl(url);
   }
 
   if (usesComedorVariantImages(product)) {
     const cfg = config ?? defaultProductConfig(product);
-    const filename = buildComedorImageFilename(product, cfg);
     const url = buildComedorImagePath(product, cfg);
-    return withVersion(url, filename) ?? url;
+    return resolveBestProductImageUrl(url);
   }
 
   if (isTableProduct(product)) {
     const url = buildTableImagePath(product, tableIndex);
-    return withVersion(url) ?? url;
+    return resolveBestProductImageUrl(url);
   }
+
   const cfg = config ?? defaultProductConfig(product);
-  const filename = buildImageFilename(product, cfg);
   const folder = getImageFolder(product);
-  // Placeholder generator writes into /images/{folder}/{slug}/{filename}.jpg
-  const url = `/images/${folder}/${product.slug}/${filename}`;
-  return withVersion(url, filename) ?? url;
+  const url = `/images/${folder}/${product.slug}/${buildImageFilename(product, cfg)}`;
+  return resolveBestProductImageUrl(url);
 }
 
 /** Public API: resolve real variant image or placeholder */
@@ -193,9 +182,7 @@ export function resolveVariantImage(
   config?: ProductConfig,
   tableIndex: TableImageIndex = 1
 ): string {
-  const candidates = getConfiguratorCandidates(product, config, tableIndex);
-  const best = candidates[0];
-  return best ?? fallbackPlaceholder(product, config, tableIndex);
+  return resolveConfiguratorImage(product, config, tableIndex);
 }
 
 /** Resolve editorial/category slider src by filename */
@@ -207,9 +194,9 @@ export function resolveEditorialSlideSrc(
   if (exact) return exact;
 
   const fuzzy = findFuzzyImageForEditorial(category, file);
-  if (fuzzy) return withVersion(fuzzy, file) ?? fuzzy;
+  if (fuzzy) return withManifestVersion(fuzzy) ?? fuzzy;
 
-  return withVersion(`/images/sliders/${category}/${file}`, file) ?? `/images/sliders/${category}/${file}`;
+  return withManifestVersion(`/images/sliders/${category}/${file}`) ?? `/images/sliders/${category}/${file}`;
 }
 
 /** Resolve editorial/model slider src by filename */
@@ -218,5 +205,5 @@ export function resolveSliderImage(
   filename?: string
 ): string {
   const name = filename ?? preferredPath.split("/").pop() ?? "";
-  return getUrlByFilename(name) ?? withVersion(preferredPath, name) ?? preferredPath;
+  return getUrlByFilename(name) ?? withManifestVersion(preferredPath) ?? preferredPath;
 }

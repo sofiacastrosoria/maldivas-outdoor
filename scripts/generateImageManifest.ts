@@ -18,7 +18,6 @@ const IMAGES_ROOT = path.join(ROOT, "public", "images");
 const IMAGE_EXTENSIONS = /\.(jpe?g|png|webp)$/i;
 
 function urlPriority(url: string): number {
-  // Canonical locations first
   if (
     /^\/images\/(reposeras|living|comedor)\/[^/]+\/[^/]+\.(jpe?g|png|webp)$/i.test(
       url
@@ -36,16 +35,16 @@ function ensureDir(dir: string) {
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 }
 
-function scanImages(): Manifest {
+async function scanImages(): Promise<Manifest> {
   const files: Record<string, ManifestEntry> = {};
   const urls: string[] = [];
 
-  function walk(dir: string) {
+  async function walk(dir: string) {
     if (!fs.existsSync(dir)) return;
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
       const full = path.join(dir, entry.name);
       if (entry.isDirectory()) {
-        walk(full);
+        await walk(full);
         continue;
       }
       if (!IMAGE_EXTENSIONS.test(entry.name)) continue;
@@ -65,13 +64,12 @@ function scanImages(): Manifest {
       if (!existing || urlPriority(url) < urlPriority(existing.url)) {
         files[entry.name] = manifestEntry;
       } else if (existing.url === url && manifestEntry.mtimeMs > existing.mtimeMs) {
-        // same URL, keep freshest metadata
         files[entry.name] = manifestEntry;
       }
     }
   }
 
-  walk(IMAGES_ROOT);
+  await walk(IMAGES_ROOT);
 
   return {
     generatedAt: new Date().toISOString(),
@@ -80,14 +78,16 @@ function scanImages(): Manifest {
   };
 }
 
-function main() {
+async function main() {
   ensureDir(IMAGES_ROOT);
-  const manifest = scanImages();
+  const manifest = await scanImages();
   const outPath = path.join(IMAGES_ROOT, "manifest.json");
   fs.writeFileSync(outPath, `${JSON.stringify(manifest, null, 2)}\n`);
   // eslint-disable-next-line no-console
   console.log(`OK: manifest generated (${Object.keys(manifest.files).length} files indexed)`);
 }
 
-main();
-
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

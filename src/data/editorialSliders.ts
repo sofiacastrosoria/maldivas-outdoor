@@ -10,6 +10,8 @@ export interface EditorialSlide {
   /** Model name only — displayed on slide overlay */
   label: string;
   href?: string;
+  /** Ruta completa opcional cuando la imagen no está en /images/sliders/{category}/ */
+  src?: string;
 }
 
 export type SliderCategory = "reposeras" | "living" | "comedor";
@@ -70,17 +72,13 @@ export const categoryEditorialSlides: Record<SliderCategory, EditorialSlide[]> =
     ],
     comedor: [
       {
+        file: "skorphio-comedor-simil-madera-marron-300.jpg",
+        label: "Skorphio",
+        href: "/productos/comedor/skorphio",
+        src: "/images/comedor/skorphio/skorphio-comedor-simil-madera-marron-300.jpg",
+      },
+      {
         file: "01-comedor-marbella-terraza.jpg",
-        label: "Marbella",
-        href: "/productos/comedor/marbella",
-      },
-      {
-        file: "02-comedor-marbella-piedra-detalle.jpg",
-        label: "Marbella",
-        href: "/productos/comedor/marbella",
-      },
-      {
-        file: "03-comedor-ambientacion-boutique.jpg",
         label: "Marbella",
         href: "/productos/comedor/marbella",
       },

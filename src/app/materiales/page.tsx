@@ -2,6 +2,7 @@
 
 import { FadeIn } from "@/components/ui/FadeIn";
 import { StaticPlaceholderImage } from "@/components/ui/StaticPlaceholderImage";
+import { MaterialExploreButton } from "@/components/materials/MaterialExploreButton";
 
 const sections = [
   {
@@ -9,6 +10,8 @@ const sections = [
     title: "Aluminio",
     text: "Aluminio no recuperado proveniente de extrusoras Aluar. Tratamientos anodizados, termolacados y símil madera realizados en TDA, planta N°1 de Argentina, utilizando tecnología avanzada y materias primas importadas.",
     image: "/images/materiales/material-1.jpg",
+    exploreHref: "/materiales/aluminio",
+    exploreLabel: "Conocer Aluminio →",
     brands: [] as string[],
   },
   {
@@ -16,6 +19,8 @@ const sections = [
     title: "Telas",
     text: "Textiles acrílicos 100% importados de Europa y USA.",
     image: "/images/materiales/material-2.jpg",
+    exploreHref: "/materiales/telas",
+    exploreLabel: "Conocer Telas →",
     brands: [
       "Sunbrella® Francia",
       "Agora España",
@@ -28,6 +33,8 @@ const sections = [
     title: "Goma espuma",
     text: "Piero Soft 26k | 28k | 29k HiperSoft.",
     image: "/images/materiales/material-3.jpg",
+    exploreHref: "/materiales/goma-espuma",
+    exploreLabel: "Conocer Goma Espuma →",
     brands: [] as string[],
   },
   {
@@ -35,6 +42,8 @@ const sections = [
     title: "Piedras sinterizadas",
     text: "Superficies de alta resistencia para tops de mesa y comedor.",
     image: "/images/materiales/material-4.jpg",
+    exploreHref: "/materiales/piedras",
+    exploreLabel: "Conocer Piedras →",
     brands: ["Infinity Surface Italia", "Dekton España"],
   },
 ];
@@ -88,6 +97,10 @@ export default function MaterialesPage() {
                       ))}
                     </ul>
                   )}
+                  <MaterialExploreButton
+                    href={section.exploreHref}
+                    label={section.exploreLabel}
+                  />
                 </div>
               </article>
             </FadeIn>

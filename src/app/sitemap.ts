@@ -11,6 +11,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/productos/living",
     "/productos/comedor",
     "/materiales",
+    "/materiales/aluminio",
+    "/materiales/telas",
+    "/materiales/goma-espuma",
+    "/materiales/piedras",
     "/contacto",
     "/faq",
   ].map((path) => ({

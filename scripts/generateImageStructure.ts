@@ -180,7 +180,7 @@ function variantFilename(
   const size = SIZE_SEGMENT[sizeId] ?? sizeId.replace(/-/g, "");
   const structure =
     STRUCTURE_SEGMENT[structureId] ?? structureId.replace(/-/g, "");
-  return `${typePrefix}-${slug}-${size}-${structure}-${fabricId}.jpg`;
+  return `${typePrefix}-${slug}-${size}-${structure}-${fabricId}.png`;
 }
 
 function generateVariantList(model: VariantModel): string[] {
@@ -233,9 +233,9 @@ export function generateImageReferenceFile() {
   for (const model of tableModels) {
     lines.push(`## ${toUpper(model)}`);
     lines.push("");
-    lines.push("1.jpg");
-    lines.push("2.jpg");
-    lines.push("3.jpg");
+    lines.push("1.png");
+    lines.push("2.png");
+    lines.push("3.png");
     lines.push("");
   }
 
@@ -259,7 +259,7 @@ export function generateImageReferenceFile() {
       lines.push(`### ${toUpper(model)}`);
       lines.push("");
       for (let i = 1; i <= 8; i++) {
-        lines.push(`${i}.jpg`);
+        lines.push(`${i}.png`);
       }
       lines.push("");
     }

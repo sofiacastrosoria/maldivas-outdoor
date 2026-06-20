@@ -85,6 +85,7 @@ export function DynamicProductImage({
         alt={imageAlt}
         sizes={sizes}
         priority={priority}
+        className="configurator-product-float"
         onError={handleError}
         style={imageMaxHeight ? { maxHeight: imageMaxHeight } : undefined}
       />

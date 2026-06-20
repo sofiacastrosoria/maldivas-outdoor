@@ -26,7 +26,7 @@ export function CartItemImage({ src, alt }: CartItemImageProps) {
       src={src}
       alt={alt}
       fill
-      className="object-cover"
+      className="object-contain object-center"
       sizes={IMAGE_SIZES.cart}
       loading="lazy"
       onError={() => setFailed(true)}

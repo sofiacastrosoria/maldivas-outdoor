@@ -2,6 +2,7 @@
 
 import { IntrinsicImage } from "./IntrinsicImage";
 import { IMAGE_SIZES } from "@/lib/imageSizes";
+import { IMAGE_BORDER_RADIUS } from "@/lib/imageStyles";
 
 interface StaticPlaceholderImageProps {
   src: string;
@@ -18,7 +19,7 @@ export function StaticPlaceholderImage({
   priority = false,
 }: StaticPlaceholderImageProps) {
   return (
-    <div className={`relative w-full ${className}`}>
+    <div className={`relative w-full overflow-hidden ${IMAGE_BORDER_RADIUS} ${className}`}>
       <IntrinsicImage
         src={src}
         alt={alt}

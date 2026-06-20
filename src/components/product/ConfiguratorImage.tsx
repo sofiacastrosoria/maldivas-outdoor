@@ -9,6 +9,11 @@ import {
   fallbackPlaceholder,
   getConfiguratorCandidates,
 } from "@/lib/resolveImage";
+import {
+  INTRINSIC_HEIGHT,
+  INTRINSIC_WIDTH,
+} from "@/components/ui/IntrinsicImage";
+import { IMAGE_BORDER_RADIUS } from "@/lib/imageStyles";
 import { ImagePlaceholder } from "./ImagePlaceholder";
 
 interface ConfiguratorImageProps {
@@ -18,7 +23,7 @@ interface ConfiguratorImageProps {
   alt?: string;
   onClick?: () => void;
   priority?: boolean;
-  /** Fills parent height (33vh zone) instead of standalone aspect box */
+  /** Fills parent height (gallery zone) instead of standalone aspect box */
   compact?: boolean;
 }
 
@@ -72,27 +77,35 @@ export function ConfiguratorImage({
 
   const shell = (
     <div
-      className={`relative w-full overflow-hidden bg-white border border-premium-border rounded-lg ${
+      className={`configurator-gallery-surface relative mx-auto overflow-visible ${
         compact
-          ? "h-full min-h-0 max-h-full mx-auto max-w-3xl"
-          : "aspect-[7/5] rounded-xl shadow-[0_2px_24px_-8px_rgba(26,26,26,0.06)]"
+          ? "flex h-full min-h-0 w-full max-w-none items-center justify-center"
+          : "aspect-[7/5] w-full max-w-4xl"
       }`}
     >
-      {!failed && src ? (
-        <Image
-          key={src}
-          src={src}
-          alt={imageAlt}
-          fill
-          sizes={IMAGE_SIZES.configurator}
-          priority={priority}
-          loading={priority ? undefined : "lazy"}
-          className="object-contain object-center"
-          onError={handleError}
-        />
-      ) : (
-        <ImagePlaceholder />
-      )}
+      <div className="configurator-gallery-surface flex h-full max-h-full w-full items-center justify-center overflow-hidden">
+        <div className="configurator-gallery-surface configurator-product-scale flex w-full items-center justify-center">
+          {!failed && src ? (
+            <div className="configurator-product-float w-full">
+              <Image
+                key={src}
+                src={src}
+                alt={imageAlt}
+                width={INTRINSIC_WIDTH}
+                height={INTRINSIC_HEIGHT}
+                sizes={IMAGE_SIZES.configurator}
+                priority={priority}
+                loading={priority ? undefined : "lazy"}
+                className={`configurator-product-image block h-auto w-full ${IMAGE_BORDER_RADIUS}`}
+                style={{ width: "100%", height: "auto" }}
+                onError={handleError}
+              />
+            </div>
+          ) : (
+            <ImagePlaceholder surface className="h-full min-h-[120px] w-full" />
+          )}
+        </div>
+      </div>
     </div>
   );
 
@@ -101,7 +114,9 @@ export function ConfiguratorImage({
       <button
         type="button"
         onClick={onClick}
-        className={`block w-full cursor-zoom-in text-left ${compact ? "h-full" : ""}`}
+        className={`configurator-gallery-surface block w-full cursor-zoom-in text-left ${
+          compact ? "h-full" : ""
+        }`}
         aria-label="Ampliar imagen"
       >
         {shell}

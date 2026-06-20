@@ -30,10 +30,10 @@ export function Header() {
     <>
       <header
         data-site-chrome
-        className="sticky top-0 z-50 w-full bg-white border-b border-[#EAEAEA] shadow-[0_1px_10px_rgba(0,0,0,0.03)]"
-        style={{ height: "var(--header-vh)", minHeight: "52px", maxHeight: "68px" }}
+        className="sticky top-0 z-50 w-full overflow-visible bg-white border-b border-[#EAEAEA] shadow-[0_1px_10px_rgba(0,0,0,0.03)] lg:min-h-[80px] lg:max-h-[92px]"
+        style={{ height: "var(--header-vh)" }}
       >
-        <div className="relative mx-auto flex h-full max-w-[1600px] items-center justify-between px-5 sm:px-8 md:px-12">
+        <div className="relative flex h-full items-center justify-between overflow-visible px-6 sm:px-10 md:px-14 lg:px-20 xl:px-24 2xl:px-28">
           <button
             type="button"
             aria-label="Abrir menú"
@@ -45,7 +45,11 @@ export function Header() {
             <span className="block h-[1.5px] w-5 bg-matte-black transition-all duration-500 ease-luxury group-hover:w-6 group-hover:opacity-70" />
           </button>
 
-          <BrandMark />
+          <div className="pointer-events-none absolute inset-y-0 left-1/2 -translate-x-1/2 flex items-center justify-center overflow-visible">
+            <div className="pointer-events-auto flex h-full items-center">
+              <BrandMark />
+            </div>
+          </div>
 
           <button
             type="button"

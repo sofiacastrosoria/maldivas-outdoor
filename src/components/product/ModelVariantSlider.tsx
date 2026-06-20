@@ -3,8 +3,13 @@
 import { useCallback, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import type { Product } from "@/types";
-import { IntrinsicImage } from "@/components/ui/IntrinsicImage";
-import { IMAGE_SIZES } from "@/lib/imageSizes";
+import {
+  PremiumProductCover,
+  PremiumProductCoverPlaceholder,
+  PremiumProductCoverSkeleton,
+  PRODUCT_COVER_ASPECT_CLASS,
+} from "./PremiumProductCover";
+import { IMAGE_BORDER_RADIUS } from "@/lib/imageStyles";
 import {
   discoverModelCardVariants,
   getModelCardVariants,
@@ -98,25 +103,17 @@ export function ModelVariantSlider({
   }, [pool, displayIndex]);
 
   if (!ready) {
-    return (
-      <div className="w-full aspect-[7/5] bg-sand/15 animate-pulse" aria-hidden />
-    );
+    return <PremiumProductCoverSkeleton />;
   }
 
   const active = pool[displayIndex];
 
   if (!active) {
-    return (
-      <div className="relative w-full flex items-end p-4 md:p-5 min-h-[120px] bg-sand/10 aspect-[7/5]">
-        <p className="text-sm md:text-base font-extralight tracking-tight text-matte-black/80">
-          {product.name}
-        </p>
-      </div>
-    );
+    return <PremiumProductCoverPlaceholder label={product.name} />;
   }
 
   return (
-    <div className="relative w-full bg-sand/10">
+    <div className={`relative w-full ${PRODUCT_COVER_ASPECT_CLASS}`}>
       <motion.div
         key={active.url}
         initial={{ opacity: 0 }}
@@ -124,17 +121,16 @@ export function ModelVariantSlider({
         transition={{ duration: 0.55, ease: [0.25, 0.1, 0.25, 1] }}
         className="relative w-full"
       >
-        <IntrinsicImage
+        <PremiumProductCover
           src={active.url}
           alt={product.name}
-          sizes={IMAGE_SIZES.card}
           priority={displayIndex === 0}
         />
       </motion.div>
 
-      <div className="absolute inset-0 bg-gradient-to-t from-matte-black/40 via-transparent to-transparent pointer-events-none" />
+      <div className={`pointer-events-none absolute inset-0 bg-gradient-to-t from-matte-black/40 via-transparent to-transparent ${IMAGE_BORDER_RADIUS}`} />
 
-      <div className="absolute inset-x-0 bottom-0 p-4 md:p-5 pointer-events-none z-10">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 p-4 md:p-5">
         <p className="text-sm md:text-base font-extralight tracking-tight text-white drop-shadow-sm">
           {product.name}
         </p>

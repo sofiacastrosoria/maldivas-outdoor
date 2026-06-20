@@ -77,7 +77,7 @@ export function VariantThumbnails({
   if (items.length <= 1) return null;
 
   return (
-    <div className="flex gap-2 overflow-x-auto py-1.5 flex-shrink-0">
+    <div className="flex flex-shrink-0 gap-2.5 overflow-x-auto px-0.5 pt-2 md:flex-wrap md:justify-center md:overflow-x-visible md:gap-3 md:pt-4 md:px-2">
       {items.map((item) => (
         <button
           key={item.key}
@@ -85,10 +85,10 @@ export function VariantThumbnails({
           onClick={item.onSelect}
           aria-pressed={item.isActive}
           title={item.label}
-          className={`relative flex-shrink-0 w-14 h-10 sm:w-16 sm:h-11 rounded-md overflow-hidden border transition-all duration-300 ${
+          className={`relative h-10 w-14 flex-shrink-0 overflow-hidden rounded-lg border bg-ivory transition-all duration-300 sm:h-11 sm:w-16 md:h-12 md:w-[4.5rem] ${
             item.isActive
-              ? "border-matte-black border-2 shadow-sm"
-              : "border-premium-border hover:border-matte-black/30 opacity-90 hover:opacity-100"
+              ? "border-matte-black/80 shadow-[0_1px_6px_rgba(26,26,26,0.08)]"
+              : "border-premium-border/50 shadow-[0_1px_3px_rgba(26,26,26,0.04)] hover:border-matte-black/25 opacity-90 hover:opacity-100"
           }`}
         >
           <Image
@@ -96,7 +96,7 @@ export function VariantThumbnails({
             alt={item.label}
             fill
             sizes={IMAGE_SIZES.thumbnail}
-            className="object-contain object-center bg-ivory"
+            className="configurator-product-image object-contain object-center"
             loading="lazy"
           />
         </button>

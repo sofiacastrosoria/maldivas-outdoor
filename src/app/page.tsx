@@ -65,6 +65,7 @@ export default function HomePage() {
             priority
             sizes={IMAGE_SIZES.hero}
             className="max-h-[85vh]"
+            rounded={false}
           />
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-t from-matte-black/70 via-matte-black/20 to-matte-black/30" />

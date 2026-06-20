@@ -43,6 +43,26 @@ function subtleTextSvg(text: string) {
   );
 }
 
+async function writePlaceholderPng(filePath: string, label: string) {
+  ensureDir(path.dirname(filePath));
+  if (exists(filePath)) return false;
+
+  const svg = subtleTextSvg(label);
+  await sharp({
+    create: {
+      width: PLACEHOLDER_WIDTH,
+      height: PLACEHOLDER_HEIGHT,
+      channels: 4,
+      background: { r: 0, g: 0, b: 0, alpha: 0 },
+    },
+  })
+    .composite([{ input: svg, blend: "over" }])
+    .png({ compressionLevel: 9 })
+    .toFile(filePath);
+
+  return true;
+}
+
 async function writePlaceholderJpg(filePath: string, label: string) {
   ensureDir(path.dirname(filePath));
   if (exists(filePath)) return false;
@@ -127,14 +147,23 @@ function pruneObsoleteVariantPlaceholders(): number {
   for (const [dir, filenames] of expected) {
     if (!fs.existsSync(dir)) continue;
     for (const entry of fs.readdirSync(dir)) {
-      if (!/\.jpe?g$/i.test(entry)) continue;
+      if (!/\.(jpe?g|png)$/i.test(entry)) continue;
       if (filenames.has(entry)) continue;
-      fs.unlinkSync(path.join(dir, entry));
-      removed++;
+      // No eliminar legados durante migración PNG
+      if (/\.png$/i.test(entry) && !expectedHasPng(filenames, entry)) {
+        fs.unlinkSync(path.join(dir, entry));
+        removed++;
+      }
     }
   }
 
   return removed;
+}
+
+function expectedHasPng(filenames: Set<string>, entry: string): boolean {
+  if (filenames.has(entry)) return true;
+  const jpg = entry.replace(/\.png$/i, ".jpg");
+  return filenames.has(jpg);
 }
 
 async function generateVariantPlaceholders() {
@@ -157,7 +186,7 @@ async function generateVariantPlaceholders() {
           // Use generic label; keep it subtle and stable.
           // You can switch to empty string for pure black.
           // eslint-disable-next-line no-await-in-loop
-          const did = await writePlaceholderJpg(full, "IMAGE PLACEHOLDER");
+          const did = await writePlaceholderPng(full, "IMAGE PLACEHOLDER");
           if (did) created++;
         }
       }
@@ -177,7 +206,7 @@ async function generateComedorVariantPlaceholders() {
     for (const filename of collectComedorImageFilenames(product)) {
       const full = path.join(baseDir, filename);
       // eslint-disable-next-line no-await-in-loop
-      const did = await writePlaceholderJpg(full, "IMAGE PLACEHOLDER");
+      const did = await writePlaceholderPng(full, "IMAGE PLACEHOLDER");
       if (did) created++;
     }
   }
@@ -192,9 +221,9 @@ async function generateTablePlaceholders() {
     const baseDir = getImageDirForProduct(product);
     ensureDir(baseDir);
     for (const idx of [1, 2, 3]) {
-      const full = path.join(baseDir, `${idx}.jpg`);
+      const full = path.join(baseDir, `${idx}.png`);
       // eslint-disable-next-line no-await-in-loop
-      const did = await writePlaceholderJpg(full, "IMAGE PLACEHOLDER");
+      const did = await writePlaceholderPng(full, "IMAGE PLACEHOLDER");
       if (did) created++;
     }
   }
@@ -215,9 +244,9 @@ async function generateMesasStructurePlaceholders() {
     );
 
     for (const idx of indexes) {
-      const full = path.join(baseDir, `${idx}.jpg`);
+      const full = path.join(baseDir, `${idx}.png`);
       // eslint-disable-next-line no-await-in-loop
-      const did = await writePlaceholderJpg(full, "IMAGE PLACEHOLDER");
+      const did = await writePlaceholderPng(full, "IMAGE PLACEHOLDER");
       if (did) created++;
     }
   }
@@ -241,7 +270,7 @@ async function generateEditorialSliderPlaceholders() {
 }
 
 async function generateModelSliderPlaceholders() {
-  // Create 3 placeholders per model by default (1.jpg,2.jpg,3.jpg)
+  // Placeholders de tarjeta de producto — canónico PNG
   let created = 0;
   const categories: Array<{ category: "reposeras" | "living" | "comedor"; slugs: string[] }> = [
     { category: "reposeras", slugs: products.filter((p) => p.category === "reposeras").map((p) => p.slug) },
@@ -254,9 +283,9 @@ async function generateModelSliderPlaceholders() {
       const baseDir = path.join(PUBLIC_IMAGES, "model-sliders", category, slug);
       ensureDir(baseDir);
       for (const idx of [1, 2, 3]) {
-        const full = path.join(baseDir, `${idx}.jpg`);
+        const full = path.join(baseDir, `${idx}.png`);
         // eslint-disable-next-line no-await-in-loop
-        const did = await writePlaceholderJpg(full, "IMAGE PLACEHOLDER");
+        const did = await writePlaceholderPng(full, "IMAGE PLACEHOLDER");
         if (did) created++;
       }
     }

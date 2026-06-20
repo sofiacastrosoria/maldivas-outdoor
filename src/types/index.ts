@@ -53,7 +53,7 @@ export interface Product {
   customizableSize?: boolean;
   /** Medida fija: muestra dimensiones sin selector de tamaño */
   fixedMeasure?: boolean;
-  /** Mapeo estructura → índice de imagen en /images/mesas/{slug}/N.jpg */
+  /** Mapeo estructura → índice de imagen en /images/mesas/{slug}/N.png */
   mesaImageByStructure?: Partial<Record<string, 1 | 2 | 3 | 4>>;
   /** Comedor con imágenes por estructura + medida en /images/comedor/{slug}/ */
   comedorVariantImages?: boolean;

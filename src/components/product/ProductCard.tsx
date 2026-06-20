@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import type { Product } from "@/types";
 import { formatPrice, getMinimumCashPrice } from "@/lib/pricing";
 import { ModelVariantSlider } from "./ModelVariantSlider";
+import { IMAGE_BORDER_RADIUS } from "@/lib/imageStyles";
 
 interface ProductCardProps {
   product: Product;
@@ -21,22 +22,31 @@ export function ProductCard({ product, href }: ProductCardProps) {
         transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
         className="relative"
       >
-        <div className="relative w-full overflow-hidden">
+        <div className="relative w-full">
           <ModelVariantSlider product={product} />
-          <div className="absolute inset-0 bg-matte-black/0 group-hover:bg-matte-black/5 transition-colors duration-700 pointer-events-none" />
+          <div className={`pointer-events-none absolute inset-0 bg-matte-black/0 transition-colors duration-700 group-hover:bg-matte-black/5 ${IMAGE_BORDER_RADIUS}`} />
         </div>
-        <div className="mt-5 flex items-baseline justify-between gap-4">
-          <div>
-            <h3 className="text-lg font-light tracking-tight">{product.name}</h3>
-            <p className="text-xs text-matte-black/45 mt-1 line-clamp-2 max-w-xs">
+
+        <div className="mt-4 flex items-start justify-between gap-3 sm:gap-4">
+          <div className="min-w-0 flex-1">
+            <h3 className="text-lg font-light tracking-tight text-matte-black">
+              {product.name}
+            </h3>
+            <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-matte-black/45">
               {product.description}
             </p>
           </div>
-          <p className="text-sm text-matte-black/60 flex-shrink-0">
-            {fromPrice !== null
-              ? `desde ${formatPrice(fromPrice)}`
-              : "Consultar precio"}
-          </p>
+
+          <div className="flex flex-shrink-0 flex-col items-end">
+            <p className="whitespace-nowrap text-right text-sm text-matte-black/60">
+              {fromPrice !== null
+                ? `Desde ${formatPrice(fromPrice)}`
+                : "Consultar precio"}
+            </p>
+            <span className="mt-2 inline-flex h-9 items-center rounded-full bg-matte-black px-5 text-[11px] font-medium tracking-wide text-white transition-all duration-300 group-hover:opacity-90 group-hover:shadow-[0_2px_8px_rgba(26,26,26,0.12)]">
+              Personalizar
+            </span>
+          </div>
         </div>
       </motion.article>
     </Link>

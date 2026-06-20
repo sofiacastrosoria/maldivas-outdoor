@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { IntrinsicImage } from "@/components/ui/IntrinsicImage";
 import { IMAGE_SIZES } from "@/lib/imageSizes";
+import { IMAGE_BORDER_RADIUS } from "@/lib/imageStyles";
 
 export interface HeroSlide {
   src: string;
@@ -83,7 +84,7 @@ export function ProductHeroSlider({
   const slide = slides[displayIndex];
 
   const inner = (
-    <div className="relative w-full overflow-hidden bg-sand/10">
+    <div className={`relative w-full overflow-hidden bg-sand/10 ${IMAGE_BORDER_RADIUS}`}>
       <motion.div
         key={slide.src}
         initial={{ opacity: 0 }}
@@ -97,7 +98,7 @@ export function ProductHeroSlider({
           sizes={IMAGE_SIZES.hero}
           priority={displayIndex === 0}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-matte-black/50 via-transparent to-transparent pointer-events-none" />
+        <div className={`absolute inset-0 bg-gradient-to-t from-matte-black/50 via-transparent to-transparent pointer-events-none ${IMAGE_BORDER_RADIUS}`} />
       </motion.div>
 
       <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10 text-white z-10 pointer-events-none">

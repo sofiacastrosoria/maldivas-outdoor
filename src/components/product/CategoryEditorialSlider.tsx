@@ -10,6 +10,7 @@ import {
   editorialSlideFileExists,
   editorialSlideUrl,
 } from "./sliderSlides";
+import { manifestUrlExists } from "@/lib/imageManifest";
 import { ProductHeroSlider } from "./ProductHeroSlider";
 
 export function CategoryEditorialSlider({
@@ -28,9 +29,11 @@ export function CategoryEditorialSlider({
   const slides = useMemo(
     () =>
       categoryEditorialSlides[category]
-        .filter((s) => editorialSlideFileExists(category, s.file))
+        .filter((s) =>
+          s.src ? manifestUrlExists(s.src) : editorialSlideFileExists(category, s.file)
+        )
         .map((s) => ({
-          src: editorialSlideUrl(category, s.file),
+          src: s.src ?? editorialSlideUrl(category, s.file),
           label: s.label,
           href: s.href,
         })),

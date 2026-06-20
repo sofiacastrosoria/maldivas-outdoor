@@ -163,7 +163,38 @@ export function getModelCardVariants(product: Product): ModelCardVariant[] {
     }
   }
 
-  return filterReposeraCardVariants(product, variants);
+  return filterReposeraCardVariants(product, dedupeByBasename(variants));
+}
+
+function extensionOfUrl(url: string): string {
+  const name = url.split("/").pop()?.split("?")[0] ?? "";
+  return name.match(/\.(jpe?g|png|webp)$/i)?.[1]?.toLowerCase() ?? "";
+}
+
+function dedupeByBasename(variants: ModelCardVariant[]): ModelCardVariant[] {
+  const byBase = new Map<string, ModelCardVariant>();
+
+  for (const variant of variants) {
+    const name = variant.url.split("/").pop()?.split("?")[0] ?? "";
+    const base = name.replace(/\.(jpe?g|png|webp)$/i, "");
+    const existing = byBase.get(base);
+    if (!existing) {
+      byBase.set(base, variant);
+      continue;
+    }
+
+    const variantExt = extensionOfUrl(variant.url);
+    const existingExt = extensionOfUrl(existing.url);
+    if (
+      (variantExt === "jpg" || variantExt === "jpeg") &&
+      existingExt !== "jpg" &&
+      existingExt !== "jpeg"
+    ) {
+      byBase.set(base, variant);
+    }
+  }
+
+  return [...byBase.values()];
 }
 
 /**
@@ -210,7 +241,7 @@ export async function discoverModelCardVariants(
     }
   }
 
-  return filterReposeraCardVariants(product, variants);
+  return filterReposeraCardVariants(product, dedupeByBasename(variants));
 }
 
 /** Prefer a different structure and/or fabric than the current slide */

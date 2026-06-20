@@ -5,15 +5,22 @@ import { motion } from "framer-motion";
 interface ImagePlaceholderProps {
   message?: string;
   className?: string;
+  /** Mismo tono que la página — sin gradiente blanco */
+  surface?: boolean;
 }
 
 export function ImagePlaceholder({
   message = "No hay imagen disponible para esta configuración",
   className = "",
+  surface = false,
 }: ImagePlaceholderProps) {
+  const bgClass = surface
+    ? "bg-ivory"
+    : "bg-gradient-to-br from-sand/25 via-white to-greige/10";
+
   return (
     <div
-      className={`flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-sand/25 via-white to-greige/10 px-8 text-center ${className}`}
+      className={`flex h-full w-full flex-col items-center justify-center px-8 text-center ${bgClass} ${className}`}
     >
       <svg
         width="28"
