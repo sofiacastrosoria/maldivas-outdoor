@@ -26,8 +26,8 @@ export function CategoryCard({
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay: index * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
     >
-      <Link href={href} className="group block relative overflow-hidden">
-        <div className="relative w-full overflow-hidden">
+      <Link href={href} className="group block relative overflow-hidden rounded-2xl">
+        <div className="relative w-full overflow-hidden rounded-2xl">
           <IntrinsicImage
             src={image}
             alt={title}

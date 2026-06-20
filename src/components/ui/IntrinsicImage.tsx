@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { IMAGE_BORDER_RADIUS } from "@/lib/imageStyles";
 
 /** 7:5 horizontal — sizing hint for Next.js; real aspect comes from the file */
 export const INTRINSIC_WIDTH = 1400;
@@ -14,7 +13,7 @@ interface IntrinsicImageProps {
   priority?: boolean;
   className?: string;
   style?: React.CSSProperties;
-  /** false solo para excepciones explícitas (ej. hero HOME showroom) */
+  /** false only for explicit exceptions (e.g. HOME hero showroom) */
   rounded?: boolean;
   onError?: () => void;
   onLoad?: () => void;
@@ -44,7 +43,7 @@ export function IntrinsicImage({
       sizes={sizes}
       priority={priority}
       loading={priority ? undefined : "lazy"}
-      className={`configurator-product-image block w-full h-auto ${rounded ? IMAGE_BORDER_RADIUS : ""} ${className}`}
+      className={`configurator-product-image block w-full h-auto ${rounded ? "rounded-2xl" : ""} ${className}`}
       style={{ width: "100%", height: "auto", ...style }}
       onError={onError}
       onLoad={onLoad}

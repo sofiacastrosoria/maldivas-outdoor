@@ -18,7 +18,7 @@ export function StaticPlaceholderImage({
   priority = false,
 }: StaticPlaceholderImageProps) {
   return (
-    <div className={`relative w-full ${className}`}>
+    <div className={`relative w-full overflow-hidden rounded-2xl ${className}`}>
       <IntrinsicImage
         src={src}
         alt={alt}

@@ -5,7 +5,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { IntrinsicImage } from "@/components/ui/IntrinsicImage";
 import { IMAGE_SIZES } from "@/lib/imageSizes";
-import { IMAGE_BORDER_RADIUS } from "@/lib/imageStyles";
 
 export interface HeroSlide {
   src: string;
@@ -84,7 +83,7 @@ export function ProductHeroSlider({
   const slide = slides[displayIndex];
 
   const inner = (
-    <div className={`relative w-full overflow-hidden bg-sand/10 ${IMAGE_BORDER_RADIUS}`}>
+    <div className="relative w-full overflow-hidden rounded-2xl bg-sand/10">
       <motion.div
         key={slide.src}
         initial={{ opacity: 0 }}

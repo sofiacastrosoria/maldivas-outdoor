@@ -9,7 +9,6 @@ import {
   PremiumProductCoverSkeleton,
   PRODUCT_COVER_ASPECT_CLASS,
 } from "./PremiumProductCover";
-import { COVER_RADIUS } from "@/lib/imageStyles";
 import {
   discoverModelCardVariants,
   getModelCardVariants,
@@ -128,7 +127,7 @@ export function ModelVariantSlider({
         />
       </motion.div>
 
-      <div className={`pointer-events-none absolute inset-0 ${COVER_RADIUS} bg-gradient-to-t from-matte-black/40 via-transparent to-transparent`} />
+      <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-t from-matte-black/40 via-transparent to-transparent" />
 
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 p-4 md:p-5">
         <p className="text-sm md:text-base font-extralight tracking-tight text-white drop-shadow-sm">

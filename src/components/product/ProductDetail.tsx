@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { IMAGE_BORDER_RADIUS } from "@/lib/imageStyles";
 import { Playfair_Display } from "next/font/google";
 import type { Product } from "@/types";
 import { formatPrice, buildConfigSummary, calculatePriceBreakdown } from "@/lib/pricing";
@@ -267,7 +266,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
           <div className="mx-auto max-w-[1120px]">
             {/* Imagen principal: 2:1 aspect, nunca recortada */}
             <div
-              className={`relative w-full aspect-[2/1] cursor-zoom-in overflow-hidden ${IMAGE_BORDER_RADIUS}`}
+              className="relative w-full aspect-[2/1] cursor-zoom-in overflow-hidden rounded-2xl"
               onClick={() => setZoomOpen(true)}
               role="button"
               tabIndex={0}
@@ -279,7 +278,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
                 src={desktopImageSrc}
                 alt={product.name}
                 fill
-                className={`object-contain transition-opacity duration-500 ${IMAGE_BORDER_RADIUS}`}
+                className="object-contain transition-opacity duration-500"
                 sizes="(min-width: 1280px) 1120px, (min-width: 1024px) calc(100vw - 10rem), calc(100vw - 5rem)"
                 priority
               />

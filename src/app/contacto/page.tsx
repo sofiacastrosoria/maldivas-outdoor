@@ -2,7 +2,6 @@
 
 import { FadeIn } from "@/components/ui/FadeIn";
 import { IntrinsicImage } from "@/components/ui/IntrinsicImage";
-import { IMAGE_BORDER_RADIUS } from "@/lib/imageStyles";
 import { useState } from "react";
 import {
   CONTACT_MESSAGE_DEFAULT,
@@ -49,7 +48,7 @@ export default function ContactoPage() {
       </FadeIn>
 
       <div className="px-6 md:px-12 mb-20 max-w-6xl mx-auto">
-        <div className={`relative w-full overflow-hidden ${IMAGE_BORDER_RADIUS}`}>
+        <div className="relative w-full overflow-hidden rounded-2xl">
           <IntrinsicImage
             src={SHOWROOM_IMAGE}
             alt="Showroom Maldivas Outdoor"

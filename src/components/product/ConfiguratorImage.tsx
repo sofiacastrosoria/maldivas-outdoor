@@ -13,7 +13,6 @@ import {
   INTRINSIC_HEIGHT,
   INTRINSIC_WIDTH,
 } from "@/components/ui/IntrinsicImage";
-import { IMAGE_BORDER_RADIUS } from "@/lib/imageStyles";
 import { ImagePlaceholder } from "./ImagePlaceholder";
 
 interface ConfiguratorImageProps {
@@ -96,7 +95,7 @@ export function ConfiguratorImage({
                 sizes={IMAGE_SIZES.configurator}
                 priority={priority}
                 loading={priority ? undefined : "lazy"}
-                className={`configurator-product-image block h-auto w-full ${IMAGE_BORDER_RADIUS}`}
+                className="configurator-product-image block h-auto w-full"
                 style={{ width: "100%", height: "auto" }}
                 onError={handleError}
               />
