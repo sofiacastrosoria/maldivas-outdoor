@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-20T15:30:24.628Z",
+  "generatedAt": "2026-06-22T16:31:21.494Z",
   "files": {
     "about-1.jpg": {
       "url": "/images/about/about-1.jpg",
@@ -1046,6 +1046,36 @@
       "mtimeMs": 1780933853355.7046,
       "size": 33537
     },
+    "aluminio-anodizado.jpg": {
+      "url": "/images/materiales/aluminio/aluminio-anodizado.jpg",
+      "mtimeMs": 1781986966504.8052,
+      "size": 98125
+    },
+    "aluminio-pintado.jpg": {
+      "url": "/images/materiales/aluminio/aluminio-pintado.jpg",
+      "mtimeMs": 1781986966220.7263,
+      "size": 97896
+    },
+    "aluminio-simil-madera.jpg": {
+      "url": "/images/materiales/aluminio/aluminio-simil-madera.jpg",
+      "mtimeMs": 1781986965948.335,
+      "size": 98381
+    },
+    "piero-26k.jpg": {
+      "url": "/images/materiales/goma-espuma/piero-26k.jpg",
+      "mtimeMs": 1781986967634.2788,
+      "size": 96880
+    },
+    "piero-27k.jpg": {
+      "url": "/images/materiales/goma-espuma/piero-27k.jpg",
+      "mtimeMs": 1781986967907.4731,
+      "size": 96858
+    },
+    "piero-29k.jpg": {
+      "url": "/images/materiales/goma-espuma/piero-29k.jpg",
+      "mtimeMs": 1781986968181.3018,
+      "size": 96844
+    },
     "material-1.jpg": {
       "url": "/images/materiales/material-1.jpg",
       "mtimeMs": 1779989235155.608,
@@ -1065,6 +1095,96 @@
       "url": "/images/materiales/material-4.jpg",
       "mtimeMs": 1779989235351.0447,
       "size": 8625
+    },
+    "dekton-aura.jpg": {
+      "url": "/images/materiales/piedras/dekton/dekton-aura.jpg",
+      "mtimeMs": 1782145708448.0054,
+      "size": 10565
+    },
+    "dekton-opera.jpg": {
+      "url": "/images/materiales/piedras/dekton/dekton-opera.jpg",
+      "mtimeMs": 1782145708696.2244,
+      "size": 23922
+    },
+    "dekton-vera.jpg": {
+      "url": "/images/materiales/piedras/dekton/dekton-vera.jpg",
+      "mtimeMs": 1782145708932.7295,
+      "size": 10040
+    },
+    "infinity-andromeda.jpg": {
+      "url": "/images/materiales/piedras/infinity/infinity-andromeda.jpg",
+      "mtimeMs": 1782145709561.6099,
+      "size": 25205
+    },
+    "infinity-atlantis-grey.jpg": {
+      "url": "/images/materiales/piedras/infinity/infinity-atlantis-grey.jpg",
+      "mtimeMs": 1782145709144.0098,
+      "size": 11554
+    },
+    "infinity-calacatta-hermitage.jpg": {
+      "url": "/images/materiales/piedras/infinity/infinity-calacatta-hermitage.jpg",
+      "mtimeMs": 1782145831693.1348,
+      "size": 227743
+    },
+    "infinity-calacatta-oro.jpg": {
+      "url": "/images/materiales/piedras/infinity/infinity-calacatta-oro.jpg",
+      "mtimeMs": 1782145709357.7673,
+      "size": 12325
+    },
+    "infinity-chianca-di-ostuni.jpg": {
+      "url": "/images/materiales/piedras/infinity/infinity-chianca-di-ostuni.jpg",
+      "mtimeMs": 1782145710838.401,
+      "size": 11623
+    },
+    "infinity-defense.jpg": {
+      "url": "/images/materiales/piedras/infinity/infinity-defense.jpg",
+      "mtimeMs": 1782145831744.7605,
+      "size": 174524
+    },
+    "infinity-laurent.jpg": {
+      "url": "/images/materiales/piedras/infinity/infinity-laurent.jpg",
+      "mtimeMs": 1782145867114.863,
+      "size": 161254
+    },
+    "infinity-pietra-grey.jpg": {
+      "url": "/images/materiales/piedras/infinity/infinity-pietra-grey.jpg",
+      "mtimeMs": 1782145831657.916,
+      "size": 209994
+    },
+    "infinity-royal-peacock.jpg": {
+      "url": "/images/materiales/piedras/infinity/infinity-royal-peacock.jpg",
+      "mtimeMs": 1782145711193.4197,
+      "size": 23981
+    },
+    "infinity-sahara-noir.jpg": {
+      "url": "/images/materiales/piedras/infinity/infinity-sahara-noir.jpg",
+      "mtimeMs": 1782145711632.1626,
+      "size": 33816
+    },
+    "infinity-travertino-chiaro.jpg": {
+      "url": "/images/materiales/piedras/infinity/infinity-travertino-chiaro.jpg",
+      "mtimeMs": 1782145709778.4412,
+      "size": 11942
+    },
+    "infinity-tundra-select.jpg": {
+      "url": "/images/materiales/piedras/infinity/infinity-tundra-select.jpg",
+      "mtimeMs": 1782145711419.2773,
+      "size": 10028
+    },
+    "agora.jpg": {
+      "url": "/images/materiales/telas/agora.jpg",
+      "mtimeMs": 1781986967076.2998,
+      "size": 97089
+    },
+    "bliss.jpg": {
+      "url": "/images/materiales/telas/bliss.jpg",
+      "mtimeMs": 1781986967347.2966,
+      "size": 96890
+    },
+    "sunbrella.jpg": {
+      "url": "/images/materiales/telas/sunbrella.jpg",
+      "mtimeMs": 1781986966790.512,
+      "size": 97326
     },
     "1.jpg": {
       "url": "/images/mesas/fendi/1.jpg",
@@ -1108,253 +1228,243 @@
     },
     "reposera-fendi-doble-anodizadonegro-beige.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-doble-anodizadonegro-beige.jpg",
-      "mtimeMs": 1781885106563.3733,
-      "size": 1859199
+      "mtimeMs": 1782144712818.7322,
+      "size": 1337185
     },
     "reposera-fendi-doble-anodizadonegro-blanco.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-doble-anodizadonegro-blanco.jpg",
-      "mtimeMs": 1781885166443.7717,
-      "size": 1623900
+      "mtimeMs": 1782144696908.4426,
+      "size": 1252615
     },
     "reposera-fendi-doble-anodizadonegro-gris.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-doble-anodizadonegro-gris.jpg",
-      "mtimeMs": 1781885161881.9695,
-      "size": 1877935
+      "mtimeMs": 1782144696818.5742,
+      "size": 1542114
     },
     "reposera-fendi-doble-anodizadonegro-negro.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-doble-anodizadonegro-negro.jpg",
-      "mtimeMs": 1781885169960.877,
-      "size": 1597163
+      "mtimeMs": 1782144696942.798,
+      "size": 1241556
     },
     "reposera-fendi-doble-anodizadopeltre-beige.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-doble-anodizadopeltre-beige.jpg",
-      "mtimeMs": 1781885217342.1526,
-      "size": 1796588
+      "mtimeMs": 1782144666646.9329,
+      "size": 1595279
     },
     "reposera-fendi-doble-anodizadopeltre-blanco.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-doble-anodizadopeltre-blanco.jpg",
-      "mtimeMs": 1781885229482.3123,
-      "size": 1564183
+      "mtimeMs": 1782144659613.041,
+      "size": 1161984
     },
     "reposera-fendi-doble-anodizadopeltre-gris.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-doble-anodizadopeltre-gris.jpg",
-      "mtimeMs": 1781885221284.32,
-      "size": 1874131
+      "mtimeMs": 1782144712581.1963,
+      "size": 1571783
     },
     "reposera-fendi-doble-anodizadopeltre-negro.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-doble-anodizadopeltre-negro.jpg",
-      "mtimeMs": 1781885225980.3337,
-      "size": 1803475
+      "mtimeMs": 1782144663185.0508,
+      "size": 1385659
     },
     "reposera-fendi-doble-greige-beige.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-doble-greige-beige.jpg",
-      "mtimeMs": 1781885742743.8208,
-      "size": 1710375
+      "mtimeMs": 1782145103830.183,
+      "size": 1304082
     },
     "reposera-fendi-doble-greige-blanco.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-doble-greige-blanco.jpg",
-      "mtimeMs": 1781885726280.2866,
-      "size": 1541620
+      "mtimeMs": 1782145103891.5293,
+      "size": 1143223
     },
     "reposera-fendi-doble-greige-gris.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-doble-greige-gris.jpg",
-      "mtimeMs": 1781885729763.0898,
-      "size": 1801961
+      "mtimeMs": 1782145103953.8435,
+      "size": 1489949
     },
     "reposera-fendi-doble-greige-negro.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-doble-greige-negro.jpg",
-      "mtimeMs": 1781885723148.8547,
-      "size": 1650962
+      "mtimeMs": 1782145103935.6245,
+      "size": 1417054
     },
     "reposera-fendi-doble-negropintado-beige.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-doble-negropintado-beige.jpg",
-      "mtimeMs": 1781885749232.7449,
-      "size": 1752146
+      "mtimeMs": 1782145104056.4128,
+      "size": 1437976
     },
     "reposera-fendi-doble-negropintado-blanco.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-doble-negropintado-blanco.jpg",
-      "mtimeMs": 1781885702010.1338,
-      "size": 1582288
+      "mtimeMs": 1782145110453.7168,
+      "size": 1120856
     },
     "reposera-fendi-doble-negropintado-gris.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-doble-negropintado-gris.jpg",
-      "mtimeMs": 1781885745923.885,
-      "size": 1812589
+      "mtimeMs": 1782145104098.303,
+      "size": 1517564
     },
     "reposera-fendi-doble-negropintado-negro.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-doble-negropintado-negro.jpg",
-      "mtimeMs": 1781885705425.5068,
-      "size": 1562631
+      "mtimeMs": 1782145110466.2952,
+      "size": 1426483
     },
     "reposera-fendi-doble-similmaderablanco-beige.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-doble-similmaderablanco-beige.jpg",
-      "mtimeMs": 1781885192531.5305,
-      "size": 1921229
+      "mtimeMs": 1782144696975.8376,
+      "size": 1576544
     },
     "reposera-fendi-doble-similmaderablanco-blanco.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-doble-similmaderablanco-blanco.jpg",
-      "mtimeMs": 1781885111057.8071,
-      "size": 1682027
+      "mtimeMs": 1782144675913.6077,
+      "size": 1392388
     },
     "reposera-fendi-doble-similmaderablanco-gris.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-doble-similmaderablanco-gris.jpg",
-      "mtimeMs": 1781885198964.6277,
-      "size": 1903790
+      "mtimeMs": 1782144670168.038,
+      "size": 1610493
     },
     "reposera-fendi-doble-similmaderablanco-negro.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-doble-similmaderablanco-negro.jpg",
-      "mtimeMs": 1781885195736.6687,
-      "size": 1702127
+      "mtimeMs": 1782144697003.1907,
+      "size": 1400875
     },
     "reposera-fendi-doble-similmaderamarron-beige.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-doble-similmaderamarron-beige.jpg",
-      "mtimeMs": 1781885131026.952,
-      "size": 2546027
-    },
-    "reposera-fendi-doble-similmaderamarron-beige.png": {
-      "url": "/images/reposeras/fendi/reposera-fendi-doble-similmaderamarron-beige.png",
-      "mtimeMs": 1781913442171.8406,
-      "size": 994924
+      "mtimeMs": 1782144712618.6343,
+      "size": 1306258
     },
     "reposera-fendi-doble-similmaderamarron-blanco.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-doble-similmaderamarron-blanco.jpg",
-      "mtimeMs": 1781885138159.9785,
-      "size": 1758344
+      "mtimeMs": 1782144712725.6895,
+      "size": 1122931
     },
     "reposera-fendi-doble-similmaderamarron-gris.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-doble-similmaderamarron-gris.jpg",
-      "mtimeMs": 1781885134815.6348,
-      "size": 2019688
+      "mtimeMs": 1782144712663.7927,
+      "size": 1240690
     },
     "reposera-fendi-doble-similmaderamarron-negro.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-doble-similmaderamarron-negro.jpg",
-      "mtimeMs": 1781885141748.1675,
-      "size": 1817262
+      "mtimeMs": 1782144712785.6448,
+      "size": 1208602
     },
     "reposera-fendi-simple-anodizadonegro-beige.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-simple-anodizadonegro-beige.jpg",
-      "mtimeMs": 1781885145260.1106,
-      "size": 2576380
+      "mtimeMs": 1782143579575.7288,
+      "size": 1288254
     },
     "reposera-fendi-simple-anodizadonegro-blanco.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-simple-anodizadonegro-blanco.jpg",
-      "mtimeMs": 1781885148935.8088,
-      "size": 1640056
+      "mtimeMs": 1782143583080.981,
+      "size": 1041882
     },
     "reposera-fendi-simple-anodizadonegro-gris.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-simple-anodizadonegro-gris.jpg",
-      "mtimeMs": 1781885153216.964,
-      "size": 2043331
+      "mtimeMs": 1782143587289.2773,
+      "size": 1314539
     },
     "reposera-fendi-simple-anodizadonegro-negro.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-simple-anodizadonegro-negro.jpg",
-      "mtimeMs": 1781885158065.298,
-      "size": 1634868
+      "mtimeMs": 1782143590922.069,
+      "size": 1165897
     },
     "reposera-fendi-simple-anodizadopeltre-beige.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-simple-anodizadopeltre-beige.jpg",
-      "mtimeMs": 1781885203804.5393,
-      "size": 1959903
+      "mtimeMs": 1782143600846.44,
+      "size": 1546103
     },
     "reposera-fendi-simple-anodizadopeltre-blanco.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-simple-anodizadopeltre-blanco.jpg",
-      "mtimeMs": 1781885210903.8813,
-      "size": 1645304
+      "mtimeMs": 1782143610619.8909,
+      "size": 1774325
     },
     "reposera-fendi-simple-anodizadopeltre-gris.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-simple-anodizadopeltre-gris.jpg",
-      "mtimeMs": 1781885213962.6912,
-      "size": 1860220
+      "mtimeMs": 1782143614146.623,
+      "size": 1496779
     },
     "reposera-fendi-simple-anodizadopeltre-negro.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-simple-anodizadopeltre-negro.jpg",
-      "mtimeMs": 1781885207269.4731,
-      "size": 1641905
+      "mtimeMs": 1782143604776.5544,
+      "size": 1288091
     },
     "reposera-fendi-simple-greige-beige.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-simple-greige-beige.jpg",
-      "mtimeMs": 1781885694949.9192,
-      "size": 1923962
+      "mtimeMs": 1782144089634.1577,
+      "size": 1428591
     },
     "reposera-fendi-simple-greige-blanco.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-simple-greige-blanco.jpg",
-      "mtimeMs": 1781885732962.6328,
-      "size": 1480385
+      "mtimeMs": 1782144080699.896,
+      "size": 1091959
     },
     "reposera-fendi-simple-greige-gris.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-simple-greige-gris.jpg",
-      "mtimeMs": 1781885698802.2095,
-      "size": 1878381
+      "mtimeMs": 1782144084183.6736,
+      "size": 1359858
     },
     "reposera-fendi-simple-greige-negro.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-simple-greige-negro.jpg",
-      "mtimeMs": 1781885739482.8206,
-      "size": 1649183
+      "mtimeMs": 1782144077413.7087,
+      "size": 1289335
     },
     "reposera-fendi-simple-negropintado-beige.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-simple-negropintado-beige.jpg",
-      "mtimeMs": 1781885708854.3096,
-      "size": 1785970
+      "mtimeMs": 1782144062686.825,
+      "size": 1335680
     },
     "reposera-fendi-simple-negropintado-blanco.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-simple-negropintado-blanco.jpg",
-      "mtimeMs": 1781885715928.2473,
-      "size": 1670717
+      "mtimeMs": 1782144070054.479,
+      "size": 1200569
     },
     "reposera-fendi-simple-negropintado-gris.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-simple-negropintado-gris.jpg",
-      "mtimeMs": 1781885712266.0247,
-      "size": 1963201
+      "mtimeMs": 1782144066070.2666,
+      "size": 1427142
     },
     "reposera-fendi-simple-negropintado-negro.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-simple-negropintado-negro.jpg",
-      "mtimeMs": 1781885719694.0066,
-      "size": 1624196
+      "mtimeMs": 1782144072950.2512,
+      "size": 1254407
     },
     "reposera-fendi-simple-similmaderablanco-beige.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-simple-similmaderablanco-beige.jpg",
-      "mtimeMs": 1781885173662.95,
-      "size": 1989132
+      "mtimeMs": 1782143594365.0833,
+      "size": 1407220
     },
     "reposera-fendi-simple-similmaderablanco-blanco.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-simple-similmaderablanco-blanco.jpg",
-      "mtimeMs": 1781885183959.189,
-      "size": 1746931
+      "mtimeMs": 1782143562260.653,
+      "size": 1353173
     },
     "reposera-fendi-simple-similmaderablanco-gris.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-simple-similmaderablanco-gris.jpg",
-      "mtimeMs": 1781885188934.673,
-      "size": 2059970
+      "mtimeMs": 1782143597328.1892,
+      "size": 1425112
     },
     "reposera-fendi-simple-similmaderablanco-negro.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-simple-similmaderablanco-negro.jpg",
-      "mtimeMs": 1781966340955.1775,
-      "size": 1356093
+      "mtimeMs": 1781970676215.9854,
+      "size": 1284175
     },
     "reposera-fendi-simple-similmaderamarron-beige.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-simple-similmaderamarron-beige.jpg",
-      "mtimeMs": 1781885119413.0159,
-      "size": 1841897
+      "mtimeMs": 1782143569204.7144,
+      "size": 1216639
     },
     "reposera-fendi-simple-similmaderamarron-blanco.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-simple-similmaderamarron-blanco.jpg",
-      "mtimeMs": 1781885122993.425,
-      "size": 1605629
+      "mtimeMs": 1782143572556.1995,
+      "size": 1049036
     },
     "reposera-fendi-simple-similmaderamarron-gris.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-simple-similmaderamarron-gris.jpg",
-      "mtimeMs": 1781885126644.9407,
-      "size": 1971310
+      "mtimeMs": 1782143576010.3901,
+      "size": 1278660
     },
     "reposera-fendi-simple-similmaderamarron-negro.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-simple-similmaderamarron-negro.jpg",
-      "mtimeMs": 1781885115465.9731,
-      "size": 1590759
-    },
-    "reposera-fendi-simple-similmaderamarron-negro.png": {
-      "url": "/images/reposeras/fendi/reposera-fendi-simple-similmaderamarron-negro.png",
-      "mtimeMs": 1781913372852.7524,
-      "size": 929287
+      "mtimeMs": 1782143565662.5393,
+      "size": 1202506
     },
     "reposera-malaga-doble-anodizadonegro-beige.jpg": {
       "url": "/images/reposeras/malaga/reposera-malaga-doble-anodizadonegro-beige.jpg",
@@ -2072,10 +2182,34 @@
     "/images/living/skorphio/living-skorphio-4cuerpos-similmaderamarron-blanco.jpg",
     "/images/living/skorphio/living-skorphio-4cuerpos-similmaderamarron-gris.jpg",
     "/images/living/skorphio/living-skorphio-4cuerpos-similmaderamarron-negro.jpg",
+    "/images/materiales/aluminio/aluminio-anodizado.jpg",
+    "/images/materiales/aluminio/aluminio-pintado.jpg",
+    "/images/materiales/aluminio/aluminio-simil-madera.jpg",
+    "/images/materiales/goma-espuma/piero-26k.jpg",
+    "/images/materiales/goma-espuma/piero-27k.jpg",
+    "/images/materiales/goma-espuma/piero-29k.jpg",
     "/images/materiales/material-1.jpg",
     "/images/materiales/material-2.jpg",
     "/images/materiales/material-3.jpg",
     "/images/materiales/material-4.jpg",
+    "/images/materiales/piedras/dekton/dekton-aura.jpg",
+    "/images/materiales/piedras/dekton/dekton-opera.jpg",
+    "/images/materiales/piedras/dekton/dekton-vera.jpg",
+    "/images/materiales/piedras/infinity/infinity-andromeda.jpg",
+    "/images/materiales/piedras/infinity/infinity-atlantis-grey.jpg",
+    "/images/materiales/piedras/infinity/infinity-calacatta-hermitage.jpg",
+    "/images/materiales/piedras/infinity/infinity-calacatta-oro.jpg",
+    "/images/materiales/piedras/infinity/infinity-chianca-di-ostuni.jpg",
+    "/images/materiales/piedras/infinity/infinity-defense.jpg",
+    "/images/materiales/piedras/infinity/infinity-laurent.jpg",
+    "/images/materiales/piedras/infinity/infinity-pietra-grey.jpg",
+    "/images/materiales/piedras/infinity/infinity-royal-peacock.jpg",
+    "/images/materiales/piedras/infinity/infinity-sahara-noir.jpg",
+    "/images/materiales/piedras/infinity/infinity-travertino-chiaro.jpg",
+    "/images/materiales/piedras/infinity/infinity-tundra-select.jpg",
+    "/images/materiales/telas/agora.jpg",
+    "/images/materiales/telas/bliss.jpg",
+    "/images/materiales/telas/sunbrella.jpg",
     "/images/mesas/fendi/1.jpg",
     "/images/mesas/fendi/2.jpg",
     "/images/mesas/fendi/3.jpg",
@@ -2150,7 +2284,6 @@
     "/images/reposeras/fendi/reposera-fendi-doble-similmaderablanco-gris.jpg",
     "/images/reposeras/fendi/reposera-fendi-doble-similmaderablanco-negro.jpg",
     "/images/reposeras/fendi/reposera-fendi-doble-similmaderamarron-beige.jpg",
-    "/images/reposeras/fendi/reposera-fendi-doble-similmaderamarron-beige.png",
     "/images/reposeras/fendi/reposera-fendi-doble-similmaderamarron-blanco.jpg",
     "/images/reposeras/fendi/reposera-fendi-doble-similmaderamarron-gris.jpg",
     "/images/reposeras/fendi/reposera-fendi-doble-similmaderamarron-negro.jpg",
@@ -2178,7 +2311,6 @@
     "/images/reposeras/fendi/reposera-fendi-simple-similmaderamarron-blanco.jpg",
     "/images/reposeras/fendi/reposera-fendi-simple-similmaderamarron-gris.jpg",
     "/images/reposeras/fendi/reposera-fendi-simple-similmaderamarron-negro.jpg",
-    "/images/reposeras/fendi/reposera-fendi-simple-similmaderamarron-negro.png",
     "/images/reposeras/malaga/reposera-malaga-doble-anodizadonegro-beige.jpg",
     "/images/reposeras/malaga/reposera-malaga-doble-anodizadonegro-blanco.jpg",
     "/images/reposeras/malaga/reposera-malaga-doble-anodizadonegro-gris.jpg",

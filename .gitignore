@@ -34,3 +34,16 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# rembg
+.rembg_deps/
+.u2net/
+
+# modelos IA
+*.onnx
+*.pth
+*.pt
+
+# caches
+.cache/
+tmp/
