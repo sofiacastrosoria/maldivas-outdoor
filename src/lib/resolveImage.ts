@@ -13,8 +13,10 @@ import {
   buildTableImagePath,
   defaultProductConfig,
   getImageFolder,
+  getMesaStoneImageIndex,
   getMesaStructureImageIndex,
   isTableProduct,
+  usesMesaStoneImages,
   usesMesasStructureImages,
   type TableImageIndex,
 } from "@/lib/images";
@@ -112,6 +114,12 @@ export function getConfiguratorCandidates(
     return expandProductCandidates(buildTableImagePath(product, index));
   }
 
+  if (usesMesaStoneImages(product)) {
+    const cfg = config ?? defaultProductConfig(product);
+    const index = getMesaStoneImageIndex(product, cfg);
+    return expandProductCandidates(buildTableImagePath(product, index));
+  }
+
   if (usesComedorVariantImages(product)) {
     const cfg = config ?? defaultProductConfig(product);
     const canonical = buildComedorImagePath(product, cfg);
@@ -155,6 +163,15 @@ export function fallbackPlaceholder(
     const url = buildTableImagePath(
       product,
       getMesaStructureImageIndex(product, cfg)
+    );
+    return resolveBestProductImageUrl(url);
+  }
+
+  if (usesMesaStoneImages(product)) {
+    const cfg = config ?? defaultProductConfig(product);
+    const url = buildTableImagePath(
+      product,
+      getMesaStoneImageIndex(product, cfg)
     );
     return resolveBestProductImageUrl(url);
   }

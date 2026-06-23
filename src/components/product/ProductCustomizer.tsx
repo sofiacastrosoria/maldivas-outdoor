@@ -241,7 +241,11 @@ export function ProductCustomizer({
                     </section>
                   )}
 
-                  {product.stoneBrands && product.stoneBrands.length > 0 && (
+                  {product.stoneBrands &&
+                    product.stoneBrands.length > 0 &&
+                    !(
+                      product.slug === "skorphio" && product.category === "mesas"
+                    ) && (
                     <>
                       <section>
                         <h4 className="text-[10px] tracking-luxury uppercase text-matte-black/40 mb-3">

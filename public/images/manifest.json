@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-22T16:31:21.494Z",
+  "generatedAt": "2026-06-23T17:33:52.424Z",
   "files": {
     "about-1.jpg": {
       "url": "/images/about/about-1.jpg",
@@ -203,8 +203,8 @@
     },
     "local-showroom.jpg": {
       "url": "/images/contacto/local-showroom.jpg",
-      "mtimeMs": 1779989791791.114,
-      "size": 201431
+      "mtimeMs": 1782147810127.8145,
+      "size": 2877362
     },
     "living-fendi-1cuerpo-anodizadonegro-beige.jpg": {
       "url": "/images/living/fendi/living-fendi-1cuerpo-anodizadonegro-beige.jpg",
@@ -1098,28 +1098,28 @@
     },
     "dekton-aura.jpg": {
       "url": "/images/materiales/piedras/dekton/dekton-aura.jpg",
-      "mtimeMs": 1782145708448.0054,
-      "size": 10565
+      "mtimeMs": 1782146502057.5266,
+      "size": 36769
     },
     "dekton-opera.jpg": {
       "url": "/images/materiales/piedras/dekton/dekton-opera.jpg",
-      "mtimeMs": 1782145708696.2244,
-      "size": 23922
+      "mtimeMs": 1782146502041.2827,
+      "size": 23510
     },
     "dekton-vera.jpg": {
       "url": "/images/materiales/piedras/dekton/dekton-vera.jpg",
-      "mtimeMs": 1782145708932.7295,
-      "size": 10040
+      "mtimeMs": 1782146493362.3418,
+      "size": 55396
     },
     "infinity-andromeda.jpg": {
       "url": "/images/materiales/piedras/infinity/infinity-andromeda.jpg",
-      "mtimeMs": 1782145709561.6099,
-      "size": 25205
+      "mtimeMs": 1782146112520.8584,
+      "size": 207478
     },
     "infinity-atlantis-grey.jpg": {
       "url": "/images/materiales/piedras/infinity/infinity-atlantis-grey.jpg",
-      "mtimeMs": 1782145709144.0098,
-      "size": 11554
+      "mtimeMs": 1782146112747.7593,
+      "size": 241176
     },
     "infinity-calacatta-hermitage.jpg": {
       "url": "/images/materiales/piedras/infinity/infinity-calacatta-hermitage.jpg",
@@ -1128,13 +1128,13 @@
     },
     "infinity-calacatta-oro.jpg": {
       "url": "/images/materiales/piedras/infinity/infinity-calacatta-oro.jpg",
-      "mtimeMs": 1782145709357.7673,
-      "size": 12325
+      "mtimeMs": 1782146112490.2664,
+      "size": 202557
     },
     "infinity-chianca-di-ostuni.jpg": {
       "url": "/images/materiales/piedras/infinity/infinity-chianca-di-ostuni.jpg",
-      "mtimeMs": 1782145710838.401,
-      "size": 11623
+      "mtimeMs": 1782146011763.8533,
+      "size": 224512
     },
     "infinity-defense.jpg": {
       "url": "/images/materiales/piedras/infinity/infinity-defense.jpg",
@@ -1153,23 +1153,23 @@
     },
     "infinity-royal-peacock.jpg": {
       "url": "/images/materiales/piedras/infinity/infinity-royal-peacock.jpg",
-      "mtimeMs": 1782145711193.4197,
-      "size": 23981
+      "mtimeMs": 1782146011817.6409,
+      "size": 288651
     },
     "infinity-sahara-noir.jpg": {
       "url": "/images/materiales/piedras/infinity/infinity-sahara-noir.jpg",
-      "mtimeMs": 1782145711632.1626,
-      "size": 33816
+      "mtimeMs": 1782146011728.3289,
+      "size": 112726
     },
     "infinity-travertino-chiaro.jpg": {
       "url": "/images/materiales/piedras/infinity/infinity-travertino-chiaro.jpg",
-      "mtimeMs": 1782145709778.4412,
-      "size": 11942
+      "mtimeMs": 1782146112593.37,
+      "size": 263148
     },
     "infinity-tundra-select.jpg": {
       "url": "/images/materiales/piedras/infinity/infinity-tundra-select.jpg",
-      "mtimeMs": 1782145711419.2773,
-      "size": 10028
+      "mtimeMs": 1782146011774.8638,
+      "size": 330998
     },
     "agora.jpg": {
       "url": "/images/materiales/telas/agora.jpg",
@@ -1628,8 +1628,8 @@
     },
     "reposera-mdq-simple-anodizadonatural-beige.jpg": {
       "url": "/images/reposeras/mdq/reposera-mdq-simple-anodizadonatural-beige.jpg",
-      "mtimeMs": 1780518243832.8372,
-      "size": 46052
+      "mtimeMs": 1782148758618.703,
+      "size": 73842
     },
     "reposera-mdq-simple-anodizadonatural-blanco.jpg": {
       "url": "/images/reposeras/mdq/reposera-mdq-simple-anodizadonatural-blanco.jpg",
@@ -1906,45 +1906,30 @@
       "mtimeMs": 1779987334110.9165,
       "size": 33219
     },
-    "01-comedor-marbella-terraza.jpg": {
-      "url": "/images/sliders/comedor/01-comedor-marbella-terraza.jpg",
-      "mtimeMs": 1779908456117.8555,
-      "size": 8903
+    "marbella-placeholder.jpg": {
+      "url": "/images/sliders/comedor/marbella-placeholder.jpg",
+      "mtimeMs": 1782236016432.9116,
+      "size": 9647
     },
-    "02-comedor-marbella-piedra-detalle.jpg": {
-      "url": "/images/sliders/comedor/02-comedor-marbella-piedra-detalle.jpg",
-      "mtimeMs": 1779908456169.9111,
-      "size": 8903
-    },
-    "03-comedor-ambientacion-boutique.jpg": {
-      "url": "/images/sliders/comedor/03-comedor-ambientacion-boutique.jpg",
-      "mtimeMs": 1779908456221.0254,
-      "size": 8903
+    "skorphio-placeholder.jpg": {
+      "url": "/images/sliders/comedor/skorphio-placeholder.jpg",
+      "mtimeMs": 1782236016432.5295,
+      "size": 9647
     },
     "01-living-fendi-similmaderamarron-negro.jpg": {
       "url": "/images/sliders/living/01-living-fendi-similmaderamarron-negro.jpg",
-      "mtimeMs": 1780247361149.647,
-      "size": 92416
+      "mtimeMs": 1782233917695.242,
+      "size": 2267438
     },
     "02-living-maldivas-greige-beige.jpg": {
       "url": "/images/sliders/living/02-living-maldivas-greige-beige.jpg",
-      "mtimeMs": 1779908455904.5903,
-      "size": 8903
+      "mtimeMs": 1782233917705.1873,
+      "size": 382250
     },
     "03-living-malaga-hotel-boutique.jpg": {
       "url": "/images/sliders/living/03-living-malaga-hotel-boutique.jpg",
-      "mtimeMs": 1779908455958.7947,
-      "size": 8903
-    },
-    "04-living-skorphio-4cuerpos-blanco.jpg": {
-      "url": "/images/sliders/living/04-living-skorphio-4cuerpos-blanco.jpg",
-      "mtimeMs": 1779908456012.0327,
-      "size": 8903
-    },
-    "05-living-milos-terraza-minimal.jpg": {
-      "url": "/images/sliders/living/05-living-milos-terraza-minimal.jpg",
-      "mtimeMs": 1779908456065.879,
-      "size": 8903
+      "mtimeMs": 1782235299217.5188,
+      "size": 1895943
     },
     "01-reposera-fendi-similmaderamarron-negro.jpg": {
       "url": "/images/sliders/reposeras/01-reposera-fendi-similmaderamarron-negro.jpg",
@@ -2399,14 +2384,11 @@
     "/images/reposeras/skorphio/reposera-skorphio-simple-similmaderamarron-blanco.jpg",
     "/images/reposeras/skorphio/reposera-skorphio-simple-similmaderamarron-gris.jpg",
     "/images/reposeras/skorphio/reposera-skorphio-simple-similmaderamarron-negro.jpg",
-    "/images/sliders/comedor/01-comedor-marbella-terraza.jpg",
-    "/images/sliders/comedor/02-comedor-marbella-piedra-detalle.jpg",
-    "/images/sliders/comedor/03-comedor-ambientacion-boutique.jpg",
+    "/images/sliders/comedor/marbella-placeholder.jpg",
+    "/images/sliders/comedor/skorphio-placeholder.jpg",
     "/images/sliders/living/01-living-fendi-similmaderamarron-negro.jpg",
     "/images/sliders/living/02-living-maldivas-greige-beige.jpg",
     "/images/sliders/living/03-living-malaga-hotel-boutique.jpg",
-    "/images/sliders/living/04-living-skorphio-4cuerpos-blanco.jpg",
-    "/images/sliders/living/05-living-milos-terraza-minimal.jpg",
     "/images/sliders/reposeras/01-reposera-fendi-similmaderamarron-negro.jpg",
     "/images/sliders/reposeras/02-reposera-skorphio-greige-beige.jpg",
     "/images/sliders/reposeras/03-reposera-malaga-terraza-boutique.jpg",

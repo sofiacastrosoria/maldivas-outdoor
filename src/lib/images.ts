@@ -33,6 +33,25 @@ export function isTableProduct(product: Product): boolean {
   );
 }
 
+/** Mesas con imágenes en /images/mesas/{slug}/N.jpg según modelo de piedra */
+export function usesMesaStoneImages(product: Product): boolean {
+  return (
+    product.category === "mesas" &&
+    product.mesaImageByStone != null &&
+    Object.keys(product.mesaImageByStone).length > 0
+  );
+}
+
+export function getMesaStoneImageIndex(
+  product: Product,
+  config: Pick<ProductConfig, "stoneModel">
+): TableImageIndex {
+  const mapped = config.stoneModel
+    ? product.mesaImageByStone?.[config.stoneModel]
+    : undefined;
+  return mapped ?? 1;
+}
+
 /** Mesas con imágenes en /images/mesas/{slug}/N.jpg según estructura */
 export function usesMesasStructureImages(product: Product): boolean {
   return (
@@ -154,6 +173,17 @@ export function defaultProductConfig(product: Product): ProductConfig {
       ...base,
       stoneBrand: stone.stoneBrand,
       stoneModel: stone.stoneModel,
+    };
+  }
+
+  if (product.slug === "skorphio" && usesMesaStoneImages(product)) {
+    const firstStone = product.mesaStoneModels?.[0];
+    return {
+      ...base,
+      sizeId: product.sizes[0]?.id ?? "fixed",
+      structureId: "estandar",
+      stoneBrand: firstStone?.brand ?? "infinity",
+      stoneModel: firstStone?.id ?? "",
     };
   }
 

@@ -15,6 +15,7 @@ import {
   resolveMarbellaStoneBrand,
   STONE_BRAND_LABELS,
 } from "@/data/comedorStone";
+import { getMesaSkorphioStoneById } from "@/data/mesaSkorphioStone";
 import type { Product, ProductConfig, CartItem } from "@/types";
 
 const STRUCTURE_ID_TO_KEY: Record<string, StructurePriceKey> = {
@@ -92,6 +93,7 @@ function getSillonListPrice(
 }
 
 function getMesaListPrice(slug: string, structureId: string): number | null {
+  if (slug === "skorphio") return 3_747_600;
   const structureKey = toStructureKey(structureId);
   if (!structureKey) return null;
   return MESA_LIST_PRICES[slug]?.[structureKey] ?? null;
@@ -298,6 +300,17 @@ export function buildConfigSummary(
     if (model) {
       lines.push(
         `Piedra: ${STONE_BRAND_LABELS[model.brand]} — ${model.label}`
+      );
+    }
+  } else if (
+    product.slug === "skorphio" &&
+    product.category === "mesas" &&
+    config.stoneModel
+  ) {
+    const model = getMesaSkorphioStoneById(config.stoneModel);
+    if (model) {
+      lines.push(
+        `Piedra: ${STONE_BRAND_LABELS[model.brand as keyof typeof STONE_BRAND_LABELS]} — ${model.label}`
       );
     }
   } else if (config.stoneBrand) {

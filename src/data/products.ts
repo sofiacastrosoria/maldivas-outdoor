@@ -1,4 +1,5 @@
 import type { Product, ProductOption, ProductSize } from "@/types";
+import { MESA_SKORPHIO_STONE_MODELS } from "@/data/mesaSkorphioStone";
 
 const FABRICS: ProductOption[] = [
   { id: "negro", label: "Negro" },
@@ -61,6 +62,10 @@ const STRUCTURE_MESA_FENDI: ProductOption[] = [
 
 const MESA_FENDI_MEASURE: ProductSize[] = [
   { id: "fixed", label: "Medida", dimensions: "160 × 80 × 38 cm" },
+];
+
+const MESA_SKORPHIO_MEASURE: ProductSize[] = [
+  { id: "fixed", label: "Medida", dimensions: "160 × 80 × 33 cm" },
 ];
 
 const REPOSERA_SIZES: ProductSize[] = [
@@ -301,11 +306,16 @@ export const products: Product[] = [
     description: "Superficie en piedra sinterizada de alta resistencia. Diseño minimalista.",
     image: IMG("1600585154340-be6161a56a0c"),
     gallery: [IMG("1600585154340-be6161a56a0c")],
-    sizes: [{ id: "custom", label: "Personalizable", dimensions: "A medida" }],
+    sizes: MESA_SKORPHIO_MEASURE,
     structures: [{ id: "estandar", label: "Estructura estándar" }],
     fabrics: [],
-    stoneBrands: STONE_BRANDS,
-    customizableSize: true,
+    fixedMeasure: true,
+    mesaStoneModels: MESA_SKORPHIO_STONE_MODELS,
+    mesaImageByStone: {
+      "infinity-travertino-chiaro": 2,
+      "infinity-laurent": 1,
+      "skorphio-white-macaubas": 3,
+    },
   },
   {
     id: "mesa-malaga",

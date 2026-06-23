@@ -23,6 +23,14 @@ function applyConfigPatch(
   }
 
   if (
+    product.slug === "skorphio" &&
+    product.category === "mesas" &&
+    patch.stoneModel
+  ) {
+    next.stoneBrand = "infinity";
+  }
+
+  if (
     product.slug === "marbella" &&
     patch.sizeId &&
     patch.sizeId !== prev.sizeId

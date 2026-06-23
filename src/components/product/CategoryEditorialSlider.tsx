@@ -35,7 +35,7 @@ export function CategoryEditorialSlider({
         .map((s) => ({
           src: s.src ?? editorialSlideUrl(category, s.file),
           label: s.label,
-          href: s.href,
+          href,
         })),
     [category]
   );

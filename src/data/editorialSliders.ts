@@ -65,20 +65,19 @@ export const categoryEditorialSlides: Record<SliderCategory, EditorialSlide[]> =
         href: "/productos/living/maldivas",
       },
       {
-        file: "05-living-milos-terraza-minimal.jpg",
-        label: "Milos",
-        href: "/productos/living/milos",
+        file: "03-living-malaga-hotel-boutique.jpg",
+        label: "Málaga",
+        href: "/productos/living/malaga",
       },
     ],
     comedor: [
       {
-        file: "skorphio-comedor-simil-madera-marron-300.jpg",
+        file: "skorphio-placeholder.jpg",
         label: "Skorphio",
         href: "/productos/comedor/skorphio",
-        src: "/images/comedor/skorphio/skorphio-comedor-simil-madera-marron-300.jpg",
       },
       {
-        file: "01-comedor-marbella-terraza.jpg",
+        file: "marbella-placeholder.jpg",
         label: "Marbella",
         href: "/productos/comedor/marbella",
       },

@@ -151,6 +151,10 @@ export function VariantSelector({
     product.structures.length > 0 && product.structures[0].id !== "estandar";
   const isMarbellaComedor =
     product.slug === "marbella" && product.comedorVariantImages;
+  const isSkorphioMesa =
+    product.slug === "skorphio" &&
+    product.category === "mesas" &&
+    (product.mesaStoneModels?.length ?? 0) > 0;
   const marbellaStoneModels = isMarbellaComedor
     ? getAvailableStoneModels(config.sizeId)
     : [];
@@ -319,7 +323,42 @@ export function VariantSelector({
         </section>
       )}
 
-      {product.stoneBrands && product.stoneBrands.length > 0 && !isMarbellaComedor && (
+      {isSkorphioMesa && (
+        <section>
+          <SectionTitle>Piedra</SectionTitle>
+          <div className="relative">
+            <select
+              value={config.stoneModel ?? ""}
+              onChange={(e) =>
+                onChange({
+                  stoneModel: e.target.value,
+                  stoneBrand: "infinity",
+                })
+              }
+              className="w-full appearance-none rounded-lg border border-premium-border bg-white px-3.5 py-3 pr-10 text-sm text-matte-black focus:border-matte-black outline-none transition-colors duration-300 cursor-pointer"
+            >
+              <option value="" disabled>
+                Seleccionar piedra
+              </option>
+              <optgroup label={STONE_BRAND_LABELS.infinity.toUpperCase()}>
+                {product.mesaStoneModels!.map((model) => (
+                  <option key={model.id} value={model.id}>
+                    {model.label}
+                  </option>
+                ))}
+              </optgroup>
+            </select>
+            <span
+              className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-premium-gray text-xs"
+              aria-hidden
+            >
+              ▾
+            </span>
+          </div>
+        </section>
+      )}
+
+      {product.stoneBrands && product.stoneBrands.length > 0 && !isMarbellaComedor && !isSkorphioMesa && (
         <>
           <section>
             <SectionTitle>Marca de piedra</SectionTitle>
