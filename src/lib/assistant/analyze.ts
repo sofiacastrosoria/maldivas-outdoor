@@ -359,6 +359,10 @@ const FOLLOW_UP_PRICE =
 
 const CATEGORY_HINTS: { pattern: RegExp; category: Product["category"] }[] = [
   { pattern: /\b(reposera|reposeras)\b/, category: "reposeras" },
+  {
+    pattern: /\b(skorphio)\b.*\b(mesa|mesas)\b|\b(mesa|mesas)\b.*\b(skorphio)\b/,
+    category: "mesas",
+  },
   { pattern: /\b(mesa|mesas)\s+(de\s+)?(comedor|comedores)\b/, category: "comedor" },
   { pattern: /\b(comedor|comedores)\b/, category: "comedor" },
   { pattern: /\bmarbella\b/, category: "comedor" },

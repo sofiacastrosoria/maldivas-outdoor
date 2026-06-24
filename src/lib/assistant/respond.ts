@@ -16,6 +16,11 @@ import {
 } from "@/lib/assistant/facts";
 import type { AssistantIntent } from "@/lib/assistant/types";
 import type { TopicId } from "@/lib/assistant/topicMatcher";
+import { MESA_SKORPHIO_LIVING } from "@/data/knowledge-base";
+
+function isMesaSkorphioLiving(product: Product): boolean {
+  return product.id === "mesa-skorphio";
+}
 
 function capitalize(s: string): string {
   return s.charAt(0).toUpperCase() + s.slice(1);
@@ -108,6 +113,10 @@ export function respondPrice(product: Product): string {
 
   if (product.fabrics.length > 0) {
     parts.push("El valor varía según estructura y tamaño; la tela no modifica el precio");
+  } else if (isMesaSkorphioLiving(product)) {
+    parts.push(
+      "Las tres opciones de piedra Infinity comparten el mismo precio de lista"
+    );
   } else if (product.category === "mesas") {
     parts.push("El valor varía según la estructura elegida");
   } else if (product.customizableSize) {
@@ -139,6 +148,14 @@ export function respondProductInfo(product: Product): string {
   }
   if (product.fabrics.length > 0) {
     configBits.push("tapizado personalizable");
+  }
+  if (product.mesaStoneModels?.length) {
+    configBits.push(
+      `piedra ${MESA_SKORPHIO_LIVING.stoneBrand} (${product.mesaStoneModels.map((m) => m.label).join(", ")})`
+    );
+  }
+  if (product.fixedMeasure && product.sizes[0]?.dimensions) {
+    configBits.push(`medida ${product.sizes[0].dimensions}`);
   }
   if (product.customizableSize) {
     configBits.push("medida y piedra a elección");
@@ -216,6 +233,11 @@ export function respondConfiguration(product?: Product): string {
     if (product.fabrics.length) {
       opts.push(
         `tapizado (${product.fabrics.map((f) => f.label).join(", ")})`
+      );
+    }
+    if (product.mesaStoneModels?.length) {
+      opts.push(
+        `piedra ${MESA_SKORPHIO_LIVING.stoneBrand} (${product.mesaStoneModels.map((m) => m.label).join(", ")})`
       );
     }
     if (product.stoneBrands?.length) {

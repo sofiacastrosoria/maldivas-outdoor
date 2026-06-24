@@ -10,7 +10,8 @@
     "images:structure": "npx tsx scripts/generateImageStructure.ts",
     "images:placeholders": "npx tsx scripts/generateRealPlaceholders.ts",
     "images:manifest": "npx tsx scripts/generateImageManifest.ts",
-    "images:sync": "npm run images:structure && npm run images:placeholders && npm run images:manifest"
+    "images:sync": "npm run images:structure && npm run images:placeholders && npm run images:manifest",
+    "favicon:generate": "node scripts/generate-favicon.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.15.0",
@@ -28,6 +29,7 @@
     "eslint-config-next": "^15.1.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.16",
+    "to-ico": "^1.1.5",
     "typescript": "^5.7.2"
   }
 }

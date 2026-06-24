@@ -13,6 +13,7 @@ import {
   matchTopic,
   matchWebsiteHint,
 } from "@/lib/assistant/topicMatcher";
+import { matchProductKnowledge } from "@/lib/assistant/productKnowledge";
 import type { CollectionSlug } from "@/lib/assistant/facts";
 import {
   respondCategoryOverview,
@@ -239,6 +240,25 @@ export function getAssistantReply(
 
   const query = parseQuery(trimmed, context);
   const product = query.products[0];
+
+  const knowledgeAnswer = matchProductKnowledge(trimmed, product);
+  if (knowledgeAnswer) {
+    const nextContext = updateContext(
+      context,
+      product?.id ?? context.lastProductId,
+      product?.category ?? query.categoryHint,
+      product ? [product.slug] : undefined
+    );
+    return {
+      answer: knowledgeAnswer,
+      suggestions: product
+        ? ["¿Y cuánto cuesta?", "¿Qué opciones de configuración tiene?"]
+        : DEFAULT_SUGGESTIONS,
+      escalated: false,
+      actions: resolveActions("product_info", trimmed, false),
+      context: nextContext,
+    };
+  }
 
   let { answer, effectiveIntent } = resolveIntentAnswer(
     query.intent,
