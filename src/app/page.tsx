@@ -53,46 +53,82 @@ export default function HomePage() {
       <section
         id="inicio"
         ref={heroRef}
-        className="relative min-h-[70vh] flex items-end overflow-hidden bg-sand/10"
+        className="relative overflow-hidden bg-sand/10"
       >
-        <motion.div
-          style={{ y }}
-          className="absolute inset-x-0 top-0 flex justify-center"
-        >
-          <IntrinsicImage
-            src={SHOWROOM_IMAGE}
-            alt="Showroom Maldivas Outdoor"
-            priority
-            sizes={IMAGE_SIZES.hero}
-            className="max-h-[85vh]"
-            rounded={false}
-          />
-        </motion.div>
-        <div className="absolute inset-0 bg-gradient-to-t from-matte-black/70 via-matte-black/20 to-matte-black/30" />
-        <motion.div
-          style={{ opacity }}
-          className="relative z-10 w-full px-6 pb-20 md:px-12 md:pb-28"
-        >
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="text-[10px] md:text-xs tracking-luxury uppercase text-white/60 mb-4"
+        {/* ── Mobile: imagen 16:10 + texto debajo, sin overlay ── */}
+        <div className="md:hidden">
+          <div className="relative w-full aspect-[16/10] overflow-hidden">
+            <IntrinsicImage
+              src={SHOWROOM_IMAGE}
+              alt="Showroom Maldivas Outdoor"
+              priority
+              sizes={IMAGE_SIZES.hero}
+              className="!h-full !w-full object-cover object-center"
+              style={{ height: "100%", width: "100%" }}
+              rounded={false}
+            />
+          </div>
+          <div className="px-6">
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.25 }}
+              className="pt-2.5 text-[8px] tracking-[0.2em] uppercase text-matte-black/45"
+            >
+              Inicio · Maldivas Outdoor · Córdoba, Argentina
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.4 }}
+              className="pt-3 pb-8 text-[2rem] font-extralight text-matte-black tracking-tight leading-[1.12]"
+            >
+              {tagline}
+            </motion.h1>
+          </div>
+        </div>
+
+        {/* ── Desktop: sin cambios ── */}
+        <div className="relative hidden min-h-[70vh] items-end md:flex">
+          <motion.div
+            style={{ y }}
+            className="absolute inset-x-0 top-0 flex justify-center"
           >
-            Inicio · Maldivas Outdoor · Córdoba, Argentina
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.5 }}
-            className="text-4xl md:text-7xl font-extralight text-white tracking-tight max-w-4xl leading-[1.1]"
+            <IntrinsicImage
+              src={SHOWROOM_IMAGE}
+              alt="Showroom Maldivas Outdoor"
+              priority
+              sizes={IMAGE_SIZES.hero}
+              className="max-h-[85vh]"
+              rounded={false}
+            />
+          </motion.div>
+          <div className="absolute inset-0 bg-gradient-to-t from-matte-black/70 via-matte-black/20 to-matte-black/30" />
+          <motion.div
+            style={{ opacity }}
+            className="relative z-10 w-full px-6 pb-20 md:px-12 md:pb-28"
           >
-            {tagline}
-          </motion.h1>
-        </motion.div>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.3 }}
+              className="text-[10px] md:text-xs tracking-luxury uppercase text-white/60 mb-4"
+            >
+              Inicio · Maldivas Outdoor · Córdoba, Argentina
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, delay: 0.5 }}
+              className="text-4xl md:text-7xl font-extralight text-white tracking-tight max-w-4xl leading-[1.1]"
+            >
+              {tagline}
+            </motion.h1>
+          </motion.div>
+        </div>
       </section>
 
-      <section className="py-32 md:py-48 px-6 text-center bg-sand/20">
+      <section className="px-6 py-10 text-center bg-sand/20 md:py-32 lg:py-48">
         <FadeIn>
           <p className="text-[10px] tracking-luxury uppercase text-matte-black/40 mb-4">
             Descubrir

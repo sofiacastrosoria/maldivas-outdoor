@@ -33,6 +33,28 @@ interface ProductDetailProps {
   backLabel: string;
 }
 
+/** Degradado inferior ~2.5% — solo reposeras y living (no mesas ni comedor) */
+const CONFIGURATOR_IMAGE_FADE =
+  "linear-gradient(to bottom, rgba(248,246,242,0) 0%, rgba(248,246,242,1) 100%)";
+
+function showConfiguratorImageFade(category: Product["category"]): boolean {
+  return category === "reposeras" || category === "living";
+}
+
+function ConfiguratorImageBottomFade({ product }: { product: Product }) {
+  if (!showConfiguratorImageFade(product.category)) return null;
+  return (
+    <div
+      className="pointer-events-none absolute bottom-0 left-0 right-0 z-[1]"
+      style={{
+        height: "2.5%",
+        background: CONFIGURATOR_IMAGE_FADE,
+      }}
+      aria-hidden
+    />
+  );
+}
+
 function buildQuoteMessage(
   product: Product,
   config: ReturnType<typeof useVariantConfig>["config"],
@@ -222,16 +244,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               compact
               onClick={() => setZoomOpen(true)}
             />
-            {/* Fade suave imagen → miniaturas */}
-            <div
-              className="pointer-events-none absolute bottom-0 left-0 right-0"
-              style={{
-                height: "52px",
-                background:
-                  "linear-gradient(to bottom, transparent 0%, #F8F6F2 100%)",
-              }}
-              aria-hidden
-            />
+            <ConfiguratorImageBottomFade product={product} />
           </div>
           <VariantThumbnails
             product={product}
@@ -282,6 +295,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
                 sizes="(min-width: 1280px) 1120px, (min-width: 1024px) calc(100vw - 10rem), calc(100vw - 5rem)"
                 priority
               />
+              <ConfiguratorImageBottomFade product={product} />
             </div>
 
             {/* Miniaturas: centradas, ligeramente más grandes en desktop */}
