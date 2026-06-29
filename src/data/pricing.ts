@@ -2,8 +2,12 @@
  * ÚNICO archivo editable para precios de lista — Maldivas Outdoor
  *
  * Modificá solo los valores numéricos de lista.
- * Efectivo (×0.70) y transferencia (×0.85) se calculan automáticamente.
+ * El sistema aplica automáticamente −2% al precio de lista publicado.
+ * Efectivo (−30%) y transferencia (−15%) se calculan sobre ese valor ajustado.
  */
+
+/** Reducción global aplicada al precio de lista antes de publicar */
+export const LIST_PRICE_ADJUSTMENT = 0.98;
 
 export const CASH_MULTIPLIER = 0.7;
 export const TRANSFER_MULTIPLIER = 0.85;

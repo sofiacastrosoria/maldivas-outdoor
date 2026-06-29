@@ -1,6 +1,7 @@
 import {
   CASH_MULTIPLIER,
   COMEDOR_LIST_PRICES,
+  LIST_PRICE_ADJUSTMENT,
   MESA_LIST_PRICES,
   REPOSERA_LIST_PRICES,
   SILLON_LIST_PRICES,
@@ -117,24 +118,33 @@ function getComedorListPrice(
   return entry[brand as ComedorStoneBrandKey] ?? null;
 }
 
+/** Precio de lista publicado: valor del catálogo × 0.98 */
+function applyListPriceAdjustment(catalogListPrice: number): number {
+  return Math.round(catalogListPrice * LIST_PRICE_ADJUSTMENT);
+}
+
 export function getListPrice(
   product: Product,
   config: ProductConfig
 ): number | null {
+  let catalogList: number | null = null;
+
   if (product.category === "reposeras") {
-    return getReposeraListPrice(product.slug, config.structureId, config.sizeId);
-  }
-
-  if (product.category === "living" && product.subcategory === "sillones") {
-    return getSillonListPrice(product.slug, config.structureId, config.sizeId);
-  }
-
-  if (product.category === "mesas") {
-    return getMesaListPrice(product.slug, config.structureId);
-  }
-
-  if (product.category === "comedor") {
-    return getComedorListPrice(
+    catalogList = getReposeraListPrice(
+      product.slug,
+      config.structureId,
+      config.sizeId
+    );
+  } else if (product.category === "living" && product.subcategory === "sillones") {
+    catalogList = getSillonListPrice(
+      product.slug,
+      config.structureId,
+      config.sizeId
+    );
+  } else if (product.category === "mesas") {
+    catalogList = getMesaListPrice(product.slug, config.structureId);
+  } else if (product.category === "comedor") {
+    catalogList = getComedorListPrice(
       product.slug,
       config.structureId,
       config.sizeId,
@@ -142,7 +152,8 @@ export function getListPrice(
     );
   }
 
-  return null;
+  if (catalogList === null) return null;
+  return applyListPriceAdjustment(catalogList);
 }
 
 export function buildPriceBreakdown(list: number): PriceBreakdown {
