@@ -9,6 +9,9 @@
 /** Reducción global aplicada al precio de lista antes de publicar */
 export const LIST_PRICE_ADJUSTMENT = 0.98;
 
+/** Aumento exclusivo mesas de comedor (Marbella y Skorphio) sobre el valor de catálogo */
+export const COMEDOR_LIST_PRICE_INCREASE = 1.1;
+
 export const CASH_MULTIPLIER = 0.7;
 export const TRANSFER_MULTIPLIER = 0.85;
 

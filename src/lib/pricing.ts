@@ -1,6 +1,7 @@
 import {
   CASH_MULTIPLIER,
   COMEDOR_LIST_PRICES,
+  COMEDOR_LIST_PRICE_INCREASE,
   LIST_PRICE_ADJUSTMENT,
   MESA_LIST_PRICES,
   REPOSERA_LIST_PRICES,
@@ -153,6 +154,13 @@ export function getListPrice(
   }
 
   if (catalogList === null) return null;
+
+  if (product.category === "comedor") {
+    return Math.round(
+      catalogList * COMEDOR_LIST_PRICE_INCREASE * LIST_PRICE_ADJUSTMENT
+    );
+  }
+
   return applyListPriceAdjustment(catalogList);
 }
 
