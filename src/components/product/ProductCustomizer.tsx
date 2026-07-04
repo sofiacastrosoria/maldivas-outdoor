@@ -8,6 +8,7 @@ import { PriceBreakdown } from "./PriceBreakdown";
 import { defaultProductConfig, dynamicImageResolver } from "@/lib/images";
 import { useCart } from "@/context/CartContext";
 import { DynamicProductImage } from "./DynamicProductImage";
+import { sortStructuresForDisplay } from "@/lib/productDisplay";
 
 interface ProductCustomizerProps {
   product: Product;
@@ -204,7 +205,7 @@ export function ProductCustomizer({
                           Estructura
                         </h4>
                         <div className="grid gap-2">
-                          {product.structures.map((s) => (
+                          {sortStructuresForDisplay(product.structures).map((s) => (
                             <OptionButton
                               key={s.id}
                               selected={config.structureId === s.id}

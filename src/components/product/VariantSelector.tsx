@@ -13,6 +13,7 @@ import {
   FABRIC_TYPE_OPTIONS,
   type FabricTypeId,
 } from "@/lib/premiumSwatches";
+import { sortStructuresForDisplay } from "@/lib/productDisplay";
 
 interface VariantSelectorProps {
   product: Product;
@@ -220,7 +221,7 @@ export function VariantSelector({
         <section>
           <SectionTitle>Estructura</SectionTitle>
           <div className="flex flex-wrap gap-3.5 sm:gap-4">
-            {product.structures.map((s) => {
+            {sortStructuresForDisplay(product.structures).map((s) => {
               const swatch = STRUCTURE_SWATCHES[s.id] ?? {
                 background: "#D9D4CC",
               };

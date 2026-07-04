@@ -13,6 +13,7 @@ import {
   type StructurePriceKey,
 } from "@/data/pricing";
 import {
+  getAvailableStoneModels,
   getStoneModelById,
   resolveMarbellaStoneBrand,
   STONE_BRAND_LABELS,
@@ -231,26 +232,119 @@ export function calculatePrice(
   return getListPrice(product, config);
 }
 
+/** Todas las combinaciones que impactan el precio de lista */
+function enumeratePriceConfigs(product: Product): ProductConfig[] {
+  const fabricId = product.fabrics[0]?.id ?? "negro";
+  const configs: ProductConfig[] = [];
+
+  for (const size of product.sizes) {
+    for (const structure of product.structures) {
+      if (product.slug === "marbella" && product.comedorVariantImages) {
+        for (const model of getAvailableStoneModels(size.id)) {
+          configs.push({
+            sizeId: size.id,
+            structureId: structure.id,
+            fabricId,
+            stoneBrand: model.brand,
+            stoneModel: model.id,
+            customDimensions: "",
+            customNotes: "",
+          });
+        }
+      } else if (product.mesaStoneModels?.length) {
+        for (const stone of product.mesaStoneModels) {
+          configs.push({
+            sizeId: size.id,
+            structureId: structure.id,
+            fabricId,
+            stoneBrand: stone.brand,
+            stoneModel: stone.id,
+            customDimensions: "",
+            customNotes: "",
+          });
+        }
+      } else {
+        configs.push({
+          sizeId: size.id,
+          structureId: structure.id,
+          fabricId,
+          stoneBrand: product.stoneBrands?.[0]?.id,
+          stoneModel: "",
+          customDimensions: "",
+          customNotes: "",
+        });
+      }
+    }
+  }
+
+  return configs;
+}
+
+/** Preferencia al desempatar estructuras con el mismo precio de lista */
+const STRUCTURE_TIE_BREAK_ORDER = [
+  "negro-pintado",
+  "greige-pintado",
+  "anodizado-negro",
+  "anodizado-peltre",
+  "simil-madera-marron",
+  "simil-madera-blanco",
+] as const;
+
+const structureTieBreakIndex = new Map<string, number>(
+  STRUCTURE_TIE_BREAK_ORDER.map((id, index) => [id, index])
+);
+
+function structureTieBreakRank(structureId: string): number {
+  return structureTieBreakIndex.get(structureId) ?? STRUCTURE_TIE_BREAK_ORDER.length;
+}
+
+function isPreferredCheapestConfig(
+  candidate: ProductConfig,
+  candidatePrice: number,
+  current: ProductConfig,
+  currentPrice: number
+): boolean {
+  if (candidatePrice < currentPrice) return true;
+  if (candidatePrice > currentPrice) return false;
+  return (
+    structureTieBreakRank(candidate.structureId) <
+    structureTieBreakRank(current.structureId)
+  );
+}
+
+/** Configuración inicial: variante de menor precio de lista publicado */
+export function getCheapestProductConfig(product: Product): ProductConfig {
+  let best: ProductConfig | null = null;
+  let bestPrice = Infinity;
+
+  for (const cfg of enumeratePriceConfigs(product)) {
+    const price = getListPrice(product, cfg);
+    if (price === null) continue;
+    if (best === null || isPreferredCheapestConfig(cfg, price, best, bestPrice)) {
+      bestPrice = price;
+      best = cfg;
+    }
+  }
+
+  if (best) return best;
+
+  return {
+    sizeId: product.sizes[0]?.id ?? "custom",
+    structureId: product.structures[0]?.id ?? "estandar",
+    fabricId: product.fabrics[0]?.id ?? "negro",
+    stoneBrand: product.stoneBrands?.[0]?.id,
+    stoneModel: "",
+    customDimensions: "",
+    customNotes: "",
+  };
+}
+
 export function getMinimumListPrice(product: Product): number | null {
   let min = Infinity;
 
-  for (const structure of product.structures) {
-    for (const size of product.sizes) {
-      const brands =
-        product.slug === "marbella" && size.id === "200"
-          ? (["infinity", "dekton"] as const)
-          : ([undefined] as const);
-
-      for (const brand of brands) {
-        const list = getListPrice(product, {
-          structureId: structure.id,
-          sizeId: size.id,
-          fabricId: product.fabrics[0]?.id ?? "",
-          stoneBrand: brand,
-        });
-        if (list !== null && list < min) min = list;
-      }
-    }
+  for (const cfg of enumeratePriceConfigs(product)) {
+    const list = getListPrice(product, cfg);
+    if (list !== null && list < min) min = list;
   }
 
   return min === Infinity ? null : min;
@@ -260,25 +354,11 @@ export function getMinimumListPrice(product: Product): number | null {
 export function getMinimumCashPrice(product: Product): number | null {
   let min = Infinity;
 
-  for (const structure of product.structures) {
-    for (const size of product.sizes) {
-      const brands =
-        product.slug === "marbella" && size.id === "200"
-          ? (["infinity", "dekton"] as const)
-          : ([undefined] as const);
-
-      for (const brand of brands) {
-        const list = getListPrice(product, {
-          structureId: structure.id,
-          sizeId: size.id,
-          fabricId: product.fabrics[0]?.id ?? "",
-          stoneBrand: brand,
-        });
-        if (list !== null) {
-          const cash = buildPriceBreakdown(list).cash;
-          if (cash < min) min = cash;
-        }
-      }
+  for (const cfg of enumeratePriceConfigs(product)) {
+    const list = getListPrice(product, cfg);
+    if (list !== null) {
+      const cash = buildPriceBreakdown(list).cash;
+      if (cash < min) min = cash;
     }
   }
 

@@ -20,3 +20,29 @@ export function getProductTypeLabel(product: Product): string {
   if (product.category === "comedor") return "Mesa de comedor";
   return "Sillón";
 }
+
+/** Orden visual estructuras: menor a mayor precio de lista */
+const STRUCTURE_DISPLAY_ORDER = [
+  "negro-pintado",
+  "greige-pintado",
+  "blanco-pintado",
+  "anodizado-natural",
+  "anodizado-negro",
+  "anodizado-peltre",
+  "simil-madera-marron",
+  "simil-madera-blanco",
+] as const;
+
+const structureOrderIndex = new Map<string, number>(
+  STRUCTURE_DISPLAY_ORDER.map((id, index) => [id, index])
+);
+
+export function sortStructuresForDisplay<T extends { id: string }>(
+  structures: T[]
+): T[] {
+  return [...structures].sort((a, b) => {
+    const orderA = structureOrderIndex.get(a.id) ?? STRUCTURE_DISPLAY_ORDER.length;
+    const orderB = structureOrderIndex.get(b.id) ?? STRUCTURE_DISPLAY_ORDER.length;
+    return orderA - orderB;
+  });
+}

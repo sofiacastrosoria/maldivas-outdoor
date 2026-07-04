@@ -1,5 +1,5 @@
 import type { Product, ProductConfig } from "@/types";
-import { defaultMarbellaStoneModel } from "@/data/comedorStone";
+import { getCheapestProductConfig } from "@/lib/pricing";
 
 /* ─── Size segments in filenames ─── */
 const SIZE_COMPACT: Record<string, string> = {
@@ -157,40 +157,7 @@ export function dynamicImageResolver(
 }
 
 export function defaultProductConfig(product: Product): ProductConfig {
-  const base: ProductConfig = {
-    sizeId: product.sizes[0]?.id ?? "custom",
-    structureId: product.structures[0]?.id ?? "estandar",
-    fabricId: product.fabrics[0]?.id ?? "negro",
-    stoneModel: "",
-    customDimensions: "",
-    customNotes: "",
-  };
-
-  if (product.slug === "marbella" && product.comedorVariantImages) {
-    const sizeId = base.sizeId;
-    const stone = defaultMarbellaStoneModel(sizeId);
-    return {
-      ...base,
-      stoneBrand: stone.stoneBrand,
-      stoneModel: stone.stoneModel,
-    };
-  }
-
-  if (product.slug === "skorphio" && usesMesaStoneImages(product)) {
-    const firstStone = product.mesaStoneModels?.[0];
-    return {
-      ...base,
-      sizeId: product.sizes[0]?.id ?? "fixed",
-      structureId: "estandar",
-      stoneBrand: firstStone?.brand ?? "infinity",
-      stoneModel: firstStone?.id ?? "",
-    };
-  }
-
-  return {
-    ...base,
-    stoneBrand: product.stoneBrands?.[0]?.id,
-  };
+  return getCheapestProductConfig(product);
 }
 
 export const TABLE_IMAGE_INDEXES: TableImageIndex[] = [1, 2, 3];

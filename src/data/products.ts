@@ -17,6 +17,14 @@ const STRUCTURE_FENDI: ProductOption[] = [
   { id: "negro-pintado", label: "Negro pintado" },
 ];
 
+/** Living Fendi — sin anodizado (reposeras mantienen STRUCTURE_FENDI) */
+const STRUCTURE_FENDI_LIVING: ProductOption[] = [
+  { id: "negro-pintado", label: "Negro pintado" },
+  { id: "greige-pintado", label: "Greige pintado" },
+  { id: "simil-madera-marron", label: "Símil madera marrón" },
+  { id: "simil-madera-blanco", label: "Símil madera blanco" },
+];
+
 const STRUCTURE_SKORPHIO: ProductOption[] = [
   { id: "simil-madera-blanco", label: "Símil madera blanco" },
   { id: "simil-madera-marron", label: "Símil madera marrón" },
@@ -26,22 +34,24 @@ const STRUCTURE_SKORPHIO: ProductOption[] = [
 
 const STRUCTURE_MALDIVAS: ProductOption[] = [
   { id: "negro-pintado", label: "Negro pintado" },
-  { id: "anodizado-peltre", label: "Anodizado peltre lijado", onRequest: true },
-  { id: "anodizado-negro", label: "Anodizado negro lijado", onRequest: true },
+  { id: "greige-pintado", label: "Greige pintado" },
 ];
 
 const STRUCTURE_MILOS: ProductOption[] = [
   { id: "negro-pintado", label: "Negro pintado" },
   { id: "greige-pintado", label: "Greige pintado" },
-  { id: "blanco-pintado", label: "Blanco pintado" },
-  { id: "anodizado-peltre", label: "Anodizado peltre lijado", onRequest: true },
-  { id: "anodizado-negro", label: "Anodizado negro lijado", onRequest: true },
 ];
 
 const STRUCTURE_MALAGA: ProductOption[] = [
   { id: "negro-pintado", label: "Negro pintado" },
   { id: "anodizado-peltre", label: "Anodizado peltre lijado", onRequest: true },
   { id: "anodizado-negro", label: "Anodizado negro lijado", onRequest: true },
+];
+
+/** Living Málaga — sin anodizado (reposeras mantienen STRUCTURE_MALAGA) */
+const STRUCTURE_MALAGA_LIVING: ProductOption[] = [
+  { id: "negro-pintado", label: "Negro pintado" },
+  { id: "greige-pintado", label: "Greige pintado" },
 ];
 
 const STRUCTURE_MDQ: ProductOption[] = [
@@ -108,8 +118,6 @@ const SOFA_SIZES_MILOS: ProductSize[] = [
 ];
 
 const STRUCTURE_COMEDOR: ProductOption[] = [
-  { id: "anodizado-negro", label: "Anodizado negro lijado", onRequest: true },
-  { id: "anodizado-peltre", label: "Anodizado peltre lijado", onRequest: true },
   { id: "negro-pintado", label: "Negro pintado" },
   { id: "greige-pintado", label: "Greige pintado" },
   { id: "simil-madera-marron", label: "Símil madera marrón" },
@@ -216,7 +224,7 @@ export const products: Product[] = [
     image: IMG("1555041469-a586c81e7bc9"),
     gallery: [IMG("1555041469-a586c81e7bc9"), IMG("1616486338812-3dadae4b4f40")],
     sizes: SOFA_SIZES_FENDI,
-    structures: STRUCTURE_FENDI,
+    structures: STRUCTURE_FENDI_LIVING,
     fabrics: FABRICS,
   },
   {
@@ -244,7 +252,7 @@ export const products: Product[] = [
     image: IMG("1600210492486-0946911123ea"),
     gallery: [IMG("1600210492486-0946911123ea"), IMG("1600566752355-4b89be3f8397")],
     sizes: SOFA_SIZES_MALAGA,
-    structures: STRUCTURE_MALAGA,
+    structures: STRUCTURE_MALAGA_LIVING,
     fabrics: FABRICS,
   },
   {

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-23T17:33:52.424Z",
+  "generatedAt": "2026-07-02T21:11:48.604Z",
   "files": {
     "about-1.jpg": {
       "url": "/images/about/about-1.jpg",
@@ -21,54 +21,9 @@
       "mtimeMs": 1781646495079.827,
       "size": 264198
     },
-    "marbella-anodizado-negro-200.jpg": {
-      "url": "/images/comedor/marbella/marbella-anodizado-negro-200.jpg",
-      "mtimeMs": 1781722495752.1738,
-      "size": 8903
-    },
-    "marbella-anodizado-negro-260.jpg": {
-      "url": "/images/comedor/marbella/marbella-anodizado-negro-260.jpg",
-      "mtimeMs": 1781722495700.206,
-      "size": 8903
-    },
-    "marbella-anodizado-negro-278.jpg": {
-      "url": "/images/comedor/marbella/marbella-anodizado-negro-278.jpg",
-      "mtimeMs": 1781722495632.576,
-      "size": 8903
-    },
-    "marbella-anodizado-peltre-200.jpg": {
-      "url": "/images/comedor/marbella/marbella-anodizado-peltre-200.jpg",
-      "mtimeMs": 1781722495906.4675,
-      "size": 8903
-    },
-    "marbella-anodizado-peltre-260.jpg": {
-      "url": "/images/comedor/marbella/marbella-anodizado-peltre-260.jpg",
-      "mtimeMs": 1781722495854.6633,
-      "size": 8903
-    },
-    "marbella-anodizado-peltre-278.jpg": {
-      "url": "/images/comedor/marbella/marbella-anodizado-peltre-278.jpg",
-      "mtimeMs": 1781722495803.192,
-      "size": 8903
-    },
-    "marbella-greige-pintado-200.jpg": {
-      "url": "/images/comedor/marbella/marbella-greige-pintado-200.jpg",
-      "mtimeMs": 1781722496225.2012,
-      "size": 8903
-    },
     "marbella-greige-pintado-260.jpg": {
       "url": "/images/comedor/marbella/marbella-greige-pintado-260.jpg",
       "mtimeMs": 1781722496172.3206,
-      "size": 8903
-    },
-    "marbella-greige-pintado-278.jpg": {
-      "url": "/images/comedor/marbella/marbella-greige-pintado-278.jpg",
-      "mtimeMs": 1781722496118.6025,
-      "size": 8903
-    },
-    "marbella-negro-pintado-200.jpg": {
-      "url": "/images/comedor/marbella/marbella-negro-pintado-200.jpg",
-      "mtimeMs": 1781722496064.5632,
       "size": 8903
     },
     "marbella-negro-pintado-260.jpg": {
@@ -76,29 +31,9 @@
       "mtimeMs": 1781722496011.085,
       "size": 8903
     },
-    "marbella-negro-pintado-278.jpg": {
-      "url": "/images/comedor/marbella/marbella-negro-pintado-278.jpg",
-      "mtimeMs": 1781722495959.1904,
-      "size": 8903
-    },
-    "marbella-simil-madera-blanco-200.jpg": {
-      "url": "/images/comedor/marbella/marbella-simil-madera-blanco-200.jpg",
-      "mtimeMs": 1781722496539.3494,
-      "size": 8903
-    },
     "marbella-simil-madera-blanco-260.jpg": {
       "url": "/images/comedor/marbella/marbella-simil-madera-blanco-260.jpg",
       "mtimeMs": 1781722496487.8127,
-      "size": 8903
-    },
-    "marbella-simil-madera-blanco-278.jpg": {
-      "url": "/images/comedor/marbella/marbella-simil-madera-blanco-278.jpg",
-      "mtimeMs": 1781722496434.6577,
-      "size": 8903
-    },
-    "marbella-simil-madera-marron-200.jpg": {
-      "url": "/images/comedor/marbella/marbella-simil-madera-marron-200.jpg",
-      "mtimeMs": 1781722496382.3213,
       "size": 8903
     },
     "marbella-simil-madera-marron-260.jpg": {
@@ -106,145 +41,30 @@
       "mtimeMs": 1781722496330.2944,
       "size": 8903
     },
-    "marbella-simil-madera-marron-278.jpg": {
-      "url": "/images/comedor/marbella/marbella-simil-madera-marron-278.jpg",
-      "mtimeMs": 1781722496277.486,
-      "size": 8903
-    },
-    "skorphio-comedor-anodizado-negro-lijado-200.jpg": {
-      "url": "/images/comedor/skorphio/skorphio-comedor-anodizado-negro-lijado-200.jpg",
-      "mtimeMs": 1781722494659.7263,
-      "size": 8903
-    },
-    "skorphio-comedor-anodizado-negro-lijado-270.jpg": {
-      "url": "/images/comedor/skorphio/skorphio-comedor-anodizado-negro-lijado-270.jpg",
-      "mtimeMs": 1781722494593.9465,
-      "size": 8903
-    },
-    "skorphio-comedor-anodizado-negro-lijado-300.jpg": {
-      "url": "/images/comedor/skorphio/skorphio-comedor-anodizado-negro-lijado-300.jpg",
-      "mtimeMs": 1781722494527.2488,
-      "size": 8903
-    },
-    "skorphio-comedor-anodizado-peltre-lijado-200.jpg": {
-      "url": "/images/comedor/skorphio/skorphio-comedor-anodizado-peltre-lijado-200.jpg",
-      "mtimeMs": 1781722494846.6782,
-      "size": 8903
-    },
-    "skorphio-comedor-anodizado-peltre-lijado-270.jpg": {
-      "url": "/images/comedor/skorphio/skorphio-comedor-anodizado-peltre-lijado-270.jpg",
-      "mtimeMs": 1781722494779.7808,
-      "size": 8903
-    },
-    "skorphio-comedor-anodizado-peltre-lijado-300.jpg": {
-      "url": "/images/comedor/skorphio/skorphio-comedor-anodizado-peltre-lijado-300.jpg",
-      "mtimeMs": 1781722494713.1846,
-      "size": 8903
-    },
-    "skorphio-comedor-greige-pintado-200.jpg": {
-      "url": "/images/comedor/skorphio/skorphio-comedor-greige-pintado-200.jpg",
-      "mtimeMs": 1781722495226.976,
-      "size": 8903
-    },
     "skorphio-comedor-greige-pintado-270.jpg": {
       "url": "/images/comedor/skorphio/skorphio-comedor-greige-pintado-270.jpg",
-      "mtimeMs": 1781722495174.467,
-      "size": 8903
-    },
-    "skorphio-comedor-greige-pintado-300.jpg": {
-      "url": "/images/comedor/skorphio/skorphio-comedor-greige-pintado-300.jpg",
-      "mtimeMs": 1781722495108.903,
-      "size": 8903
-    },
-    "skorphio-comedor-negro-pintado-200.jpg": {
-      "url": "/images/comedor/skorphio/skorphio-comedor-negro-pintado-200.jpg",
-      "mtimeMs": 1781722495040.268,
-      "size": 8903
+      "mtimeMs": 1783021888195.5012,
+      "size": 2462822
     },
     "skorphio-comedor-negro-pintado-270.jpg": {
       "url": "/images/comedor/skorphio/skorphio-comedor-negro-pintado-270.jpg",
-      "mtimeMs": 1781722494982.0676,
-      "size": 8903
-    },
-    "skorphio-comedor-negro-pintado-300.jpg": {
-      "url": "/images/comedor/skorphio/skorphio-comedor-negro-pintado-300.jpg",
-      "mtimeMs": 1781722494915.47,
-      "size": 8903
-    },
-    "skorphio-comedor-simil-madera-blanco-200.jpg": {
-      "url": "/images/comedor/skorphio/skorphio-comedor-simil-madera-blanco-200.jpg",
-      "mtimeMs": 1781722495565.2512,
-      "size": 8903
+      "mtimeMs": 1783021888230.1853,
+      "size": 2281103
     },
     "skorphio-comedor-simil-madera-blanco-270.jpg": {
       "url": "/images/comedor/skorphio/skorphio-comedor-simil-madera-blanco-270.jpg",
       "mtimeMs": 1781722495497.286,
       "size": 8903
     },
-    "skorphio-comedor-simil-madera-blanco-300.jpg": {
-      "url": "/images/comedor/skorphio/skorphio-comedor-simil-madera-blanco-300.jpg",
-      "mtimeMs": 1781722495445.9917,
-      "size": 8903
-    },
-    "skorphio-comedor-simil-madera-marron-200.jpg": {
-      "url": "/images/comedor/skorphio/skorphio-comedor-simil-madera-marron-200.jpg",
-      "mtimeMs": 1781722495394.2979,
-      "size": 8903
-    },
     "skorphio-comedor-simil-madera-marron-270.jpg": {
       "url": "/images/comedor/skorphio/skorphio-comedor-simil-madera-marron-270.jpg",
-      "mtimeMs": 1781722495343.3655,
-      "size": 8903
-    },
-    "skorphio-comedor-simil-madera-marron-300.jpg": {
-      "url": "/images/comedor/skorphio/skorphio-comedor-simil-madera-marron-300.jpg",
-      "mtimeMs": 1781722495277.9873,
-      "size": 8903
+      "mtimeMs": 1783021888255.807,
+      "size": 2330712
     },
     "local-showroom.jpg": {
       "url": "/images/contacto/local-showroom.jpg",
       "mtimeMs": 1782147810127.8145,
       "size": 2877362
-    },
-    "living-fendi-1cuerpo-anodizadonegro-beige.jpg": {
-      "url": "/images/living/fendi/living-fendi-1cuerpo-anodizadonegro-beige.jpg",
-      "mtimeMs": 1780721411957.4849,
-      "size": 43404
-    },
-    "living-fendi-1cuerpo-anodizadonegro-blanco.jpg": {
-      "url": "/images/living/fendi/living-fendi-1cuerpo-anodizadonegro-blanco.jpg",
-      "mtimeMs": 1780721398620.8013,
-      "size": 37761
-    },
-    "living-fendi-1cuerpo-anodizadonegro-gris.jpg": {
-      "url": "/images/living/fendi/living-fendi-1cuerpo-anodizadonegro-gris.jpg",
-      "mtimeMs": 1780721402820.1243,
-      "size": 43188
-    },
-    "living-fendi-1cuerpo-anodizadonegro-negro.jpg": {
-      "url": "/images/living/fendi/living-fendi-1cuerpo-anodizadonegro-negro.jpg",
-      "mtimeMs": 1780721406644.5198,
-      "size": 40722
-    },
-    "living-fendi-1cuerpo-anodizadopeltre-beige.jpg": {
-      "url": "/images/living/fendi/living-fendi-1cuerpo-anodizadopeltre-beige.jpg",
-      "mtimeMs": 1780709157294.958,
-      "size": 45625
-    },
-    "living-fendi-1cuerpo-anodizadopeltre-blanco.jpg": {
-      "url": "/images/living/fendi/living-fendi-1cuerpo-anodizadopeltre-blanco.jpg",
-      "mtimeMs": 1780709152718.575,
-      "size": 41423
-    },
-    "living-fendi-1cuerpo-anodizadopeltre-gris.jpg": {
-      "url": "/images/living/fendi/living-fendi-1cuerpo-anodizadopeltre-gris.jpg",
-      "mtimeMs": 1780709142758.902,
-      "size": 47545
-    },
-    "living-fendi-1cuerpo-anodizadopeltre-negro.jpg": {
-      "url": "/images/living/fendi/living-fendi-1cuerpo-anodizadopeltre-negro.jpg",
-      "mtimeMs": 1780709148105.6016,
-      "size": 43120
     },
     "living-fendi-1cuerpo-greige-beige.jpg": {
       "url": "/images/living/fendi/living-fendi-1cuerpo-greige-beige.jpg",
@@ -326,46 +146,6 @@
       "mtimeMs": 1780721745004.6113,
       "size": 31284
     },
-    "living-fendi-4cuerpos-anodizadonegro-beige.jpg": {
-      "url": "/images/living/fendi/living-fendi-4cuerpos-anodizadonegro-beige.jpg",
-      "mtimeMs": 1780763944909.1643,
-      "size": 40812
-    },
-    "living-fendi-4cuerpos-anodizadonegro-blanco.jpg": {
-      "url": "/images/living/fendi/living-fendi-4cuerpos-anodizadonegro-blanco.jpg",
-      "mtimeMs": 1780763940319.6597,
-      "size": 33902
-    },
-    "living-fendi-4cuerpos-anodizadonegro-gris.jpg": {
-      "url": "/images/living/fendi/living-fendi-4cuerpos-anodizadonegro-gris.jpg",
-      "mtimeMs": 1780763930524.8037,
-      "size": 38719
-    },
-    "living-fendi-4cuerpos-anodizadonegro-negro.jpg": {
-      "url": "/images/living/fendi/living-fendi-4cuerpos-anodizadonegro-negro.jpg",
-      "mtimeMs": 1780763935811.404,
-      "size": 35976
-    },
-    "living-fendi-4cuerpos-anodizadopeltre-beige.jpg": {
-      "url": "/images/living/fendi/living-fendi-4cuerpos-anodizadopeltre-beige.jpg",
-      "mtimeMs": 1780763615715.1008,
-      "size": 65290
-    },
-    "living-fendi-4cuerpos-anodizadopeltre-blanco.jpg": {
-      "url": "/images/living/fendi/living-fendi-4cuerpos-anodizadopeltre-blanco.jpg",
-      "mtimeMs": 1780763611352.8276,
-      "size": 54421
-    },
-    "living-fendi-4cuerpos-anodizadopeltre-gris.jpg": {
-      "url": "/images/living/fendi/living-fendi-4cuerpos-anodizadopeltre-gris.jpg",
-      "mtimeMs": 1780763624428.132,
-      "size": 61489
-    },
-    "living-fendi-4cuerpos-anodizadopeltre-negro.jpg": {
-      "url": "/images/living/fendi/living-fendi-4cuerpos-anodizadopeltre-negro.jpg",
-      "mtimeMs": 1780763606923.017,
-      "size": 59749
-    },
     "living-fendi-4cuerpos-greige-beige.jpg": {
       "url": "/images/living/fendi/living-fendi-4cuerpos-greige-beige.jpg",
       "mtimeMs": 1780763842203.106,
@@ -446,45 +226,25 @@
       "mtimeMs": 1780763426164.4053,
       "size": 58626
     },
-    "living-malaga-1cuerpo-anodizadonegro-beige.jpg": {
-      "url": "/images/living/malaga/living-malaga-1cuerpo-anodizadonegro-beige.jpg",
-      "mtimeMs": 1781286553147.5977,
-      "size": 44116
+    "living-malaga-1cuerpo-greige-beige.jpg": {
+      "url": "/images/living/malaga/living-malaga-1cuerpo-greige-beige.jpg",
+      "mtimeMs": 1783026576083.5613,
+      "size": 35847
     },
-    "living-malaga-1cuerpo-anodizadonegro-blanco.jpg": {
-      "url": "/images/living/malaga/living-malaga-1cuerpo-anodizadonegro-blanco.jpg",
-      "mtimeMs": 1781286546341.9487,
-      "size": 38121
+    "living-malaga-1cuerpo-greige-blanco.jpg": {
+      "url": "/images/living/malaga/living-malaga-1cuerpo-greige-blanco.jpg",
+      "mtimeMs": 1783026576086.5032,
+      "size": 31438
     },
-    "living-malaga-1cuerpo-anodizadonegro-gris.jpg": {
-      "url": "/images/living/malaga/living-malaga-1cuerpo-anodizadonegro-gris.jpg",
-      "mtimeMs": 1781286549567.118,
-      "size": 42415
+    "living-malaga-1cuerpo-greige-gris.jpg": {
+      "url": "/images/living/malaga/living-malaga-1cuerpo-greige-gris.jpg",
+      "mtimeMs": 1783026576090.737,
+      "size": 34984
     },
-    "living-malaga-1cuerpo-anodizadonegro-negro.jpg": {
-      "url": "/images/living/malaga/living-malaga-1cuerpo-anodizadonegro-negro.jpg",
-      "mtimeMs": 1781286540226.1543,
-      "size": 37450
-    },
-    "living-malaga-1cuerpo-anodizadopeltre-beige.jpg": {
-      "url": "/images/living/malaga/living-malaga-1cuerpo-anodizadopeltre-beige.jpg",
-      "mtimeMs": 1781286456630.9265,
-      "size": 40889
-    },
-    "living-malaga-1cuerpo-anodizadopeltre-blanco.jpg": {
-      "url": "/images/living/malaga/living-malaga-1cuerpo-anodizadopeltre-blanco.jpg",
-      "mtimeMs": 1781286422735.3271,
-      "size": 36540
-    },
-    "living-malaga-1cuerpo-anodizadopeltre-gris.jpg": {
-      "url": "/images/living/malaga/living-malaga-1cuerpo-anodizadopeltre-gris.jpg",
-      "mtimeMs": 1781286451851.3757,
-      "size": 41434
-    },
-    "living-malaga-1cuerpo-anodizadopeltre-negro.jpg": {
-      "url": "/images/living/malaga/living-malaga-1cuerpo-anodizadopeltre-negro.jpg",
-      "mtimeMs": 1781286441963.3875,
-      "size": 38426
+    "living-malaga-1cuerpo-greige-negro.jpg": {
+      "url": "/images/living/malaga/living-malaga-1cuerpo-greige-negro.jpg",
+      "mtimeMs": 1783026576093.5298,
+      "size": 31129
     },
     "living-malaga-1cuerpo-negropintado-beige.jpg": {
       "url": "/images/living/malaga/living-malaga-1cuerpo-negropintado-beige.jpg",
@@ -506,45 +266,25 @@
       "mtimeMs": 1781286426959.8994,
       "size": 31129
     },
-    "living-malaga-4cuerpos-anodizadonegro-beige.jpg": {
-      "url": "/images/living/malaga/living-malaga-4cuerpos-anodizadonegro-beige.jpg",
-      "mtimeMs": 1781286834484.5,
-      "size": 38165
+    "living-malaga-4cuerpos-greige-beige.jpg": {
+      "url": "/images/living/malaga/living-malaga-4cuerpos-greige-beige.jpg",
+      "mtimeMs": 1783026576096.7107,
+      "size": 51610
     },
-    "living-malaga-4cuerpos-anodizadonegro-blanco.jpg": {
-      "url": "/images/living/malaga/living-malaga-4cuerpos-anodizadonegro-blanco.jpg",
-      "mtimeMs": 1781286841145.7573,
-      "size": 30803
+    "living-malaga-4cuerpos-greige-blanco.jpg": {
+      "url": "/images/living/malaga/living-malaga-4cuerpos-greige-blanco.jpg",
+      "mtimeMs": 1783026576099.5112,
+      "size": 39894
     },
-    "living-malaga-4cuerpos-anodizadonegro-gris.jpg": {
-      "url": "/images/living/malaga/living-malaga-4cuerpos-anodizadonegro-gris.jpg",
-      "mtimeMs": 1781286844357.785,
-      "size": 33501
+    "living-malaga-4cuerpos-greige-gris.jpg": {
+      "url": "/images/living/malaga/living-malaga-4cuerpos-greige-gris.jpg",
+      "mtimeMs": 1783026576102.059,
+      "size": 44308
     },
-    "living-malaga-4cuerpos-anodizadonegro-negro.jpg": {
-      "url": "/images/living/malaga/living-malaga-4cuerpos-anodizadonegro-negro.jpg",
-      "mtimeMs": 1781286837801.0874,
-      "size": 31164
-    },
-    "living-malaga-4cuerpos-anodizadopeltre-beige.jpg": {
-      "url": "/images/living/malaga/living-malaga-4cuerpos-anodizadopeltre-beige.jpg",
-      "mtimeMs": 1781286878976.5806,
-      "size": 47129
-    },
-    "living-malaga-4cuerpos-anodizadopeltre-blanco.jpg": {
-      "url": "/images/living/malaga/living-malaga-4cuerpos-anodizadopeltre-blanco.jpg",
-      "mtimeMs": 1781286871021.7036,
-      "size": 37274
-    },
-    "living-malaga-4cuerpos-anodizadopeltre-gris.jpg": {
-      "url": "/images/living/malaga/living-malaga-4cuerpos-anodizadopeltre-gris.jpg",
-      "mtimeMs": 1781286875234.465,
-      "size": 41283
-    },
-    "living-malaga-4cuerpos-anodizadopeltre-negro.jpg": {
-      "url": "/images/living/malaga/living-malaga-4cuerpos-anodizadopeltre-negro.jpg",
-      "mtimeMs": 1781286861986.3472,
-      "size": 38849
+    "living-malaga-4cuerpos-greige-negro.jpg": {
+      "url": "/images/living/malaga/living-malaga-4cuerpos-greige-negro.jpg",
+      "mtimeMs": 1783026576104.7268,
+      "size": 40455
     },
     "living-malaga-4cuerpos-negropintado-beige.jpg": {
       "url": "/images/living/malaga/living-malaga-4cuerpos-negropintado-beige.jpg",
@@ -566,45 +306,25 @@
       "mtimeMs": 1781286847667.2522,
       "size": 40455
     },
-    "living-maldivas-1cuerpo-anodizadonegro-beige.jpg": {
-      "url": "/images/living/maldivas/living-maldivas-1cuerpo-anodizadonegro-beige.jpg",
-      "mtimeMs": 1781368920099.8452,
-      "size": 33381
+    "living-maldivas-1cuerpo-greige-beige.jpg": {
+      "url": "/images/living/maldivas/living-maldivas-1cuerpo-greige-beige.jpg",
+      "mtimeMs": 1783026576107.89,
+      "size": 31589
     },
-    "living-maldivas-1cuerpo-anodizadonegro-blanco.jpg": {
-      "url": "/images/living/maldivas/living-maldivas-1cuerpo-anodizadonegro-blanco.jpg",
-      "mtimeMs": 1781368913149.0364,
-      "size": 30257
+    "living-maldivas-1cuerpo-greige-blanco.jpg": {
+      "url": "/images/living/maldivas/living-maldivas-1cuerpo-greige-blanco.jpg",
+      "mtimeMs": 1783026576110.2185,
+      "size": 28928
     },
-    "living-maldivas-1cuerpo-anodizadonegro-gris.jpg": {
-      "url": "/images/living/maldivas/living-maldivas-1cuerpo-anodizadonegro-gris.jpg",
-      "mtimeMs": 1781368916414.1035,
-      "size": 38554
+    "living-maldivas-1cuerpo-greige-gris.jpg": {
+      "url": "/images/living/maldivas/living-maldivas-1cuerpo-greige-gris.jpg",
+      "mtimeMs": 1783026576113.6338,
+      "size": 33007
     },
-    "living-maldivas-1cuerpo-anodizadonegro-negro.jpg": {
-      "url": "/images/living/maldivas/living-maldivas-1cuerpo-anodizadonegro-negro.jpg",
-      "mtimeMs": 1781368909813.7598,
-      "size": 29853
-    },
-    "living-maldivas-1cuerpo-anodizadopeltre-beige.jpg": {
-      "url": "/images/living/maldivas/living-maldivas-1cuerpo-anodizadopeltre-beige.jpg",
-      "mtimeMs": 1781368646088.263,
-      "size": 33773
-    },
-    "living-maldivas-1cuerpo-anodizadopeltre-blanco.jpg": {
-      "url": "/images/living/maldivas/living-maldivas-1cuerpo-anodizadopeltre-blanco.jpg",
-      "mtimeMs": 1781368634521.3208,
-      "size": 31831
-    },
-    "living-maldivas-1cuerpo-anodizadopeltre-gris.jpg": {
-      "url": "/images/living/maldivas/living-maldivas-1cuerpo-anodizadopeltre-gris.jpg",
-      "mtimeMs": 1781368642319.786,
-      "size": 34191
-    },
-    "living-maldivas-1cuerpo-anodizadopeltre-negro.jpg": {
-      "url": "/images/living/maldivas/living-maldivas-1cuerpo-anodizadopeltre-negro.jpg",
-      "mtimeMs": 1781368619129.8103,
-      "size": 31829
+    "living-maldivas-1cuerpo-greige-negro.jpg": {
+      "url": "/images/living/maldivas/living-maldivas-1cuerpo-greige-negro.jpg",
+      "mtimeMs": 1783026576116.268,
+      "size": 28032
     },
     "living-maldivas-1cuerpo-negropintado-beige.jpg": {
       "url": "/images/living/maldivas/living-maldivas-1cuerpo-negropintado-beige.jpg",
@@ -626,45 +346,25 @@
       "mtimeMs": 1781368615501.6501,
       "size": 28032
     },
-    "living-maldivas-4cuerpos-anodizadonegro-beige.jpg": {
-      "url": "/images/living/maldivas/living-maldivas-4cuerpos-anodizadonegro-beige.jpg",
-      "mtimeMs": 1781368934360.664,
-      "size": 31433
+    "living-maldivas-4cuerpos-greige-beige.jpg": {
+      "url": "/images/living/maldivas/living-maldivas-4cuerpos-greige-beige.jpg",
+      "mtimeMs": 1783026576119.0369,
+      "size": 30023
     },
-    "living-maldivas-4cuerpos-anodizadonegro-blanco.jpg": {
-      "url": "/images/living/maldivas/living-maldivas-4cuerpos-anodizadonegro-blanco.jpg",
-      "mtimeMs": 1781368927492.5928,
-      "size": 29685
+    "living-maldivas-4cuerpos-greige-blanco.jpg": {
+      "url": "/images/living/maldivas/living-maldivas-4cuerpos-greige-blanco.jpg",
+      "mtimeMs": 1783026576121.5605,
+      "size": 28783
     },
-    "living-maldivas-4cuerpos-anodizadonegro-gris.jpg": {
-      "url": "/images/living/maldivas/living-maldivas-4cuerpos-anodizadonegro-gris.jpg",
-      "mtimeMs": 1781368930962.702,
-      "size": 32229
+    "living-maldivas-4cuerpos-greige-gris.jpg": {
+      "url": "/images/living/maldivas/living-maldivas-4cuerpos-greige-gris.jpg",
+      "mtimeMs": 1783026576123.854,
+      "size": 29757
     },
-    "living-maldivas-4cuerpos-anodizadonegro-negro.jpg": {
-      "url": "/images/living/maldivas/living-maldivas-4cuerpos-anodizadonegro-negro.jpg",
-      "mtimeMs": 1781368923943.116,
-      "size": 29193
-    },
-    "living-maldivas-4cuerpos-anodizadopeltre-beige.jpg": {
-      "url": "/images/living/maldivas/living-maldivas-4cuerpos-anodizadopeltre-beige.jpg",
-      "mtimeMs": 1781368945117.5059,
-      "size": 32617
-    },
-    "living-maldivas-4cuerpos-anodizadopeltre-blanco.jpg": {
-      "url": "/images/living/maldivas/living-maldivas-4cuerpos-anodizadopeltre-blanco.jpg",
-      "mtimeMs": 1781368941443.138,
-      "size": 29020
-    },
-    "living-maldivas-4cuerpos-anodizadopeltre-gris.jpg": {
-      "url": "/images/living/maldivas/living-maldivas-4cuerpos-anodizadopeltre-gris.jpg",
-      "mtimeMs": 1781368906566.171,
-      "size": 35088
-    },
-    "living-maldivas-4cuerpos-anodizadopeltre-negro.jpg": {
-      "url": "/images/living/maldivas/living-maldivas-4cuerpos-anodizadopeltre-negro.jpg",
-      "mtimeMs": 1781368938064.6128,
-      "size": 29825
+    "living-maldivas-4cuerpos-greige-negro.jpg": {
+      "url": "/images/living/maldivas/living-maldivas-4cuerpos-greige-negro.jpg",
+      "mtimeMs": 1783026576126.2104,
+      "size": 27669
     },
     "living-maldivas-4cuerpos-negropintado-beige.jpg": {
       "url": "/images/living/maldivas/living-maldivas-4cuerpos-negropintado-beige.jpg",
@@ -685,66 +385,6 @@
       "url": "/images/living/maldivas/living-maldivas-4cuerpos-negropintado-negro.jpg",
       "mtimeMs": 1781368611940.3997,
       "size": 27669
-    },
-    "living-milos-1cuerpo-anodizadonegro-beige.jpg": {
-      "url": "/images/living/milos/living-milos-1cuerpo-anodizadonegro-beige.jpg",
-      "mtimeMs": 1781276238625.1584,
-      "size": 48045
-    },
-    "living-milos-1cuerpo-anodizadonegro-blanco.jpg": {
-      "url": "/images/living/milos/living-milos-1cuerpo-anodizadonegro-blanco.jpg",
-      "mtimeMs": 1781276227755.689,
-      "size": 35197
-    },
-    "living-milos-1cuerpo-anodizadonegro-gris.jpg": {
-      "url": "/images/living/milos/living-milos-1cuerpo-anodizadonegro-gris.jpg",
-      "mtimeMs": 1781276235172.4119,
-      "size": 49031
-    },
-    "living-milos-1cuerpo-anodizadonegro-negro.jpg": {
-      "url": "/images/living/milos/living-milos-1cuerpo-anodizadonegro-negro.jpg",
-      "mtimeMs": 1781276231673.3857,
-      "size": 43545
-    },
-    "living-milos-1cuerpo-anodizadopeltre-beige.jpg": {
-      "url": "/images/living/milos/living-milos-1cuerpo-anodizadopeltre-beige.jpg",
-      "mtimeMs": 1781275969463.6882,
-      "size": 57003
-    },
-    "living-milos-1cuerpo-anodizadopeltre-blanco.jpg": {
-      "url": "/images/living/milos/living-milos-1cuerpo-anodizadopeltre-blanco.jpg",
-      "mtimeMs": 1781275957927.2258,
-      "size": 37179
-    },
-    "living-milos-1cuerpo-anodizadopeltre-gris.jpg": {
-      "url": "/images/living/milos/living-milos-1cuerpo-anodizadopeltre-gris.jpg",
-      "mtimeMs": 1781275965510.865,
-      "size": 51802
-    },
-    "living-milos-1cuerpo-anodizadopeltre-negro.jpg": {
-      "url": "/images/living/milos/living-milos-1cuerpo-anodizadopeltre-negro.jpg",
-      "mtimeMs": 1781275961521.3335,
-      "size": 47633
-    },
-    "living-milos-1cuerpo-blancopintado-beige.jpg": {
-      "url": "/images/living/milos/living-milos-1cuerpo-blancopintado-beige.jpg",
-      "mtimeMs": 1781276251978.0535,
-      "size": 38869
-    },
-    "living-milos-1cuerpo-blancopintado-blanco.jpg": {
-      "url": "/images/living/milos/living-milos-1cuerpo-blancopintado-blanco.jpg",
-      "mtimeMs": 1781276241785.6414,
-      "size": 27486
-    },
-    "living-milos-1cuerpo-blancopintado-gris.jpg": {
-      "url": "/images/living/milos/living-milos-1cuerpo-blancopintado-gris.jpg",
-      "mtimeMs": 1781276248833.1309,
-      "size": 36859
-    },
-    "living-milos-1cuerpo-blancopintado-negro.jpg": {
-      "url": "/images/living/milos/living-milos-1cuerpo-blancopintado-negro.jpg",
-      "mtimeMs": 1781276245285.3325,
-      "size": 40301
     },
     "living-milos-1cuerpo-greige-beige.jpg": {
       "url": "/images/living/milos/living-milos-1cuerpo-greige-beige.jpg",
@@ -785,66 +425,6 @@
       "url": "/images/living/milos/living-milos-1cuerpo-negropintado-negro.jpg",
       "mtimeMs": 1781275977649.8987,
       "size": 27408
-    },
-    "living-milos-4cuerpos-anodizadonegro-beige.jpg": {
-      "url": "/images/living/milos/living-milos-4cuerpos-anodizadonegro-beige.jpg",
-      "mtimeMs": 1781275623805.5767,
-      "size": 34007
-    },
-    "living-milos-4cuerpos-anodizadonegro-blanco.jpg": {
-      "url": "/images/living/milos/living-milos-4cuerpos-anodizadonegro-blanco.jpg",
-      "mtimeMs": 1781275613163.397,
-      "size": 27168
-    },
-    "living-milos-4cuerpos-anodizadonegro-gris.jpg": {
-      "url": "/images/living/milos/living-milos-4cuerpos-anodizadonegro-gris.jpg",
-      "mtimeMs": 1781275620499.8513,
-      "size": 30588
-    },
-    "living-milos-4cuerpos-anodizadonegro-negro.jpg": {
-      "url": "/images/living/milos/living-milos-4cuerpos-anodizadonegro-negro.jpg",
-      "mtimeMs": 1781275617197.7986,
-      "size": 26867
-    },
-    "living-milos-4cuerpos-anodizadopeltre-beige.jpg": {
-      "url": "/images/living/milos/living-milos-4cuerpos-anodizadopeltre-beige.jpg",
-      "mtimeMs": 1781275635601.3342,
-      "size": 40242
-    },
-    "living-milos-4cuerpos-anodizadopeltre-blanco.jpg": {
-      "url": "/images/living/milos/living-milos-4cuerpos-anodizadopeltre-blanco.jpg",
-      "mtimeMs": 1781275627934.3337,
-      "size": 32397
-    },
-    "living-milos-4cuerpos-anodizadopeltre-gris.jpg": {
-      "url": "/images/living/milos/living-milos-4cuerpos-anodizadopeltre-gris.jpg",
-      "mtimeMs": 1781275631838.6895,
-      "size": 36502
-    },
-    "living-milos-4cuerpos-anodizadopeltre-negro.jpg": {
-      "url": "/images/living/milos/living-milos-4cuerpos-anodizadopeltre-negro.jpg",
-      "mtimeMs": 1781275609539.5383,
-      "size": 33542
-    },
-    "living-milos-4cuerpos-blancopintado-beige.jpg": {
-      "url": "/images/living/milos/living-milos-4cuerpos-blancopintado-beige.jpg",
-      "mtimeMs": 1781275650276.5022,
-      "size": 27204
-    },
-    "living-milos-4cuerpos-blancopintado-blanco.jpg": {
-      "url": "/images/living/milos/living-milos-4cuerpos-blancopintado-blanco.jpg",
-      "mtimeMs": 1781275639195.5833,
-      "size": 22620
-    },
-    "living-milos-4cuerpos-blancopintado-gris.jpg": {
-      "url": "/images/living/milos/living-milos-4cuerpos-blancopintado-gris.jpg",
-      "mtimeMs": 1781275646152.9841,
-      "size": 26284
-    },
-    "living-milos-4cuerpos-blancopintado-negro.jpg": {
-      "url": "/images/living/milos/living-milos-4cuerpos-blancopintado-negro.jpg",
-      "mtimeMs": 1781275642631.138,
-      "size": 24676
     },
     "living-milos-4cuerpos-greige-beige.jpg": {
       "url": "/images/living/milos/living-milos-4cuerpos-greige-beige.jpg",
@@ -888,163 +468,163 @@
     },
     "living-skorphio-1cuerpo-blancopintado-beige.jpg": {
       "url": "/images/living/skorphio/living-skorphio-1cuerpo-blancopintado-beige.jpg",
-      "mtimeMs": 1781274932626.71,
-      "size": 35090
+      "mtimeMs": 1782916295713.0034,
+      "size": 1390109
     },
     "living-skorphio-1cuerpo-blancopintado-blanco.jpg": {
       "url": "/images/living/skorphio/living-skorphio-1cuerpo-blancopintado-blanco.jpg",
-      "mtimeMs": 1781274936430.9626,
-      "size": 27651
+      "mtimeMs": 1782916295269.704,
+      "size": 1333101
     },
     "living-skorphio-1cuerpo-blancopintado-gris.jpg": {
       "url": "/images/living/skorphio/living-skorphio-1cuerpo-blancopintado-gris.jpg",
-      "mtimeMs": 1781274923850.8281,
-      "size": 33149
+      "mtimeMs": 1782916295404.8276,
+      "size": 1509236
     },
     "living-skorphio-1cuerpo-blancopintado-negro.jpg": {
       "url": "/images/living/skorphio/living-skorphio-1cuerpo-blancopintado-negro.jpg",
-      "mtimeMs": 1781274928473.7668,
-      "size": 31305
+      "mtimeMs": 1782916295341.2544,
+      "size": 1340909
     },
     "living-skorphio-1cuerpo-negropintado-beige.jpg": {
       "url": "/images/living/skorphio/living-skorphio-1cuerpo-negropintado-beige.jpg",
-      "mtimeMs": 1781274966926.514,
-      "size": 37534
+      "mtimeMs": 1782916295577.093,
+      "size": 1467977
     },
     "living-skorphio-1cuerpo-negropintado-blanco.jpg": {
       "url": "/images/living/skorphio/living-skorphio-1cuerpo-negropintado-blanco.jpg",
-      "mtimeMs": 1781274963147.5793,
-      "size": 29083
+      "mtimeMs": 1782916295476.4487,
+      "size": 1251791
     },
     "living-skorphio-1cuerpo-negropintado-gris.jpg": {
       "url": "/images/living/skorphio/living-skorphio-1cuerpo-negropintado-gris.jpg",
-      "mtimeMs": 1781274959322.3113,
-      "size": 35322
+      "mtimeMs": 1782916295543.1255,
+      "size": 1434198
     },
     "living-skorphio-1cuerpo-negropintado-negro.jpg": {
       "url": "/images/living/skorphio/living-skorphio-1cuerpo-negropintado-negro.jpg",
-      "mtimeMs": 1781274955776.435,
-      "size": 30262
+      "mtimeMs": 1782916295510.8909,
+      "size": 1357336
     },
     "living-skorphio-1cuerpo-similmaderablanco-beige.jpg": {
       "url": "/images/living/skorphio/living-skorphio-1cuerpo-similmaderablanco-beige.jpg",
-      "mtimeMs": 1781274951875.067,
-      "size": 39267
+      "mtimeMs": 1782916294706.2588,
+      "size": 1870101
     },
     "living-skorphio-1cuerpo-similmaderablanco-blanco.jpg": {
       "url": "/images/living/skorphio/living-skorphio-1cuerpo-similmaderablanco-blanco.jpg",
-      "mtimeMs": 1781274948108.708,
-      "size": 30957
+      "mtimeMs": 1782916294673.7222,
+      "size": 1261941
     },
     "living-skorphio-1cuerpo-similmaderablanco-gris.jpg": {
       "url": "/images/living/skorphio/living-skorphio-1cuerpo-similmaderablanco-gris.jpg",
-      "mtimeMs": 1781274944357.4363,
-      "size": 37748
+      "mtimeMs": 1782916294594.836,
+      "size": 1480980
     },
     "living-skorphio-1cuerpo-similmaderablanco-negro.jpg": {
       "url": "/images/living/skorphio/living-skorphio-1cuerpo-similmaderablanco-negro.jpg",
-      "mtimeMs": 1781274940325.8435,
-      "size": 34889
+      "mtimeMs": 1782916294610.4097,
+      "size": 1418503
     },
     "living-skorphio-1cuerpo-similmaderamarron-beige.jpg": {
       "url": "/images/living/skorphio/living-skorphio-1cuerpo-similmaderamarron-beige.jpg",
-      "mtimeMs": 1781274984164.1018,
-      "size": 41752
+      "mtimeMs": 1782916294743.8508,
+      "size": 1590929
     },
     "living-skorphio-1cuerpo-similmaderamarron-blanco.jpg": {
       "url": "/images/living/skorphio/living-skorphio-1cuerpo-similmaderamarron-blanco.jpg",
-      "mtimeMs": 1781274970866.8455,
-      "size": 36043
+      "mtimeMs": 1782916295611.4849,
+      "size": 1418632
     },
     "living-skorphio-1cuerpo-similmaderamarron-gris.jpg": {
       "url": "/images/living/skorphio/living-skorphio-1cuerpo-similmaderamarron-gris.jpg",
-      "mtimeMs": 1781274975482.885,
-      "size": 40526
+      "mtimeMs": 1782916295680.0833,
+      "size": 1632579
     },
     "living-skorphio-1cuerpo-similmaderamarron-negro.jpg": {
       "url": "/images/living/skorphio/living-skorphio-1cuerpo-similmaderamarron-negro.jpg",
-      "mtimeMs": 1781274979264.5852,
-      "size": 37297
+      "mtimeMs": 1782916295642.2368,
+      "size": 1494005
     },
     "living-skorphio-4cuerpos-blancopintado-beige.jpg": {
       "url": "/images/living/skorphio/living-skorphio-4cuerpos-blancopintado-beige.jpg",
-      "mtimeMs": 1780933849027.3958,
-      "size": 31424
+      "mtimeMs": 1782916295691.7195,
+      "size": 1758552
     },
     "living-skorphio-4cuerpos-blancopintado-blanco.jpg": {
       "url": "/images/living/skorphio/living-skorphio-4cuerpos-blancopintado-blanco.jpg",
-      "mtimeMs": 1780933840345.102,
-      "size": 25502
+      "mtimeMs": 1782916294816.3662,
+      "size": 1334520
     },
     "living-skorphio-4cuerpos-blancopintado-gris.jpg": {
       "url": "/images/living/skorphio/living-skorphio-4cuerpos-blancopintado-gris.jpg",
-      "mtimeMs": 1780933844755.6406,
-      "size": 29095
+      "mtimeMs": 1782916294889.762,
+      "size": 1464792
     },
     "living-skorphio-4cuerpos-blancopintado-negro.jpg": {
       "url": "/images/living/skorphio/living-skorphio-4cuerpos-blancopintado-negro.jpg",
-      "mtimeMs": 1780933836183.7773,
-      "size": 28393
+      "mtimeMs": 1782916294974.1782,
+      "size": 1480752
     },
     "living-skorphio-4cuerpos-negropintado-beige.jpg": {
       "url": "/images/living/skorphio/living-skorphio-4cuerpos-negropintado-beige.jpg",
-      "mtimeMs": 1780933831922.0916,
-      "size": 34398
+      "mtimeMs": 1782916295463.1401,
+      "size": 1644251
     },
     "living-skorphio-4cuerpos-negropintado-blanco.jpg": {
       "url": "/images/living/skorphio/living-skorphio-4cuerpos-negropintado-blanco.jpg",
-      "mtimeMs": 1780933727108.2288,
-      "size": 26969
+      "mtimeMs": 1782916294775.1575,
+      "size": 1370009
     },
     "living-skorphio-4cuerpos-negropintado-gris.jpg": {
       "url": "/images/living/skorphio/living-skorphio-4cuerpos-negropintado-gris.jpg",
-      "mtimeMs": 1780933827610.342,
-      "size": 30108
+      "mtimeMs": 1782916295085.7554,
+      "size": 1528720
     },
     "living-skorphio-4cuerpos-negropintado-negro.jpg": {
       "url": "/images/living/skorphio/living-skorphio-4cuerpos-negropintado-negro.jpg",
-      "mtimeMs": 1780933706215.5334,
-      "size": 27484
+      "mtimeMs": 1782916294875.997,
+      "size": 1381820
     },
     "living-skorphio-4cuerpos-similmaderablanco-beige.jpg": {
       "url": "/images/living/skorphio/living-skorphio-4cuerpos-similmaderablanco-beige.jpg",
-      "mtimeMs": 1780933957671.8298,
-      "size": 35610
+      "mtimeMs": 1782916295228.602,
+      "size": 1754615
     },
     "living-skorphio-4cuerpos-similmaderablanco-blanco.jpg": {
       "url": "/images/living/skorphio/living-skorphio-4cuerpos-similmaderablanco-blanco.jpg",
-      "mtimeMs": 1780933950367.51,
-      "size": 28539
+      "mtimeMs": 1782916295139.465,
+      "size": 1525155
     },
     "living-skorphio-4cuerpos-similmaderablanco-gris.jpg": {
       "url": "/images/living/skorphio/living-skorphio-4cuerpos-similmaderablanco-gris.jpg",
-      "mtimeMs": 1780933953941.2336,
-      "size": 32102
+      "mtimeMs": 1782916295197.8018,
+      "size": 1567160
     },
     "living-skorphio-4cuerpos-similmaderablanco-negro.jpg": {
       "url": "/images/living/skorphio/living-skorphio-4cuerpos-similmaderablanco-negro.jpg",
-      "mtimeMs": 1780933946470.3164,
-      "size": 31337
+      "mtimeMs": 1782916295177.126,
+      "size": 1579307
     },
     "living-skorphio-4cuerpos-similmaderamarron-beige.jpg": {
       "url": "/images/living/skorphio/living-skorphio-4cuerpos-similmaderamarron-beige.jpg",
-      "mtimeMs": 1780933866234.3113,
-      "size": 37934
+      "mtimeMs": 1782916295702.3835,
+      "size": 1851956
     },
     "living-skorphio-4cuerpos-similmaderamarron-blanco.jpg": {
       "url": "/images/living/skorphio/living-skorphio-4cuerpos-similmaderamarron-blanco.jpg",
-      "mtimeMs": 1780933857723.4736,
-      "size": 32551
+      "mtimeMs": 1782916302774.9668,
+      "size": 1580547
     },
     "living-skorphio-4cuerpos-similmaderamarron-gris.jpg": {
       "url": "/images/living/skorphio/living-skorphio-4cuerpos-similmaderamarron-gris.jpg",
-      "mtimeMs": 1780933862174.0696,
-      "size": 34858
+      "mtimeMs": 1782916295038.4258,
+      "size": 1744522
     },
     "living-skorphio-4cuerpos-similmaderamarron-negro.jpg": {
       "url": "/images/living/skorphio/living-skorphio-4cuerpos-similmaderamarron-negro.jpg",
-      "mtimeMs": 1780933853355.7046,
-      "size": 33537
+      "mtimeMs": 1782916302701.1226,
+      "size": 1593813
     },
     "aluminio-anodizado.jpg": {
       "url": "/images/materiales/aluminio/aluminio-anodizado.jpg",
@@ -1078,23 +658,23 @@
     },
     "material-1.jpg": {
       "url": "/images/materiales/material-1.jpg",
-      "mtimeMs": 1779989235155.608,
-      "size": 8625
+      "mtimeMs": 1782347422845.9766,
+      "size": 2699766
     },
     "material-2.jpg": {
       "url": "/images/materiales/material-2.jpg",
-      "mtimeMs": 1779989235235.687,
-      "size": 8625
+      "mtimeMs": 1782347422822.8948,
+      "size": 2768157
     },
     "material-3.jpg": {
       "url": "/images/materiales/material-3.jpg",
-      "mtimeMs": 1779989235290.5312,
-      "size": 8625
+      "mtimeMs": 1782347422830.2122,
+      "size": 88064
     },
     "material-4.jpg": {
       "url": "/images/materiales/material-4.jpg",
-      "mtimeMs": 1779989235351.0447,
-      "size": 8625
+      "mtimeMs": 1782238416683.2422,
+      "size": 2458263
     },
     "dekton-aura.jpg": {
       "url": "/images/materiales/piedras/dekton/dekton-aura.jpg",
@@ -1191,40 +771,60 @@
       "mtimeMs": 1781377480379.8362,
       "size": 186943
     },
+    "1.png": {
+      "url": "/images/mesas/fendi/1.png",
+      "mtimeMs": 1783025584418.1077,
+      "size": 14905
+    },
     "2.jpg": {
       "url": "/images/mesas/fendi/2.jpg",
       "mtimeMs": 1781628907029.0344,
       "size": 207650
+    },
+    "2.png": {
+      "url": "/images/mesas/fendi/2.png",
+      "mtimeMs": 1783025584436.7158,
+      "size": 14905
     },
     "3.jpg": {
       "url": "/images/mesas/fendi/3.jpg",
       "mtimeMs": 1781377516170.4934,
       "size": 182555
     },
+    "3.png": {
+      "url": "/images/mesas/fendi/3.png",
+      "mtimeMs": 1783025584457.2002,
+      "size": 14905
+    },
     "4.jpg": {
       "url": "/images/mesas/fendi/4.jpg",
       "mtimeMs": 1781628703766.0344,
       "size": 180081
     },
+    "4.png": {
+      "url": "/images/mesas/fendi/4.png",
+      "mtimeMs": 1783025584700.5166,
+      "size": 14905
+    },
     "reposera-baros-simple-anodizadonatural-beige.jpg": {
       "url": "/images/reposeras/baros/reposera-baros-simple-anodizadonatural-beige.jpg",
-      "mtimeMs": 1780419471318.0833,
-      "size": 43732
+      "mtimeMs": 1782243384036.297,
+      "size": 1425592
     },
     "reposera-baros-simple-anodizadonatural-blanco.jpg": {
       "url": "/images/reposeras/baros/reposera-baros-simple-anodizadonatural-blanco.jpg",
-      "mtimeMs": 1780419491337.4622,
-      "size": 36846
+      "mtimeMs": 1782243384080.2046,
+      "size": 1259395
     },
     "reposera-baros-simple-anodizadonatural-gris.jpg": {
       "url": "/images/reposeras/baros/reposera-baros-simple-anodizadonatural-gris.jpg",
-      "mtimeMs": 1780419497192.4844,
-      "size": 45245
+      "mtimeMs": 1782243384099.3433,
+      "size": 1485397
     },
     "reposera-baros-simple-anodizadonatural-negro.jpg": {
       "url": "/images/reposeras/baros/reposera-baros-simple-anodizadonatural-negro.jpg",
-      "mtimeMs": 1780419481876.1504,
-      "size": 39736
+      "mtimeMs": 1782243384049.9917,
+      "size": 1304791
     },
     "reposera-fendi-doble-anodizadonegro-beige.jpg": {
       "url": "/images/reposeras/fendi/reposera-fendi-doble-anodizadonegro-beige.jpg",
@@ -1468,453 +1068,453 @@
     },
     "reposera-malaga-doble-anodizadonegro-beige.jpg": {
       "url": "/images/reposeras/malaga/reposera-malaga-doble-anodizadonegro-beige.jpg",
-      "mtimeMs": 1780519078248.1167,
-      "size": 57531
+      "mtimeMs": 1782572768584.782,
+      "size": 1524125
     },
     "reposera-malaga-doble-anodizadonegro-blanco.jpg": {
       "url": "/images/reposeras/malaga/reposera-malaga-doble-anodizadonegro-blanco.jpg",
-      "mtimeMs": 1780519086596.9084,
-      "size": 55339
+      "mtimeMs": 1782572768624.2017,
+      "size": 1210942
     },
     "reposera-malaga-doble-anodizadonegro-gris.jpg": {
       "url": "/images/reposeras/malaga/reposera-malaga-doble-anodizadonegro-gris.jpg",
-      "mtimeMs": 1780519091489.5872,
-      "size": 58783
+      "mtimeMs": 1782572768651.2224,
+      "size": 1736141
     },
     "reposera-malaga-doble-anodizadonegro-negro.jpg": {
       "url": "/images/reposeras/malaga/reposera-malaga-doble-anodizadonegro-negro.jpg",
-      "mtimeMs": 1780519082477.8232,
-      "size": 52024
+      "mtimeMs": 1782572768597.9573,
+      "size": 1649057
     },
     "reposera-malaga-doble-anodizadopeltre-beige.jpg": {
       "url": "/images/reposeras/malaga/reposera-malaga-doble-anodizadopeltre-beige.jpg",
-      "mtimeMs": 1780518836851.0278,
-      "size": 57989
+      "mtimeMs": 1782572768660.4844,
+      "size": 1401707
     },
     "reposera-malaga-doble-anodizadopeltre-blanco.jpg": {
       "url": "/images/reposeras/malaga/reposera-malaga-doble-anodizadopeltre-blanco.jpg",
-      "mtimeMs": 1780518840781.9932,
-      "size": 53478
+      "mtimeMs": 1782572768721.8044,
+      "size": 1509732
     },
     "reposera-malaga-doble-anodizadopeltre-gris.jpg": {
       "url": "/images/reposeras/malaga/reposera-malaga-doble-anodizadopeltre-gris.jpg",
-      "mtimeMs": 1780518844751.1655,
-      "size": 56403
+      "mtimeMs": 1782572768744.0156,
+      "size": 1481914
     },
     "reposera-malaga-doble-anodizadopeltre-negro.jpg": {
       "url": "/images/reposeras/malaga/reposera-malaga-doble-anodizadopeltre-negro.jpg",
-      "mtimeMs": 1780518833217.2253,
-      "size": 51318
+      "mtimeMs": 1782572768691.494,
+      "size": 1727776
     },
     "reposera-malaga-doble-negropintado-beige.jpg": {
       "url": "/images/reposeras/malaga/reposera-malaga-doble-negropintado-beige.jpg",
-      "mtimeMs": 1780518961754.1733,
-      "size": 56289
+      "mtimeMs": 1782572768378.624,
+      "size": 1361485
     },
     "reposera-malaga-doble-negropintado-blanco.jpg": {
       "url": "/images/reposeras/malaga/reposera-malaga-doble-negropintado-blanco.jpg",
-      "mtimeMs": 1780518971700.0608,
-      "size": 55499
+      "mtimeMs": 1782572768452.2732,
+      "size": 1629592
     },
     "reposera-malaga-doble-negropintado-gris.jpg": {
       "url": "/images/reposeras/malaga/reposera-malaga-doble-negropintado-gris.jpg",
-      "mtimeMs": 1780518975615.5513,
-      "size": 59812
+      "mtimeMs": 1782572768461.7817,
+      "size": 1466146
     },
     "reposera-malaga-doble-negropintado-negro.jpg": {
       "url": "/images/reposeras/malaga/reposera-malaga-doble-negropintado-negro.jpg",
-      "mtimeMs": 1780518967528.0144,
-      "size": 50474
+      "mtimeMs": 1782572768422.6228,
+      "size": 1312995
     },
     "reposera-malaga-simple-anodizadonegro-beige.jpg": {
       "url": "/images/reposeras/malaga/reposera-malaga-simple-anodizadonegro-beige.jpg",
-      "mtimeMs": 1780457413938.7102,
-      "size": 52898
+      "mtimeMs": 1782572768530.578,
+      "size": 1454970
     },
     "reposera-malaga-simple-anodizadonegro-blanco.jpg": {
       "url": "/images/reposeras/malaga/reposera-malaga-simple-anodizadonegro-blanco.jpg",
-      "mtimeMs": 1780457418897.1794,
-      "size": 49928
+      "mtimeMs": 1782572768491.407,
+      "size": 1320160
     },
     "reposera-malaga-simple-anodizadonegro-gris.jpg": {
       "url": "/images/reposeras/malaga/reposera-malaga-simple-anodizadonegro-gris.jpg",
-      "mtimeMs": 1780457429085.9736,
-      "size": 52686
+      "mtimeMs": 1782572768557.1428,
+      "size": 1388967
     },
     "reposera-malaga-simple-anodizadonegro-negro.jpg": {
       "url": "/images/reposeras/malaga/reposera-malaga-simple-anodizadonegro-negro.jpg",
-      "mtimeMs": 1780457424493.4797,
-      "size": 46926
+      "mtimeMs": 1782572768519.8784,
+      "size": 1253467
     },
     "reposera-malaga-simple-anodizadopeltre-beige.jpg": {
       "url": "/images/reposeras/malaga/reposera-malaga-simple-anodizadopeltre-beige.jpg",
-      "mtimeMs": 1780456652438.531,
-      "size": 53775
+      "mtimeMs": 1782572769003.9663,
+      "size": 1406059
     },
     "reposera-malaga-simple-anodizadopeltre-blanco.jpg": {
       "url": "/images/reposeras/malaga/reposera-malaga-simple-anodizadopeltre-blanco.jpg",
-      "mtimeMs": 1780456637925.2358,
-      "size": 47606
+      "mtimeMs": 1782572768910.601,
+      "size": 1304061
     },
     "reposera-malaga-simple-anodizadopeltre-gris.jpg": {
       "url": "/images/reposeras/malaga/reposera-malaga-simple-anodizadopeltre-gris.jpg",
-      "mtimeMs": 1780456632084.9146,
-      "size": 52704
+      "mtimeMs": 1782572768962.6628,
+      "size": 1388022
     },
     "reposera-malaga-simple-anodizadopeltre-negro.jpg": {
       "url": "/images/reposeras/malaga/reposera-malaga-simple-anodizadopeltre-negro.jpg",
-      "mtimeMs": 1780456647001.2913,
-      "size": 46058
+      "mtimeMs": 1782572768973.1853,
+      "size": 1264131
     },
     "reposera-malaga-simple-negropintado-beige.jpg": {
       "url": "/images/reposeras/malaga/reposera-malaga-simple-negropintado-beige.jpg",
-      "mtimeMs": 1780455796530.7332,
-      "size": 50386
+      "mtimeMs": 1782572768779.766,
+      "size": 1422594
     },
     "reposera-malaga-simple-negropintado-blanco.jpg": {
       "url": "/images/reposeras/malaga/reposera-malaga-simple-negropintado-blanco.jpg",
-      "mtimeMs": 1780455800703.6973,
-      "size": 43050
+      "mtimeMs": 1782572768857.8857,
+      "size": 60895
     },
     "reposera-malaga-simple-negropintado-gris.jpg": {
       "url": "/images/reposeras/malaga/reposera-malaga-simple-negropintado-gris.jpg",
-      "mtimeMs": 1780455811582.6575,
-      "size": 46309
+      "mtimeMs": 1782572768886.4336,
+      "size": 108425
     },
     "reposera-malaga-simple-negropintado-negro.jpg": {
       "url": "/images/reposeras/malaga/reposera-malaga-simple-negropintado-negro.jpg",
-      "mtimeMs": 1780455807050.3418,
-      "size": 41091
+      "mtimeMs": 1782572768829.0576,
+      "size": 78886
     },
     "reposera-mdq-doble-anodizadonatural-beige.jpg": {
       "url": "/images/reposeras/mdq/reposera-mdq-doble-anodizadonatural-beige.jpg",
-      "mtimeMs": 1780518499144.5107,
-      "size": 64459
+      "mtimeMs": 1782574605469.8735,
+      "size": 1912658
     },
     "reposera-mdq-doble-anodizadonatural-blanco.jpg": {
       "url": "/images/reposeras/mdq/reposera-mdq-doble-anodizadonatural-blanco.jpg",
-      "mtimeMs": 1780518489370.442,
-      "size": 59039
+      "mtimeMs": 1782574605408.7327,
+      "size": 1637884
     },
     "reposera-mdq-doble-anodizadonatural-gris.jpg": {
       "url": "/images/reposeras/mdq/reposera-mdq-doble-anodizadonatural-gris.jpg",
-      "mtimeMs": 1780518484957.6265,
-      "size": 64674
+      "mtimeMs": 1782574605440.035,
+      "size": 1770488
     },
     "reposera-mdq-doble-anodizadonatural-negro.jpg": {
       "url": "/images/reposeras/mdq/reposera-mdq-doble-anodizadonatural-negro.jpg",
-      "mtimeMs": 1780518494195.527,
-      "size": 60104
+      "mtimeMs": 1782574605499.0645,
+      "size": 1339792
     },
     "reposera-mdq-doble-negropintado-beige.jpg": {
       "url": "/images/reposeras/mdq/reposera-mdq-doble-negropintado-beige.jpg",
-      "mtimeMs": 1780518604279.2578,
-      "size": 64498
+      "mtimeMs": 1782575129495.8389,
+      "size": 1979437
     },
     "reposera-mdq-doble-negropintado-blanco.jpg": {
       "url": "/images/reposeras/mdq/reposera-mdq-doble-negropintado-blanco.jpg",
-      "mtimeMs": 1780518595376.988,
-      "size": 61345
+      "mtimeMs": 1782575129484.4783,
+      "size": 1790651
     },
     "reposera-mdq-doble-negropintado-gris.jpg": {
       "url": "/images/reposeras/mdq/reposera-mdq-doble-negropintado-gris.jpg",
-      "mtimeMs": 1780518590573.9124,
-      "size": 64380
+      "mtimeMs": 1782575129451.4392,
+      "size": 1423170
     },
     "reposera-mdq-doble-negropintado-negro.jpg": {
       "url": "/images/reposeras/mdq/reposera-mdq-doble-negropintado-negro.jpg",
-      "mtimeMs": 1780518599626.0623,
-      "size": 61875
+      "mtimeMs": 1782575129523.7993,
+      "size": 1677247
     },
     "reposera-mdq-simple-anodizadonatural-beige.jpg": {
       "url": "/images/reposeras/mdq/reposera-mdq-simple-anodizadonatural-beige.jpg",
-      "mtimeMs": 1782148758618.703,
-      "size": 73842
+      "mtimeMs": 1782573559227.7048,
+      "size": 1112302
     },
     "reposera-mdq-simple-anodizadonatural-blanco.jpg": {
       "url": "/images/reposeras/mdq/reposera-mdq-simple-anodizadonatural-blanco.jpg",
-      "mtimeMs": 1780518256598.5762,
-      "size": 38562
+      "mtimeMs": 1782573559277.2615,
+      "size": 1567299
     },
     "reposera-mdq-simple-anodizadonatural-gris.jpg": {
       "url": "/images/reposeras/mdq/reposera-mdq-simple-anodizadonatural-gris.jpg",
-      "mtimeMs": 1780518260851.2576,
-      "size": 44528
+      "mtimeMs": 1782573559267.7913,
+      "size": 1404975
     },
     "reposera-mdq-simple-anodizadonatural-negro.jpg": {
       "url": "/images/reposeras/mdq/reposera-mdq-simple-anodizadonatural-negro.jpg",
-      "mtimeMs": 1780518251638.7588,
-      "size": 41381
+      "mtimeMs": 1782573559191.0586,
+      "size": 1660513
     },
     "reposera-mdq-simple-negropintado-beige.jpg": {
       "url": "/images/reposeras/mdq/reposera-mdq-simple-negropintado-beige.jpg",
-      "mtimeMs": 1780518358110.4941,
-      "size": 46802
+      "mtimeMs": 1782573894471.5813,
+      "size": 1704401
     },
     "reposera-mdq-simple-negropintado-blanco.jpg": {
       "url": "/images/reposeras/mdq/reposera-mdq-simple-negropintado-blanco.jpg",
-      "mtimeMs": 1780518368409.0068,
-      "size": 41385
+      "mtimeMs": 1782573894386.4617,
+      "size": 1571330
     },
     "reposera-mdq-simple-negropintado-gris.jpg": {
       "url": "/images/reposeras/mdq/reposera-mdq-simple-negropintado-gris.jpg",
-      "mtimeMs": 1780518375280.0735,
-      "size": 45052
+      "mtimeMs": 1782573894440.0186,
+      "size": 1787561
     },
     "reposera-mdq-simple-negropintado-negro.jpg": {
       "url": "/images/reposeras/mdq/reposera-mdq-simple-negropintado-negro.jpg",
-      "mtimeMs": 1780518363098.8394,
-      "size": 41408
+      "mtimeMs": 1782573894360.881,
+      "size": 1644220
     },
     "reposera-skorphio-doble-anodizadonegro-beige.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-doble-anodizadonegro-beige.jpg",
-      "mtimeMs": 1780420067223.9941,
-      "size": 32210
+      "mtimeMs": 1782580022639.5774,
+      "size": 1780911
     },
     "reposera-skorphio-doble-anodizadonegro-blanco.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-doble-anodizadonegro-blanco.jpg",
-      "mtimeMs": 1780420077510.4155,
-      "size": 27951
+      "mtimeMs": 1782580022876.2402,
+      "size": 1474840
     },
     "reposera-skorphio-doble-anodizadonegro-gris.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-doble-anodizadonegro-gris.jpg",
-      "mtimeMs": 1780420072489.901,
-      "size": 33663
+      "mtimeMs": 1782580022789.9463,
+      "size": 1494923
     },
     "reposera-skorphio-doble-anodizadonegro-negro.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-doble-anodizadonegro-negro.jpg",
-      "mtimeMs": 1780420083624.746,
-      "size": 29365
+      "mtimeMs": 1782580022757.3977,
+      "size": 1547269
     },
     "reposera-skorphio-doble-anodizadopeltre-beige.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-doble-anodizadopeltre-beige.jpg",
-      "mtimeMs": 1780419673842.011,
-      "size": 47039
+      "mtimeMs": 1782582447786.1746,
+      "size": 1773146
     },
     "reposera-skorphio-doble-anodizadopeltre-blanco.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-doble-anodizadopeltre-blanco.jpg",
-      "mtimeMs": 1780419685065.3926,
-      "size": 37530
+      "mtimeMs": 1782582447856.9504,
+      "size": 1348598
     },
     "reposera-skorphio-doble-anodizadopeltre-gris.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-doble-anodizadopeltre-gris.jpg",
-      "mtimeMs": 1780419678601.2988,
-      "size": 45705
+      "mtimeMs": 1782582447798.8472,
+      "size": 1517280
     },
     "reposera-skorphio-doble-anodizadopeltre-negro.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-doble-anodizadopeltre-negro.jpg",
-      "mtimeMs": 1780419689117.161,
-      "size": 38391
+      "mtimeMs": 1782582447900.4658,
+      "size": 1355626
     },
     "reposera-skorphio-doble-greige-beige.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-doble-greige-beige.jpg",
-      "mtimeMs": 1780419908502.944,
-      "size": 30719
+      "mtimeMs": 1782582447984.06,
+      "size": 1531571
     },
     "reposera-skorphio-doble-greige-blanco.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-doble-greige-blanco.jpg",
-      "mtimeMs": 1780419918399.348,
-      "size": 27402
+      "mtimeMs": 1782580022433.644,
+      "size": 1139192
     },
     "reposera-skorphio-doble-greige-gris.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-doble-greige-gris.jpg",
-      "mtimeMs": 1780419913540.9749,
-      "size": 31207
+      "mtimeMs": 1782580022538.0034,
+      "size": 1740716
     },
     "reposera-skorphio-doble-greige-negro.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-doble-greige-negro.jpg",
-      "mtimeMs": 1780419922720.2166,
-      "size": 28708
+      "mtimeMs": 1782582448058.7344,
+      "size": 1285504
     },
     "reposera-skorphio-doble-negropintado-beige.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-doble-negropintado-beige.jpg",
-      "mtimeMs": 1780422222563.433,
-      "size": 32305
+      "mtimeMs": 1782582447579.5066,
+      "size": 1483268
     },
     "reposera-skorphio-doble-negropintado-blanco.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-doble-negropintado-blanco.jpg",
-      "mtimeMs": 1780422230022.4739,
-      "size": 27807
+      "mtimeMs": 1782580022049.4834,
+      "size": 1220247
     },
     "reposera-skorphio-doble-negropintado-gris.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-doble-negropintado-gris.jpg",
-      "mtimeMs": 1780422226107.553,
-      "size": 33078
+      "mtimeMs": 1782582447740.2024,
+      "size": 1462253
     },
     "reposera-skorphio-doble-negropintado-negro.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-doble-negropintado-negro.jpg",
-      "mtimeMs": 1780422234184.31,
-      "size": 27419
+      "mtimeMs": 1782582447612.6067,
+      "size": 1327133
     },
     "reposera-skorphio-doble-similmaderablanco-beige.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-doble-similmaderablanco-beige.jpg",
-      "mtimeMs": 1780420213710.3486,
-      "size": 53023
+      "mtimeMs": 1782582447955.2815,
+      "size": 1530682
     },
     "reposera-skorphio-doble-similmaderablanco-blanco.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-doble-similmaderablanco-blanco.jpg",
-      "mtimeMs": 1780420222324.1018,
-      "size": 44183
+      "mtimeMs": 1782580023523.5227,
+      "size": 1324934
     },
     "reposera-skorphio-doble-similmaderablanco-gris.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-doble-similmaderablanco-gris.jpg",
-      "mtimeMs": 1780420217835.2583,
-      "size": 55204
+      "mtimeMs": 1782582448103.5957,
+      "size": 1443694
     },
     "reposera-skorphio-doble-similmaderablanco-negro.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-doble-similmaderablanco-negro.jpg",
-      "mtimeMs": 1780420230971.5066,
-      "size": 47611
+      "mtimeMs": 1782580023453.6294,
+      "size": 1350887
     },
     "reposera-skorphio-doble-similmaderamarron-beige.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-doble-similmaderamarron-beige.jpg",
-      "mtimeMs": 1779988186116.1616,
-      "size": 36150
+      "mtimeMs": 1782580022955.4612,
+      "size": 1456418
     },
     "reposera-skorphio-doble-similmaderamarron-blanco.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-doble-similmaderamarron-blanco.jpg",
-      "mtimeMs": 1779988194429.1313,
-      "size": 31910
+      "mtimeMs": 1782580023576.5444,
+      "size": 1724271
     },
     "reposera-skorphio-doble-similmaderamarron-gris.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-doble-similmaderamarron-gris.jpg",
-      "mtimeMs": 1779988190053.976,
-      "size": 36614
+      "mtimeMs": 1782580023383.6655,
+      "size": 1540503
     },
     "reposera-skorphio-doble-similmaderamarron-negro.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-doble-similmaderamarron-negro.jpg",
-      "mtimeMs": 1779988200380.5671,
-      "size": 32269
+      "mtimeMs": 1782580023346.1318,
+      "size": 1300280
     },
     "reposera-skorphio-simple-anodizadonegro-beige.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-simple-anodizadonegro-beige.jpg",
-      "mtimeMs": 1779987607195.046,
-      "size": 58962
+      "mtimeMs": 1782580022719.6895,
+      "size": 1514144
     },
     "reposera-skorphio-simple-anodizadonegro-blanco.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-simple-anodizadonegro-blanco.jpg",
-      "mtimeMs": 1779987624769.0232,
-      "size": 55233
+      "mtimeMs": 1782580022597.3835,
+      "size": 1224552
     },
     "reposera-skorphio-simple-anodizadonegro-gris.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-simple-anodizadonegro-gris.jpg",
-      "mtimeMs": 1779987613674.0942,
-      "size": 64225
+      "mtimeMs": 1782580022705.0957,
+      "size": 1556228
     },
     "reposera-skorphio-simple-anodizadonegro-negro.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-simple-anodizadonegro-negro.jpg",
-      "mtimeMs": 1779987620479.821,
-      "size": 53681
+      "mtimeMs": 1782580022608.6455,
+      "size": 1381711
     },
     "reposera-skorphio-simple-anodizadopeltre-beige.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-simple-anodizadopeltre-beige.jpg",
-      "mtimeMs": 1779987795659.5625,
-      "size": 48289
+      "mtimeMs": 1782580022156.1807,
+      "size": 1519997
     },
     "reposera-skorphio-simple-anodizadopeltre-blanco.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-simple-anodizadopeltre-blanco.jpg",
-      "mtimeMs": 1779987840595.652,
-      "size": 42782
+      "mtimeMs": 1782580022298.9773,
+      "size": 1206271
     },
     "reposera-skorphio-simple-anodizadopeltre-gris.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-simple-anodizadopeltre-gris.jpg",
-      "mtimeMs": 1779987882056.9702,
-      "size": 50566
+      "mtimeMs": 1782580022217.2898,
+      "size": 1613945
     },
     "reposera-skorphio-simple-anodizadopeltre-negro.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-simple-anodizadopeltre-negro.jpg",
-      "mtimeMs": 1779987834917.3523,
-      "size": 44789
+      "mtimeMs": 1782580022336.4216,
+      "size": 1525411
     },
     "reposera-skorphio-simple-greige-beige.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-simple-greige-beige.jpg",
-      "mtimeMs": 1779988016712.5679,
-      "size": 32914
+      "mtimeMs": 1782580022367.1262,
+      "size": 1581659
     },
     "reposera-skorphio-simple-greige-blanco.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-simple-greige-blanco.jpg",
-      "mtimeMs": 1779988030767.1528,
-      "size": 30457
+      "mtimeMs": 1782580022489.7222,
+      "size": 1227401
     },
     "reposera-skorphio-simple-greige-gris.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-simple-greige-gris.jpg",
-      "mtimeMs": 1779988021462.4087,
-      "size": 35018
+      "mtimeMs": 1782580022501.316,
+      "size": 1462510
     },
     "reposera-skorphio-simple-greige-negro.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-simple-greige-negro.jpg",
-      "mtimeMs": 1779988026064.612,
-      "size": 29738
+      "mtimeMs": 1782580022397.2207,
+      "size": 1308167
     },
     "reposera-skorphio-simple-negropintado-beige.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-simple-negropintado-beige.jpg",
-      "mtimeMs": 1780422131166.2014,
-      "size": 32015
+      "mtimeMs": 1782582447660.033,
+      "size": 1466907
     },
     "reposera-skorphio-simple-negropintado-blanco.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-simple-negropintado-blanco.jpg",
-      "mtimeMs": 1780422122998.5674,
-      "size": 28895
+      "mtimeMs": 1782580022019.9397,
+      "size": 1305800
     },
     "reposera-skorphio-simple-negropintado-gris.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-simple-negropintado-gris.jpg",
-      "mtimeMs": 1780422126986.2693,
-      "size": 31846
+      "mtimeMs": 1782580021991.1287,
+      "size": 1356056
     },
     "reposera-skorphio-simple-negropintado-negro.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-simple-negropintado-negro.jpg",
-      "mtimeMs": 1780422118737.9753,
-      "size": 29787
+      "mtimeMs": 1782580021953.8647,
+      "size": 1308279
     },
     "reposera-skorphio-simple-similmaderablanco-beige.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-simple-similmaderablanco-beige.jpg",
-      "mtimeMs": 1779987468913.796,
-      "size": 60862
+      "mtimeMs": 1782580023157.6575,
+      "size": 1403270
     },
     "reposera-skorphio-simple-similmaderablanco-blanco.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-simple-similmaderablanco-blanco.jpg",
-      "mtimeMs": 1779987482275.1462,
-      "size": 56616
+      "mtimeMs": 1782580023637.3152,
+      "size": 1229303
     },
     "reposera-skorphio-simple-similmaderablanco-gris.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-simple-similmaderablanco-gris.jpg",
-      "mtimeMs": 1779987473250.467,
-      "size": 66218
+      "mtimeMs": 1782580023536.1436,
+      "size": 1494101
     },
     "reposera-skorphio-simple-similmaderablanco-negro.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-simple-similmaderablanco-negro.jpg",
-      "mtimeMs": 1779987477642.9114,
-      "size": 56933
+      "mtimeMs": 1782580023063.8396,
+      "size": 1298276
     },
     "reposera-skorphio-simple-similmaderamarron-beige.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-simple-similmaderamarron-beige.jpg",
-      "mtimeMs": 1779987343596.5452,
-      "size": 33869
+      "mtimeMs": 1782580022888.7488,
+      "size": 1400987
     },
     "reposera-skorphio-simple-similmaderamarron-blanco.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-simple-similmaderamarron-blanco.jpg",
-      "mtimeMs": 1779987348388.981,
-      "size": 30775
+      "mtimeMs": 1782580022941.5928,
+      "size": 1282795
     },
     "reposera-skorphio-simple-similmaderamarron-gris.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-simple-similmaderamarron-gris.jpg",
-      "mtimeMs": 1779987338880.9497,
-      "size": 33668
+      "mtimeMs": 1782580022991.122,
+      "size": 1481776
     },
     "reposera-skorphio-simple-similmaderamarron-negro.jpg": {
       "url": "/images/reposeras/skorphio/reposera-skorphio-simple-similmaderamarron-negro.jpg",
-      "mtimeMs": 1779987334110.9165,
-      "size": 33219
+      "mtimeMs": 1782580023041.175,
+      "size": 1352354
     },
     "marbella-placeholder.jpg": {
       "url": "/images/sliders/comedor/marbella-placeholder.jpg",
-      "mtimeMs": 1782236016432.9116,
-      "size": 9647
+      "mtimeMs": 1783023400487.774,
+      "size": 2403612
     },
     "skorphio-placeholder.jpg": {
       "url": "/images/sliders/comedor/skorphio-placeholder.jpg",
-      "mtimeMs": 1782236016432.5295,
-      "size": 9647
+      "mtimeMs": 1783023400501.1086,
+      "size": 2527761
     },
     "01-living-fendi-similmaderamarron-negro.jpg": {
       "url": "/images/sliders/living/01-living-fendi-similmaderamarron-negro.jpg",
@@ -1962,51 +1562,15 @@
     "/images/about/about-2.jpg",
     "/images/about/about-3.jpg",
     "/images/about/about-4.jpg",
-    "/images/comedor/marbella/marbella-anodizado-negro-200.jpg",
-    "/images/comedor/marbella/marbella-anodizado-negro-260.jpg",
-    "/images/comedor/marbella/marbella-anodizado-negro-278.jpg",
-    "/images/comedor/marbella/marbella-anodizado-peltre-200.jpg",
-    "/images/comedor/marbella/marbella-anodizado-peltre-260.jpg",
-    "/images/comedor/marbella/marbella-anodizado-peltre-278.jpg",
-    "/images/comedor/marbella/marbella-greige-pintado-200.jpg",
     "/images/comedor/marbella/marbella-greige-pintado-260.jpg",
-    "/images/comedor/marbella/marbella-greige-pintado-278.jpg",
-    "/images/comedor/marbella/marbella-negro-pintado-200.jpg",
     "/images/comedor/marbella/marbella-negro-pintado-260.jpg",
-    "/images/comedor/marbella/marbella-negro-pintado-278.jpg",
-    "/images/comedor/marbella/marbella-simil-madera-blanco-200.jpg",
     "/images/comedor/marbella/marbella-simil-madera-blanco-260.jpg",
-    "/images/comedor/marbella/marbella-simil-madera-blanco-278.jpg",
-    "/images/comedor/marbella/marbella-simil-madera-marron-200.jpg",
     "/images/comedor/marbella/marbella-simil-madera-marron-260.jpg",
-    "/images/comedor/marbella/marbella-simil-madera-marron-278.jpg",
-    "/images/comedor/skorphio/skorphio-comedor-anodizado-negro-lijado-200.jpg",
-    "/images/comedor/skorphio/skorphio-comedor-anodizado-negro-lijado-270.jpg",
-    "/images/comedor/skorphio/skorphio-comedor-anodizado-negro-lijado-300.jpg",
-    "/images/comedor/skorphio/skorphio-comedor-anodizado-peltre-lijado-200.jpg",
-    "/images/comedor/skorphio/skorphio-comedor-anodizado-peltre-lijado-270.jpg",
-    "/images/comedor/skorphio/skorphio-comedor-anodizado-peltre-lijado-300.jpg",
-    "/images/comedor/skorphio/skorphio-comedor-greige-pintado-200.jpg",
     "/images/comedor/skorphio/skorphio-comedor-greige-pintado-270.jpg",
-    "/images/comedor/skorphio/skorphio-comedor-greige-pintado-300.jpg",
-    "/images/comedor/skorphio/skorphio-comedor-negro-pintado-200.jpg",
     "/images/comedor/skorphio/skorphio-comedor-negro-pintado-270.jpg",
-    "/images/comedor/skorphio/skorphio-comedor-negro-pintado-300.jpg",
-    "/images/comedor/skorphio/skorphio-comedor-simil-madera-blanco-200.jpg",
     "/images/comedor/skorphio/skorphio-comedor-simil-madera-blanco-270.jpg",
-    "/images/comedor/skorphio/skorphio-comedor-simil-madera-blanco-300.jpg",
-    "/images/comedor/skorphio/skorphio-comedor-simil-madera-marron-200.jpg",
     "/images/comedor/skorphio/skorphio-comedor-simil-madera-marron-270.jpg",
-    "/images/comedor/skorphio/skorphio-comedor-simil-madera-marron-300.jpg",
     "/images/contacto/local-showroom.jpg",
-    "/images/living/fendi/living-fendi-1cuerpo-anodizadonegro-beige.jpg",
-    "/images/living/fendi/living-fendi-1cuerpo-anodizadonegro-blanco.jpg",
-    "/images/living/fendi/living-fendi-1cuerpo-anodizadonegro-gris.jpg",
-    "/images/living/fendi/living-fendi-1cuerpo-anodizadonegro-negro.jpg",
-    "/images/living/fendi/living-fendi-1cuerpo-anodizadopeltre-beige.jpg",
-    "/images/living/fendi/living-fendi-1cuerpo-anodizadopeltre-blanco.jpg",
-    "/images/living/fendi/living-fendi-1cuerpo-anodizadopeltre-gris.jpg",
-    "/images/living/fendi/living-fendi-1cuerpo-anodizadopeltre-negro.jpg",
     "/images/living/fendi/living-fendi-1cuerpo-greige-beige.jpg",
     "/images/living/fendi/living-fendi-1cuerpo-greige-blanco.jpg",
     "/images/living/fendi/living-fendi-1cuerpo-greige-gris.jpg",
@@ -2023,14 +1587,6 @@
     "/images/living/fendi/living-fendi-1cuerpo-similmaderamarron-blanco.jpg",
     "/images/living/fendi/living-fendi-1cuerpo-similmaderamarron-gris.jpg",
     "/images/living/fendi/living-fendi-1cuerpo-similmaderamarron-negro.jpg",
-    "/images/living/fendi/living-fendi-4cuerpos-anodizadonegro-beige.jpg",
-    "/images/living/fendi/living-fendi-4cuerpos-anodizadonegro-blanco.jpg",
-    "/images/living/fendi/living-fendi-4cuerpos-anodizadonegro-gris.jpg",
-    "/images/living/fendi/living-fendi-4cuerpos-anodizadonegro-negro.jpg",
-    "/images/living/fendi/living-fendi-4cuerpos-anodizadopeltre-beige.jpg",
-    "/images/living/fendi/living-fendi-4cuerpos-anodizadopeltre-blanco.jpg",
-    "/images/living/fendi/living-fendi-4cuerpos-anodizadopeltre-gris.jpg",
-    "/images/living/fendi/living-fendi-4cuerpos-anodizadopeltre-negro.jpg",
     "/images/living/fendi/living-fendi-4cuerpos-greige-beige.jpg",
     "/images/living/fendi/living-fendi-4cuerpos-greige-blanco.jpg",
     "/images/living/fendi/living-fendi-4cuerpos-greige-gris.jpg",
@@ -2047,66 +1603,38 @@
     "/images/living/fendi/living-fendi-4cuerpos-similmaderamarron-blanco.jpg",
     "/images/living/fendi/living-fendi-4cuerpos-similmaderamarron-gris.jpg",
     "/images/living/fendi/living-fendi-4cuerpos-similmaderamarron-negro.jpg",
-    "/images/living/malaga/living-malaga-1cuerpo-anodizadonegro-beige.jpg",
-    "/images/living/malaga/living-malaga-1cuerpo-anodizadonegro-blanco.jpg",
-    "/images/living/malaga/living-malaga-1cuerpo-anodizadonegro-gris.jpg",
-    "/images/living/malaga/living-malaga-1cuerpo-anodizadonegro-negro.jpg",
-    "/images/living/malaga/living-malaga-1cuerpo-anodizadopeltre-beige.jpg",
-    "/images/living/malaga/living-malaga-1cuerpo-anodizadopeltre-blanco.jpg",
-    "/images/living/malaga/living-malaga-1cuerpo-anodizadopeltre-gris.jpg",
-    "/images/living/malaga/living-malaga-1cuerpo-anodizadopeltre-negro.jpg",
+    "/images/living/malaga/living-malaga-1cuerpo-greige-beige.jpg",
+    "/images/living/malaga/living-malaga-1cuerpo-greige-blanco.jpg",
+    "/images/living/malaga/living-malaga-1cuerpo-greige-gris.jpg",
+    "/images/living/malaga/living-malaga-1cuerpo-greige-negro.jpg",
     "/images/living/malaga/living-malaga-1cuerpo-negropintado-beige.jpg",
     "/images/living/malaga/living-malaga-1cuerpo-negropintado-blanco.jpg",
     "/images/living/malaga/living-malaga-1cuerpo-negropintado-gris.jpg",
     "/images/living/malaga/living-malaga-1cuerpo-negropintado-negro.jpg",
-    "/images/living/malaga/living-malaga-4cuerpos-anodizadonegro-beige.jpg",
-    "/images/living/malaga/living-malaga-4cuerpos-anodizadonegro-blanco.jpg",
-    "/images/living/malaga/living-malaga-4cuerpos-anodizadonegro-gris.jpg",
-    "/images/living/malaga/living-malaga-4cuerpos-anodizadonegro-negro.jpg",
-    "/images/living/malaga/living-malaga-4cuerpos-anodizadopeltre-beige.jpg",
-    "/images/living/malaga/living-malaga-4cuerpos-anodizadopeltre-blanco.jpg",
-    "/images/living/malaga/living-malaga-4cuerpos-anodizadopeltre-gris.jpg",
-    "/images/living/malaga/living-malaga-4cuerpos-anodizadopeltre-negro.jpg",
+    "/images/living/malaga/living-malaga-4cuerpos-greige-beige.jpg",
+    "/images/living/malaga/living-malaga-4cuerpos-greige-blanco.jpg",
+    "/images/living/malaga/living-malaga-4cuerpos-greige-gris.jpg",
+    "/images/living/malaga/living-malaga-4cuerpos-greige-negro.jpg",
     "/images/living/malaga/living-malaga-4cuerpos-negropintado-beige.jpg",
     "/images/living/malaga/living-malaga-4cuerpos-negropintado-blanco.jpg",
     "/images/living/malaga/living-malaga-4cuerpos-negropintado-gris.jpg",
     "/images/living/malaga/living-malaga-4cuerpos-negropintado-negro.jpg",
-    "/images/living/maldivas/living-maldivas-1cuerpo-anodizadonegro-beige.jpg",
-    "/images/living/maldivas/living-maldivas-1cuerpo-anodizadonegro-blanco.jpg",
-    "/images/living/maldivas/living-maldivas-1cuerpo-anodizadonegro-gris.jpg",
-    "/images/living/maldivas/living-maldivas-1cuerpo-anodizadonegro-negro.jpg",
-    "/images/living/maldivas/living-maldivas-1cuerpo-anodizadopeltre-beige.jpg",
-    "/images/living/maldivas/living-maldivas-1cuerpo-anodizadopeltre-blanco.jpg",
-    "/images/living/maldivas/living-maldivas-1cuerpo-anodizadopeltre-gris.jpg",
-    "/images/living/maldivas/living-maldivas-1cuerpo-anodizadopeltre-negro.jpg",
+    "/images/living/maldivas/living-maldivas-1cuerpo-greige-beige.jpg",
+    "/images/living/maldivas/living-maldivas-1cuerpo-greige-blanco.jpg",
+    "/images/living/maldivas/living-maldivas-1cuerpo-greige-gris.jpg",
+    "/images/living/maldivas/living-maldivas-1cuerpo-greige-negro.jpg",
     "/images/living/maldivas/living-maldivas-1cuerpo-negropintado-beige.jpg",
     "/images/living/maldivas/living-maldivas-1cuerpo-negropintado-blanco.jpg",
     "/images/living/maldivas/living-maldivas-1cuerpo-negropintado-gris.jpg",
     "/images/living/maldivas/living-maldivas-1cuerpo-negropintado-negro.jpg",
-    "/images/living/maldivas/living-maldivas-4cuerpos-anodizadonegro-beige.jpg",
-    "/images/living/maldivas/living-maldivas-4cuerpos-anodizadonegro-blanco.jpg",
-    "/images/living/maldivas/living-maldivas-4cuerpos-anodizadonegro-gris.jpg",
-    "/images/living/maldivas/living-maldivas-4cuerpos-anodizadonegro-negro.jpg",
-    "/images/living/maldivas/living-maldivas-4cuerpos-anodizadopeltre-beige.jpg",
-    "/images/living/maldivas/living-maldivas-4cuerpos-anodizadopeltre-blanco.jpg",
-    "/images/living/maldivas/living-maldivas-4cuerpos-anodizadopeltre-gris.jpg",
-    "/images/living/maldivas/living-maldivas-4cuerpos-anodizadopeltre-negro.jpg",
+    "/images/living/maldivas/living-maldivas-4cuerpos-greige-beige.jpg",
+    "/images/living/maldivas/living-maldivas-4cuerpos-greige-blanco.jpg",
+    "/images/living/maldivas/living-maldivas-4cuerpos-greige-gris.jpg",
+    "/images/living/maldivas/living-maldivas-4cuerpos-greige-negro.jpg",
     "/images/living/maldivas/living-maldivas-4cuerpos-negropintado-beige.jpg",
     "/images/living/maldivas/living-maldivas-4cuerpos-negropintado-blanco.jpg",
     "/images/living/maldivas/living-maldivas-4cuerpos-negropintado-gris.jpg",
     "/images/living/maldivas/living-maldivas-4cuerpos-negropintado-negro.jpg",
-    "/images/living/milos/living-milos-1cuerpo-anodizadonegro-beige.jpg",
-    "/images/living/milos/living-milos-1cuerpo-anodizadonegro-blanco.jpg",
-    "/images/living/milos/living-milos-1cuerpo-anodizadonegro-gris.jpg",
-    "/images/living/milos/living-milos-1cuerpo-anodizadonegro-negro.jpg",
-    "/images/living/milos/living-milos-1cuerpo-anodizadopeltre-beige.jpg",
-    "/images/living/milos/living-milos-1cuerpo-anodizadopeltre-blanco.jpg",
-    "/images/living/milos/living-milos-1cuerpo-anodizadopeltre-gris.jpg",
-    "/images/living/milos/living-milos-1cuerpo-anodizadopeltre-negro.jpg",
-    "/images/living/milos/living-milos-1cuerpo-blancopintado-beige.jpg",
-    "/images/living/milos/living-milos-1cuerpo-blancopintado-blanco.jpg",
-    "/images/living/milos/living-milos-1cuerpo-blancopintado-gris.jpg",
-    "/images/living/milos/living-milos-1cuerpo-blancopintado-negro.jpg",
     "/images/living/milos/living-milos-1cuerpo-greige-beige.jpg",
     "/images/living/milos/living-milos-1cuerpo-greige-blanco.jpg",
     "/images/living/milos/living-milos-1cuerpo-greige-gris.jpg",
@@ -2115,18 +1643,6 @@
     "/images/living/milos/living-milos-1cuerpo-negropintado-blanco.jpg",
     "/images/living/milos/living-milos-1cuerpo-negropintado-gris.jpg",
     "/images/living/milos/living-milos-1cuerpo-negropintado-negro.jpg",
-    "/images/living/milos/living-milos-4cuerpos-anodizadonegro-beige.jpg",
-    "/images/living/milos/living-milos-4cuerpos-anodizadonegro-blanco.jpg",
-    "/images/living/milos/living-milos-4cuerpos-anodizadonegro-gris.jpg",
-    "/images/living/milos/living-milos-4cuerpos-anodizadonegro-negro.jpg",
-    "/images/living/milos/living-milos-4cuerpos-anodizadopeltre-beige.jpg",
-    "/images/living/milos/living-milos-4cuerpos-anodizadopeltre-blanco.jpg",
-    "/images/living/milos/living-milos-4cuerpos-anodizadopeltre-gris.jpg",
-    "/images/living/milos/living-milos-4cuerpos-anodizadopeltre-negro.jpg",
-    "/images/living/milos/living-milos-4cuerpos-blancopintado-beige.jpg",
-    "/images/living/milos/living-milos-4cuerpos-blancopintado-blanco.jpg",
-    "/images/living/milos/living-milos-4cuerpos-blancopintado-gris.jpg",
-    "/images/living/milos/living-milos-4cuerpos-blancopintado-negro.jpg",
     "/images/living/milos/living-milos-4cuerpos-greige-beige.jpg",
     "/images/living/milos/living-milos-4cuerpos-greige-blanco.jpg",
     "/images/living/milos/living-milos-4cuerpos-greige-gris.jpg",
@@ -2196,54 +1712,103 @@
     "/images/materiales/telas/bliss.jpg",
     "/images/materiales/telas/sunbrella.jpg",
     "/images/mesas/fendi/1.jpg",
+    "/images/mesas/fendi/1.png",
     "/images/mesas/fendi/2.jpg",
+    "/images/mesas/fendi/2.png",
     "/images/mesas/fendi/3.jpg",
+    "/images/mesas/fendi/3.png",
     "/images/mesas/fendi/4.jpg",
+    "/images/mesas/fendi/4.png",
     "/images/mesas/malaga/1.jpg",
+    "/images/mesas/malaga/1.png",
     "/images/mesas/malaga/2.jpg",
+    "/images/mesas/malaga/2.png",
     "/images/mesas/malaga/3.jpg",
+    "/images/mesas/malaga/3.png",
     "/images/mesas/milos/1.jpg",
+    "/images/mesas/milos/1.png",
     "/images/mesas/milos/2.jpg",
+    "/images/mesas/milos/2.png",
     "/images/mesas/milos/3.jpg",
+    "/images/mesas/milos/3.png",
     "/images/mesas/skorphio/1.jpg",
+    "/images/mesas/skorphio/1.png",
     "/images/mesas/skorphio/2.jpg",
+    "/images/mesas/skorphio/2.png",
     "/images/mesas/skorphio/3.jpg",
+    "/images/mesas/skorphio/3.png",
     "/images/model-sliders/comedor/marbella/1.jpg",
+    "/images/model-sliders/comedor/marbella/1.png",
     "/images/model-sliders/comedor/marbella/2.jpg",
+    "/images/model-sliders/comedor/marbella/2.png",
     "/images/model-sliders/comedor/marbella/3.jpg",
+    "/images/model-sliders/comedor/marbella/3.png",
     "/images/model-sliders/comedor/skorphio/1.jpg",
+    "/images/model-sliders/comedor/skorphio/1.png",
     "/images/model-sliders/comedor/skorphio/2.jpg",
+    "/images/model-sliders/comedor/skorphio/2.png",
     "/images/model-sliders/comedor/skorphio/3.jpg",
+    "/images/model-sliders/comedor/skorphio/3.png",
     "/images/model-sliders/living/fendi/1.jpg",
+    "/images/model-sliders/living/fendi/1.png",
     "/images/model-sliders/living/fendi/2.jpg",
+    "/images/model-sliders/living/fendi/2.png",
     "/images/model-sliders/living/fendi/3.jpg",
+    "/images/model-sliders/living/fendi/3.png",
     "/images/model-sliders/living/malaga/1.jpg",
+    "/images/model-sliders/living/malaga/1.png",
     "/images/model-sliders/living/malaga/2.jpg",
+    "/images/model-sliders/living/malaga/2.png",
     "/images/model-sliders/living/malaga/3.jpg",
+    "/images/model-sliders/living/malaga/3.png",
     "/images/model-sliders/living/maldivas/1.jpg",
+    "/images/model-sliders/living/maldivas/1.png",
     "/images/model-sliders/living/maldivas/2.jpg",
+    "/images/model-sliders/living/maldivas/2.png",
     "/images/model-sliders/living/maldivas/3.jpg",
+    "/images/model-sliders/living/maldivas/3.png",
     "/images/model-sliders/living/milos/1.jpg",
+    "/images/model-sliders/living/milos/1.png",
     "/images/model-sliders/living/milos/2.jpg",
+    "/images/model-sliders/living/milos/2.png",
     "/images/model-sliders/living/milos/3.jpg",
+    "/images/model-sliders/living/milos/3.png",
     "/images/model-sliders/living/skorphio/1.jpg",
+    "/images/model-sliders/living/skorphio/1.png",
     "/images/model-sliders/living/skorphio/2.jpg",
+    "/images/model-sliders/living/skorphio/2.png",
     "/images/model-sliders/living/skorphio/3.jpg",
+    "/images/model-sliders/living/skorphio/3.png",
     "/images/model-sliders/reposeras/baros/1.jpg",
+    "/images/model-sliders/reposeras/baros/1.png",
     "/images/model-sliders/reposeras/baros/2.jpg",
+    "/images/model-sliders/reposeras/baros/2.png",
     "/images/model-sliders/reposeras/baros/3.jpg",
+    "/images/model-sliders/reposeras/baros/3.png",
     "/images/model-sliders/reposeras/fendi/1.jpg",
+    "/images/model-sliders/reposeras/fendi/1.png",
     "/images/model-sliders/reposeras/fendi/2.jpg",
+    "/images/model-sliders/reposeras/fendi/2.png",
     "/images/model-sliders/reposeras/fendi/3.jpg",
+    "/images/model-sliders/reposeras/fendi/3.png",
     "/images/model-sliders/reposeras/malaga/1.jpg",
+    "/images/model-sliders/reposeras/malaga/1.png",
     "/images/model-sliders/reposeras/malaga/2.jpg",
+    "/images/model-sliders/reposeras/malaga/2.png",
     "/images/model-sliders/reposeras/malaga/3.jpg",
+    "/images/model-sliders/reposeras/malaga/3.png",
     "/images/model-sliders/reposeras/mdq/1.jpg",
+    "/images/model-sliders/reposeras/mdq/1.png",
     "/images/model-sliders/reposeras/mdq/2.jpg",
+    "/images/model-sliders/reposeras/mdq/2.png",
     "/images/model-sliders/reposeras/mdq/3.jpg",
+    "/images/model-sliders/reposeras/mdq/3.png",
     "/images/model-sliders/reposeras/skorphio/1.jpg",
+    "/images/model-sliders/reposeras/skorphio/1.png",
     "/images/model-sliders/reposeras/skorphio/2.jpg",
+    "/images/model-sliders/reposeras/skorphio/2.png",
     "/images/model-sliders/reposeras/skorphio/3.jpg",
+    "/images/model-sliders/reposeras/skorphio/3.png",
     "/images/reposeras/baros/reposera-baros-simple-anodizadonatural-beige.jpg",
     "/images/reposeras/baros/reposera-baros-simple-anodizadonatural-blanco.jpg",
     "/images/reposeras/baros/reposera-baros-simple-anodizadonatural-gris.jpg",

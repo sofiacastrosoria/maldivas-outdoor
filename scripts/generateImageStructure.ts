@@ -98,8 +98,6 @@ const variantModels: VariantModel[] = [
     structures: [
       "simil-madera-blanco",
       "simil-madera-marron",
-      "anodizado-negro",
-      "anodizado-peltre",
       "greige-pintado",
       "negro-pintado",
     ],
@@ -123,7 +121,7 @@ const variantModels: VariantModel[] = [
     category: "living",
     slug: "malaga",
     sizes: ["1-cuerpo", "4-cuerpos"],
-    structures: ["negro-pintado", "anodizado-peltre", "anodizado-negro"],
+    structures: ["negro-pintado", "greige-pintado"],
     fabrics: FABRICS,
   },
   {
@@ -131,7 +129,7 @@ const variantModels: VariantModel[] = [
     category: "living",
     slug: "maldivas",
     sizes: ["1-cuerpo", "4-cuerpos"],
-    structures: ["negro-pintado", "anodizado-peltre", "anodizado-negro"],
+    structures: ["negro-pintado", "greige-pintado"],
     fabrics: FABRICS,
   },
   {
@@ -139,13 +137,7 @@ const variantModels: VariantModel[] = [
     category: "living",
     slug: "milos",
     sizes: ["1-cuerpo", "4-cuerpos"],
-    structures: [
-      "negro-pintado",
-      "greige-pintado",
-      "blanco-pintado",
-      "anodizado-peltre",
-      "anodizado-negro",
-    ],
+    structures: ["negro-pintado", "greige-pintado"],
     fabrics: FABRICS,
   },
 ];
