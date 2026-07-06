@@ -9,6 +9,12 @@ const MAP_URL =
 
 const INSTAGRAM_URL = "https://instagram.com/maldivas.outdoor";
 
+const LEGAL_LINKS = [
+  { href: "/privacy", label: "Privacidad" },
+  { href: "/terms", label: "Términos" },
+  { href: "/data-deletion", label: "Eliminación de datos" },
+] as const;
+
 const whatsappHref = buildWhatsAppUrl(
   generateContactWhatsAppMessage(CONTACT_MESSAGE_DEFAULT)
 );
@@ -71,6 +77,21 @@ export function GlobalFooter() {
             Cómo llegar
           </a>
         </div>
+
+        <nav
+          className="mt-10 border-t border-white/10 pt-8 flex flex-wrap gap-x-6 gap-y-2"
+          aria-label="Enlaces legales"
+        >
+          {LEGAL_LINKS.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="text-xs font-light text-white/50 hover:text-white transition-colors duration-500"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
       </div>
     </footer>
   );

@@ -17,6 +17,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/materiales/piedras",
     "/contacto",
     "/faq",
+    "/privacy",
+    "/terms",
+    "/data-deletion",
   ].map((path) => ({
     url: `${BASE}${path}`,
     lastModified: new Date(),
