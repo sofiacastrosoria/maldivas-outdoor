@@ -13,6 +13,13 @@ import {
   INTRINSIC_HEIGHT,
   INTRINSIC_WIDTH,
 } from "@/components/ui/IntrinsicImage";
+import {
+  COMEDOR_CONFIGURATOR_ASPECT_CLASS,
+  COMEDOR_IMAGE_HEIGHT,
+  COMEDOR_IMAGE_WIDTH,
+  usesComedorVariantImages,
+} from "@/lib/comedorImages";
+import { toNextImageSrc } from "@/lib/imageManifest";
 import { ImagePlaceholder } from "./ImagePlaceholder";
 
 interface ConfiguratorImageProps {
@@ -74,24 +81,38 @@ export function ConfiguratorImage({
       ? `${product.name} — ${tableIndex}`
       : `${product.name} — configuración`);
 
+  const isComedorConfigurator = usesComedorVariantImages(product);
+  const imageWidth = isComedorConfigurator ? COMEDOR_IMAGE_WIDTH : INTRINSIC_WIDTH;
+  const imageHeight = isComedorConfigurator ? COMEDOR_IMAGE_HEIGHT : INTRINSIC_HEIGHT;
+
+  const shellAspectClass = isComedorConfigurator
+    ? COMEDOR_CONFIGURATOR_ASPECT_CLASS
+    : "aspect-[7/5]";
+
   const shell = (
     <div
-      className={`configurator-gallery-surface relative mx-auto overflow-visible ${
+      className={`configurator-gallery-surface relative mx-auto overflow-hidden rounded-2xl ${
         compact
-          ? "flex h-full min-h-0 w-full max-w-none items-center justify-center"
-          : "aspect-[7/5] w-full max-w-4xl"
+          ? isComedorConfigurator
+            ? `${shellAspectClass} w-full max-w-none`
+            : "flex h-full min-h-0 w-full max-w-none items-center justify-center"
+          : `${shellAspectClass} w-full max-w-4xl`
       }`}
     >
-      <div className="configurator-gallery-surface flex h-full max-h-full w-full items-center justify-center overflow-hidden">
+      <div
+        className={`configurator-gallery-surface flex w-full items-center justify-center overflow-hidden ${
+          compact && !isComedorConfigurator ? "h-full max-h-full" : ""
+        }`}
+      >
         <div className="configurator-gallery-surface configurator-product-scale flex w-full items-center justify-center">
           {!failed && src ? (
             <div className="configurator-product-float w-full">
               <Image
-                key={src}
-                src={src}
+                key={toNextImageSrc(src)}
+                src={toNextImageSrc(src)}
                 alt={imageAlt}
-                width={INTRINSIC_WIDTH}
-                height={INTRINSIC_HEIGHT}
+                width={imageWidth}
+                height={imageHeight}
                 sizes={IMAGE_SIZES.configurator}
                 priority={priority}
                 loading={priority ? undefined : "lazy"}
@@ -114,7 +135,7 @@ export function ConfiguratorImage({
         type="button"
         onClick={onClick}
         className={`configurator-gallery-surface block w-full cursor-zoom-in text-left ${
-          compact ? "h-full" : ""
+          compact && !isComedorConfigurator ? "h-full" : ""
         }`}
         aria-label="Ampliar imagen"
       >

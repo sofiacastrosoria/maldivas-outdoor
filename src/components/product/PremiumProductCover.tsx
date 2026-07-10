@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { IMAGE_SIZES } from "@/lib/imageSizes";
+import { toNextImageSrc } from "@/lib/imageManifest";
 
 /** Formato visual uniforme de portadas — 1400 × 1000 */
 export const PRODUCT_COVER_WIDTH = 1400;
@@ -40,7 +41,7 @@ export function PremiumProductCover({
       className={`relative w-full overflow-hidden bg-ivory ${COVER_RADIUS} ${PRODUCT_COVER_ASPECT_CLASS} ${className}`}
     >
       <Image
-        src={src}
+        src={toNextImageSrc(src)}
         alt={alt}
         fill
         sizes={sizes}

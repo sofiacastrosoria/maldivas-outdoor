@@ -5,6 +5,7 @@ import {
   getImageManifest,
   getUrlByFilename,
   resolveBestProductImageUrl,
+  toNextImageSrc,
   withManifestVersion,
 } from "@/lib/imageManifest";
 import {
@@ -33,8 +34,11 @@ function unique(paths: string[]): string[] {
 }
 
 function expandProductCandidates(...canonicalUrls: string[]): string[] {
+  // Strip ?v= — Next.js Image optimizer returns 400 for local paths with query strings
   return unique(
-    canonicalUrls.flatMap((url) => buildProductImageUrlCandidates(url))
+    canonicalUrls
+      .flatMap((url) => buildProductImageUrlCandidates(url))
+      .map((url) => toNextImageSrc(url))
   );
 }
 
@@ -164,7 +168,7 @@ export function fallbackPlaceholder(
       product,
       getMesaStructureImageIndex(product, cfg)
     );
-    return resolveBestProductImageUrl(url);
+    return toNextImageSrc(resolveBestProductImageUrl(url));
   }
 
   if (usesMesaStoneImages(product)) {
@@ -173,24 +177,24 @@ export function fallbackPlaceholder(
       product,
       getMesaStoneImageIndex(product, cfg)
     );
-    return resolveBestProductImageUrl(url);
+    return toNextImageSrc(resolveBestProductImageUrl(url));
   }
 
   if (usesComedorVariantImages(product)) {
     const cfg = config ?? defaultProductConfig(product);
     const url = buildComedorImagePath(product, cfg);
-    return resolveBestProductImageUrl(url);
+    return toNextImageSrc(resolveBestProductImageUrl(url));
   }
 
   if (isTableProduct(product)) {
     const url = buildTableImagePath(product, tableIndex);
-    return resolveBestProductImageUrl(url);
+    return toNextImageSrc(resolveBestProductImageUrl(url));
   }
 
   const cfg = config ?? defaultProductConfig(product);
   const folder = getImageFolder(product);
   const url = `/images/${folder}/${product.slug}/${buildImageFilename(product, cfg)}`;
-  return resolveBestProductImageUrl(url);
+  return toNextImageSrc(resolveBestProductImageUrl(url));
 }
 
 /** Public API: resolve real variant image or placeholder */

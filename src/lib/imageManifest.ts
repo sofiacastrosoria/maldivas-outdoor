@@ -71,6 +71,14 @@ export function withManifestVersion(url: string): string {
   return url.includes("?") ? `${url}&v=${v}` : `${url}?v=${v}`;
 }
 
+/**
+ * Next.js Image optimizer rejects local paths with query strings (400).
+ * Use this for every `next/image` `src`.
+ */
+export function toNextImageSrc(url: string): string {
+  return url.split("?")[0] || url;
+}
+
 export function getUrlByFilename(filename: string): string | undefined {
   const entry = manifest.files[filename];
   if (!entry) return undefined;

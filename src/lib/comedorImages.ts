@@ -17,6 +17,11 @@ export function usesComedorVariantImages(product: Product): boolean {
   return product.category === "comedor" && product.comedorVariantImages === true;
 }
 
+/** Proporción fotos configurador comedor (1500×900) */
+export const COMEDOR_CONFIGURATOR_ASPECT_CLASS = "aspect-[5/3]" as const;
+export const COMEDOR_IMAGE_WIDTH = 1500;
+export const COMEDOR_IMAGE_HEIGHT = 900;
+
 function structureSegment(structureId: string): string {
   return STRUCTURE_SEGMENT[structureId] ?? structureId;
 }

@@ -1,7 +1,13 @@
 import type { Product } from "@/types";
 import {
+  buildComedorImagePath,
+  usesComedorVariantImages,
+} from "@/lib/comedorImages";
+import {
   getUrlsWithPrefix,
   isRealManifestImage,
+  manifestUrlExists,
+  resolveBestProductImageUrl,
   withManifestVersion,
 } from "@/lib/imageManifest";
 
@@ -27,6 +33,35 @@ export interface ModelCardVariant {
 
 function withVersion(url: string, filename: string): string {
   return withManifestVersion(url);
+}
+
+/** Comedor: una imagen por estructura (misma ruta que el configurador) */
+function getComedorCardVariants(product: Product): ModelCardVariant[] {
+  if (!usesComedorVariantImages(product)) return [];
+
+  const variants: ModelCardVariant[] = [];
+
+  for (const structure of product.structures) {
+    const canonical = buildComedorImagePath(product, {
+      structureId: structure.id,
+    });
+    const resolved = resolveBestProductImageUrl(canonical);
+    const pathname = resolved.split("?")[0];
+    if (!manifestUrlExists(pathname)) continue;
+
+    const filename = pathname.split("/").pop() ?? "";
+    const size =
+      filename.match(/-(\d+)\.(jpe?g|png|webp)$/i)?.[1] ?? "";
+
+    variants.push({
+      url: withVersion(resolved, filename),
+      structure: structure.id,
+      fabric: "",
+      size,
+    });
+  }
+
+  return variants;
 }
 
 function typePrefix(product: Product): string | null {
@@ -130,6 +165,10 @@ export function listModelCardCandidateUrls(product: Product): string[] {
  * Discover real images for model cards — sync pass from manifest metadata.
  */
 export function getModelCardVariants(product: Product): ModelCardVariant[] {
+  if (usesComedorVariantImages(product)) {
+    return getComedorCardVariants(product);
+  }
+
   const prefix = typePrefix(product);
   const dirPrefix = getModelCardDirPrefix(product);
   if (!prefix || !dirPrefix) return [];

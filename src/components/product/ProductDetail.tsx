@@ -10,6 +10,7 @@ import { isTableProduct, type TableImageIndex } from "@/lib/images";
 import { getProductTypeLabel } from "@/lib/productDisplay";
 import type { FabricTypeId } from "@/lib/premiumSwatches";
 import { resolveVariantImage } from "@/lib/resolveImage";
+import { toNextImageSrc } from "@/lib/imageManifest";
 import { openWhatsApp } from "@/lib/whatsapp";
 import { useVariantConfig } from "@/hooks/useVariantConfig";
 import { useCart } from "@/context/CartContext";
@@ -20,6 +21,9 @@ import { VariantSelector } from "./VariantSelector";
 import { FullscreenImageModal } from "./FullscreenImageModal";
 import { ProductBenefits } from "./ProductBenefits";
 import { ProductAccordions } from "./ProductAccordions";
+import {
+  usesComedorVariantImages,
+} from "@/lib/comedorImages";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -82,6 +86,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
   const [zoomOpen, setZoomOpen] = useState(false);
   const [fabricType, setFabricType] = useState<FabricTypeId>("sunbrella");
   const isLegacyTableGallery = isTableProduct(product);
+  const isComedorConfigurator = usesComedorVariantImages(product);
 
   const priceBreakdown = calculatePriceBreakdown(product, config);
   const selectedSize = product.sizes.find((s) => s.id === config.sizeId);
@@ -227,14 +232,24 @@ export function ProductDetail({ product }: ProductDetailProps) {
         {/* Imagen fija */}
         <section
           className="configurator-gallery-surface relative z-10 flex flex-shrink-0 flex-col overflow-hidden bg-ivory px-0 pt-0 pb-0 sm:px-4 sm:pt-2 sm:pb-2"
-          style={{
-            height: "var(--config-image-vh)",
-            minHeight: "168px",
-            maxHeight: "min(42dvh, 380px)",
-          }}
+          style={
+            isComedorConfigurator
+              ? undefined
+              : {
+                  height: "var(--config-image-vh)",
+                  minHeight: "168px",
+                  maxHeight: "min(42dvh, 380px)",
+                }
+          }
           aria-label="Vista del producto"
         >
-          <div className="configurator-gallery-surface relative flex min-h-0 flex-1 items-center justify-center overflow-hidden bg-ivory">
+          <div
+            className={
+              isComedorConfigurator
+                ? "configurator-gallery-surface relative w-full overflow-hidden bg-ivory"
+                : "configurator-gallery-surface relative flex min-h-0 flex-1 items-center justify-center overflow-hidden bg-ivory"
+            }
+          >
             <ConfiguratorImage
               product={product}
               config={config}
@@ -277,26 +292,35 @@ export function ProductDetail({ product }: ProductDetailProps) {
         {/* Zona imagen: centrada, aire lateral, proporción preservada */}
         <div className="bg-ivory px-10 pt-8 pb-4 lg:px-20 xl:px-28">
           <div className="mx-auto max-w-[1120px]">
-            {/* Imagen principal: 2:1 aspect, nunca recortada */}
-            <div
-              className="relative w-full aspect-[2/1] cursor-zoom-in overflow-hidden rounded-2xl"
-              onClick={() => setZoomOpen(true)}
-              role="button"
-              tabIndex={0}
-              aria-label="Ampliar imagen"
-              onKeyDown={(e) => e.key === "Enter" && setZoomOpen(true)}
-            >
-              <Image
-                key={desktopImageSrc}
-                src={desktopImageSrc}
+            {isComedorConfigurator ? (
+              <ConfiguratorImage
+                product={product}
+                config={config}
                 alt={product.name}
-                fill
-                className="object-contain transition-opacity duration-500"
-                sizes="(min-width: 1280px) 1120px, (min-width: 1024px) calc(100vw - 10rem), calc(100vw - 5rem)"
                 priority
+                onClick={() => setZoomOpen(true)}
               />
-              <ConfiguratorImageBottomFade product={product} />
-            </div>
+            ) : (
+              <div
+                className="relative w-full aspect-[2/1] cursor-zoom-in overflow-hidden rounded-2xl"
+                onClick={() => setZoomOpen(true)}
+                role="button"
+                tabIndex={0}
+                aria-label="Ampliar imagen"
+                onKeyDown={(e) => e.key === "Enter" && setZoomOpen(true)}
+              >
+                <Image
+                  key={toNextImageSrc(desktopImageSrc)}
+                  src={toNextImageSrc(desktopImageSrc)}
+                  alt={product.name}
+                  fill
+                  className="object-contain transition-opacity duration-500"
+                  sizes="(min-width: 1280px) 1120px, (min-width: 1024px) calc(100vw - 10rem), calc(100vw - 5rem)"
+                  priority
+                />
+                <ConfiguratorImageBottomFade product={product} />
+              </div>
+            )}
 
             {/* Miniaturas: centradas, ligeramente más grandes en desktop */}
             <VariantThumbnails

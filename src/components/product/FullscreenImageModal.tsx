@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { IMAGE_SIZES } from "@/lib/imageSizes";
+import { toNextImageSrc } from "@/lib/imageManifest";
 
 const FADE_MS = 0.25;
 
@@ -104,7 +105,7 @@ export function FullscreenImageModal({
             onClick={(e) => e.stopPropagation()}
           >
             <Image
-              src={src}
+              src={toNextImageSrc(src)}
               alt={alt}
               fill
               className="configurator-product-image object-contain object-center"
