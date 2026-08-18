@@ -18,6 +18,7 @@ export interface ProductConfig {
   sizeId: string;
   structureId: string;
   fabricId: string;
+  fabricTypeId?: "bliss" | "agora" | "sunbrella";
   customNotes?: string;
   stoneBrand?: string;
   stoneModel?: string;
@@ -34,6 +35,7 @@ export interface CartItem {
   config: ProductConfig;
   configSummary: string[];
   unitPrice: number;
+  priceStatus?: "priced" | "quote";
   quantity: number;
 }
 

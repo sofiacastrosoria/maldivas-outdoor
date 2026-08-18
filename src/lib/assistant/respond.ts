@@ -96,7 +96,7 @@ export function respondPrice(product: Product): string {
   const size = product.sizes.find((s) => s.id === config.sizeId);
 
   if (!breakdown) {
-    return `Para ${name}, el precio depende de la configuración. Coordiná con nuestro equipo para una cotización personalizada. ${LOGISTICS.priceDisclaimer}.`;
+    return `Para ${name}, el precio queda en A cotizar según la configuración elegida. Coordiná con nuestro equipo. ${LOGISTICS.priceDisclaimer}.`;
   }
 
   const parts = [

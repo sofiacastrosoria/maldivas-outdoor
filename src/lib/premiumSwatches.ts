@@ -40,9 +40,9 @@ export const FABRIC_DISPLAY_LABELS: Record<string, string> = {
 };
 
 export const FABRIC_TYPE_OPTIONS = [
-  { id: "sunbrella", label: "Sunbrella Premium" },
-  { id: "agora", label: "Agora Premium" },
   { id: "bliss", label: "Bliss Premium" },
+  { id: "sunbrella", label: "Sunbrella Premium" },
+  { id: "agora", label: "Ágora Premium" },
 ] as const;
 
 export type FabricTypeId = (typeof FABRIC_TYPE_OPTIONS)[number]["id"];

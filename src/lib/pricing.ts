@@ -1,46 +1,14 @@
-import {
-  CASH_MULTIPLIER,
-  COMEDOR_LIST_PRICES,
-  COMEDOR_LIST_PRICE_INCREASE,
-  LIST_PRICE_ADJUSTMENT,
-  MESA_LIST_PRICES,
-  REPOSERA_LIST_PRICES,
-  SILLON_LIST_PRICES,
-  TRANSFER_MULTIPLIER,
-  type ComedorStoneBrandKey,
-  type ReposeraSizeKey,
-  type SillonSizeKey,
-  type StructurePriceKey,
-} from "@/data/pricing";
+import { CASH_MULTIPLIER, TRANSFER_MULTIPLIER } from "@/data/pricing";
 import {
   getAvailableStoneModels,
   getStoneModelById,
-  resolveMarbellaStoneBrand,
   STONE_BRAND_LABELS,
 } from "@/data/comedorStone";
 import { getMesaSkorphioStoneById } from "@/data/mesaSkorphioStone";
+import { findPriceVariant, isQuoteSelection } from "@/lib/prices/catalog";
+import { getLegacyPublishedListPrice } from "@/lib/prices/legacy";
+import { FABRIC_DISPLAY_LABELS, FABRIC_TYPE_OPTIONS } from "@/lib/premiumSwatches";
 import type { Product, ProductConfig, CartItem } from "@/types";
-
-const STRUCTURE_ID_TO_KEY: Record<string, StructurePriceKey> = {
-  "simil-madera-marron": "similMaderaMarron",
-  "simil-madera-blanco": "similMaderaBlanco",
-  "anodizado-negro": "anodizadoNegroLijado",
-  "anodizado-peltre": "anodizadoPeltreLijado",
-  "anodizado-natural": "anodizadoNatural",
-  "greige-pintado": "greigePintado",
-  "negro-pintado": "negroPintado",
-  "blanco-pintado": "blancoPintado",
-};
-
-const REPOSERA_SIZE_ID_TO_KEY: Record<string, ReposeraSizeKey> = {
-  small: "estandar",
-  large: "doble",
-};
-
-const SILLON_SIZE_ID_TO_KEY: Record<string, SillonSizeKey> = {
-  "1-cuerpo": "1cuerpo",
-  "4-cuerpos": "4cuerpos",
-};
 
 export interface PriceBreakdown {
   list: number;
@@ -67,102 +35,20 @@ export interface CartTotals {
   savingsCash: number;
 }
 
-function toStructureKey(structureId: string): StructurePriceKey | null {
-  return STRUCTURE_ID_TO_KEY[structureId] ?? null;
-}
-
-function getReposeraListPrice(
-  slug: string,
-  structureId: string,
-  sizeId: string
-): number | null {
-  const structureKey = toStructureKey(structureId);
-  const sizeKey = REPOSERA_SIZE_ID_TO_KEY[sizeId];
-  if (!structureKey || !sizeKey) return null;
-
-  return REPOSERA_LIST_PRICES[slug]?.[structureKey]?.[sizeKey] ?? null;
-}
-
-function getSillonListPrice(
-  slug: string,
-  structureId: string,
-  sizeId: string
-): number | null {
-  const structureKey = toStructureKey(structureId);
-  const sizeKey = SILLON_SIZE_ID_TO_KEY[sizeId];
-  if (!structureKey || !sizeKey) return null;
-
-  return SILLON_LIST_PRICES[slug]?.[structureKey]?.[sizeKey] ?? null;
-}
-
-function getMesaListPrice(slug: string, structureId: string): number | null {
-  if (slug === "skorphio") return 3_747_600;
-  const structureKey = toStructureKey(structureId);
-  if (!structureKey) return null;
-  return MESA_LIST_PRICES[slug]?.[structureKey] ?? null;
-}
-
-function getComedorListPrice(
-  slug: string,
-  structureId: string,
-  sizeId: string,
-  stoneBrand?: string
-): number | null {
-  const structureKey = toStructureKey(structureId);
-  if (!structureKey) return null;
-
-  const entry = COMEDOR_LIST_PRICES[slug]?.[structureKey]?.[sizeId];
-  if (entry === undefined) return null;
-  if (typeof entry === "number") return entry;
-
-  const brand = resolveMarbellaStoneBrand(sizeId, stoneBrand);
-  if (!brand) return null;
-  return entry[brand as ComedorStoneBrandKey] ?? null;
-}
-
-/** Precio de lista publicado: valor del catálogo × 0.98 */
-function applyListPriceAdjustment(catalogListPrice: number): number {
-  return Math.round(catalogListPrice * LIST_PRICE_ADJUSTMENT);
-}
-
+/** Precio de lista vigente (Supabase). No aplica −2% ni +10% extra: ya está publicado. */
 export function getListPrice(
   product: Product,
   config: ProductConfig
 ): number | null {
-  let catalogList: number | null = null;
+  if (isQuoteSelection(product, config)) return null;
 
-  if (product.category === "reposeras") {
-    catalogList = getReposeraListPrice(
-      product.slug,
-      config.structureId,
-      config.sizeId
-    );
-  } else if (product.category === "living" && product.subcategory === "sillones") {
-    catalogList = getSillonListPrice(
-      product.slug,
-      config.structureId,
-      config.sizeId
-    );
-  } else if (product.category === "mesas") {
-    catalogList = getMesaListPrice(product.slug, config.structureId);
-  } else if (product.category === "comedor") {
-    catalogList = getComedorListPrice(
-      product.slug,
-      config.structureId,
-      config.sizeId,
-      config.stoneBrand
-    );
+  const row = findPriceVariant(product, config);
+  if (row) {
+    if (row.price_status === "quote") return null;
+    return row.list_price;
   }
 
-  if (catalogList === null) return null;
-
-  if (product.category === "comedor") {
-    return Math.round(
-      catalogList * COMEDOR_LIST_PRICE_INCREASE * LIST_PRICE_ADJUSTMENT
-    );
-  }
-
-  return applyListPriceAdjustment(catalogList);
+  return getLegacyPublishedListPrice(product, config);
 }
 
 export function buildPriceBreakdown(list: number): PriceBreakdown {
@@ -245,6 +131,7 @@ function enumeratePriceConfigs(product: Product): ProductConfig[] {
             sizeId: size.id,
             structureId: structure.id,
             fabricId,
+            fabricTypeId: product.fabrics.length > 0 ? "bliss" : undefined,
             stoneBrand: model.brand,
             stoneModel: model.id,
             customDimensions: "",
@@ -257,6 +144,7 @@ function enumeratePriceConfigs(product: Product): ProductConfig[] {
             sizeId: size.id,
             structureId: structure.id,
             fabricId,
+            fabricTypeId: product.fabrics.length > 0 ? "bliss" : undefined,
             stoneBrand: stone.brand,
             stoneModel: stone.id,
             customDimensions: "",
@@ -268,6 +156,7 @@ function enumeratePriceConfigs(product: Product): ProductConfig[] {
           sizeId: size.id,
           structureId: structure.id,
           fabricId,
+          fabricTypeId: product.fabrics.length > 0 ? "bliss" : undefined,
           stoneBrand: product.stoneBrands?.[0]?.id,
           stoneModel: "",
           customDimensions: "",
@@ -326,12 +215,18 @@ export function getCheapestProductConfig(product: Product): ProductConfig {
     }
   }
 
-  if (best) return best;
+  if (best) {
+    return {
+      ...best,
+      fabricTypeId: product.fabrics.length > 0 ? "bliss" : undefined,
+    };
+  }
 
   return {
     sizeId: product.sizes[0]?.id ?? "custom",
     structureId: product.structures[0]?.id ?? "estandar",
     fabricId: product.fabrics[0]?.id ?? "negro",
+    fabricTypeId: product.fabrics.length > 0 ? "bliss" : undefined,
     stoneBrand: product.stoneBrands?.[0]?.id,
     stoneModel: "",
     customDimensions: "",
@@ -390,7 +285,11 @@ export function buildConfigSummary(
     }
   }
   if (structure) lines.push(`Estructura: ${structure.label}`);
-  if (fabric) lines.push(`Tapizado: ${fabric.label}`);
+  if (fabric) {
+    lines.push(`Color: ${FABRIC_DISPLAY_LABELS[fabric.id] ?? fabric.label}`);
+    const tela = FABRIC_TYPE_OPTIONS.find((o) => o.id === (config.fabricTypeId ?? "bliss"));
+    if (tela) lines.push(`Tapizado: ${tela.label}`);
+  }
   if (config.customDimensions)
     lines.push(`Medida personalizada: ${config.customDimensions}`);
 

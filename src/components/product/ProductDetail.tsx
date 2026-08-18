@@ -9,6 +9,8 @@ import { PriceBreakdown } from "./PriceBreakdown";
 import { isTableProduct, type TableImageIndex } from "@/lib/images";
 import { getProductTypeLabel } from "@/lib/productDisplay";
 import type { FabricTypeId } from "@/lib/premiumSwatches";
+import { isQuoteSelection } from "@/lib/prices/catalog";
+import { QuotePriceLabel } from "./QuotePriceLabel";
 import { resolveVariantImage } from "@/lib/resolveImage";
 import { toNextImageSrc } from "@/lib/imageManifest";
 import { openWhatsApp } from "@/lib/whatsapp";
@@ -62,21 +64,25 @@ function ConfiguratorImageBottomFade({ product }: { product: Product }) {
 function buildQuoteMessage(
   product: Product,
   config: ReturnType<typeof useVariantConfig>["config"],
-  breakdown: NonNullable<ReturnType<typeof calculatePriceBreakdown>>
+  breakdown: ReturnType<typeof calculatePriceBreakdown>
 ): string {
   const summary = buildConfigSummary(product, config);
-  return [
+  const lines = [
     "Hola Maldivas Outdoor.",
     `Quiero solicitar una cotización para ${product.name}.`,
     "",
     ...summary.map((line) => `- ${line}`),
-    "",
-    `Precio de lista: ${formatPrice(breakdown.list)}`,
-    `Precio en efectivo (30% OFF): ${formatPrice(breakdown.cash)}`,
-    `Precio en transferencia (15% OFF): ${formatPrice(breakdown.transfer)}`,
-    "",
-    "Muchas gracias.",
-  ].join("\n");
+  ];
+  if (breakdown) {
+    lines.push(
+      "",
+      `Precio de lista: ${formatPrice(breakdown.list)}`,
+      `Precio en efectivo (30% OFF): ${formatPrice(breakdown.cash)}`,
+      `Precio en transferencia (15% OFF): ${formatPrice(breakdown.transfer)}`
+    );
+  }
+  lines.push("", "Muchas gracias.");
+  return lines.join("\n");
 }
 
 export function ProductDetail({ product }: ProductDetailProps) {
@@ -84,10 +90,12 @@ export function ProductDetail({ product }: ProductDetailProps) {
   const { addItem } = useCart();
   const [tableIndex, setTableIndex] = useState<TableImageIndex>(1);
   const [zoomOpen, setZoomOpen] = useState(false);
-  const [fabricType, setFabricType] = useState<FabricTypeId>("sunbrella");
   const isLegacyTableGallery = isTableProduct(product);
   const isComedorConfigurator = usesComedorVariantImages(product);
 
+  const quote = isQuoteSelection(product, config);
+  const fabricType = (config.fabricTypeId ??
+    (product.fabrics.length > 0 ? "bliss" : "bliss")) as FabricTypeId;
   const priceBreakdown = calculatePriceBreakdown(product, config);
   const selectedSize = product.sizes.find((s) => s.id === config.sizeId);
   const displayDimensions =
@@ -114,7 +122,6 @@ export function ProductDetail({ product }: ProductDetailProps) {
   };
 
   const handleQuote = () => {
-    if (!priceBreakdown) return;
     openWhatsApp(buildQuoteMessage(product, config, priceBreakdown));
   };
 
@@ -166,24 +173,22 @@ export function ProductDetail({ product }: ProductDetailProps) {
         config={config}
         onChange={updateConfig}
         fabricType={fabricType}
-        onFabricTypeChange={setFabricType}
+        onFabricTypeChange={(id) => updateConfig({ fabricTypeId: id })}
       />
 
       <section className="pt-4 border-t border-premium-border">
-        {priceBreakdown ? (
-          <PriceBreakdown breakdown={priceBreakdown} />
-        ) : (
+        {quote || !priceBreakdown ? (
           <div className="space-y-1.5">
             <p className="text-[10px] tracking-luxury uppercase text-premium-gray">
               Precio
             </p>
-            <p className="text-xl font-light text-matte-black tracking-tight">
-              Consultar precio
-            </p>
+            <QuotePriceLabel size="lg" />
             <p className="text-[10px] text-premium-gray">
               Coordiná con nuestro equipo para una cotización personalizada.
             </p>
           </div>
+        ) : (
+          <PriceBreakdown breakdown={priceBreakdown} />
         )}
       </section>
 

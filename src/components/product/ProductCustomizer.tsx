@@ -4,6 +4,8 @@ import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Product, ProductConfig } from "@/types";
 import { calculatePriceBreakdown, buildConfigSummary } from "@/lib/pricing";
+import { QuotePriceLabel } from "./QuotePriceLabel";
+import { isQuoteSelection } from "@/lib/prices/catalog";
 import { PriceBreakdown } from "./PriceBreakdown";
 import { defaultProductConfig, dynamicImageResolver } from "@/lib/images";
 import { useCart } from "@/context/CartContext";
@@ -221,7 +223,7 @@ export function ProductCustomizer({
                   {product.fabrics.length > 0 && (
                     <section>
                       <h4 className="text-[10px] tracking-luxury uppercase text-matte-black/40 mb-3">
-                        Tapizado
+                        Color
                       </h4>
                       <div className="flex flex-wrap gap-2">
                         {product.fabrics.map((f) => (
@@ -282,7 +284,7 @@ export function ProductCustomizer({
                 </div>
 
                 <div className="border-t border-stone/15 px-6 md:px-8 py-6 bg-white">
-                  {priceBreakdown ? (
+                  {priceBreakdown && !isQuoteSelection(product, config) ? (
                     <div className="mb-4">
                       <PriceBreakdown breakdown={priceBreakdown} compact />
                     </div>
@@ -291,7 +293,7 @@ export function ProductCustomizer({
                       <p className="text-[10px] tracking-luxury uppercase text-matte-black/40">
                         Precio
                       </p>
-                      <p className="text-lg font-light mt-1">Consultar precio</p>
+                      <QuotePriceLabel className="mt-1" />
                     </div>
                   )}
                   {summary.length > 0 && (

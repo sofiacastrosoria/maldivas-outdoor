@@ -35,6 +35,7 @@ function formatCartItemBlock(item: CartItem): string {
     "—";
   const structure =
     getConfigValue(item.configSummary, ["estructura"]) ?? "—";
+  const color = getConfigValue(item.configSummary, ["color"]);
   const fabric =
     getConfigValue(item.configSummary, ["tapizado", "tela"]) ?? "—";
   const stoneBrand = getConfigValue(item.configSummary, ["piedra"]);
@@ -51,6 +52,7 @@ function formatCartItemBlock(item: CartItem): string {
     `• ${item.productName}`,
     `- Tamaño: ${size}`,
     `- Estructura: ${structure}`,
+    ...(color ? [`- Color: ${color}`] : []),
     `- Tapizado: ${fabric}`,
     `- Piedra: ${stone}`,
     `- Cantidad: ${item.quantity}`,
@@ -67,6 +69,7 @@ function formatCartItemBlock(item: CartItem): string {
       !lower.startsWith("estructura") &&
       !lower.startsWith("tapizado") &&
       !lower.startsWith("tela") &&
+      !lower.startsWith("color") &&
       !lower.startsWith("piedra") &&
       !lower.startsWith("modelo:") &&
       !lower.startsWith("medida personalizada")

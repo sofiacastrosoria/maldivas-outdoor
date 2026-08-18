@@ -242,7 +242,7 @@ export function VariantSelector({
 
       {product.fabrics.length > 0 && (
         <section>
-          <SectionTitle>Tapizado</SectionTitle>
+          <SectionTitle>Color</SectionTitle>
           <div className="flex flex-wrap gap-3.5 sm:gap-4">
             {product.fabrics.map((f) => {
               const swatch = FABRIC_SWATCHES[f.id] ?? {
@@ -264,7 +264,7 @@ export function VariantSelector({
 
       {product.fabrics.length > 0 && (
         <section>
-          <SectionTitle>Tipo de tela</SectionTitle>
+          <SectionTitle>Tapizado</SectionTitle>
           <div className="relative">
             <select
               value={fabricType}

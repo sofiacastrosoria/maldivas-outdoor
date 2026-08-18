@@ -40,7 +40,7 @@ export function ProductCard({ product, href }: ProductCardProps) {
             <p className="whitespace-nowrap text-right text-sm text-matte-black/60">
               {fromPrice !== null
                 ? `Desde ${formatPrice(fromPrice)}`
-                : "Consultar precio"}
+                : "A cotizar"}
             </p>
             <span className="mt-2 inline-flex h-9 items-center rounded-full bg-matte-black px-5 text-[11px] font-medium tracking-wide text-white transition-all duration-300 group-hover:opacity-90 group-hover:shadow-[0_2px_8px_rgba(26,26,26,0.12)]">
               Personalizar
