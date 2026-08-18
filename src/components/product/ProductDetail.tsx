@@ -10,6 +10,7 @@ import { isTableProduct, type TableImageIndex } from "@/lib/images";
 import { getProductTypeLabel } from "@/lib/productDisplay";
 import type { FabricTypeId } from "@/lib/premiumSwatches";
 import { isQuoteSelection } from "@/lib/prices/catalog";
+import { getVariantAvailability } from "@/lib/catalog/availability";
 import { QuotePriceLabel } from "./QuotePriceLabel";
 import { resolveVariantImage } from "@/lib/resolveImage";
 import { toNextImageSrc } from "@/lib/imageManifest";
@@ -77,8 +78,8 @@ function buildQuoteMessage(
     lines.push(
       "",
       `Precio de lista: ${formatPrice(breakdown.list)}`,
-      `Precio en efectivo (30% OFF): ${formatPrice(breakdown.cash)}`,
-      `Precio en transferencia (15% OFF): ${formatPrice(breakdown.transfer)}`
+      `Precio en efectivo (${breakdown.cashPercent}% OFF): ${formatPrice(breakdown.cash)}`,
+      `Precio en transferencia (${breakdown.transferPercent}% OFF): ${formatPrice(breakdown.transfer)}`
     );
   }
   lines.push("", "Muchas gracias.");
@@ -94,6 +95,9 @@ export function ProductDetail({ product }: ProductDetailProps) {
   const isComedorConfigurator = usesComedorVariantImages(product);
 
   const quote = isQuoteSelection(product, config);
+  const availability = getVariantAvailability(product, config);
+  const soldOut = product.soldOut || availability === "sold_out";
+  const unavailable = availability === "hidden";
   const fabricType = (config.fabricTypeId ??
     (product.fabrics.length > 0 ? "bliss" : "bliss")) as FabricTypeId;
   const priceBreakdown = calculatePriceBreakdown(product, config);
@@ -102,7 +106,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
     config.customDimensions || selectedSize?.dimensions || "";
 
   const handleAddToCart = () => {
-    if (!priceBreakdown) return;
+    if (!priceBreakdown || soldOut || unavailable) return;
     const summary = buildConfigSummary(product, config);
     const image = resolveVariantImage(
       product,
@@ -177,7 +181,14 @@ export function ProductDetail({ product }: ProductDetailProps) {
       />
 
       <section className="pt-4 border-t border-premium-border">
-        {quote || !priceBreakdown ? (
+        {unavailable ? (
+          <div className="space-y-1.5">
+            <p className="text-[10px] tracking-luxury uppercase text-premium-gray">
+              Disponibilidad
+            </p>
+            <p className="text-2xl font-light tracking-tight">No disponible</p>
+          </div>
+        ) : quote || !priceBreakdown ? (
           <div className="space-y-1.5">
             <p className="text-[10px] tracking-luxury uppercase text-premium-gray">
               Precio
@@ -196,10 +207,10 @@ export function ProductDetail({ product }: ProductDetailProps) {
         <button
           type="button"
           onClick={handleAddToCart}
-          disabled={!priceBreakdown}
+          disabled={!priceBreakdown || soldOut || unavailable}
           className="w-full rounded-lg bg-matte-black text-white py-3.5 text-xs tracking-luxury uppercase hover:bg-matte-black/90 transition-all duration-500 disabled:opacity-40 disabled:hover:bg-matte-black"
         >
-          Agregar al carrito
+          {soldOut || unavailable ? "Agotado" : "Agregar al carrito"}
         </button>
         <button
           type="button"

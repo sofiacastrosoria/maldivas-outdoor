@@ -182,13 +182,6 @@ export function AdminDashboard() {
     await fetch("/api/admin/revalidate", { method: "POST" });
   };
 
-  const signOut = async () => {
-    const supabase = createSupabaseBrowserClient();
-    await supabase.auth.signOut();
-    router.replace("/admin/login");
-    router.refresh();
-  };
-
   return (
     <div className="px-4 py-8 md:px-8">
       <header className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -204,22 +197,13 @@ export function AdminDashboard() {
             transferencia y efectivo se calculan sobre el precio de lista.
           </p>
         </div>
-        <div className="flex gap-2">
-          <button
-            type="button"
-            onClick={() => setShowLog((v) => !v)}
-            className="rounded-lg border border-matte-black/20 px-4 py-2 text-[11px] uppercase tracking-[0.16em]"
-          >
-            {showLog ? "Variantes" : "Historial"}
-          </button>
-          <button
-            type="button"
-            onClick={signOut}
-            className="rounded-lg bg-matte-black px-4 py-2 text-[11px] uppercase tracking-[0.16em] text-white"
-          >
-            Salir
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={() => setShowLog((v) => !v)}
+          className="rounded-lg border border-matte-black/20 px-4 py-2 text-[11px] uppercase tracking-[0.16em]"
+        >
+          {showLog ? "Variantes" : "Historial"}
+        </button>
       </header>
 
       {error ? (

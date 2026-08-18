@@ -1,11 +1,12 @@
-import { CASH_MULTIPLIER, TRANSFER_MULTIPLIER } from "@/data/pricing";
 import {
   getAvailableStoneModels,
   getStoneModelById,
   STONE_BRAND_LABELS,
 } from "@/data/comedorStone";
 import { getMesaSkorphioStoneById } from "@/data/mesaSkorphioStone";
+import { getDiscountRates, percentToMultiplier } from "@/lib/discounts/runtime";
 import { findPriceVariant, isQuoteSelection } from "@/lib/prices/catalog";
+import { isVariantHidden, isVariantSoldOut } from "@/lib/catalog/availability";
 import { getLegacyPublishedListPrice } from "@/lib/prices/legacy";
 import { FABRIC_DISPLAY_LABELS, FABRIC_TYPE_OPTIONS } from "@/lib/premiumSwatches";
 import type { Product, ProductConfig, CartItem } from "@/types";
@@ -14,6 +15,8 @@ export interface PriceBreakdown {
   list: number;
   cash: number;
   transfer: number;
+  cashPercent: number;
+  transferPercent: number;
 }
 
 export interface CartItemPricing extends PriceBreakdown {
@@ -33,6 +36,8 @@ export interface CartTotals {
   cash: number;
   savingsTransfer: number;
   savingsCash: number;
+  cashPercent: number | null;
+  transferPercent: number | null;
 }
 
 /** Precio de lista vigente (Supabase). No aplica −2% ni +10% extra: ya está publicado. */
@@ -41,6 +46,7 @@ export function getListPrice(
   config: ProductConfig
 ): number | null {
   if (isQuoteSelection(product, config)) return null;
+  if (isVariantHidden(product, config)) return null;
 
   const row = findPriceVariant(product, config);
   if (row) {
@@ -51,19 +57,26 @@ export function getListPrice(
   return getLegacyPublishedListPrice(product, config);
 }
 
-export function buildPriceBreakdown(list: number): PriceBreakdown {
+export function buildPriceBreakdown(
+  list: number,
+  productId?: string | null
+): PriceBreakdown {
+  const rates = getDiscountRates(productId);
   return {
     list,
-    cash: Math.round(list * CASH_MULTIPLIER),
-    transfer: Math.round(list * TRANSFER_MULTIPLIER),
+    cash: Math.round(list * percentToMultiplier(rates.cashPercent)),
+    transfer: Math.round(list * percentToMultiplier(rates.transferPercent)),
+    cashPercent: rates.cashPercent,
+    transferPercent: rates.transferPercent,
   };
 }
 
 export function calculateCartItemPricing(
   listUnitPrice: number,
-  quantity: number
+  quantity: number,
+  productId?: string | null
 ): CartItemPricing {
-  const unit = buildPriceBreakdown(listUnitPrice);
+  const unit = buildPriceBreakdown(listUnitPrice, productId);
   const savingsTransfer = unit.list - unit.transfer;
   const savingsCash = unit.list - unit.cash;
 
@@ -86,11 +99,22 @@ export function calculateCartTotals(items: CartItem[]): CartTotals {
   let cash = 0;
 
   for (const item of items) {
-    const pricing = calculateCartItemPricing(item.unitPrice, item.quantity);
+    const pricing = calculateCartItemPricing(
+      item.unitPrice,
+      item.quantity,
+      item.productId
+    );
     list += pricing.lineList;
     transfer += pricing.lineTransfer;
     cash += pricing.lineCash;
   }
+
+  const cashPercents = new Set(
+    items.map((item) => getDiscountRates(item.productId).cashPercent)
+  );
+  const transferPercents = new Set(
+    items.map((item) => getDiscountRates(item.productId).transferPercent)
+  );
 
   return {
     list,
@@ -98,6 +122,8 @@ export function calculateCartTotals(items: CartItem[]): CartTotals {
     cash,
     savingsTransfer: list - transfer,
     savingsCash: list - cash,
+    cashPercent: cashPercents.size === 1 ? [...cashPercents][0] : null,
+    transferPercent: transferPercents.size === 1 ? [...transferPercents][0] : null,
   };
 }
 
@@ -107,7 +133,7 @@ export function calculatePriceBreakdown(
 ): PriceBreakdown | null {
   const list = getListPrice(product, config);
   if (list === null) return null;
-  return buildPriceBreakdown(list);
+  return buildPriceBreakdown(list, product.id);
 }
 
 /** Precio de lista según tamaño y estructura (sin tela). */
@@ -207,6 +233,7 @@ export function getCheapestProductConfig(product: Product): ProductConfig {
   let bestPrice = Infinity;
 
   for (const cfg of enumeratePriceConfigs(product)) {
+    if (isVariantHidden(product, cfg) || isVariantSoldOut(product, cfg)) continue;
     const price = getListPrice(product, cfg);
     if (price === null) continue;
     if (best === null || isPreferredCheapestConfig(cfg, price, best, bestPrice)) {
@@ -252,7 +279,7 @@ export function getMinimumCashPrice(product: Product): number | null {
   for (const cfg of enumeratePriceConfigs(product)) {
     const list = getListPrice(product, cfg);
     if (list !== null) {
-      const cash = buildPriceBreakdown(list).cash;
+      const cash = buildPriceBreakdown(list, product.id).cash;
       if (cash < min) min = cash;
     }
   }

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { products } from "@/data/products";
+import { getPublicProductBySlug } from "@/lib/catalog/runtime";
 import { ProductDetail } from "@/components/product/ProductDetail";
 
 interface Props {
@@ -13,17 +13,13 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const product = products.find(
-    (p) => p.category === "mesas" && p.slug === slug
-  );
+  const product = getPublicProductBySlug("mesas", slug);
   return { title: product?.name ?? "Mesa" };
 }
 
 export default async function MesaDetailPage({ params }: Props) {
   const { slug } = await params;
-  const product = products.find(
-    (p) => p.category === "mesas" && p.slug === slug
-  );
+  const product = getPublicProductBySlug("mesas", slug);
   if (!product) notFound();
 
   return (

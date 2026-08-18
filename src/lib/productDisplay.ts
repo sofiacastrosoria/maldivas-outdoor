@@ -11,14 +11,21 @@ const CATEGORY_CRUMBS: Record<
 };
 
 export function getCategoryBreadcrumb(product: Product) {
-  return CATEGORY_CRUMBS[product.category];
+  return (
+    CATEGORY_CRUMBS[product.category as keyof typeof CATEGORY_CRUMBS] ?? {
+      label: product.category.charAt(0).toUpperCase() + product.category.slice(1),
+      href: `/productos/${product.category}`,
+    }
+  );
 }
 
 export function getProductTypeLabel(product: Product): string {
   if (product.category === "reposeras") return "Reposera";
   if (product.category === "mesas") return "Mesa de living";
   if (product.category === "comedor") return "Mesa de comedor";
-  return "Sillón";
+  if (product.category === "living") return "Sillón";
+  if (product.category === "alfombras") return "Alfombra";
+  return "Producto";
 }
 
 /** Orden visual estructuras: menor a mayor precio de lista */

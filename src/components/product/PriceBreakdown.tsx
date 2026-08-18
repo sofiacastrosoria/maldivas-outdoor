@@ -1,4 +1,5 @@
 import { formatPrice, type PriceBreakdown as PriceBreakdownType } from "@/lib/pricing";
+import { formatDiscountLabel } from "@/lib/discounts/runtime";
 
 interface PriceBreakdownProps {
   breakdown: PriceBreakdownType;
@@ -24,9 +25,11 @@ export function PriceBreakdown({ breakdown, compact = false }: PriceBreakdownPro
           <p className="text-2xl font-light text-matte-black tracking-tight mt-0.5">
             {formatPrice(breakdown.cash)}
           </p>
-          <p className="text-xs text-premium-gold tracking-wide mt-0.5">
-            30% OFF en efectivo
-          </p>
+          {formatDiscountLabel(breakdown.cashPercent) ? (
+            <p className="text-xs text-premium-gold tracking-wide mt-0.5">
+              {formatDiscountLabel(breakdown.cashPercent)} en efectivo
+            </p>
+          ) : null}
         </div>
         <div>
           <p className="text-[10px] tracking-luxury uppercase text-premium-gray">
@@ -35,9 +38,11 @@ export function PriceBreakdown({ breakdown, compact = false }: PriceBreakdownPro
           <p className="text-lg font-light text-matte-black/80 mt-0.5">
             {formatPrice(breakdown.transfer)}
           </p>
-          <p className="text-[10px] text-premium-gray mt-0.5">
-            15% OFF en transferencia
-          </p>
+          {formatDiscountLabel(breakdown.transferPercent) ? (
+            <p className="text-[10px] text-premium-gray mt-0.5">
+              {formatDiscountLabel(breakdown.transferPercent)} en transferencia
+            </p>
+          ) : null}
         </div>
       </div>
     );
@@ -60,9 +65,11 @@ export function PriceBreakdown({ breakdown, compact = false }: PriceBreakdownPro
         <p className="text-3xl md:text-4xl font-light text-matte-black tracking-tight mt-1">
           {formatPrice(breakdown.cash)}
         </p>
-        <p className="text-xs text-premium-gold tracking-wide mt-1">
-          30% OFF en efectivo
-        </p>
+        {formatDiscountLabel(breakdown.cashPercent) ? (
+          <p className="text-xs text-premium-gold tracking-wide mt-1">
+            {formatDiscountLabel(breakdown.cashPercent)} en efectivo
+          </p>
+        ) : null}
       </div>
       <div>
         <p className="text-[10px] tracking-luxury uppercase text-premium-gray">
@@ -71,9 +78,11 @@ export function PriceBreakdown({ breakdown, compact = false }: PriceBreakdownPro
         <p className="text-xl md:text-2xl font-light text-matte-black/80 tracking-tight mt-1">
           {formatPrice(breakdown.transfer)}
         </p>
-        <p className="text-[10px] text-premium-gray mt-1">
-          15% OFF en transferencia
-        </p>
+        {formatDiscountLabel(breakdown.transferPercent) ? (
+          <p className="text-[10px] text-premium-gray mt-1">
+            {formatDiscountLabel(breakdown.transferPercent)} en transferencia
+          </p>
+        ) : null}
       </div>
     </div>
   );

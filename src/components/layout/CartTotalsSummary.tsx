@@ -24,7 +24,7 @@ export function CartDrawerBreakdown({ totals }: { totals: CartTotals }) {
 
       <div className="border-t border-stone/10 pt-4">
         <p className="text-[9px] tracking-[0.2em] uppercase text-matte-black/70 mb-1">
-          Transferencia · 15%
+          Transferencia{totals.transferPercent != null ? ` · ${totals.transferPercent}%` : ""}
         </p>
         <p className="text-sm font-light text-matte-black tabular-nums">
           {formatPrice(totals.transfer)}
@@ -36,7 +36,7 @@ export function CartDrawerBreakdown({ totals }: { totals: CartTotals }) {
 
       <div className="border-t border-stone/10 pt-4">
         <p className="text-[9px] tracking-[0.2em] uppercase text-matte-black mb-1">
-          Efectivo · 30%
+          Efectivo{totals.cashPercent != null ? ` · ${totals.cashPercent}%` : ""}
         </p>
         <p className="text-base font-light text-matte-black tracking-tight tabular-nums">
           {formatPrice(totals.cash)}

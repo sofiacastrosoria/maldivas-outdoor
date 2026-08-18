@@ -9,6 +9,7 @@ import {
 } from "@/components/layout/CartTotalsSummary";
 import { useCart } from "@/context/CartContext";
 import { calculateCartItemPricing, formatPrice } from "@/lib/pricing";
+import { formatDiscountLabel } from "@/lib/discounts/runtime";
 import { openWhatsApp, cartToWhatsApp } from "@/lib/whatsapp";
 import type { CartItem } from "@/types";
 
@@ -146,7 +147,7 @@ export function CartDrawer() {
                       {formatPrice(totals.cash)}
                     </p>
                     <p className="text-[9px] tracking-wide text-matte-black/45 mt-1">
-                      30% OFF
+                      {formatDiscountLabel(totals.cashPercent) || "Descuento efectivo"}
                     </p>
                     <button
                       type="button"
@@ -257,8 +258,11 @@ function CartLineItem({
 }) {
   const size = configValue(item.configSummary, ["tamaño", "tamano", "medida"]);
   const structure = configValue(item.configSummary, ["estructura"]);
-  const lineList = calculateCartItemPricing(item.unitPrice, item.quantity)
-    .lineList;
+  const lineList = calculateCartItemPricing(
+    item.unitPrice,
+    item.quantity,
+    item.productId
+  ).lineList;
 
   return (
     <li className="py-4">

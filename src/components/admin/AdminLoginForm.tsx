@@ -2,10 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import {
-  createSupabaseBrowserClient,
-  isSupabaseConfigured,
-} from "@/lib/supabase/client";
+import { isSupabaseConfigured } from "@/lib/supabase/client";
 
 export function AdminLoginForm() {
   const router = useRouter();
@@ -22,20 +19,22 @@ export function AdminLoginForm() {
     e.preventDefault();
     setError("");
     if (!configured) {
-      setError(
-        "Configurá NEXT_PUBLIC_SUPABASE_URL y NEXT_PUBLIC_SUPABASE_ANON_KEY."
-      );
+      setError("El panel no está disponible en este momento.");
       return;
     }
     setLoading(true);
     try {
-      const supabase = createSupabaseBrowserClient();
-      const { error: signError } = await supabase.auth.signInWithPassword({
-        email: email.trim(),
-        password,
+      const response = await fetch("/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email.trim(),
+          password,
+        }),
       });
-      if (signError) {
-        setError("No se pudo iniciar sesión. Verificá email y contraseña.");
+      const payload = (await response.json().catch(() => ({}))) as { error?: string };
+      if (!response.ok) {
+        setError(payload.error || "No se pudo iniciar sesión. Verificá email y contraseña.");
         return;
       }
       router.replace("/admin");
@@ -54,17 +53,16 @@ export function AdminLoginForm() {
         Administración
       </h1>
       <p className="mt-3 text-sm font-light text-matte-black/55">
-        Acceso restringido para gestionar precios y variantes.
+        Acceso restringido.
       </p>
 
-      {(!configured || setup) && (
+      {setup && (
         <p className="mt-6 border border-stone/20 bg-white px-4 py-3 text-sm font-light text-matte-black/70">
-          Completá las variables de entorno de Supabase y ejecutá la migración SQL
-          en supabase/migrations/001_price_admin.sql.
+          El panel todavía no está configurado. Revisá las variables de entorno del sitio.
         </p>
       )}
 
-      <form onSubmit={handleSubmit} className="mt-10 space-y-4">
+      <form onSubmit={handleSubmit} className="mt-10 space-y-4" autoComplete="on">
         <label className="block">
           <span className="text-[10px] tracking-[0.2em] uppercase text-matte-black/40">
             Email
@@ -73,6 +71,7 @@ export function AdminLoginForm() {
             type="email"
             autoComplete="username"
             required
+            maxLength={120}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="mt-2 w-full rounded-lg border border-premium-border bg-white px-3.5 py-3 text-sm outline-none focus:border-matte-black"
@@ -86,6 +85,7 @@ export function AdminLoginForm() {
             type="password"
             autoComplete="current-password"
             required
+            maxLength={200}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="mt-2 w-full rounded-lg border border-premium-border bg-white px-3.5 py-3 text-sm outline-none focus:border-matte-black"

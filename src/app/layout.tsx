@@ -2,8 +2,12 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { SiteChrome } from "@/components/layout/SiteChrome";
-import { PriceCatalogProvider } from "@/context/PriceCatalogContext";
+import { StoreProvider } from "@/context/StoreProvider";
+import { setRuntimeCatalog } from "@/lib/catalog/runtime";
+import { setRuntimeAvailability } from "@/lib/catalog/availability";
+import { setRuntimeDiscounts } from "@/lib/discounts/runtime";
 import { loadServerPriceCatalog } from "@/lib/prices/loadServer";
+import { getCachedCatalogBundle, getCachedDiscountBundle } from "@/lib/store/loadServer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -45,14 +49,21 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const priceCatalog = await loadServerPriceCatalog();
+  const [priceCatalog, discounts, catalog] = await Promise.all([
+    loadServerPriceCatalog(),
+    getCachedDiscountBundle(),
+    getCachedCatalogBundle(),
+  ]);
+  setRuntimeDiscounts(discounts.global, discounts.overrides);
+  setRuntimeCatalog(catalog.statuses, catalog.customs);
+  setRuntimeAvailability(catalog.availability);
 
   return (
     <html lang="es" className={inter.variable}>
       <body>
-        <PriceCatalogProvider initial={priceCatalog}>
+        <StoreProvider prices={priceCatalog} discounts={discounts} catalog={catalog}>
           <SiteChrome>{children}</SiteChrome>
-        </PriceCatalogProvider>
+        </StoreProvider>
       </body>
     </html>
   );

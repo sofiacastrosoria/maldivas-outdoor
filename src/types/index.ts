@@ -63,4 +63,8 @@ export interface Product {
   mesaStoneModels?: Array<{ id: string; brand: string; label: string }>;
   /** Comedor con imágenes por estructura + medida en /images/comedor/{slug}/ */
   comedorVariantImages?: boolean;
+  /** Colección comercial (Fendi, Málaga). Si falta, se usa `name`. */
+  collection?: string;
+  soldOut?: boolean;
+  adminManaged?: boolean;
 }

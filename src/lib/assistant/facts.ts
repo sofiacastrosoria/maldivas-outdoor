@@ -96,7 +96,7 @@ export const LOGISTICS = {
   payment:
     "aceptamos distintos medios de pago; las promociones vigentes se consultan al confirmar la compra",
   cashDiscount:
-    "en la web figura 30% OFF por pago contado en efectivo sobre el precio estimativo publicado",
+    "en la web se publican descuentos de efectivo y transferencia sobre el precio de lista; los porcentajes vigentes se ven en cada producto",
   priceDisclaimer:
     "los precios son estimativos y pueden variar según configuración, terminaciones y actualizaciones de costos",
 } as const;

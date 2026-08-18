@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getProductsByCategory } from "@/data/products";
+import { getPublicProductsByCategory } from "@/lib/catalog/runtime";
 import { ProductCard } from "@/components/product/ProductCard";
 import { FadeIn } from "@/components/ui/FadeIn";
 
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default function ReposerasPage() {
-  const items = getProductsByCategory("reposeras");
+  const items = getPublicProductsByCategory("reposeras");
 
   return (
     <div className="pt-24 pb-32 px-6 md:px-12">

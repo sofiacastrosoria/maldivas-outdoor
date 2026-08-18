@@ -46,7 +46,11 @@ function formatCartItemBlock(item: CartItem): string {
   const stone =
     [stoneBrand, stoneModel].filter(Boolean).join(" — ") || "—";
 
-  const pricing = calculateCartItemPricing(item.unitPrice, item.quantity);
+  const pricing = calculateCartItemPricing(
+    item.unitPrice,
+    item.quantity,
+    item.productId
+  );
 
   const lines = [
     `• ${item.productName}`,
@@ -57,8 +61,8 @@ function formatCartItemBlock(item: CartItem): string {
     `- Piedra: ${stone}`,
     `- Cantidad: ${item.quantity}`,
     `- Precio de lista: ${formatPrice(pricing.lineList)}`,
-    `- Precio transferencia (15% OFF): ${formatPrice(pricing.lineTransfer)}`,
-    `- Precio efectivo (30% OFF): ${formatPrice(pricing.lineCash)}`,
+    `- Precio transferencia (${pricing.transferPercent}% OFF): ${formatPrice(pricing.lineTransfer)}`,
+    `- Precio efectivo (${pricing.cashPercent}% OFF): ${formatPrice(pricing.lineCash)}`,
   ];
 
   const extra = item.configSummary.filter((line) => {
@@ -104,8 +108,8 @@ export function generateCartWhatsAppMessage(items: CartItem[]): string {
     "",
     "RESUMEN:",
     `Subtotal lista: ${formatPrice(totals.list)}`,
-    `Subtotal transferencia (15% OFF): ${formatPrice(totals.transfer)}`,
-    `Subtotal efectivo (30% OFF): ${formatPrice(totals.cash)}`,
+    `Subtotal transferencia${totals.transferPercent != null ? ` (${totals.transferPercent}% OFF)` : ""}: ${formatPrice(totals.transfer)}`,
+    `Subtotal efectivo${totals.cashPercent != null ? ` (${totals.cashPercent}% OFF)` : ""}: ${formatPrice(totals.cash)}`,
     "",
     "Muchas gracias.",
   ].join("\n");

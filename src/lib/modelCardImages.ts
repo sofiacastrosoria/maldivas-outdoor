@@ -165,6 +165,17 @@ export function listModelCardCandidateUrls(product: Product): string[] {
  * Discover real images for model cards — sync pass from manifest metadata.
  */
 export function getModelCardVariants(product: Product): ModelCardVariant[] {
+  if (product.adminManaged && product.image) {
+    return [
+      {
+        url: product.image,
+        structure: product.structures[0]?.id ?? "",
+        fabric: "",
+        size: "",
+      },
+    ];
+  }
+
   if (usesComedorVariantImages(product)) {
     return getComedorCardVariants(product);
   }

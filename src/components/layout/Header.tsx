@@ -5,8 +5,10 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "@/context/CartContext";
 import { BrandMark } from "./BrandMark";
+import { getExtraPublicCategories } from "@/lib/catalog/runtime";
+import { getCategoryHref, getCategoryLabel } from "@/lib/catalog/href";
 
-const menuItems = [
+const baseMenu = [
   { label: "Inicio", href: "/" },
   {
     label: "Productos",
@@ -25,6 +27,15 @@ const menuItems = [
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { itemCount, toggleCart } = useCart();
+  const extraCategories = getExtraPublicCategories().map((id) => ({
+    label: getCategoryLabel(id),
+    href: getCategoryHref(id),
+  }));
+  const menuItems = baseMenu.map((item) =>
+    item.href === "/productos"
+      ? { ...item, children: [...(item.children ?? []), ...extraCategories] }
+      : item
+  );
 
   return (
     <>

@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /api/admin
 
-Sitemap: https://maldivas-outdoor.com/sitemap.xml
+Sitemap: https://maldivasoutdoors.com/sitemap.xml

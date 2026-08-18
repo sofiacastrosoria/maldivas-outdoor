@@ -1,21 +1,20 @@
-import { revalidatePath, revalidateTag } from "next/cache";
 import { NextResponse } from "next/server";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { getAdminUser } from "@/lib/admin/requireAdmin";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 export async function POST() {
-  const supabase = await createSupabaseServerClient();
-  if (!supabase) {
-    return NextResponse.json({ error: "No autorizado" }, { status: 401 });
-  }
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const user = await getAdminUser();
   if (!user) {
     return NextResponse.json({ error: "No autorizado" }, { status: 401 });
   }
 
   revalidateTag("price-variants");
+  revalidateTag("store-discounts");
+  revalidateTag("store-catalog");
   revalidatePath("/");
   revalidatePath("/productos");
+  revalidatePath("/admin");
+  revalidatePath("/admin/descuentos");
+  revalidatePath("/admin/productos");
   return NextResponse.json({ ok: true });
 }

@@ -13,5 +13,11 @@ export function createSupabaseBrowserClient() {
   if (!url || !key) {
     throw new Error("Supabase no está configurado");
   }
-  return createBrowserClient(url, key);
+  return createBrowserClient(url, key, {
+    cookieOptions: {
+      path: "/",
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+    },
+  });
 }

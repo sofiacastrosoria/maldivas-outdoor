@@ -4,18 +4,20 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import type { Product } from "@/types";
 import { formatPrice, getMinimumCashPrice } from "@/lib/pricing";
+import { getProductHref } from "@/lib/catalog/href";
 import { ModelVariantSlider } from "./ModelVariantSlider";
 
 interface ProductCardProps {
   product: Product;
-  href: string;
+  href?: string;
 }
 
 export function ProductCard({ product, href }: ProductCardProps) {
   const fromPrice = getMinimumCashPrice(product);
+  const link = href || getProductHref(product);
 
   return (
-    <Link href={href} className="group block">
+    <Link href={link} className="group block">
       <motion.article
         whileHover={{ y: -4 }}
         transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
@@ -24,6 +26,11 @@ export function ProductCard({ product, href }: ProductCardProps) {
         <div className="relative w-full">
           <ModelVariantSlider product={product} />
           <div className="pointer-events-none absolute inset-0 rounded-2xl bg-matte-black/0 transition-colors duration-700 group-hover:bg-matte-black/5" />
+          {product.soldOut ? (
+            <span className="absolute left-3 top-3 z-10 rounded-full bg-white/90 px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-matte-black">
+              Agotado
+            </span>
+          ) : null}
         </div>
 
         <div className="mt-4 flex items-start justify-between gap-3 sm:gap-4">
@@ -43,7 +50,7 @@ export function ProductCard({ product, href }: ProductCardProps) {
                 : "A cotizar"}
             </p>
             <span className="mt-2 inline-flex h-9 items-center rounded-full bg-matte-black px-5 text-[11px] font-medium tracking-wide text-white transition-all duration-300 group-hover:opacity-90 group-hover:shadow-[0_2px_8px_rgba(26,26,26,0.12)]">
-              Personalizar
+              {product.soldOut ? "Ver detalle" : "Personalizar"}
             </span>
           </div>
         </div>

@@ -108,7 +108,7 @@ export function respondPrice(product: Product): string {
   }
 
   parts.push(
-    `En efectivo con 30% OFF: ${formatPrice(breakdown.cash)}. En transferencia con 15% OFF: ${formatPrice(breakdown.transfer)}.`
+    `En efectivo con ${breakdown.cashPercent}% OFF: ${formatPrice(breakdown.cash)}. En transferencia con ${breakdown.transferPercent}% OFF: ${formatPrice(breakdown.transfer)}.`
   );
 
   if (product.fabrics.length > 0) {

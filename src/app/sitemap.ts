@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { products } from "@/data/products";
 
-const BASE = "https://maldivas-outdoor.com";
+const BASE = "https://maldivasoutdoors.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
