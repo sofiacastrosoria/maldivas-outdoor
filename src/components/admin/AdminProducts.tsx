@@ -5,12 +5,13 @@ import { useRouter } from "next/navigation";
 import { getCategoryLabel, slugify } from "@/lib/catalog/href";
 import { CORE_CATEGORY_OPTIONS, customProductId, type CatalogStatus } from "@/lib/catalog/types";
 import { isSafeHttpsUrl } from "@/lib/admin/safeUrl";
-import { FABRIC_TYPE_OPTIONS } from "@/lib/premiumSwatches";
+import {
+  FABRIC_FILTER_OPTIONS,
+  filterAdminPriceVariants,
+} from "@/lib/admin/priceVariants";
+import { getCommercialFabricLabel } from "@/lib/fabrics/commercial";
 import type { PriceVariantRow } from "@/lib/prices/types";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
-
-const LEGACY_COLOR_FABRIC_IDS = new Set(["negro", "gris", "beige", "blanco"]);
-const TELA_ORDER = FABRIC_TYPE_OPTIONS.map((opt) => opt.id);
 
 const STATUS_LABEL: Record<CatalogStatus, string> = {
   active: "Visible",
@@ -61,11 +62,7 @@ export function AdminProducts() {
       if (variantsError) throw variantsError;
       if (availabilityError) throw availabilityError;
 
-      setRows(
-        ((variants ?? []) as PriceVariantRow[]).filter(
-          (row) => !LEGACY_COLOR_FABRIC_IDS.has(row.fabric_id)
-        )
-      );
+      setRows(filterAdminPriceVariants((variants ?? []) as PriceVariantRow[]));
       const next: Record<string, CatalogStatus> = {};
       for (const row of availabilityRows ?? []) {
         next[String(row.variant_key)] = row.status as CatalogStatus;
@@ -122,14 +119,10 @@ export function AdminProducts() {
       categories: uniq((r) => r.category),
       collections: uniq((r) => r.collection),
       structures: rows.map((r) => ({ id: r.structure_id, label: r.structure_label })),
-      fabrics: rows
-        .filter((r) => r.fabric_id)
-        .map((r) => ({ id: r.fabric_id, label: r.fabric_label }))
-        .sort((a, b) => {
-          const ai = TELA_ORDER.indexOf(a.id as (typeof TELA_ORDER)[number]);
-          const bi = TELA_ORDER.indexOf(b.id as (typeof TELA_ORDER)[number]);
-          return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
-        }),
+      fabrics: FABRIC_FILTER_OPTIONS.map((opt) => ({
+        id: opt.id,
+        label: opt.label,
+      })),
       stones: rows.map((r) => ({ id: r.stone_id, label: r.stone_label })),
     };
   }, [rows]);
@@ -325,7 +318,7 @@ export function AdminProducts() {
               ))}
             </select>
             <select value={fabric} onChange={(e) => setFabric(e.target.value)} className="rounded-lg border border-premium-border bg-white px-3 py-2.5 text-sm">
-              <option value="">Tapizado</option>
+              <option value="">Tela</option>
               {uniquePairs(options.fabrics).map(([id, label]) => (
                 <option key={id} value={id}>{label}</option>
               ))}
@@ -397,7 +390,7 @@ export function AdminProducts() {
                   <th className="px-3 py-3">Colección</th>
                   <th className="px-3 py-3">Medida</th>
                   <th className="px-3 py-3">Estructura</th>
-                  <th className="px-3 py-3">Tapizado</th>
+                  <th className="px-3 py-3">Tela</th>
                   <th className="px-3 py-3">Piedra</th>
                   <th className="px-3 py-3">Estado</th>
                   <th className="px-3 py-3" />
@@ -426,7 +419,9 @@ export function AdminProducts() {
                       <td className="px-3 py-3">{row.collection}</td>
                       <td className="px-3 py-3 whitespace-nowrap">{row.size_label}</td>
                       <td className="px-3 py-3">{row.structure_label}</td>
-                      <td className="px-3 py-3">{row.fabric_label}</td>
+                      <td className="px-3 py-3">
+                        {getCommercialFabricLabel(row.fabric_id)}
+                      </td>
                       <td className="px-3 py-3">{row.stone_label}</td>
                       <td className="px-3 py-3 text-xs uppercase tracking-[0.12em] text-matte-black/50">
                         {STATUS_LABEL[status]}

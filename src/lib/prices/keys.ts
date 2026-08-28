@@ -1,5 +1,6 @@
 import type { Product, ProductConfig } from "@/types";
 import type { VariantLookupInput } from "@/lib/prices/types";
+import { isCommercialFabricQuote } from "@/lib/fabrics/commercial";
 
 export function buildVariantKey(input: VariantLookupInput): string {
   return [
@@ -34,5 +35,6 @@ export function lookupInputFromConfig(
 }
 
 export function isQuoteFabricType(fabricTypeId?: string | null): boolean {
-  return fabricTypeId === "sunbrella";
+  if (!fabricTypeId) return false;
+  return isCommercialFabricQuote(fabricTypeId);
 }

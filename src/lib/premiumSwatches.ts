@@ -1,5 +1,10 @@
 /** Visual swatches for premium configurator — UI only, ids unchanged */
 
+import {
+  COMMERCIAL_FABRIC_OPTIONS,
+  type CommercialFabricId,
+} from "@/lib/fabrics/commercial";
+
 export interface SwatchStyle {
   background: string;
   border?: string;
@@ -39,9 +44,7 @@ export const FABRIC_DISPLAY_LABELS: Record<string, string> = {
   blanco: "Blanco",
 };
 
-export const FABRIC_TYPE_OPTIONS = [
-  { id: "bliss", label: "Sunbrella Canvas - Agora - Linetex" },
-  { id: "sunbrella", label: "Sunbrella Natte" },
-] as const;
+/** Opciones de marca/tipo de tela — reexport desde fuente común */
+export const FABRIC_TYPE_OPTIONS = COMMERCIAL_FABRIC_OPTIONS;
 
-export type FabricTypeId = (typeof FABRIC_TYPE_OPTIONS)[number]["id"];
+export type FabricTypeId = CommercialFabricId;

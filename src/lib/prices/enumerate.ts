@@ -3,12 +3,19 @@ import { ALL_STONE_MODELS, getAvailableStoneModels, STONE_BRAND_LABELS } from "@
 import { getMesaSkorphioStoneById } from "@/data/mesaSkorphioStone";
 import { getProductTypeLabel } from "@/lib/productDisplay";
 import { getLegacyPublishedListPrice } from "@/lib/prices/legacy";
-import { FABRIC_TYPE_OPTIONS, type FabricTypeId } from "@/lib/premiumSwatches";
+import {
+  COMMERCIAL_FABRIC_OPTIONS,
+  getCommercialFabricLabel,
+  isCommercialFabricQuote,
+  type CommercialFabricId,
+} from "@/lib/fabrics/commercial";
 import { buildVariantKey } from "@/lib/prices/keys";
 import type { PriceVariantRow } from "@/lib/prices/types";
 import type { Product, ProductConfig } from "@/types";
 
-const TELA_IDS: FabricTypeId[] = ["bliss", "sunbrella"];
+const TELA_IDS: CommercialFabricId[] = COMMERCIAL_FABRIC_OPTIONS.map(
+  (opt) => opt.id
+);
 
 function telaIds(product: Product): string[] {
   return product.fabrics.length > 0 ? [...TELA_IDS] : [""];
@@ -16,7 +23,7 @@ function telaIds(product: Product): string[] {
 
 function telaLabel(telaId: string): string {
   if (!telaId) return "—";
-  return FABRIC_TYPE_OPTIONS.find((opt) => opt.id === telaId)?.label ?? telaId;
+  return getCommercialFabricLabel(telaId);
 }
 
 function stoneIds(product: Product, sizeId: string): string[] {
@@ -65,7 +72,7 @@ function configFor(
     sizeId,
     structureId,
     fabricId: product.fabrics[0]?.id ?? "negro",
-    fabricTypeId: telaId ? (telaId as FabricTypeId) : undefined,
+    fabricTypeId: telaId ? (telaId as CommercialFabricId) : undefined,
     stoneBrand:
       marbellaModel?.brand ??
       skorphioStone?.brand ??
@@ -97,7 +104,7 @@ export function enumerateCommercialVariants(
               stoneId
             );
             const published = getLegacyPublishedListPrice(product, config);
-            const isQuoteTela = telaId === "sunbrella";
+            const isQuoteTela = isCommercialFabricQuote(telaId);
             const quote = isQuoteTela || published === null;
 
             rows.push({

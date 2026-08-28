@@ -8,7 +8,8 @@ import { getDiscountRates, percentToMultiplier } from "@/lib/discounts/runtime";
 import { findPriceVariant, isQuoteSelection } from "@/lib/prices/catalog";
 import { isVariantHidden, isVariantSoldOut } from "@/lib/catalog/availability";
 import { getLegacyPublishedListPrice } from "@/lib/prices/legacy";
-import { FABRIC_DISPLAY_LABELS, FABRIC_TYPE_OPTIONS } from "@/lib/premiumSwatches";
+import { getCommercialFabricLabel } from "@/lib/fabrics/commercial";
+import { FABRIC_DISPLAY_LABELS } from "@/lib/premiumSwatches";
 import type { Product, ProductConfig, CartItem } from "@/types";
 
 export interface PriceBreakdown {
@@ -314,8 +315,9 @@ export function buildConfigSummary(
   if (structure) lines.push(`Estructura: ${structure.label}`);
   if (fabric) {
     lines.push(`Color: ${FABRIC_DISPLAY_LABELS[fabric.id] ?? fabric.label}`);
-    const tela = FABRIC_TYPE_OPTIONS.find((o) => o.id === (config.fabricTypeId ?? "bliss"));
-    if (tela) lines.push(`Tapizado: ${tela.label}`);
+    lines.push(
+      `Tapizado: ${getCommercialFabricLabel(config.fabricTypeId ?? "bliss")}`
+    );
   }
   if (config.customDimensions)
     lines.push(`Medida personalizada: ${config.customDimensions}`);

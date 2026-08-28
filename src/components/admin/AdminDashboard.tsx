@@ -4,11 +4,12 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { formatPrice } from "@/lib/pricing";
-import { FABRIC_TYPE_OPTIONS } from "@/lib/premiumSwatches";
+import { getCommercialFabricLabel } from "@/lib/fabrics/commercial";
+import {
+  FABRIC_FILTER_OPTIONS,
+  filterAdminPriceVariants,
+} from "@/lib/admin/priceVariants";
 import type { PriceChangeLogRow, PriceVariantRow } from "@/lib/prices/types";
-
-const LEGACY_COLOR_FABRIC_IDS = new Set(["negro", "gris", "beige", "blanco"]);
-const TELA_ORDER = FABRIC_TYPE_OPTIONS.map((opt) => opt.id);
 
 function parsePercent(raw: string): number | null {
   const cleaned = raw.trim().replace("%", "").replace(",", ".");
@@ -40,6 +41,7 @@ export function AdminDashboard() {
   const [showLog, setShowLog] = useState(false);
   const [savingId, setSavingId] = useState<string | null>(null);
   const [drafts, setDrafts] = useState<Record<string, string>>({});
+  const [bulkNotice, setBulkNotice] = useState("");
 
   const load = useCallback(async () => {
     setError("");
@@ -56,11 +58,7 @@ export function AdminDashboard() {
         setLoading(false);
         return;
       }
-      setRows(
-        ((variants ?? []) as PriceVariantRow[]).filter(
-          (row) => !LEGACY_COLOR_FABRIC_IDS.has(row.fabric_id)
-        )
-      );
+      setRows(filterAdminPriceVariants((variants ?? []) as PriceVariantRow[]));
       setDrafts({});
 
       const { data: history } = await supabase
@@ -110,14 +108,10 @@ export function AdminDashboard() {
       categories: uniq((r) => r.category),
       collections: uniq((r) => r.collection),
       structures: rows.map((r) => ({ id: r.structure_id, label: r.structure_label })),
-      fabrics: rows
-        .filter((r) => r.fabric_id)
-        .map((r) => ({ id: r.fabric_id, label: r.fabric_label }))
-        .sort((a, b) => {
-          const ai = TELA_ORDER.indexOf(a.id as (typeof TELA_ORDER)[number]);
-          const bi = TELA_ORDER.indexOf(b.id as (typeof TELA_ORDER)[number]);
-          return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
-        }),
+      fabrics: FABRIC_FILTER_OPTIONS.map((opt) => ({
+        id: opt.id,
+        label: opt.label,
+      })),
       stones: rows.map((r) => ({ id: r.stone_id, label: r.stone_label })),
     };
   }, [rows]);
@@ -132,6 +126,8 @@ export function AdminDashboard() {
   };
 
   const selectedRows = filtered.filter((row) => selected.has(row.id || row.variant_key));
+  const pricedSelectedRows = selectedRows.filter((row) => row.price_status === "priced");
+  const quoteSelectedRows = selectedRows.filter((row) => row.price_status === "quote");
   const percent = parsePercent(percentInput);
 
   const toggleAll = () => {
@@ -149,9 +145,16 @@ export function AdminDashboard() {
     if (!row.id) return;
     setSavingId(row.id);
     const supabase = createSupabaseBrowserClient();
+    const label = getCommercialFabricLabel(row.fabric_id);
+    const update: Partial<Pick<PriceVariantRow, "list_price" | "price_status">> & {
+      fabric_label: string;
+    } = { ...patch, fabric_label: label };
+    if (patch.price_status === "quote") {
+      update.list_price = 0;
+    }
     const { error: updateError } = await supabase
       .from("price_variants")
-      .update(patch)
+      .update(update)
       .eq("id", row.id);
     setSavingId(null);
     if (updateError) {
@@ -164,8 +167,8 @@ export function AdminDashboard() {
   };
 
   const applyBulk = async () => {
-    if (percent === null || selectedRows.length === 0) return;
-    const ids = selectedRows.map((row) => row.id).filter(Boolean) as string[];
+    if (percent === null || pricedSelectedRows.length === 0) return;
+    const ids = pricedSelectedRows.map((row) => row.id).filter(Boolean) as string[];
     const supabase = createSupabaseBrowserClient();
     const { error: rpcError } = await supabase.rpc("apply_percent_to_variants", {
       p_ids: ids,
@@ -174,6 +177,13 @@ export function AdminDashboard() {
     if (rpcError) {
       setError(rpcError.message);
       return;
+    }
+    if (quoteSelectedRows.length > 0) {
+      setBulkNotice(
+        `${quoteSelectedRows.length} variante(s) A cotizar fueron omitidas del cambio masivo.`
+      );
+    } else {
+      setBulkNotice("");
     }
     setConfirmOpen(false);
     setSelected(new Set());
@@ -205,6 +215,12 @@ export function AdminDashboard() {
           {showLog ? "Variantes" : "Historial"}
         </button>
       </header>
+
+      {bulkNotice ? (
+        <p className="mb-4 border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+          {bulkNotice}
+        </p>
+      ) : null}
 
       {error ? (
         <p className="mb-4 border border-red-200 bg-white px-4 py-3 text-sm text-red-800">
@@ -271,7 +287,7 @@ export function AdminDashboard() {
               ))}
             </select>
             <select value={fabric} onChange={(e) => setFabric(e.target.value)} className="rounded-lg border border-premium-border bg-white px-3 py-2.5 text-sm">
-              <option value="">Tapizado</option>
+              <option value="">Tela</option>
               {uniquePairs(options.fabrics).map(([id, label]) => (
                 <option key={id} value={id}>{label}</option>
               ))}
@@ -297,7 +313,7 @@ export function AdminDashboard() {
               />
               <button
                 type="button"
-                disabled={selectedRows.length === 0 || percent === null}
+                disabled={pricedSelectedRows.length === 0 || percent === null}
                 onClick={() => setConfirmOpen(true)}
                 className="rounded-lg bg-matte-black px-4 py-2 text-[11px] uppercase tracking-[0.16em] text-white disabled:opacity-40"
               >
@@ -320,7 +336,7 @@ export function AdminDashboard() {
                     <th className="px-3 py-3">Colección</th>
                     <th className="px-3 py-3">Medida</th>
                     <th className="px-3 py-3">Estructura</th>
-                    <th className="px-3 py-3">Tapizado</th>
+                    <th className="px-3 py-3">Tela</th>
                     <th className="px-3 py-3">Piedra</th>
                     <th className="px-3 py-3">Precio de lista</th>
                     <th className="px-3 py-3">Estado</th>
@@ -350,7 +366,9 @@ export function AdminDashboard() {
                         <td className="px-3 py-3">{row.collection}</td>
                         <td className="px-3 py-3 whitespace-nowrap">{row.size_label}</td>
                         <td className="px-3 py-3">{row.structure_label}</td>
-                        <td className="px-3 py-3">{row.fabric_label}</td>
+                        <td className="px-3 py-3">
+                          {getCommercialFabricLabel(row.fabric_id)}
+                        </td>
                         <td className="px-3 py-3">{row.stone_label}</td>
                         <td className="px-3 py-3">
                           {row.price_status === "quote" ? (
@@ -392,7 +410,7 @@ export function AdminDashboard() {
                             }
                             className="rounded border border-premium-border bg-white px-2 py-1 text-xs"
                           >
-                            <option value="priced">priced</option>
+                            <option value="priced">Precio normal</option>
                             <option value="quote">A cotizar</option>
                           </select>
                         </td>
@@ -411,11 +429,16 @@ export function AdminDashboard() {
           <div className="max-h-[80vh] w-full max-w-lg overflow-auto rounded-xl bg-white p-6">
             <h2 className="text-xl font-light">Confirmar cambio masivo</h2>
             <p className="mt-3 text-sm font-light text-matte-black/70">
-              {selectedRows.length} variantes · {percent > 0 ? "+" : ""}
+              {pricedSelectedRows.length} variantes con precio · {percent > 0 ? "+" : ""}
               {percent}%
             </p>
+            {quoteSelectedRows.length > 0 ? (
+              <p className="mt-2 text-sm text-amber-800">
+                {quoteSelectedRows.length} variante(s) A cotizar serán omitidas.
+              </p>
+            ) : null}
             <ul className="mt-4 max-h-64 space-y-2 overflow-auto text-sm">
-              {selectedRows.slice(0, 12).map((row) => (
+              {pricedSelectedRows.slice(0, 12).map((row) => (
                 <li key={row.variant_key} className="flex justify-between gap-4 border-b border-stone/10 py-2">
                   <span className="font-light">
                     {row.product_name} · {row.structure_label}
@@ -425,8 +448,8 @@ export function AdminDashboard() {
                   </span>
                 </li>
               ))}
-              {selectedRows.length > 12 ? (
-                <li className="text-matte-black/50">y {selectedRows.length - 12} más…</li>
+              {pricedSelectedRows.length > 12 ? (
+                <li className="text-matte-black/50">y {pricedSelectedRows.length - 12} más…</li>
               ) : null}
             </ul>
             <div className="mt-6 flex justify-end gap-2">
