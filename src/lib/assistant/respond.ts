@@ -82,7 +82,7 @@ export function respondOutdoorPermanent(): string {
 }
 
 export function respondFabricRecommendation(): string {
-  return "Las tres opciones —Sunbrella, Agora y Bliss— son aptas para exterior, con resistencia UV, buen comportamiento frente a la humedad y facilidad de limpieza. Si buscás máxima trayectoria y reconocimiento internacional, Sunbrella es una excelente alternativa. Contame si el espacio tiene mucho sol o uso intensivo y te oriento con más detalle.";
+  return "Trabajamos con dos opciones de tela outdoor: Sunbrella Canvas - Agora - Linetex, con precios publicados en el catálogo, y Sunbrella Natte, que se cotiza de forma personalizada. Ambas son aptas para exterior, con resistencia UV y facilidad de limpieza. Contame si el espacio tiene mucho sol o uso intensivo y te oriento con más detalle.";
 }
 
 export function respondCompany(): string {
@@ -112,7 +112,9 @@ export function respondPrice(product: Product): string {
   );
 
   if (product.fabrics.length > 0) {
-    parts.push("El valor varía según estructura y tamaño; la tela no modifica el precio");
+    parts.push(
+      "El valor varía según estructura y tamaño; Sunbrella Natte se cotiza personalizadamente, mientras que Sunbrella Canvas - Agora - Linetex utiliza los precios publicados del catálogo"
+    );
   } else if (isMesaSkorphioLiving(product)) {
     parts.push(
       "Las tres opciones de piedra Infinity comparten el mismo precio de lista"
@@ -206,7 +208,7 @@ export function respondCompare(
 export function respondCompareFabrics(a: FabricSlug, b: FabricSlug): string {
   const brandA = FABRIC_BRANDS[a];
   const brandB = FABRIC_BRANDS[b];
-  return `${brandA.name} se destaca por ${brandA.traits}. ${brandB.name}, en cambio, ofrece ${brandB.traits}. Ambas son opciones outdoor premium; la elección depende del uso previsto, la exposición al sol y la estética que buscás para tu proyecto.`;
+  return `${brandA.name} (${brandA.traits}). ${brandB.name}, en cambio, ${brandB.traits}. Ambas son opciones outdoor premium; la elección depende del uso previsto, la exposición al sol y la estética que buscás para tu proyecto.`;
 }
 
 export function respondCompareStructures(): string {
@@ -318,7 +320,7 @@ export function respondTopic(topic: TopicId): string {
     case "integral_project":
       return "Sí, asesoramos proyectos integrales para galerías, quinchos y terrazas. Podemos ayudarte a combinar reposeras, living y comedor con una propuesta coherente para tu espacio.";
     case "kids_pets":
-      return "Para hogares con niños o mascotas podemos orientarte hacia telas outdoor de fácil limpieza y excelente resistencia al uso intensivo. Sunbrella, Agora y Bliss son opciones muy sólidas.";
+      return "Para hogares con niños o mascotas podemos orientarte hacia telas outdoor de fácil limpieza y excelente resistencia al uso intensivo. Sunbrella Canvas - Agora - Linetex y Sunbrella Natte son opciones muy sólidas.";
     case "pool":
       return "Sí, los materiales son aptos para zonas de piscina y ambientes exteriores húmedos. El aluminio y las telas outdoor están pensados para ese tipo de exposición.";
     case "heat_sun":

@@ -34,5 +34,5 @@ export function lookupInputFromConfig(
 }
 
 export function isQuoteFabricType(fabricTypeId?: string | null): boolean {
-  return fabricTypeId === "agora" || fabricTypeId === "sunbrella";
+  return fabricTypeId === "sunbrella";
 }

@@ -18,7 +18,7 @@ export interface ProductConfig {
   sizeId: string;
   structureId: string;
   fabricId: string;
-  fabricTypeId?: "bliss" | "agora" | "sunbrella";
+  fabricTypeId?: "bliss" | "sunbrella";
   customNotes?: string;
   stoneBrand?: string;
   stoneModel?: string;

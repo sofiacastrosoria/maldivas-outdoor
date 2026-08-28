@@ -200,7 +200,9 @@ const INTENT_RULES: { intent: AssistantIntent; patterns: RegExp[]; weight: numbe
     weight: 7,
     patterns: [
       /\bsunbrella\b/,
-      /\bagora\b/,
+      /\bnatte\b/,
+      /\bcanvas\b/,
+      /\blinetex\b/,
       /\bbliss\b/,
       /\btela(s)?\b/,
       /\btapizado(s)?\b/,

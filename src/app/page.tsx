@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { FadeIn } from "@/components/ui/FadeIn";
@@ -133,12 +134,12 @@ export default function HomePage() {
           <p className="text-[10px] tracking-luxury uppercase text-matte-black/40 mb-4">
             Descubrir
           </p>
-          <a
+          <Link
             href="/productos"
             className="inline-block text-2xl md:text-3xl font-extralight hover:opacity-60 transition-opacity duration-500"
           >
             Explorar colección →
-          </a>
+          </Link>
         </FadeIn>
       </section>
 

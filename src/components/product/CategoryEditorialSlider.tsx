@@ -37,7 +37,7 @@ export function CategoryEditorialSlider({
           label: s.label,
           href,
         })),
-    [category]
+    [category, href]
   );
 
   return (

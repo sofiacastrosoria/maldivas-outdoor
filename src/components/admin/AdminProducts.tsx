@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
+import { FormEvent, useCallback, useEffect, useMemo, useState, type Dispatch, type SetStateAction } from "react";
 import { useRouter } from "next/navigation";
 import { getCategoryLabel, slugify } from "@/lib/catalog/href";
 import { CORE_CATEGORY_OPTIONS, customProductId, type CatalogStatus } from "@/lib/catalog/types";
@@ -86,7 +86,10 @@ export function AdminProducts() {
     void load();
   }, [load]);
 
-  const statusOf = (key: string): CatalogStatus => availability[key] ?? "active";
+  const statusOf = useCallback(
+    (key: string): CatalogStatus => availability[key] ?? "active",
+    [availability]
+  );
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -110,7 +113,7 @@ export function AdminProducts() {
         .toLowerCase()
         .includes(q);
     });
-  }, [rows, search, category, collection, structure, fabric, stone, statusFilter, availability]);
+  }, [rows, search, category, collection, structure, fabric, stone, statusFilter, statusOf]);
 
   const options = useMemo(() => {
     const uniq = (pick: (row: PriceVariantRow) => string) =>

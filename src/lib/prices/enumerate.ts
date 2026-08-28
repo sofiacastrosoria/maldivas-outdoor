@@ -8,7 +8,7 @@ import { buildVariantKey } from "@/lib/prices/keys";
 import type { PriceVariantRow } from "@/lib/prices/types";
 import type { Product, ProductConfig } from "@/types";
 
-const TELA_IDS: FabricTypeId[] = ["bliss", "sunbrella", "agora"];
+const TELA_IDS: FabricTypeId[] = ["bliss", "sunbrella"];
 
 function telaIds(product: Product): string[] {
   return product.fabrics.length > 0 ? [...TELA_IDS] : [""];
@@ -97,7 +97,7 @@ export function enumerateCommercialVariants(
               stoneId
             );
             const published = getLegacyPublishedListPrice(product, config);
-            const isQuoteTela = telaId === "agora" || telaId === "sunbrella";
+            const isQuoteTela = telaId === "sunbrella";
             const quote = isQuoteTela || published === null;
 
             rows.push({

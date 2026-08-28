@@ -25,7 +25,7 @@ export const COMPANY = {
     "una estética inspirada en hoteles boutique y arquitectura contemporánea, con piezas pensadas para permanecer en el tiempo",
 } as const;
 
-export const FABRIC_SLUGS = ["sunbrella", "agora", "bliss"] as const;
+export const FABRIC_SLUGS = ["bliss", "sunbrella"] as const;
 export type FabricSlug = (typeof FABRIC_SLUGS)[number];
 
 export const COLLECTION_SLUGS = [
@@ -54,17 +54,15 @@ export const COLLECTION_TRAITS: Record<CollectionSlug, string> = {
 };
 
 export const FABRIC_BRANDS = {
-  sunbrella: {
-    name: "Sunbrella",
-    traits: "referencia mundial en telas acrílicas outdoor, alta resistencia UV y excelente estabilidad de color",
-  },
-  agora: {
-    name: "Agora",
-    traits: "alta performance para uso intensivo, gran resistencia al sol y fácil mantenimiento",
-  },
   bliss: {
-    name: "Bliss",
-    traits: "confort, resistencia y estética refinada para proyectos exigentes",
+    name: "Sunbrella Canvas - Agora - Linetex",
+    traits:
+      "opción con precios publicados en la web, con descuentos por transferencia y efectivo según promociones vigentes",
+  },
+  sunbrella: {
+    name: "Sunbrella Natte",
+    traits:
+      "se cotiza de forma personalizada; en el configurador aparece A cotizar",
   },
 } as const;
 
